@@ -3,3 +3,9 @@
 ################################################################################
 
 /Chapter03/bin/Debug/netcoreapp3.1
+*.suo
+/Chapter03/obj
+/Examples/bin/Debug
+/Examples/obj/Debug
+/Tests/bin/Debug/netcoreapp3.1
+/Tests/obj
