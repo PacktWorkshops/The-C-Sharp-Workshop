@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LinqExercises
+namespace Chapter04
 {
     public static class Lookups
     {

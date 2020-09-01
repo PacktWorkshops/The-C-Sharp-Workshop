@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LinqExercises
+namespace Chapter04
 {
+    /// <summary>
+    /// Appendix on Dictionaries
+    /// </summary>
     public static class TimeZones
     {
         public static Dictionary<string, TimeZoneInfo> ById => 
