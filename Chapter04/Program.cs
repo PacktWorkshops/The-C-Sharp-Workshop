@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Chapter04
 {
@@ -6,14 +7,12 @@ namespace Chapter04
     {
         static void Main(string[] args)
         {
-            var products = Inventory.GetSampleProducts();
+			var files = Mp3Linq.GetMp3InfoAll(@"C:\Users\adamo\OneDrive\Music").Take(100);
 
-            var lowPrice = Prompt("Enter the low price: ", s => Convert.ToDecimal(s));
-            var highPrice = Prompt("Enter the high price: ", s => Convert.ToDecimal(s));
-            Inventory.ShowProductsInPriceRange(products, lowPrice, highPrice);
-        }
+            Mp3Linq.ShowByYearArtistAlbum(files);
+		}
 
-        private static T Prompt<T>(string message, Func<string, T> convertResult)
+		private static T Prompt<T>(string message, Func<string, T> convertResult)
         {
             Console.Write(message);
             string result = Console.ReadLine();
