@@ -92,6 +92,15 @@ namespace Chapter04
             Console.WriteLine();
         }
 
+        public static void ShowProductsWhere(IEnumerable<Product> products, Func<Product, bool> predicate, Func<Product, string> showOutput)
+        {
+            Console.WriteLine("ShowProductsWhere (with custom output):");
+
+            foreach (var p in products.Where(predicate)) Console.WriteLine(showOutput.Invoke(p));
+
+            Console.WriteLine();
+        }
+
         public static void ShowOrderedProductsWhere<T>(IEnumerable<Product> products, Func<Product, bool> predicate, Func<Product, T> orderBy)
         {
             Console.WriteLine("ShowOrderedProductsWhere:");
