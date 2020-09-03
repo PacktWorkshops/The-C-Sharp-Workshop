@@ -46,6 +46,9 @@ namespace Chapter04
             }
         }
 
+        /// <summary>
+        /// Activity 4.02
+        /// </summary>        
         public static void ShowByYearArtistAlbum(IEnumerable<Mp3Info> files)
         {
             foreach (var artistGrp in files.GroupBy(mp3 => mp3.GroupArtistName()))
