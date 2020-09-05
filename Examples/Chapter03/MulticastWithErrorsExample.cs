@@ -6,7 +6,7 @@ namespace Chapter03Examples
     class MulticastWithErrorsExample
 
     {
-            public static void Main1()
+            public static void Main()
             {
                 Action<string> logger = LogToConsole;
                 logger += LogToError;
