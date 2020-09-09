@@ -1,40 +1,34 @@
 ﻿using System;
+using System.IO;
+using System.Threading.Tasks;
 
-class Program
+public class Program
 {
-    static double Divide(int a, int b) => a / b;
-    
-    static void Main()
+    public static async Task Main()
     {
-        bool divisionExecuted = false;
-
-        while (!divisionExecuted)
+        using (var file = new StreamWriter("products.csv", append: true))
         {
-            try
+            file.Write("\nOne more macbook without details.");
+        }
+
+        using (var fileStream = new FileStream("products.csv", FileMode.Open,
+            FileAccess.Read))
+        {
+            await ReadFile(fileStream);
+        }
+    }
+
+    private static async Task ReadFile(FileStream fileStream)
+    {
+        using (var reader = new StreamReader(fileStream))
+        {
+            var content = await reader.ReadToEndAsync();
+
+            var lines = content.Split(Environment.NewLine);
+
+            foreach (var line in lines)
             {
-                Console.WriteLine("Please input a number");
-
-                var a = int.Parse(Console.ReadLine());
-
-                Console.WriteLine("Please input another number");
-
-                var b = int.Parse(Console.ReadLine());
-
-                var result = Divide(a, b);
-
-                Console.WriteLine($"Result: {result}");
-
-                divisionExecuted = true;
-            }
-            catch (System.FormatException)
-            {
-                Console.WriteLine("You did not input a number. Let's start again ... \n");
-                continue;
-            }
-            catch (System.DivideByZeroException)
-            {
-                Console.WriteLine("Tried to divide by zero. Let's start again ... \n");
-                continue;
+                Console.WriteLine(line);
             }
         }
     }

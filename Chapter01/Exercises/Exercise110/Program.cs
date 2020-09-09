@@ -1,25 +1,38 @@
 ﻿using System;
-using System.IO;
-using System.Threading.Tasks;
 
-public class Program
+class Program
 {
-    public static async Task Main()
+    static void Main(string[] args)
     {
-        using (var fileStream = new FileStream("products.csv", FileMode.Open,
-            FileAccess.Read))
+        int[] randomNumbers = { 123, 22, 53, 91, 787, 0, -23, 5 };
+
+        int[] sortedArray = BubbleSort(randomNumbers);
+
+        Console.WriteLine("Sorted:");
+
+        for (int i = 0; i < sortedArray.Length; i++)
+            Console.Write(sortedArray[i] + " ");
+
+        Console.Read();
+    }
+
+    static int[] BubbleSort(int[] array)
+    {
+        int temp;
+
+        for (int j = 0; j < array.Length - 1; j++)
         {
-            using (var reader = new StreamReader(fileStream))
+            for (int i = 0; i < array.Length - 1; i++)
             {
-                var content = await reader.ReadToEndAsync();
-
-                var lines = content.Split(Environment.NewLine);
-
-                foreach (var line in lines)
+                if (array[i] > array[i + 1])
                 {
-                    Console.WriteLine(line);
+                    temp = array[i + 1];
+                    array[i + 1] = array[i];
+                    array[i] = temp;
                 }
             }
         }
+
+        return array;
     }
 }

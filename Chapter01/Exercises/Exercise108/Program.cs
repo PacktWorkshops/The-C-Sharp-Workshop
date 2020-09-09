@@ -1,95 +1,53 @@
 ﻿using System;
 
-namespace Exercise108
+public class Program
 {
-    class Program
+    public static void Main()
     {
-        static void Main(string[] args)
+        var menuBuilder = new System.Text.StringBuilder();
+
+        menuBuilder.AppendLine("Welcome to the Burger Joint. ");
+        menuBuilder.AppendLine(string.Empty);
+        menuBuilder.AppendLine("1) Burgers and Fries - 5 USD");
+        menuBuilder.AppendLine("2) Cheeseburger - 7 USD");
+        menuBuilder.AppendLine("3) Double-cheeseburger - 9 USD");
+        menuBuilder.AppendLine("4) Coke - 2 USD");
+        menuBuilder.AppendLine(string.Empty);
+        menuBuilder.AppendLine("Note that every burger option comes with fries and ketchup!");
+
+        Console.WriteLine(menuBuilder.ToString());
+
+        Console.WriteLine("Please type one of the follow options to order:");
+
+        var option = Console.ReadKey();
+
+        switch(option.KeyChar.ToString())
         {
-            Console.Write("Enter the Number to check Prime: ");
-
-            var input = int.Parse(Console.ReadLine());
-
-            Console.WriteLine($"{input} is prime? {IsPrimeWithGoTo(input)}.");
-        }
-
-        static bool IsPrime(int number)
-        {
-            bool isPrime = true;
-
-            int counter = 2;
-
-            while (counter <= number / 2)
+            case "1":
             {
-                if (number % counter == 0)
-                {
-                    isPrime = false;
-                    break;
-                }
-
-                counter++;
-            }
-
-            return isPrime;
-        }
-
-        static bool IsPrimeWithContinue(int number)
-        {
-            bool isPrime = true;
-
-            int counter = 2;
-
-            while (counter <= number / 2)
-            {
-                if (number % counter != 0)
-                {
-                    counter++;
-                    continue;
-                }
-
-                isPrime = false;
+                Console.WriteLine("\nAlright, some burgers on the go! Please pay on the following cashier!");
                 break;
             }
-
-            return isPrime;
-        }
-
-        static bool IsPrimeWithGoTo(int number)
-        {
-            bool isPrime = true;
-
-            int counter = 2;
-
-            while (counter <= number / 2)
+            case "2":
             {
-                if (number % counter == 0)
-                {
-                    isPrime = false;
-                    goto isNotAPrime; 
-                }
-
-                counter++;
+                Console.WriteLine("\nI got you, I also like some cheese. Cheeseburgers on the go! Please pay on the following cashier!");
+                break;
             }
-
-            isNotAPrime:
-            return isPrime;
-        }
-
-        static bool IsPrimeWithReturn(int number)
-        {
-            int counter = 2;
-
-            while (counter <= number / 2)
+            case "3":
             {
-                if (number % counter == 0)
-                {
-                    return false;
-                }
-
-                counter ++;
+                Console.WriteLine("\nWow, seems you're hungry! Some double cheeseburgers on the go! Please pay on the following cashier!");
+                break;
             }
-
-            return true;
+            case "4":
+            {
+                Console.WriteLine("\nA freezing Coke for you! Please pay on the following cashier!");
+                break;
+            }
+            default:
+            {
+                Console.WriteLine("\nSorry, you chosen an inexistent option.");
+                break;
+            }
         }
     }
 }

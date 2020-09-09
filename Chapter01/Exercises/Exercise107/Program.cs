@@ -1,53 +1,37 @@
 ﻿using System;
+using System.Linq;
 
 public class Program
 {
     public static void Main()
     {
-        var menuBuilder = new System.Text.StringBuilder();
+        Console.WriteLine("Please type a username. It must have at least 6 digits: ");
 
-        menuBuilder.AppendLine("Welcome to the Burger Joint. ");
-        menuBuilder.AppendLine(string.Empty);
-        menuBuilder.AppendLine("1) Burgers and Fries - 5 USD");
-        menuBuilder.AppendLine("2) Cheeseburger - 7 USD");
-        menuBuilder.AppendLine("3) Double-cheeseburger - 9 USD");
-        menuBuilder.AppendLine("4) Coke - 2 USD");
-        menuBuilder.AppendLine(string.Empty);
-        menuBuilder.AppendLine("Note that every burger option comes with fries and ketchup!");
+        var username = Console.ReadLine();
 
-        Console.WriteLine(menuBuilder.ToString());
-
-        Console.WriteLine("Please type one of the follow options to order:");
-
-        var option = Console.ReadKey();
-
-        switch(option.KeyChar.ToString())
+        if (username.Length < 6)
         {
-            case "1":
+            Console.WriteLine($"The username {username} is not valid.");
+        }
+        else
+        {
+            Console.WriteLine("Now type a password. It must have a least 6 digits and a number");
+
+            var password = Console.ReadLine();
+
+            if (password.Length < 6)
             {
-                Console.WriteLine("\nAlright, some burgers on the go! Please pay on the following cashier!");
-                break;
+                Console.WriteLine("The password must have at least 6 digits.");
             }
-            case "2":
+            else if (!password.Any(c => char.IsDigit(c)))
             {
-                Console.WriteLine("\nI got you, I also like some cheese. Cheeseburgers on the go! Please pay on the following cashier!");
-                break;
+                Console.WriteLine("The password must contain a least one number.");
             }
-            case "3":
+            else
             {
-                Console.WriteLine("\nWow, seems you're hungry! Some double cheeseburgers on the go! Please pay on the following cashier!");
-                break;
-            }
-            case "4":
-            {
-                Console.WriteLine("\nA freezing Coke for you! Please pay on the following cashier!");
-                break;
-            }
-            default:
-            {
-                Console.WriteLine("\nSorry, you chosen an inexistent option.");
-                break;
+                Console.WriteLine("User successfully registered.");
             }
         }
+
     }
 }
