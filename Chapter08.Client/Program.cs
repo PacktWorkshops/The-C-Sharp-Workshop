@@ -28,7 +28,7 @@ namespace Chapter08
 
             foreach (var p in result)
             {
-                Console.WriteLine(p.Name);
+                await local.PostPerson(p);
             }
         }
     }

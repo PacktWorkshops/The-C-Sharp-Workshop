@@ -8,6 +8,12 @@ namespace Chapter08.Service.Controllers
     [Route("[controller]")]
     public class PeopleController : Controller
     {
+        [HttpGet]
+        public IActionResult Get()
+        {
+
+        }
+
         [HttpPost]
         public IActionResult Post(Person person)
         {
