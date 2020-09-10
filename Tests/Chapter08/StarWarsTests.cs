@@ -27,5 +27,12 @@ namespace Tests.Chapter08
             var person = StarWars.GetPersonAsync(1).Result;
             Assert.IsTrue(person.Name.Equals("Luke Skywalker"));
         }
+
+        [TestMethod]
+        public void GetOneStarship()
+        {
+            var ship = StarWars.GetStarshipAsync(2).Result;
+            Assert.IsTrue(ship.Name.Equals("CR90 corvette"));
+        }
     }
 }

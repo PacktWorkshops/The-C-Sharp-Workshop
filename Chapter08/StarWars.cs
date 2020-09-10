@@ -33,5 +33,7 @@ namespace Chapter08
         }
 
         public static async Task<Person> GetPersonAsync(int id) => await Client.GetFromJsonAsync<Person>($"people/{id}/");
+
+        public static async Task<Starship> GetStarshipAsync(int id) => await Client.GetFromJsonAsync<Starship>($"starships/{id}/");
     }
 }

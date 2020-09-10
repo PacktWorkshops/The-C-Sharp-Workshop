@@ -4,8 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Chapter08.Models
 {
-
-    public partial class Starship
+    public class Starship
     {
         [JsonPropertyName("MGLT")]
         public string Mglt { get; set; }
