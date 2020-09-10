@@ -19,26 +19,15 @@ namespace Chapter08
             //var result = await Client.GetFromJsonAsync<Person>("people/1/");
 
             //var result = await Client.GetFromJsonAsync<List<Person>>("people/");
-            var response = await Client.GetAsync("people/");
+            //var response = await Client.GetAsync("people/");
             //var data = await response.Content.ReadAsStringAsync();
 
-            var result = await Client.GetFromJsonAsync<Result<List<Person>>>("people/");
-            int page = 0;
-
-            while (true)
+            var result = await StarWars.GetAllPeopleAsync();
+            
+            foreach (var p in result)
             {
-                page++;
-                Console.WriteLine($"\npage {page}");
-                
-                foreach (var person in result.Data)
-                {
-                    Console.WriteLine(person.Name);
-                }
-
-                if (result.Next == null) break;
-                
-                result = await Client.GetFromJsonAsync<Result<List<Person>>>(result.Next);                
-            } 
+                Console.WriteLine(p.Name);
+            }
         }
     }
 }

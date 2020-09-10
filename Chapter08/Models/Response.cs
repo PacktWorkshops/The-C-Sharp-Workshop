@@ -2,7 +2,7 @@
 
 namespace Chapter08.Models
 {
-    public class Result<T>
+    public class Response<T>
     {
         [JsonPropertyName("count")]
         public int Count { get; set; }
