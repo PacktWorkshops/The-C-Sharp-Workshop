@@ -23,7 +23,9 @@ namespace Chapter08
             //var data = await response.Content.ReadAsStringAsync();
 
             var result = await new StarWarsApiClient(StarWarsApiClient.BackEndOptions.Public).GetAllPeopleAsync();
-            
+
+            var local = new StarWarsApiClient(StarWarsApiClient.BackEndOptions.Local);
+
             foreach (var p in result)
             {
                 Console.WriteLine(p.Name);

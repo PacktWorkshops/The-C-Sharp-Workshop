@@ -15,7 +15,7 @@ namespace Chapter08
             Public
         }
 
-        private static HttpClient _client = new HttpClient();
+        private readonly HttpClient _client;
 
         public StarWarsApiClient(BackEndOptions backend)
         {
@@ -27,10 +27,7 @@ namespace Chapter08
 
             BackEnd = backend;
 
-            if (_client.BaseAddress == null)
-            {
-                _client.BaseAddress = new Uri(backends[backend]);
-            }            
+            _client = new HttpClient() { BaseAddress = new Uri(backends[backend]) };
         }
 
         public BackEndOptions BackEnd { get; }
