@@ -16,7 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Chapter03\Chapter03.csproj" />
     <ProjectReference Include="..\Chapter04\Chapter04.csproj" />
-    <ProjectReference Include="..\Chapter08\Chapter08.csproj" />
+    <ProjectReference Include="..\Chapter08.Client\Chapter08.Client.csproj" />
   </ItemGroup>
 
   <ItemGroup>

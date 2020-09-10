@@ -22,7 +22,7 @@ namespace Chapter08
             //var response = await Client.GetAsync("people/");
             //var data = await response.Content.ReadAsStringAsync();
 
-            var result = await StarWars.GetAllPeopleAsync();
+            var result = await new StarWarsApiClient(StarWarsApiClient.BackEndOptions.Public).GetAllPeopleAsync();
             
             foreach (var p in result)
             {
