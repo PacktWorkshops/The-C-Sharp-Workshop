@@ -15,6 +15,13 @@ namespace Tests.Chapter08
         }
 
         [TestMethod]
+        public void GetAllStarships()
+        {
+            var ships = StarWars.GetAllStarshipsAsync().Result;
+            Assert.IsTrue(ships.Any());
+        }
+
+        [TestMethod]
         public void GetOnePerson()
         {
             var person = StarWars.GetPersonAsync(1).Result;
