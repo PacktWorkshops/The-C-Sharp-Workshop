@@ -57,6 +57,6 @@ namespace Chapter08
 
         public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>($"starships/{id}/");
 
-        public async Task PostPerson(Person person) => await _client.PostAsJsonAsync<Person>("people/", person);
+        public async Task PostPerson(Person person) => await _client.PostAsJsonAsync<Person>("people/", person);        
     }
 }

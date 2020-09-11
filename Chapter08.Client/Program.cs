@@ -22,14 +22,11 @@ namespace Chapter08
             //var response = await Client.GetAsync("people/");
             //var data = await response.Content.ReadAsStringAsync();
 
-            var result = await new StarWarsApiClient(StarWarsApiClient.BackEndOptions.Public).GetAllPeopleAsync();
+            //var result = await new StarWarsApiClient(StarWarsApiClient.BackEndOptions.Public).GetAllPeopleAsync();
 
             var local = new StarWarsApiClient(StarWarsApiClient.BackEndOptions.Local);
 
-            foreach (var p in result)
-            {
-                await local.PostPerson(p);
-            }
+            var p = await local.GetPersonAsync(12);
         }
     }
 }
