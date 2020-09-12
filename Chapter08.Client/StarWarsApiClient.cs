@@ -7,30 +7,35 @@ using System.Threading.Tasks;
 
 namespace Chapter08
 {
+    public enum HostOptions
+    {
+        Local,
+        Online
+    }
+
     public class StarWarsApiClient
     {
-        public enum BackEndOptions
-        {
-            Local,
-            Public
-        }
-
         private readonly HttpClient _client;
 
-        public StarWarsApiClient(BackEndOptions backend)
+        public StarWarsApiClient(HttpClient httpClient, HostOptions host)
         {
-            var backends = new Dictionary<BackEndOptions, string>()
-            {
-                [BackEndOptions.Local] = "https://localhost:44341/",
-                [BackEndOptions.Public] = "https://swapi.dev/api/"
-            };
-
-            BackEnd = backend;
-
-            _client = new HttpClient() { BaseAddress = new Uri(backends[backend]) };
+            _client = httpClient;
+            Host = host;
+            
         }
 
-        public BackEndOptions BackEnd { get; }
+        public HostOptions Host { get; }
+
+        private string GetFullUrl(string resourceName)
+        {
+            var hosts = new Dictionary<HostOptions, string>()
+            {
+                [HostOptions.Local] = "https://localhost:44341/api/",
+                [HostOptions.Online] = "https://swapi.dev/api/"
+            };
+
+            return hosts[Host] + resourceName;
+        }
 
         public async Task<IEnumerable<Person>> GetAllPeopleAsync() => await GetListInternalAsync<Person>("people/");
 
@@ -40,7 +45,7 @@ namespace Chapter08
         {
             var results = new List<T>();
 
-            var response = await _client.GetFromJsonAsync<Response<List<T>>>(resource);
+            var response = await _client.GetFromJsonAsync<Response<List<T>>>(GetFullUrl(resource));
             results.AddRange(response.Data);
 
             while (true)
@@ -53,10 +58,10 @@ namespace Chapter08
             return results;
         }
 
-        public async Task<Person> GetPersonAsync(int id) => await _client.GetFromJsonAsync<Person>($"people/{id}/");
+        public async Task<Person> GetPersonAsync(int id) => await _client.GetFromJsonAsync<Person>(GetFullUrl($"people/{id}/"));
 
-        public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>($"starships/{id}/");
+        public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>(GetFullUrl($"starships/{id}/"));
 
-        public async Task PostPerson(Person person) => await _client.PostAsJsonAsync<Person>("people/", person);        
+        public async Task CreatePerson(Person person) => await _client.PostAsJsonAsync(GetFullUrl("people/"), person);
     }
 }

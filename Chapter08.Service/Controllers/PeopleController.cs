@@ -8,7 +8,7 @@ using System.Linq;
 namespace Chapter08.Service.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PeopleController : Controller
     {
         [HttpGet("{id}")]        

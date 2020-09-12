@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -18,6 +19,13 @@ namespace Chapter08.Service.Static
 
             string fileName = $"{IdFromUrl(idSource)}.json";
             File.WriteAllText(BuildPath<T>(fileName), json);
+        }
+
+        public static void DeleteAllFiles<T>()
+        {
+            var folder = GetFolder<T>();
+            var files = Directory.GetFiles(folder, "*", SearchOption.TopDirectoryOnly);
+            foreach (var f in files) File.Delete(f);
         }
 
         public static T Load<T>(int id)
