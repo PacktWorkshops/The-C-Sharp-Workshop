@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 
 namespace Chapter08.Service.Static
 {
+    /// <summary>
+    /// This is a really simple "database" service that reads and writes json files mapped to C# types.
+    /// This allows us to implement a backend API that focuses on the API portion without a complex storage dependency
+    /// </summary>
     public static class JsonFiles
     {
         public static void Save<T>(T @object, string idSource)
