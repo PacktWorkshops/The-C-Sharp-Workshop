@@ -1,6 +1,6 @@
-﻿using Chapter08.Models;
+﻿using Chapter08.Client;
+using Chapter08.Client.Models;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -9,24 +9,18 @@ namespace Chapter08
 {
     class Program
     {
-        static HttpClient Client = new HttpClient() { BaseAddress = new Uri("https://swapi.dev/api/") };
+        static HttpClient Client = new HttpClient() 
+        { 
+            BaseAddress = new Uri("http://worldtimeapi.org/api/") 
+        };
 
         static async Task Main(string[] args)
         {
-            //var response = await Client.GetAsync("people/1/");
-            //var data = await response.Content.ReadAsStringAsync();
+            //var response = await Client.GetFromJsonAsync<DateTimeResponse>("ip");
 
-            //var result = await Client.GetFromJsonAsync<Person>("people/1/");
-
-            //var result = await Client.GetFromJsonAsync<List<Person>>("people/");
-            //var response = await Client.GetAsync("people/");
-            //var data = await response.Content.ReadAsStringAsync();
-
-            //var result = await new StarWarsApiClient(StarWarsApiClient.BackEndOptions.Public).GetAllPeopleAsync();
-
-            //var local = new StarWarsApiClient(HostOptions.Local);
-
-            //var p = await local.GetPersonAsync(12);
+            var client = new WorldTimeClient(Client);
+            var response = await client.GetCurrentDateTime();
+            Console.WriteLine($"The current date/time is {response.datetime}");
         }
     }
 }
