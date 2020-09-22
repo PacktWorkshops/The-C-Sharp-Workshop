@@ -26,7 +26,7 @@ namespace Chapter08.Service.Controllers
             return Ok(new Response<List<Person>>()
             {
                 Count = data.Count(),
-                Data = data.ToList()
+                Results = data.ToList()
             });
         }
 

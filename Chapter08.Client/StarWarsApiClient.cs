@@ -46,13 +46,13 @@ namespace Chapter08
             var results = new List<T>();
 
             var response = await _client.GetFromJsonAsync<Response<List<T>>>(GetFullUrl(resource));
-            results.AddRange(response.Data);
+            results.AddRange(response.Results);
 
             while (true)
             {
                 if (response.Next == null) break;
                 response = await _client.GetFromJsonAsync<Response<List<T>>>(response.Next);
-                results.AddRange(response.Data);
+                results.AddRange(response.Results);
             }
 
             return results;

@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Refit;
+using System.Text.Json.Serialization;
 
 namespace Chapter08.Models
 {
@@ -13,7 +14,8 @@ namespace Chapter08.Models
         [JsonPropertyName("previous")]
         public string Previous { get; set; }
 
-        [JsonPropertyName("results")]
-        public T Data { get; set; }
+        //[AliasAs("results")]
+        //[JsonPropertyName("results")]
+        public T Results { get; set; }
     }
 }
