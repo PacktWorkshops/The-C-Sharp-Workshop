@@ -1,10 +1,7 @@
-﻿using Chapter08.Client;
-using Chapter08.Client.Interfaces;
-using Chapter08.Client.Models;
+﻿using Chapter08.Client.Interfaces;
 using Refit;
 using System;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace Chapter08
@@ -32,7 +29,11 @@ namespace Chapter08
 
             var api = RestService.For<IStarWarsApi>("https://swapi.dev/api/");
             //var response = await api.GetPeopleAsync();
-            var response = await api.GetPlanetsAsync();
+            //var response = await api.GetPlanetsAsync();
+
+            //var response = await api.GetPersonAsync(3);
+            //var response = await api.GetFilmsAsync();
+            var response = await api.GetFilmAsync(1);
         }
     }
 }
