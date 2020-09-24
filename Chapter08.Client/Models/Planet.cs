@@ -6,7 +6,7 @@ namespace Chapter08.Client.Models
     {
         public int count { get; set; }
         public string next { get; set; }
-        public object previous { get; set; }
+        public string previous { get; set; }
         public T results { get; set; }
     }
 

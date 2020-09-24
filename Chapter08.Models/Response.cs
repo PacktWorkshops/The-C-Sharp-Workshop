@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using Refit;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Chapter08.Models
 {
@@ -16,8 +14,8 @@ namespace Chapter08.Models
         public string Previous { get; set; }
 
         //[AliasAs("results")]
-        //[JsonPropertyName("results")]
-        [JsonProperty("results")]
+        [JsonPropertyName("results")]
+        //[JsonProperty("results")]
         public T Data { get; set; }
     }
 }

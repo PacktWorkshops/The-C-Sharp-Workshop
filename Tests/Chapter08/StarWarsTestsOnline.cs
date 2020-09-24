@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Net.Http;
-using static Chapter08.StarWarsApiClient;
 
 namespace Tests.Chapter08
 {

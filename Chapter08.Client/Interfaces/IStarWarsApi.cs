@@ -1,14 +1,18 @@
 ﻿using Chapter08.Client.Models;
-using Chapter08.Models;
+//using Chapter08.Models;
 using Refit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Planet = Chapter08.Client.Models.Planet;
+//using Planet = Chapter08.Client.Models.Planet;
 
 namespace Chapter08.Client.Interfaces
 {
     public interface IStarWarsApi
     {
+        [Get("/planets/")]
+        Task<ApiResult<List<Planet>>> GetPlanetsAsync();
+
+        /*
         [Get("/people/")]
         Task<Response<List<Person>>> GetPeopleAsync();
 
@@ -21,10 +25,9 @@ namespace Chapter08.Client.Interfaces
         [Get("/films/")]
         Task<Response<List<Film>>> GetFilmsAsync();
 
-        [Get("/planets/")]
-        Task<ApiResult<Planet[]>> GetPlanetsAsync();
 
         [Get("/films/{id}/")]
         Task<Planet> GetFilmAsync(int id);
+        */
     }
 }
