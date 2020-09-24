@@ -1,7 +1,9 @@
-﻿using Chapter08.Models;
+﻿using Chapter08.Client.Models;
+using Chapter08.Models;
 using Refit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Planet = Chapter08.Client.Models.Planet;
 
 namespace Chapter08.Client.Interfaces
 {
@@ -13,13 +15,16 @@ namespace Chapter08.Client.Interfaces
         [Get("/people/{id}/")]
         Task<Person> GetPersonAsync(int id);
 
-        [Get("/planets/")]
-        Task<Response<List<Planet>>> GetPlanetsAsync();
+        //[Get("/planets/")]
+        //Task<Response<List<Chapter08.Models.Planet>>> GetPlanetsAsync();
 
         [Get("/films/")]
         Task<Response<List<Film>>> GetFilmsAsync();
 
+        [Get("/planets/")]
+        Task<ApiResult<Planet[]>> GetPlanetsAsync();
+
         [Get("/films/{id}/")]
-        Task<Film> GetFilmAsync(int id);
+        Task<Planet> GetFilmAsync(int id);
     }
 }

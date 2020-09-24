@@ -33,7 +33,8 @@ namespace Chapter08
 
             //var response = await api.GetPersonAsync(3);
             //var response = await api.GetFilmsAsync();
-            var response = await api.GetFilmAsync(1);
+            //var response = await api.GetFilmAsync(1);
+            var response = await api.GetPlanetsAsync();
         }
     }
 }
