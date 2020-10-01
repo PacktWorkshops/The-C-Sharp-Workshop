@@ -15,7 +15,20 @@ namespace Tests.Chapter08
             Assert.IsTrue(response.results.Any());
         }
 
-        private IStarWarsApi GetApi() => RestService.For<IStarWarsApi>("https://swapi.dev/api/");
+        [TestMethod]
+        public void GetAllPlanets()
+        {
+            var results = GetApi().GetAllPlanetsAsync().Result;
+            Assert.IsTrue(results.Count() > 10); // exact number could vary, just be sure it's more than a single page's worth
+        }
 
+        [TestMethod]
+        public void GetOnePlanet()
+        {
+            var planet = GetApi().GetPlanetAsync(2).Result;
+            Assert.IsTrue(planet.name.Equals("Alderaan"));
+        }
+
+        private IStarWarsApi GetApi() => RestService.For<IStarWarsApi>("https://swapi.dev/api/");
     }
 }

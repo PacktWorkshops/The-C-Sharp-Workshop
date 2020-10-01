@@ -1,6 +1,9 @@
-﻿using Chapter08.Client.Interfaces;
-using Refit;
+﻿using Refit;
 using System;
+using Chapter08.Client.Interfaces;
+using Chapter08.Client.Models;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Chapter08
@@ -10,10 +13,17 @@ namespace Chapter08
         static async Task Main(string[] args)
         {
             var api = RestService.For<IStarWarsApi>("https://swapi.dev/api/");
-            var response = await api.GetPlanetsAsync();
-            foreach (var p in response.results)
+            var page1 = await api.GetPlanetsAsync(1);
+            ListPlanets(1, page1.results);
+
+            var page2 = await api.GetPlanetsAsync(2);
+            ListPlanets(2, page2.results);
+
+            void ListPlanets(int page, IEnumerable<Planet> planets)
             {
-                Console.WriteLine(p.name);
+                Console.WriteLine($"page {page}:");
+                planets.ToList().ForEach(p => Console.WriteLine($"- {p.name}"));
+                Console.WriteLine();
             }
         }
     }
