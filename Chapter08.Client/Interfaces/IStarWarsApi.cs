@@ -46,8 +46,8 @@ namespace Chapter08.Client.Interfaces
             {
                 page++;
                 ApiResult<List<Planet>> response = await api.GetPlanetsAsync(page);
-                results.AddRange(response.results);                
-                if (response.next == null) break;
+                results.AddRange(response.Data);                
+                if (response.Next == null) break;
             } while (true);
 
             return results;

@@ -15,13 +15,11 @@ namespace Chapter08
 
     public class StarWarsApiClient
     {
-        private readonly HttpClient _client;
+        private static HttpClient _client = new HttpClient();
 
-        public StarWarsApiClient(HttpClient httpClient, HostOptions host)
-        {
-            _client = httpClient;
-            Host = host;
-            
+        public StarWarsApiClient(HostOptions host)
+        {            
+            Host = host;            
         }
 
         public HostOptions Host { get; }

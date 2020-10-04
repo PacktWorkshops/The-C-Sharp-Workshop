@@ -14,7 +14,7 @@ namespace Chapter08
         {
             var api = RestService.For<IStarWarsApi>("https://swapi.dev/api/");
             var results = await api.GetAllPlanetsAsync();
-            foreach (var p in results) Console.WriteLine(p.name);
+            foreach (var p in results) Console.WriteLine(p.Name);
         }
     }
 }

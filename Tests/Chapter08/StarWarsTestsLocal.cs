@@ -24,8 +24,8 @@ namespace Tests.Chapter08
         {
             JsonFiles.DeleteAllFiles<Person>();
            
-            var onlineClient = new StarWarsApiClient(_client, HostOptions.Online);
-            var localClient = new StarWarsApiClient(_client, HostOptions.Local);
+            var onlineClient = new StarWarsApiClient(HostOptions.Online);
+            var localClient = new StarWarsApiClient(HostOptions.Local);
 
             var onlinePeople = onlineClient.GetAllPeopleAsync().Result;
             foreach (var p in onlinePeople) localClient.CreatePerson(p).Wait();

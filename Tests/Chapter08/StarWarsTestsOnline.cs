@@ -17,28 +17,28 @@ namespace Tests.Chapter08
         [TestMethod]
         public void GetAllPeople()
         {
-            var people = new StarWarsApiClient(_client, HostOptions.Online).GetAllPeopleAsync().Result;
+            var people = new StarWarsApiClient(HostOptions.Online).GetAllPeopleAsync().Result;
             Assert.IsTrue(people.Any());
         }
 
         [TestMethod]
         public void GetAllStarships()
         {
-            var ships = new StarWarsApiClient(_client, HostOptions.Online).GetAllStarshipsAsync().Result;
+            var ships = new StarWarsApiClient(HostOptions.Online).GetAllStarshipsAsync().Result;
             Assert.IsTrue(ships.Any());
         }
 
         [TestMethod]
         public void GetOnePerson()
         {
-            var person = new StarWarsApiClient(_client, HostOptions.Online).GetPersonAsync(1).Result;
+            var person = new StarWarsApiClient(HostOptions.Online).GetPersonAsync(1).Result;
             Assert.IsTrue(person.Name.Equals("Luke Skywalker"));
         }
 
         [TestMethod]
         public void GetOneStarship()
         {
-            var ship = new StarWarsApiClient(_client, HostOptions.Online).GetStarshipAsync(2).Result;
+            var ship = new StarWarsApiClient(HostOptions.Online).GetStarshipAsync(2).Result;
             Assert.IsTrue(ship.Name.Equals("CR90 corvette"));
         }
     }
