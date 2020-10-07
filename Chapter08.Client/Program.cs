@@ -1,5 +1,4 @@
-﻿using Chapter08.Client.Models;
-using Chapter08.Models;
+﻿using Chapter08.Models;
 using RestSharp;
 using RestSharp.Serializers.SystemTextJson;
 using System.Collections.Generic;
@@ -17,7 +16,7 @@ namespace Chapter08
 
             var client = new RestClient("https://swapi.dev/api/");
             client.UseSystemTextJson();
-            var request = new RestRequest("starships/");            
+            var request = new RestRequest("starships/");
             var response = await client.GetAsync<ApiResult<List<Starship>>>(request);
         }
     }

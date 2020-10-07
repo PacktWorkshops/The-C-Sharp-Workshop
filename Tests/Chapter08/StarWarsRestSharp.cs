@@ -1,7 +1,7 @@
 ﻿using Chapter08.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
-using RestSharp.Serializers.SystemTextJson;
+using RestSharp.Serializers.NewtonsoftJson;
 using System.Collections.Generic;
 
 namespace Tests.Chapter08
@@ -13,8 +13,9 @@ namespace Tests.Chapter08
         public void GetStarships()
         {
             var client = new RestClient("https://swapi.dev/api/");
-            client.UseSystemTextJson();
-            var request = new RestRequest("starships/");
+            //client.UseSystemTextJson();
+            client.UseNewtonsoftJson();
+            var request = new RestRequest("starships/");                      
             var response = client.GetAsync<ApiResult<List<Starship>>>(request).Result;
             Assert.IsTrue(response.Data.Count == 10);
         }

@@ -1,5 +1,4 @@
 ﻿using Chapter08.Models;
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -18,8 +17,8 @@ namespace Chapter08
         private static HttpClient _client = new HttpClient();
 
         public StarWarsApiClient(HostOptions host)
-        {            
-            Host = host;            
+        {
+            Host = host;
         }
 
         public HostOptions Host { get; }

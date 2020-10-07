@@ -1,63 +1,63 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace Chapter08.Models
 {
     public class Starship
     {
-        [JsonPropertyName("MGLT")]
+        [JsonProperty("MGLT")]
         public string Mglt { get; set; }
 
-        [JsonPropertyName("cargo_capacity")]
+        [JsonProperty("cargo_capacity")]
         public string CargoCapacity { get; set; }
 
-        [JsonPropertyName("consumables")]
+        [JsonProperty("consumables")]
         public string Consumables { get; set; }
 
-        [JsonPropertyName("cost_in_credits")]
+        [JsonProperty("cost_in_credits")]
         public string CostInCredits { get; set; }
 
-        [JsonPropertyName("created")]
+        [JsonProperty("created")]
         public DateTime Created { get; set; }
 
-        [JsonPropertyName("crew")]        
+        [JsonProperty("crew")]
         public string Crew { get; set; }
 
-        [JsonPropertyName("edited")]
+        [JsonProperty("edited")]
         public DateTime Edited { get; set; }
 
-        [JsonPropertyName("hyperdrive_rating")]
+        [JsonProperty("hyperdrive_rating")]
         public string HyperdriveRating { get; set; }
 
-        [JsonPropertyName("length")]        
+        [JsonProperty("length")]
         public string Length { get; set; }
 
-        [JsonPropertyName("manufacturer")]
+        [JsonProperty("manufacturer")]
         public string Manufacturer { get; set; }
 
-        [JsonPropertyName("max_atmosphering_speed")]
+        [JsonProperty("max_atmosphering_speed")]
         public string MaxAtmospheringSpeed { get; set; }
 
-        [JsonPropertyName("model")]
+        [JsonProperty("model")]
         public string Model { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("passengers")]        
+        [JsonProperty("passengers")]
         public string Passengers { get; set; }
 
-        [JsonPropertyName("films")]
+        [JsonProperty("films")]
         public List<Uri> Films { get; set; }
 
-        [JsonPropertyName("pilots")]
+        [JsonProperty("pilots")]
         public List<string> Pilots { get; set; }
 
-        [JsonPropertyName("starship_class")]
+        [JsonProperty("starship_class")]
         public string StarshipClass { get; set; }
 
-        [JsonPropertyName("url")]
+        [JsonProperty("url")]
         public string Url { get; set; }
     }
 }

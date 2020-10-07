@@ -1,57 +1,57 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace Chapter08.Models
-{ 
+{
     public class Person
     {
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("height")]
+        [JsonProperty("height")]
         public string Height { get; set; }
 
-        [JsonPropertyName("mass")]
+        [JsonProperty("mass")]
         public string Mass { get; set; }
 
-        [JsonPropertyName("hair_color")]
+        [JsonProperty("hair_color")]
         public string HairColor { get; set; }
 
-        [JsonPropertyName("skin_color")]
+        [JsonProperty("skin_color")]
         public string SkinColor { get; set; }
 
-        [JsonPropertyName("eye_color")]        
+        [JsonProperty("eye_color")]
         public string EyeColor { get; set; }
 
-        [JsonPropertyName("birth_year")]
+        [JsonProperty("birth_year")]
         public string BirthYear { get; set; }
 
-        [JsonPropertyName("gender")]
+        [JsonProperty("gender")]
         public string Gender { get; set; }
 
-        [JsonPropertyName("homeworld")]
+        [JsonProperty("homeworld")]
         public string Homeworld { get; set; }
 
-        [JsonPropertyName("films")]
+        [JsonProperty("films")]
         public List<string> Films { get; set; }
 
-        [JsonPropertyName("species")]
+        [JsonProperty("species")]
         public List<string> Species { get; set; }
 
-        [JsonPropertyName("vehicles")]
+        [JsonProperty("vehicles")]
         public List<string> Vehicles { get; set; }
 
-        [JsonPropertyName("starships")]
+        [JsonProperty("starships")]
         public List<string> Starships { get; set; }
 
-        [JsonPropertyName("created")]
+        [JsonProperty("created")]
         public DateTime Created { get; set; }
 
-        [JsonPropertyName("edited")]
+        [JsonProperty("edited")]
         public DateTime Edited { get; set; }
 
-        [JsonPropertyName("url")]
+        [JsonProperty("url")]
         public string Url { get; set; }
     }
 }

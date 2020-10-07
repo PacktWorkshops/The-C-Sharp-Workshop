@@ -1,65 +1,65 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Chapter08.Models
 {
     public class ApiResult<T>
     {
-        [JsonPropertyName("count")]
+        [JsonProperty("count")]
         public int Count { get; set; }
 
-        [JsonPropertyName("next")]
+        [JsonProperty("next")]
         public string Next { get; set; }
 
-        [JsonPropertyName("previous")]
+        [JsonProperty("previous")]
         public string Previous { get; set; }
-                
-        [JsonPropertyName("results")]
-        public T Data { get; set; }        
+
+        [JsonProperty("results")]
+        public T Data { get; set; }
     }
 
     public class Planet
     {
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("rotation_period")]
+        [JsonProperty("rotation_period")]
         public string RotationPeriod { get; set; }
 
-        [JsonPropertyName("orbital_period")]
+        [JsonProperty("orbital_period")]
         public string OrbitalPeriod { get; set; }
 
-        [JsonPropertyName("diameter")]
+        [JsonProperty("diameter")]
         public string Diameter { get; set; }
 
-        [JsonPropertyName("climate")]
+        [JsonProperty("climate")]
         public string Climate { get; set; }
 
-        [JsonPropertyName("gravity")]
+        [JsonProperty("gravity")]
         public string Gravity { get; set; }
 
-        [JsonPropertyName("terrain")]
+        [JsonProperty("terrain")]
         public string Terrain { get; set; }
 
-        [JsonPropertyName("surface_water")]
+        [JsonProperty("surface_water")]
         public string SurfaceWater { get; set; }
 
-        [JsonPropertyName("population")]
+        [JsonProperty("population")]
         public string Population { get; set; }
 
-        [JsonPropertyName("residents")]
+        [JsonProperty("residents")]
         public string[] Residents { get; set; }
 
-        [JsonPropertyName("films")]
+        [JsonProperty("films")]
         public string[] Films { get; set; }
 
-        [JsonPropertyName("created")]
+        [JsonProperty("created")]
         public DateTime Created { get; set; }
 
-        [JsonPropertyName("edited")]
+        [JsonProperty("edited")]
         public DateTime Edited { get; set; }
 
-        [JsonPropertyName("url")]
+        [JsonProperty("url")]
         public string Url { get; set; }
     }
 }
