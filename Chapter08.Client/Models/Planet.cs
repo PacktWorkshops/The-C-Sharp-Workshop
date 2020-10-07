@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Text.Json.Serialization;
 
 namespace Chapter08.Models
 {
@@ -14,6 +15,7 @@ namespace Chapter08.Models
         [JsonProperty("previous")]
         public string Previous { get; set; }
 
+        [JsonPropertyName("results")]
         [JsonProperty("results")]
         public T Data { get; set; }
     }
