@@ -23,7 +23,7 @@ namespace Chapter08.Service.Controllers
             // to keep it simple, we're not paginating results
             var data = JsonFiles.LoadAll<Person>();
 
-            return Ok(new Response<List<Person>>()
+            return Ok(new ApiResult<List<Person>>()
             {
                 Count = data.Count(),
                 Data = data.ToList()

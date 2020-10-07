@@ -1,10 +1,7 @@
-﻿using Chapter08.Client.Models;
-//using Chapter08.Models;
+﻿using Chapter08.Models;
 using Refit;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-//using Planet = Chapter08.Client.Models.Planet;
 
 namespace Chapter08.Client.Interfaces
 {

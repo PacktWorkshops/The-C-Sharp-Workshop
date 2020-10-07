@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace Chapter08.Client.Models
+namespace Chapter08.Models
 {
     public class ApiResult<T>
     {
@@ -13,9 +13,9 @@ namespace Chapter08.Client.Models
 
         [JsonPropertyName("previous")]
         public string Previous { get; set; }
-
+                
         [JsonPropertyName("results")]
-        public T Data { get; set; }
+        public T Data { get; set; }        
     }
 
     public class Planet

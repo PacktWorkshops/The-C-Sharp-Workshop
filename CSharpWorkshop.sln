@@ -11,9 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter04", "Chapter04\Chapter04.csproj", "{68D9228F-AA35-4493-B256-9F3ADD727F00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter08.Service", "Chapter08.Service\Chapter08.Service.csproj", "{72883B5F-DDBD-4332-91FC-A521A3E5B977}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter08.Models", "Chapter08.Models\Chapter08.Models.csproj", "{904DCFCA-F047-459E-843C-7672AAD751BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter08.Service", "Chapter08.Service\Chapter08.Service.csproj", "{72883B5F-DDBD-4332-91FC-A521A3E5B977}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter08.Client", "Chapter08.Client\Chapter08.Client.csproj", "{8F96873A-C813-46B2-8982-C76C3E45A096}"
 EndProject
@@ -43,10 +41,6 @@ Global
 		{72883B5F-DDBD-4332-91FC-A521A3E5B977}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72883B5F-DDBD-4332-91FC-A521A3E5B977}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72883B5F-DDBD-4332-91FC-A521A3E5B977}.Release|Any CPU.Build.0 = Release|Any CPU
-		{904DCFCA-F047-459E-843C-7672AAD751BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{904DCFCA-F047-459E-843C-7672AAD751BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{904DCFCA-F047-459E-843C-7672AAD751BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{904DCFCA-F047-459E-843C-7672AAD751BA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8F96873A-C813-46B2-8982-C76C3E45A096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8F96873A-C813-46B2-8982-C76C3E45A096}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F96873A-C813-46B2-8982-C76C3E45A096}.Release|Any CPU.ActiveCfg = Release|Any CPU
