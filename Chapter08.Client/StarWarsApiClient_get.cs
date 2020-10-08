@@ -12,7 +12,10 @@ namespace Chapter08
         Online
     }
 
-    public class StarWarsApiClient
+    /// <summary>
+    /// this partial class defines the http get methods for our client
+    /// </summary>
+    public partial class StarWarsApiClient
     {
         private static HttpClient _client = new HttpClient();
 
@@ -38,10 +41,14 @@ namespace Chapter08
 
         public async Task<IEnumerable<Starship>> GetAllStarshipsAsync() => await GetListInternalAsync<Starship>("starships/");
 
+        public async Task<Person> GetPersonAsync(int id) => await _client.GetFromJsonAsync<Person>(GetUrl($"people/{id}/"));
+
+        public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>(GetUrl($"starships/{id}/"));
+
         private async Task<IEnumerable<T>> GetListInternalAsync<T>(string resource)
         {
             var results = new List<T>();
-           
+
             var response = await _client.GetFromJsonAsync<ApiResult<List<T>>>(GetUrl(resource));
             results.AddRange(response.Data);
 
@@ -54,11 +61,5 @@ namespace Chapter08
 
             return results;
         }
-
-        public async Task<Person> GetPersonAsync(int id) => await _client.GetFromJsonAsync<Person>(GetUrl($"people/{id}/"));
-
-        public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>(GetUrl($"starships/{id}/"));
-
-        public async Task CreatePerson(Person person) => await _client.PostAsJsonAsync(GetUrl("people/"), person);
     }
 }

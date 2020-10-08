@@ -3,7 +3,6 @@ using Chapter08.Models;
 using Chapter08.Service.Static;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using System.Net.Http;
 
 namespace Tests.Chapter08
 {
