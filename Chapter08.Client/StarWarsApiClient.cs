@@ -23,7 +23,7 @@ namespace Chapter08
 
         public HostOptions Host { get; }
 
-        private string GetFullUrl(string resourceName)
+        private string GetUrl(string resourceName)
         {
             var hosts = new Dictionary<HostOptions, string>()
             {
@@ -41,8 +41,8 @@ namespace Chapter08
         private async Task<IEnumerable<T>> GetListInternalAsync<T>(string resource)
         {
             var results = new List<T>();
-
-            var response = await _client.GetFromJsonAsync<ApiResult<List<T>>>(GetFullUrl(resource));
+           
+            var response = await _client.GetFromJsonAsync<ApiResult<List<T>>>(GetUrl(resource));
             results.AddRange(response.Data);
 
             while (true)
@@ -55,10 +55,10 @@ namespace Chapter08
             return results;
         }
 
-        public async Task<Person> GetPersonAsync(int id) => await _client.GetFromJsonAsync<Person>(GetFullUrl($"people/{id}/"));
+        public async Task<Person> GetPersonAsync(int id) => await _client.GetFromJsonAsync<Person>(GetUrl($"people/{id}/"));
 
-        public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>(GetFullUrl($"starships/{id}/"));
+        public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>(GetUrl($"starships/{id}/"));
 
-        public async Task CreatePerson(Person person) => await _client.PostAsJsonAsync(GetFullUrl("people/"), person);
+        public async Task CreatePerson(Person person) => await _client.PostAsJsonAsync(GetUrl("people/"), person);
     }
 }
