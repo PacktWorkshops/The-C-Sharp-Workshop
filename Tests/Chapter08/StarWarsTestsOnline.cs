@@ -1,5 +1,8 @@
 ﻿using Chapter08;
+using Chapter08.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Bson;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 
@@ -40,6 +43,20 @@ namespace Tests.Chapter08
         {
             var ship = new StarWarsApiClient(HostOptions.Online).GetStarshipAsync(2).Result;
             Assert.IsTrue(ship.Name.Equals("CR90 corvette"));
+        }
+
+        [TestMethod]
+        public void GetFilms()
+        {
+            var films = new StarWarsApiClient(HostOptions.Online).GetAsync<ApiResult<List<Film>>>("films/").Result;
+            Assert.IsTrue(films.Data.Any());
+        }
+
+        [TestMethod]
+        public void GetFilmAbsolute()
+        {            
+            var film = new StarWarsApiClient(HostOptions.Online).GetAsync<Film>("http://swapi.dev/api/films/1/", absolute: true).Result;
+            Assert.IsTrue(film.Title.Equals("A New Hope"));
         }
     }
 }

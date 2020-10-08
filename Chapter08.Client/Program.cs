@@ -1,6 +1,7 @@
 ﻿using Chapter08.Models;
 using RestSharp;
 using RestSharp.Serializers.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,10 +15,19 @@ namespace Chapter08
             var results = await api.GetAllPlanetsAsync();
             foreach (var p in results) Console.WriteLine(p.Name);*/
 
-            var client = new RestClient("https://swapi.dev/api/");
+            /*var client = new RestClient("https://swapi.dev/api/");
             client.UseSystemTextJson();
             var request = new RestRequest("starships/");
-            var response = await client.GetAsync<ApiResult<List<Starship>>>(request);
+            var response = await client.GetAsync<ApiResult<List<Starship>>>(request);*/
+
+            var client = new StarWarsApiClient(HostOptions.Online);
+            var result = await client.GetPersonAsync(10);
+            Console.WriteLine(result.Name);
+            foreach (var f in result.Films)
+            {
+                var film = await client.GetAsync<Film>(f, absolute: true);
+                Console.WriteLine($"- {film.Title}");
+            }
         }
     }
 }

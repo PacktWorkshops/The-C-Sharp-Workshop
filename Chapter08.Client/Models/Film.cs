@@ -1,0 +1,54 @@
+﻿using Newtonsoft.Json;
+using System;
+using System.Text.Json.Serialization;
+
+namespace Chapter08.Models
+{
+    public class Film
+    {
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
+        [JsonProperty("episode_id")]
+        [JsonPropertyName("episode_id")]
+        public int EpisodeId { get; set; }
+
+        [JsonProperty("opening_crawl")]
+        [JsonPropertyName("opening_crawl")]
+        public string OpeningCrawl { get; set; }
+
+        [JsonProperty("director")]        
+        public string Director { get; set; }
+
+        [JsonProperty("producer")]
+        public string Producer { get; set; }
+
+        [JsonProperty("release_date")]
+        [JsonPropertyName("release_date")]
+        public string ReleaseDate { get; set; }
+
+        [JsonProperty("characters")]
+        public string[] Characters { get; set; }
+
+        [JsonProperty("planets")]
+        public string[] Planets { get; set; }
+
+        [JsonProperty("starships")]
+        public string[] Starships { get; set; }
+
+        [JsonProperty("vehicles")]
+        public string[] Vehicles { get; set; }
+
+        [JsonProperty("species")]
+        public string[] Species { get; set; }
+
+        [JsonProperty("created")]
+        public DateTime Created { get; set; }
+
+        [JsonProperty("edited")]
+        public DateTime Edited { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+}

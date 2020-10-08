@@ -33,6 +33,7 @@ namespace Chapter08.Service.Controllers
         [HttpPost]
         public IActionResult Post(Person person)
         {
+            // todo: this really should return an Id value of newly created resource
             JsonFiles.Save(person, person.Url);
             return Ok();
         }

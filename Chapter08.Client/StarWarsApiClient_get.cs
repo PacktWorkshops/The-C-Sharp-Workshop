@@ -37,13 +37,17 @@ namespace Chapter08
             return hosts[Host] + resourceName;
         }
 
+        public async Task<Person> GetPersonAsync(int id) => await _client.GetFromJsonAsync<Person>(GetUrl($"people/{id}/"));
+
+        public async Task<Film> GetFilmAsync(int id) => await _client.GetFromJsonAsync<Film>(GetUrl($"films/{id}/"));
+
+        public async Task<T> GetAsync<T>(string resource, bool absolute = false) => await _client.GetFromJsonAsync<T>((absolute) ? resource : GetUrl(resource));
+
+        public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>(GetUrl($"starships/{id}/"));
+
         public async Task<IEnumerable<Person>> GetAllPeopleAsync() => await GetListInternalAsync<Person>("people/");
 
         public async Task<IEnumerable<Starship>> GetAllStarshipsAsync() => await GetListInternalAsync<Starship>("starships/");
-
-        public async Task<Person> GetPersonAsync(int id) => await _client.GetFromJsonAsync<Person>(GetUrl($"people/{id}/"));
-
-        public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>(GetUrl($"starships/{id}/"));
 
         private async Task<IEnumerable<T>> GetListInternalAsync<T>(string resource)
         {
