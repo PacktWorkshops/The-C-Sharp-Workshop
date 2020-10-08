@@ -10,6 +10,6 @@ namespace Chapter08
     /// </summary>
     public partial class StarWarsApiClient
     {
-        public async Task CreatePerson(Person person) => await _client.PostAsJsonAsync(GetUrl("people/"), person);
+        public async Task CreatePerson(Person person) => await _client.PostAsJsonAsync(BuildUrl("people/"), person);
     }
 }

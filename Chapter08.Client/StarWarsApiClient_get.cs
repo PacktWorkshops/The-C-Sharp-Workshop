@@ -26,7 +26,7 @@ namespace Chapter08
 
         public HostOptions Host { get; }
 
-        private string GetUrl(string resourceName)
+        private string BuildUrl(string resourceName)
         {
             var hosts = new Dictionary<HostOptions, string>()
             {
@@ -37,13 +37,13 @@ namespace Chapter08
             return hosts[Host] + resourceName;
         }
 
-        public async Task<Person> GetPersonAsync(int id) => await _client.GetFromJsonAsync<Person>(GetUrl($"people/{id}/"));
+        public async Task<Person> GetPersonAsync(int id) => await _client.GetFromJsonAsync<Person>(BuildUrl($"people/{id}/"));
 
-        public async Task<Film> GetFilmAsync(int id) => await _client.GetFromJsonAsync<Film>(GetUrl($"films/{id}/"));
+        public async Task<Film> GetFilmAsync(int id) => await _client.GetFromJsonAsync<Film>(BuildUrl($"films/{id}/"));
 
-        public async Task<T> GetAsync<T>(string resource, bool absolute = false) => await _client.GetFromJsonAsync<T>((absolute) ? resource : GetUrl(resource));
+        public async Task<T> GetAsync<T>(string resource, bool absolute = false) => await _client.GetFromJsonAsync<T>((absolute) ? resource : BuildUrl(resource));
 
-        public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>(GetUrl($"starships/{id}/"));
+        public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>(BuildUrl($"starships/{id}/"));
 
         public async Task<IEnumerable<Person>> GetAllPeopleAsync() => await GetListInternalAsync<Person>("people/");
 
@@ -53,7 +53,7 @@ namespace Chapter08
         {
             var results = new List<T>();
 
-            var response = await _client.GetFromJsonAsync<ApiResult<List<T>>>(GetUrl(resource));
+            var response = await _client.GetFromJsonAsync<ApiResult<List<T>>>(BuildUrl(resource));
             results.AddRange(response.Data);
 
             while (true)
