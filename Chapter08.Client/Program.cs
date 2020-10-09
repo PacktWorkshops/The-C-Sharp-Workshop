@@ -25,7 +25,7 @@ namespace Chapter08
             Console.WriteLine(result.Name);
             foreach (var f in result.Films)
             {
-                var film = await client.GetAsync<Film>(f, absolute: true);
+                var film = await client.GetAsync<Film>(f);
                 Console.WriteLine($"- {film.Title}");
             }
         }

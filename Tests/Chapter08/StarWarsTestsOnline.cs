@@ -55,7 +55,7 @@ namespace Tests.Chapter08
         [TestMethod]
         public void GetFilmAbsolute()
         {            
-            var film = new StarWarsApiClient(HostOptions.Online).GetAsync<Film>("http://swapi.dev/api/films/1/", absolute: true).Result;
+            var film = new StarWarsApiClient(HostOptions.Online).GetAsync<Film>("http://swapi.dev/api/films/1/").Result;
             Assert.IsTrue(film.Title.Equals("A New Hope"));
         }
     }

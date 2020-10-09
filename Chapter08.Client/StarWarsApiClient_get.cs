@@ -1,4 +1,5 @@
 ﻿using Chapter08.Models;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -28,6 +29,8 @@ namespace Chapter08
 
         private string BuildUrl(string resourceName)
         {
+            if (isAbsolute(resourceName)) return resourceName;
+
             var hosts = new Dictionary<HostOptions, string>()
             {
                 [HostOptions.Local] = "https://localhost:44341/api/",
@@ -35,13 +38,25 @@ namespace Chapter08
             };
 
             return hosts[Host] + resourceName;
+
+            bool isAbsolute(string url)
+            {
+                try
+                {
+                    return new Uri(url).IsAbsoluteUri;
+                }
+                catch 
+                {
+                    return false;
+                }
+            }
         }
 
         public async Task<Person> GetPersonAsync(int id) => await _client.GetFromJsonAsync<Person>(BuildUrl($"people/{id}/"));
 
         public async Task<Film> GetFilmAsync(int id) => await _client.GetFromJsonAsync<Film>(BuildUrl($"films/{id}/"));
 
-        public async Task<T> GetAsync<T>(string resource, bool absolute = false) => await _client.GetFromJsonAsync<T>((absolute) ? resource : BuildUrl(resource));
+        public async Task<T> GetAsync<T>(string resource) => await _client.GetFromJsonAsync<T>(BuildUrl(resource));
 
         public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>(BuildUrl($"starships/{id}/"));
 
