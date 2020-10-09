@@ -1,8 +1,12 @@
-﻿using Chapter08.Models;
+﻿using Chapter08.Client.Extensions;
+using Chapter08.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Chapter08
@@ -52,13 +56,13 @@ namespace Chapter08
             }
         }
 
-        public async Task<Person> GetPersonAsync(int id) => await _client.GetFromJsonAsync<Person>(BuildUrl($"people/{id}/"));
+        public async Task<Person> GetPersonAsync(int id) => await _client.GetFromJsonAsync<Person>(BuildUrl($"people/{id}/"), GetOptions());
 
-        public async Task<Film> GetFilmAsync(int id) => await _client.GetFromJsonAsync<Film>(BuildUrl($"films/{id}/"));
+        public async Task<Film> GetFilmAsync(int id) => await _client.GetFromJsonAsync<Film>(BuildUrl($"films/{id}/"), GetOptions());
 
-        public async Task<T> GetAsync<T>(string resource) => await _client.GetFromJsonAsync<T>(BuildUrl(resource));
+        public async Task<T> GetAsync<T>(string resource) => await _client.GetFromJsonAsync<T>(BuildUrl(resource), GetOptions());
 
-        public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>(BuildUrl($"starships/{id}/"));
+        public async Task<Starship> GetStarshipAsync(int id) => await _client.GetFromJsonAsync<Starship>(BuildUrl($"starships/{id}/"), GetOptions());
 
         public async Task<IEnumerable<Person>> GetAllPeopleAsync() => await GetListInternalAsync<Person>("people/");
 
@@ -68,17 +72,33 @@ namespace Chapter08
         {
             var results = new List<T>();
 
-            var response = await _client.GetFromJsonAsync<ApiResult<List<T>>>(BuildUrl(resource));
+            var response = await _client.GetFromJsonAsync<ApiResult<List<T>>>(BuildUrl(resource), GetOptions());
             results.AddRange(response.Data);
 
             while (true)
             {
                 if (response.Next == null) break;
-                response = await _client.GetFromJsonAsync<ApiResult<List<T>>>(response.Next);
+                response = await _client.GetFromJsonAsync<ApiResult<List<T>>>(response.Next, GetOptions());
                 results.AddRange(response.Data);
             }
 
             return results;
+        }
+
+        private JsonSerializerOptions GetOptions() => new JsonSerializerOptions()
+        {
+            PropertyNamingPolicy = new StarWarsNamingPolicy()
+        };
+    }
+
+    public class StarWarsNamingPolicy : JsonNamingPolicy
+    {
+        public override string ConvertName(string name) => UnderscoreWords(name);
+
+        private string UnderscoreWords(string input)
+        {
+            var words = input.SplitWhere((c, position) => char.IsUpper(c) && position > 0);
+            return string.Join("_", words.Select(w => w.ToLower()));            
         }
     }
 }

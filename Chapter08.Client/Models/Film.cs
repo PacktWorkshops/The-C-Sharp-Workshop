@@ -1,30 +1,26 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Text.Json.Serialization;
 
 namespace Chapter08.Models
 {
     public class Film
     {
-        [JsonProperty("title")]
+        [JsonProperty("title")]        
         public string Title { get; set; }
 
-        [JsonProperty("episode_id")]
-        [JsonPropertyName("episode_id")]
+        [JsonProperty("episode_id")]        
         public int EpisodeId { get; set; }
 
-        [JsonProperty("opening_crawl")]
-        [JsonPropertyName("opening_crawl")]
+        [JsonProperty("opening_crawl")]        
         public string OpeningCrawl { get; set; }
 
-        [JsonProperty("director")]        
+        [JsonProperty("director")]                
         public string Director { get; set; }
 
-        [JsonProperty("producer")]
+        [JsonProperty("producer")]        
         public string Producer { get; set; }
 
-        [JsonProperty("release_date")]
-        [JsonPropertyName("release_date")]
+        [JsonProperty("release_date")]        
         public string ReleaseDate { get; set; }
 
         [JsonProperty("characters")]
