@@ -95,6 +95,10 @@ namespace Chapter08
     {
         public override string ConvertName(string name) => UnderscoreWords(name);
 
+        /// <summary>
+        /// SWAPI property names are lower case with underscores between words, so
+        /// we use this to convert Pascal-named properties to this format
+        /// </summary>
         private string UnderscoreWords(string input)
         {
             var words = input.SplitWhere((c, position) => char.IsUpper(c) && position > 0);
