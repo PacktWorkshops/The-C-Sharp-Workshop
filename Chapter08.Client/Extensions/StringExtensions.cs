@@ -6,6 +6,9 @@ namespace Chapter08.Client.Extensions
 {
     public static class StringExtensions
     {
+        /// <summary>
+        /// splits a string into an enumerable based on a delegate rather than a hard-coded value
+        /// </summary>
         public static IEnumerable<string> SplitWhere(this string input, Func<char, int, bool> criteria)
         {
             StringBuilder result = new StringBuilder();

@@ -21,9 +21,9 @@ namespace Chapter08
             var response = await client.GetAsync<ApiResult<List<Starship>>>(request);*/
 
             var client = new StarWarsApiClient(HostOptions.Online);
-            var result = await client.GetPersonAsync(10);
-            Console.WriteLine(result.Name);
-            foreach (var f in result.Films)
+            var person = await client.GetPersonAsync(10);
+            Console.WriteLine(person.Name);
+            foreach (var f in person.Films)
             {
                 var film = await client.GetAsync<Film>(f);
                 Console.WriteLine($"- {film.Title}");
