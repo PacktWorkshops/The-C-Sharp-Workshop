@@ -31,6 +31,10 @@ namespace Chapter08
 
         public HostOptions Host { get; }
 
+        /// <summary>
+        /// For relative resources, this prepends the current Host name in effect.
+        /// For absolute resources, this returns the original resource unchanged.
+        /// </summary>
         private string BuildUrl(string resourceName)
         {
             if (isAbsolute(resourceName)) return resourceName;
