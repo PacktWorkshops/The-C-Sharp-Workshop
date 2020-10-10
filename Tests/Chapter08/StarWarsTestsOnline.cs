@@ -61,5 +61,14 @@ namespace Tests.Chapter08
             var film = new StarWarsApiClient(HostOptions.Online).GetAsync<Film>("http://swapi.dev/api/films/1/").Result;
             Assert.IsTrue(film.Title.Equals("A New Hope"));
         }
+
+        [TestMethod]
+        public void GetObiWanAndFilms()
+        {
+            var client = new StarWarsApiClient(HostOptions.Online);
+            var result = client.GetPersonAsync(10).Result;
+            Assert.IsTrue(result.Name.Equals("Obi-Wan Kenobi"));
+            Assert.IsTrue(result.Films.Length == 6);
+        }
     }
 }
