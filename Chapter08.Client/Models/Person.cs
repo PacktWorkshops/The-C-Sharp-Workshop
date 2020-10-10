@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 
 namespace Chapter08.Models
 {
+    /// <summary>
+    /// using Newtonsoft JsonProperty attributes here in case we use this is Refit
+    /// </summary>
     public class Person
     {
         [JsonProperty("name")]
@@ -34,16 +36,16 @@ namespace Chapter08.Models
         public string Homeworld { get; set; }
 
         [JsonProperty("films")]
-        public List<string> Films { get; set; }
+        public string[] Films { get; set; }
 
         [JsonProperty("species")]
-        public List<string> Species { get; set; }
+        public string[] Species { get; set; }
 
         [JsonProperty("vehicles")]
-        public List<string> Vehicles { get; set; }
+        public string[] Vehicles { get; set; }
 
         [JsonProperty("starships")]
-        public List<string> Starships { get; set; }
+        public string[] Starships { get; set; }
 
         [JsonProperty("created")]
         public DateTime Created { get; set; }

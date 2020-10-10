@@ -22,6 +22,9 @@ namespace Tests.Chapter08
         {
             var people = new StarWarsApiClient(HostOptions.Online).GetAllPeopleAsync().Result;
             Assert.IsTrue(people.Any());
+
+            // make sure everyone is in at least one film (ensures array properties are populated)
+            Assert.IsTrue(people.All(p => p.Films.Any()));
         }
 
         [TestMethod]

@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 
 namespace Chapter08.Models
 {
@@ -49,10 +48,10 @@ namespace Chapter08.Models
         public string Passengers { get; set; }
 
         [JsonProperty("films")]
-        public List<Uri> Films { get; set; }
+        public Uri[] Films { get; set; }
 
         [JsonProperty("pilots")]
-        public List<string> Pilots { get; set; }
+        public string[] Pilots { get; set; }
 
         [JsonProperty("starship_class")]
         public string StarshipClass { get; set; }

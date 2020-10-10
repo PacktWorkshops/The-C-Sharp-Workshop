@@ -3,6 +3,9 @@ using System;
 
 namespace Chapter08.Models
 {
+    /// <summary>
+    /// using Newtonsoft JsonProperty attributes here in case we use this is Refit
+    /// </summary>
     public class Film
     {
         [JsonProperty("title")]        
