@@ -1,4 +1,4 @@
-﻿using Chapter08.Client.Models;
+﻿using Chapter08.Models;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;

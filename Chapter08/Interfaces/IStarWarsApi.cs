@@ -3,7 +3,7 @@ using Refit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Chapter08.Client.Interfaces
+namespace Chapter08.Interfaces
 {
     public interface IStarWarsApi
     {

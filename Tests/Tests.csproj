@@ -16,7 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Chapter03\Chapter03.csproj" />
     <ProjectReference Include="..\Chapter04\Chapter04.csproj" />
-    <ProjectReference Include="..\Chapter08.Client\Chapter08.Client.csproj" />
     <ProjectReference Include="..\Chapter08.Service\Chapter08.Service.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chapter08.Client.Models
+namespace Chapter08.Models
 {
     public class DateTimeResponse
     {

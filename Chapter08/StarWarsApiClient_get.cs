@@ -1,4 +1,4 @@
-﻿using Chapter08.Client.Extensions;
+﻿using Chapter08.Extensions;
 using Chapter08.Models;
 using System;
 using System.Collections.Generic;
