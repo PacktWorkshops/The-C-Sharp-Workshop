@@ -1,4 +1,4 @@
-﻿using Chapter08.Client.Interfaces;
+﻿using Chapter08.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refit;
 using System.Linq;

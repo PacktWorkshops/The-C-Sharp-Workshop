@@ -10,13 +10,7 @@ namespace Tests.Chapter08
 {
     [TestClass]
     public class StarWarsTestsOnline
-    {
-        /// <summary>
-        /// HttpClient should always be static due to subtleties about how it uses resources internally
-        /// see https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client#create-and-initialize-httpclient
-        /// </summary>
-        static HttpClient _client = new HttpClient();
-
+    {     
         [TestMethod]
         public void GetAllPeople()
         {

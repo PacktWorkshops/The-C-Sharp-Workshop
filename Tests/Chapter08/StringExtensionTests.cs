@@ -1,5 +1,5 @@
 ﻿using Chapter08;
-using Chapter08.Client.Extensions;
+using Chapter08.Extensions;
 using Chapter08.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
