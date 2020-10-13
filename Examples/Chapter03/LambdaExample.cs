@@ -6,7 +6,7 @@ namespace Chapter03Examples
 {
     class LambdaExample
     {
-        public static void Main1()
+        public static void Main()
         {
 
             var names = new List<string>

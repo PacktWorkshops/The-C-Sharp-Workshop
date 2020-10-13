@@ -6,7 +6,7 @@ namespace Chapter03Examples
 {
     class CaptureExamples
     {
-        public static void Main1()
+        public static void Main()
         {
             var word = "hello";
             Func<int, string> joiner = reps => string.Join(",", Enumerable.Repeat(word, reps));

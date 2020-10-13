@@ -49,7 +49,7 @@ namespace Chapter03Examples
 
     public static class Program1
     {
-        public static void Main1()
+        public static void Main()
         {
             var evtSnips = new EventExamples();
             evtSnips.OrderProcessed += (sender, args) => {; };

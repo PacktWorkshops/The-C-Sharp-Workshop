@@ -41,7 +41,7 @@ namespace Chapter3UnitTest
             Assert.IsTrue(hasSignalled);
         }
 
-        private static void ClockTicked(object? sender, EventArgs<TimeSpan> e)
+        private static void ClockTicked(object sender, EventArgs<TimeSpan> e)
         {
             Debug.WriteLine($"ClockTicked : sender={sender} e.value={e.Value}");
         }

@@ -18,7 +18,7 @@ namespace Chapter03Examples
 
         delegate DateTime ThreeArgFuncDelegate(string arg1, double arg2, int arg3);
 
-        public static void Main1()
+        public static void Main()
         {
             Func<string> func1;
             Func<string, double, bool> func2;

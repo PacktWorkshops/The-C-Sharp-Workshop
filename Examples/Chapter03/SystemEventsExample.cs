@@ -3,7 +3,7 @@ using Microsoft.Win32;
 
 class SystemEventsExample
 {
-    public static void Main1()
+    public static void Main()
     {
         SystemEvents.TimeChanged += (sender, args) =>
             Console.WriteLine("Time has been changed");

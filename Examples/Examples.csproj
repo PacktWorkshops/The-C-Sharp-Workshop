@@ -10,7 +10,7 @@
     <AssemblyName>Examples</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>8</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Examples.Chapter05.ParallelForExamples</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -59,8 +62,19 @@
     <Compile Include="Chapter03\MulticastWithErrorsExample.cs" />
     <Compile Include="Chapter03\OrderEntryValidator.cs" />
     <Compile Include="Chapter03\SystemEventsExample.cs" />
+    <Compile Include="Chapter05\AsyncUsersExample.cs" />
+    <Compile Include="Chapter05\AsyncExamples.cs" />
+    <Compile Include="Chapter05\ContinuationExamples.cs" />
+    <Compile Include="Chapter05\DownloadExamples.cs" />
+    <Compile Include="Chapter05\AsyncLambdaExamples.cs" />
+    <Compile Include="Chapter05\ParallelForEachExample.cs" />
+    <Compile Include="Chapter05\ParallelForExamples.cs" />
+    <Compile Include="Chapter05\WhenAllErrorExamples.cs" />
+    <Compile Include="Chapter05\ErrorExamples.cs" />
+    <Compile Include="Chapter05\FireAndForgetObserved.cs" />
+    <Compile Include="Chapter05\ExplicitThreadsExample.cs" />
+    <Compile Include="Chapter05\TaskExamples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

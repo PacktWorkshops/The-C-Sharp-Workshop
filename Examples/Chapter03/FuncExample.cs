@@ -4,7 +4,7 @@ namespace Chapter03Examples
 {
     class FuncExample
     {
-        public static void Main1()
+        public static void Main()
         {
             Func<int, string> mathCalc = Func1;
             mathCalc += Func2;

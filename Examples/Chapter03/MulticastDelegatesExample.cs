@@ -3,7 +3,7 @@ namespace Chapter03Examples
 {
     class MulticastDelegatesExample
     {
-        public static void Main1()
+        public static void Main()
         {
             Action<string> logger = LogToConsole;
             logger += LogToConsole;
