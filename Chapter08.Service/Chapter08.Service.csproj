@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Chapter08.Models\Chapter08.Models.csproj" />
+    <ProjectReference Include="..\Chapter08\Chapter08.csproj" />
   </ItemGroup>
 
 

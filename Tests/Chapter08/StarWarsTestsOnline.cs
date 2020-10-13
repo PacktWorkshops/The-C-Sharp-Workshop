@@ -1,46 +1,68 @@
 ﻿using Chapter08;
+using Chapter08.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Bson;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using static Chapter08.StarWarsApiClient;
 
 namespace Tests.Chapter08
 {
     [TestClass]
     public class StarWarsTestsOnline
-    {
-        /// <summary>
-        /// HttpClient should always be static due to subtleties about how it uses resources internally
-        /// see https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client#create-and-initialize-httpclient
-        /// </summary>
-        static HttpClient _client = new HttpClient();
-
+    {     
         [TestMethod]
         public void GetAllPeople()
         {
-            var people = new StarWarsApiClient(_client, HostOptions.Online).GetAllPeopleAsync().Result;
+            var people = new StarWarsApiClient(HostOptions.Online).GetAllPeopleAsync().Result;
             Assert.IsTrue(people.Any());
+
+            // make sure everyone is in at least one film (ensures array properties are populated)
+            Assert.IsTrue(people.All(p => p.Films.Any()));
         }
 
         [TestMethod]
         public void GetAllStarships()
         {
-            var ships = new StarWarsApiClient(_client, HostOptions.Online).GetAllStarshipsAsync().Result;
+            var ships = new StarWarsApiClient(HostOptions.Online).GetAllStarshipsAsync().Result;
             Assert.IsTrue(ships.Any());
         }
 
         [TestMethod]
         public void GetOnePerson()
         {
-            var person = new StarWarsApiClient(_client, HostOptions.Online).GetPersonAsync(1).Result;
+            var person = new StarWarsApiClient(HostOptions.Online).GetPersonAsync(1).Result;
             Assert.IsTrue(person.Name.Equals("Luke Skywalker"));
         }
 
         [TestMethod]
         public void GetOneStarship()
         {
-            var ship = new StarWarsApiClient(_client, HostOptions.Online).GetStarshipAsync(2).Result;
+            var ship = new StarWarsApiClient(HostOptions.Online).GetStarshipAsync(2).Result;
             Assert.IsTrue(ship.Name.Equals("CR90 corvette"));
+        }
+
+        [TestMethod]
+        public void GetFilms()
+        {
+            var films = new StarWarsApiClient(HostOptions.Online).GetAsync<ApiResult<List<Film>>>("films/").Result;
+            Assert.IsTrue(films.Data.Any());
+        }
+
+        [TestMethod]
+        public void GetFilmAbsolute()
+        {            
+            var film = new StarWarsApiClient(HostOptions.Online).GetAsync<Film>("http://swapi.dev/api/films/1/").Result;
+            Assert.IsTrue(film.Title.Equals("A New Hope"));
+        }
+
+        [TestMethod]
+        public void GetObiWanAndFilms()
+        {
+            var client = new StarWarsApiClient(HostOptions.Online);
+            var result = client.GetPersonAsync(10).Result;
+            Assert.IsTrue(result.Name.Equals("Obi-Wan Kenobi"));
+            Assert.IsTrue(result.Films.Length == 6);
         }
     }
 }
