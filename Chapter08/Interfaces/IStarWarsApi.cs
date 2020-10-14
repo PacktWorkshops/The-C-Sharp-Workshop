@@ -1,6 +1,8 @@
 ﻿using Chapter08.Models;
 using Refit;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Chapter08.Interfaces
@@ -46,6 +48,17 @@ namespace Chapter08.Interfaces
                 results.AddRange(response.Data);
                 if (response.Next == null) break;
             } while (true);
+
+            return results;
+        }
+
+        public static async Task<IEnumerable<Planet>> GetAllPlanetsAsync(this IStarWarsApi api, Func<Planet, bool> where = null, Func<Planet, object> orderBy = null)
+        {
+            var results = await GetAllPlanetsAsync(api);
+
+            if (where != null) results = results.Where(where);
+
+            if (orderBy != null) results = results.OrderBy(orderBy);
 
             return results;
         }
