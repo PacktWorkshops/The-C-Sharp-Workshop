@@ -78,6 +78,10 @@ namespace Chapter08.Interfaces
             return results;
         }
 
+        /// <summary>
+        /// Activity 8.2: this overload accepts where and orderBy delegates.
+        /// Ideally, this should be reworked into the GetAllAsync method so that it has the same filter and sort options
+        /// </summary>
         public static async Task<IEnumerable<Planet>> GetAllPlanetsAsync(this IStarWarsApi api, Func<Planet, bool> where = null, Func<Planet, object> orderBy = null)
         {
             var results = await GetAllPlanetsAsync(api);
