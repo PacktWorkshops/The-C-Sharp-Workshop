@@ -4,5 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AO.StringId" Version="1.0.2" />
+  </ItemGroup>
+
 
 </Project>
