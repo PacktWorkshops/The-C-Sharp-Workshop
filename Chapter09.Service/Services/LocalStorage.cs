@@ -1,5 +1,5 @@
 ﻿using Chapter09.Service.Interfaces;
-using Chapter09.Service.Static;
+using StringIdLibrary;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,7 +22,7 @@ namespace Chapter09.Service.Services
         {
             string json = Serialize(item);
 
-            string key = StringId.NewId(7, StringIdRanges.AlphaUpper | StringIdRanges.Numeric);
+            string key = StringId.New(7, StringIdRanges.Upper | StringIdRanges.Numeric);
             File.WriteAllText(GetFilename<T>(key), json);
             return await Task.FromResult(key);
         }
