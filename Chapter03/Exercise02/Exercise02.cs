@@ -1,63 +1,113 @@
 ﻿using System;
+using System.Globalization;
 
-namespace Chapter3
+namespace Chapter03.Exercise02
 {
-    public class Greeks
+    public class Car
     {
-        public double? Delta { get; set; }
-        public double? Gamma { get; set; }
+        public double Distance { get; set; }
+        public double FuelUsed { get; set; }
     }
 
-    public class Prices
+    public class Comparison
     {
-        public double? Close { get; set; }
-    }
+        private readonly Func<Car, double> _valueSelector;
 
-    public class FieldComparison<T>
-    {
-        private readonly Func<T, double?> _selector;
-
-        public FieldComparison(Func<T, double?> selector)
+        public Comparison(Func<Car, double> valueSelector)
         {
-            _selector = selector;
+            _valueSelector = valueSelector;
         }
 
-        public double? Yesterday { get; private set; }
+        public double Yesterday { get; private set; }
 
-        public double? Today { get; private set; }
+        public double Today { get; private set; }
 
-        public double? Difference { get; private set; }
+        public double Difference { get; private set; }
 
-        public void DoComparison(T yes, T tod)
+        public void Compare(Car yesterday, Car today)
         {
-            Yesterday = _selector(yes);
-            Today = _selector(tod);
-
-            Difference = Yesterday != null && Today != null
-                ? Yesterday - Today
-                : null;
+            Yesterday = _valueSelector(yesterday);
+            Today = _valueSelector(today);
+            Difference = Yesterday - Today;
         }
     }
 
-    public class ModelDifferences
+    public class JourneyComparer
     {
-        public ModelDifferences()
+        public JourneyComparer()
         {
-            Delta = new FieldComparison<Greeks>(data => data.Delta);
-            Gamma = new FieldComparison<Greeks>(data => data.Gamma * 100D);
-            Close = new FieldComparison<Prices>(data => data.Close);
+            Distance = new Comparison(GetCarDistance);
+            FuelUsed = new Comparison(CarCarFuelUsed);
+            FuelEconomy = new Comparison(CarCarFuelEconomy);
         }
 
-        public FieldComparison<Greeks> Delta { get; }
-        public FieldComparison<Greeks> Gamma { get; }
-        public FieldComparison<Prices> Close { get; }
-
-        public void Compare(Greeks greeksYesterday, Greeks greeksToday,
-            Prices pricesYesterday, Prices pricesToday)
+        private static double GetCarDistance(Car car)
         {
-            Delta.DoComparison(greeksYesterday, greeksToday);
-            Gamma.DoComparison(greeksYesterday, greeksToday);
-            Close.DoComparison(pricesYesterday, pricesToday);
+            return car.Distance;
+        }
+
+        private static double CarCarFuelUsed(Car car)
+        {
+            return car.FuelUsed;
+        }
+
+        private static double CarCarFuelEconomy(Car car)
+        {
+            return car.Distance / car.FuelUsed;
+        }
+
+        public Comparison Distance { get; }
+        public Comparison FuelUsed { get; }
+        public Comparison FuelEconomy { get; }
+
+        public void Compare(Car yesterday, Car today)
+        {
+            Distance.Compare(yesterday, today);
+            FuelUsed.Compare(yesterday, today);
+            FuelEconomy.Compare(yesterday, today);
+        }
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+            var random = new Random();
+            string input;
+            do
+            {
+                Console.Write("Yesterday's distance");
+                input = Console.ReadLine();
+                double.TryParse(input, NumberStyles.Any, CultureInfo.CurrentCulture, out var distanceYesterday);
+
+                var carYesterday = new Car
+                {
+                    Distance = distanceYesterday,
+                    FuelUsed = random.NextDouble() * 10D
+                };
+
+                Console.Write("Today's distance:");
+                input = Console.ReadLine();
+                double.TryParse(input, NumberStyles.Any, CultureInfo.CurrentCulture, out var distanceToday);
+
+                var carToday = new Car
+                {
+                    Distance = distanceToday,
+                    FuelUsed = random.NextDouble() * 10D
+                };
+
+                var comparer = new JourneyComparer();
+                comparer.Compare(carYesterday, carToday);
+
+                Console.WriteLine("Journey Details    Distance       Fuel Used");
+                Console.WriteLine($"Yesterday:    {carYesterday.Distance}\t{carYesterday.FuelUsed}");
+                Console.WriteLine($"Today:        {carToday.Distance}    \t{carToday.FuelUsed}");
+                Console.WriteLine("================================================================");
+                Console.WriteLine($"Comparison:   {comparer.Distance}    \t{comparer.FuelUsed}   ");
+                Console.WriteLine($"Fuel Economy={comparer.FuelEconomy}");
+            } 
+            while (!string.IsNullOrEmpty(input));
+
         }
     }
 }

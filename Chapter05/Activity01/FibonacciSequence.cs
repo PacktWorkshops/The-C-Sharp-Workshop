@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Chapter05.Activity01
 {
@@ -14,6 +15,10 @@ namespace Chapter05.Activity01
             {
                 Fibonacci.CreateSeed()
             };
+
+            // Purposely added time delay here  - code runs too quickly
+            // otherwise and doesnt make cancelling/threading useful without
+            Thread.Sleep(500);
 
             for (var i = 1; i < indices; i++)
             {

@@ -35,7 +35,7 @@
     <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Examples.Chapter05.ParallelForExamples</StartupObject>
+    <StartupObject>Examples.Chapter03.ActionOrFuncDelegateExamples</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,9 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Chapter03\ActionExample.cs" />
+    <Compile Include="Chapter03\ActionOrFuncDelegateExamples.cs" />
     <Compile Include="Chapter03\CaptureExample.cs" />
     <Compile Include="Chapter03\DateValidators.cs" />
     <Compile Include="Chapter03\DefineDelegateExample.cs" />
+    <Compile Include="Chapter03\WhyDelegateExamples.cs" />
     <Compile Include="Chapter03\ElevatorEventArgsExample.cs" />
     <Compile Include="Chapter03\EventArgs.cs" />
     <Compile Include="Chapter03\EventExample.cs" />

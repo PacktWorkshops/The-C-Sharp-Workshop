@@ -1,43 +1,44 @@
+using Chapter03.Exercise02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Chapter3;
 
-namespace Chapter3UnitTest
+namespace Tests.Chapter03
 {
     [TestClass]
     public class Exercise02Tests
     {
         [TestMethod]
-        public void ModelDifferencesCompare()
+        public void JourneyComparer()
         {
-            var greeksYesterday = new Greeks
+            var carYesterday = new Car
             {
-                Delta = 10D,
-                Gamma = 0.25D,
+                Distance = 120,
+                FuelUsed = 10
             };
 
-            var greeksToday = new Greeks
+            var carToday = new Car
             {
-                Delta = 15D,
-                Gamma = 0.40D
+                Distance = 50,
+                FuelUsed = 6
             };
 
-            var pricesYesterday = new Prices { Close = 1.5D };
-            var pricesToday = new Prices { Close = 2.0D };
+            var comparer = new JourneyComparer();
+            comparer.Compare(carYesterday, carToday);
 
-            var diffs = new ModelDifferences();
-            diffs.Compare(greeksYesterday, greeksToday,
-                pricesYesterday, pricesToday);
+            Assert.AreEqual(carYesterday.Distance - carToday.Distance,
+                comparer.Distance.Difference);
 
-            Assert.AreEqual(greeksYesterday.Delta - greeksToday.Delta,
-                diffs.Delta.Difference);
+            Assert.AreEqual(carYesterday.FuelUsed - carToday.FuelUsed,
+                comparer.FuelUsed.Difference);
 
-            var difGamma = (greeksYesterday.Gamma * 100) -
-                           (greeksToday.Gamma * 100D);
-            Assert.AreEqual(difGamma, diffs.Gamma.Difference);
+            Assert.AreEqual(carYesterday.FuelUsed - carToday.FuelUsed,
+                comparer.FuelUsed.Difference);
 
-            Assert.AreEqual(pricesYesterday.Close - pricesToday.Close,
-                diffs.Close.Difference);
+            var expectedEconomyDiff =
+                (carYesterday.Distance / carYesterday.FuelUsed) -
+                (carToday.Distance / carToday.FuelUsed);
+
+            Assert.AreEqual(expectedEconomyDiff, comparer.FuelEconomy.Difference);
+
         }
     }
 }

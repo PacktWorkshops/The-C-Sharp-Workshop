@@ -5,7 +5,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 
-namespace Chapter3
+namespace Chapter03.Activity01
 {
     public class EventArgsValue<T>
     {
@@ -131,7 +131,7 @@ namespace Chapter3
         }
     }
 
-    public class Program
+    public class Activity01Program
     {
         public static void Main()
         {

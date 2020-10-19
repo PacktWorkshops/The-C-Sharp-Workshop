@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace Chapter05.Activity01
 {
@@ -49,7 +50,7 @@ namespace Chapter05.Activity01
 
             image.Save(path, ImageFormat.Jpeg);
 
-            Logger.Log($"Saved to {path}");
+            Logger.Log($"Saved {Path.GetFileName(path)}");
         }
     }
 }

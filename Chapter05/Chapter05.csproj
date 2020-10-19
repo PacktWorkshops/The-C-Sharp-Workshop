@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <StartupObject>Chapter05.Exercise03.Program</StartupObject>
+    <StartupObject>Chapter05.Activity01.FibonacciConsole</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
