@@ -6,26 +6,29 @@ namespace Chapter03Examples
     {
         public static void Main()
         {
-            Func<int, string> mathCalc = Func1;
-            mathCalc += Func2;
+            Func<string, string> emailFormatter = RemoveDots;
 
-            var resultA = mathCalc(2);
-            Console.WriteLine($"ResultA={resultA}");
+            const string Address = "admin@google.com";
 
-             var resultB = mathCalc(4);
-            Console.WriteLine($"ResultB={resultB}");
+            var first = emailFormatter(Address);
+            Console.WriteLine($"First={first}");
+
+            emailFormatter += RemoveAtSign;
+
+            var second = emailFormatter(Address);
+            Console.WriteLine($"Second={second}");
+
+            Console.ReadLine();
         }
 
-        private static string Func1(int num)
+        private static string RemoveAtSign(string address)
         {
-            Console.WriteLine($"Called Func1({num})");
-            return $"Func1: num = {num}";
+            return address.Replace("@", "");
         }
 
-        private static string Func2(int num)
+        private static string RemoveDots(string address)
         {
-            Console.WriteLine($"Called Func2({num})");
-            return $"Func2: num = {num}";
+            return address.Replace(".", "");
         }
     }
 

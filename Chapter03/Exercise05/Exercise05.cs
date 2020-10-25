@@ -1,16 +1,68 @@
 ﻿using System;
 
-namespace Chapter3
+namespace Chapter03.Exercise05
 {
-    public class ElevatorRequestArgs : EventArgs
+    public class AlarmClock
     {
-        public ElevatorRequestArgs(int requestedFloor, int currentFloor)
+        public event EventHandler WakeUp = delegate {};
+        public event EventHandler<DateTime> Ticked = delegate {};
+
+        protected void OnWakeUp()
         {
-            RequestedFloor = requestedFloor;
-            CurrentFloor = currentFloor;
+            WakeUp.Invoke(this, EventArgs.Empty);
         }
 
-        public int RequestedFloor{ get; }
-        public int CurrentFloor { get; }
+        public DateTime AlarmTime { get; set; }
+
+        public DateTime ClockTime { get; set; }
+
+        public void Start()
+        {
+            // Run for 24 hours
+            const int MinutesInADay = 60 * 24; 
+            for (var i = 0; i < MinutesInADay; i++)
+            {
+                ClockTime = ClockTime.AddMinutes(1);
+                Ticked.Invoke(this, ClockTime);
+
+                var timeRemaining = ClockTime.Subtract(AlarmTime).TotalMinutes;
+                if (timeRemaining >= -1.0 && timeRemaining <= 1.0)
+                {
+                    OnWakeUp();
+                    break;
+                }
+            }
+        }
+        
+    }
+
+    public static class Program
+    {
+        public static void Main()
+        {
+            var clock = new AlarmClock();
+            clock.Ticked += ClockTicked;
+            clock.WakeUp += ClockWakeUp;
+            clock.ClockTime = DateTime.Now;
+            clock.AlarmTime = DateTime.Now.AddMinutes(120);
+
+            Console.WriteLine($"ClockTime={clock.ClockTime:t}");
+            Console.WriteLine($"AlarmTime={clock.AlarmTime:t}");
+            clock.Start();
+
+            Console.WriteLine("Press ENTER");
+            Console.ReadLine();
+        }
+
+        private static void ClockWakeUp(object sender, EventArgs e)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Wake up");
+        }
+
+        private static void ClockTicked(object sender, DateTime e)
+        {
+            Console.Write($"{e:t}...");
+        }
     }
 }

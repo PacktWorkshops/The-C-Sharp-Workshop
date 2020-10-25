@@ -17,12 +17,8 @@ namespace Chapter03Examples
 
             // C#8 local function
             static void LogToConsole(string message)
-                => Console.WriteLine($"{DateTime.Now}:{message}");
+                => Console.WriteLine($"{message}");
         }
-
-        // No c#8 ?
-        //private static void LogToConsole(string message) 
-        //    => Console.WriteLine($"{DateTime.Now}:{message}");
 
     }
 }

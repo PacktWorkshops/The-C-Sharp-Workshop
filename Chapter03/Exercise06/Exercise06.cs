@@ -1,82 +1,45 @@
 ﻿using System;
-using System.Threading;
+using System.Linq;
 
-namespace Chapter3
+namespace Chapter03.Exercise06
 {
-    public class EventArgs<T> : EventArgs
-    {
-        public EventArgs(T value)
-        {
-            Value = value;
-        }
 
-        public T Value { get; }
+    public static class WordUtilities
+    {
+        public static string ReverseWords(string sentence)
+        {
+            Func<string, string> swapWords =
+                phrase =>
+                {
+                    const char Delimit = ' ';
+                    var words = phrase
+                        .Split(Delimit)
+                        .Reverse();
+
+                    return string.Join(Delimit, words);
+                };
+
+            return swapWords(sentence);
+        }
     }
 
-    public class AlarmClock : IDisposable
+    public static class Program
     {
-        public event EventHandler<EventArgs<TimeSpan>> Ticked = delegate { };
-        public event EventHandler WakeUp;
-
-        protected void OnTicked(EventArgs<TimeSpan> e)
+        public static void Main()
         {
-            Ticked(this, e);
-        }
-
-        protected void OnWakeUp()
-        {
-            var evt = WakeUp;
-            evt?.Invoke(this, EventArgs.Empty);
-        }
-
-        public TimeSpan? WakeTime { get; set; }
-
-        private Timer _timer;
-
-        public void Start()
-        {
-            var dueTime = TimeSpan.Zero;
-            var frequency = TimeSpan.FromMinutes(1);
-
-            if (_timer == null)
+            do
             {
-                _timer = new Timer(state => CheckAlarmTime(), null,
-                    dueTime, frequency);
-            }
-            else
-            {
-                _timer.Change(dueTime, frequency);
-            }
-        }
+                Console.Write("Enter a sentence:");
+                var input = Console.ReadLine();
+                if (string.IsNullOrEmpty(input))
+                {
+                    break;
+                }
 
-        private void CheckAlarmTime()
-        {
-            var currentTime = DateTime.Now.TimeOfDay;
+                var result = WordUtilities.ReverseWords(input);
+                Console.WriteLine($"Reversed: {result}");
 
-            OnTicked(new EventArgs<TimeSpan>(currentTime));
-
-            var wakeTime = WakeTime;
-            if (wakeTime == null)
-                return;
-
-            if (currentTime > wakeTime)
-            {
-                OnWakeUp();
-            }
-        }
-
-        public void Stop()
-        {
-            _timer?.Change(TimeSpan.Zero, Timeout.InfiniteTimeSpan);
-        }
-
-        public void Dispose()
-        {
-            if (_timer != null)
-            {
-                _timer.Dispose();
-                _timer = null;
-            }
+            } while (true);
         }
     }
 }

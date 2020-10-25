@@ -35,7 +35,7 @@
     <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Examples.Chapter03.ActionOrFuncDelegateExamples</StartupObject>
+    <StartupObject>Chapter03Examples.LambdaExample</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -53,6 +53,9 @@
     <Compile Include="Chapter03\CaptureExample.cs" />
     <Compile Include="Chapter03\DateValidators.cs" />
     <Compile Include="Chapter03\DefineDelegateExample.cs" />
+    <Compile Include="Chapter03\LambdaAlarmClock.cs" />
+    <Compile Include="Chapter03\MouseEventExample.cs" />
+    <Compile Include="Chapter03\MulticastDelegatesAddRemoveExample.cs" />
     <Compile Include="Chapter03\WhyDelegateExamples.cs" />
     <Compile Include="Chapter03\ElevatorEventArgsExample.cs" />
     <Compile Include="Chapter03\EventArgs.cs" />

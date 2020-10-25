@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -7,49 +6,30 @@ using System.Threading;
 
 namespace Chapter03.Activity01
 {
-    public class EventArgsValue<T>
+    public class DownloadProgressChangedEventArgs  
     {
-        public EventArgsValue(T value)
-        {
-            Value = value;
-        }
-        public T Value { get; }
-    }
-
-    public class DownloadProgressChangedEventArgs : ProgressChangedEventArgs
-    {
+        //Yuo could base this on ProgressChangedEventArgs in System.ComponentModel
         public DownloadProgressChangedEventArgs(int progressPercentage, long bytesReceived)
-            : base(progressPercentage, null)
         {
+            ProgressPercentage = progressPercentage;
             BytesReceived = bytesReceived;
         }
         public long BytesReceived { get; }
+        public int ProgressPercentage { get; }
     }
 
-    public interface IWebClient
-    {
-        event EventHandler DownloadCompleted;
-        event EventHandler<DownloadProgressChangedEventArgs> DownloadProgressChanged;
-        event EventHandler<EventArgsValue<string>> InvalidUrlRequested;
-        IDisposable DownloadFile(string url, string destination);
-    }
-    public interface IWebClientFactory
-    {
-        IWebClient GetClient();
-    }
-
-    public class WebClientAdapter : IWebClient
+    public class WebClientAdapter
     {
         public event EventHandler DownloadCompleted;
         public event EventHandler<DownloadProgressChangedEventArgs> DownloadProgressChanged;
-        public event EventHandler<EventArgsValue<string>> InvalidUrlRequested;
+        public event EventHandler<string> InvalidUrlRequested;
 
         public IDisposable DownloadFile(string url, string destination)
         {
             Uri uri;
             if (!Uri.TryCreate(url, UriKind.Absolute, out uri))
             {
-                InvalidUrlRequested?.Invoke(this, new EventArgsValue<string>(url));
+                InvalidUrlRequested?.Invoke(this, url);
                 return null;
             }
 
@@ -68,75 +48,11 @@ namespace Chapter03.Activity01
         }
     }
 
-    public class WebClientFactory : IWebClientFactory
-    {
-        public IWebClient GetClient()
-        {
-            return new WebClientAdapter();
-        }
-    }
-
-    public class WebDownloader
-    {
-        private readonly IWebClientFactory _webClientFactory;
-
-        public WebDownloader(IWebClientFactory webClientFactory)
-        {
-            _webClientFactory = webClientFactory;
-        }
-
-        public void DownLoad(string url, string destination)
-        {
-            var client = _webClientFactory.GetClient();
-
-            var waiter = new ManualResetEventSlim();
-            using (waiter)
-            {
-                client.InvalidUrlRequested += (sender, args) =>
-                {
-                    var oldColor = Console.BackgroundColor;
-                    Console.BackgroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine($"Invalid URL {args.Value}");
-                    Console.BackgroundColor = oldColor;
-                };
-
-                client.DownloadProgressChanged += (sender, args) =>
-                {
-                    Console.WriteLine($"Downloading...{args.ProgressPercentage}% complete ({args.BytesReceived:N0} bytes)");
-                };
-
-                client.DownloadCompleted += (sender, args) =>
-                {
-                    Console.WriteLine($"Downloaded to {destination} ");
-                    waiter.Set();
-                };
-
-                Console.WriteLine($"Downloading {url}...");
-                var disposable = client.DownloadFile(url, destination);
-                if (disposable == null) return;
-
-                using (disposable)
-                {
-                    if (waiter.Wait(TimeSpan.FromSeconds(10D)))
-                    {
-                        Console.WriteLine($"Launching {destination}");
-                        Process.Start("explorer.exe", destination);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Timedout downloading {url}");
-                    }
-                }
-            }
-        }
-    }
-
-    public class Activity01Program
+   
+    public class Program
     {
         public static void Main()
         {
-            var downloader = new WebDownloader(new WebClientFactory());
-
             var input = string.Empty;
             do
             {
@@ -156,10 +72,50 @@ namespace Chapter03.Activity01
                         destination = Path.GetTempFileName();
                     }
 
-                    downloader.DownLoad(input, destination);
-
+                    Download(input, destination);
                 }
             } while (input != string.Empty);
+        }
+
+        private static void Download(string url, string destination)
+        {
+            var client = new WebClientAdapter();
+
+            var waiter = new ManualResetEventSlim();
+            using (waiter)
+            {
+                client.InvalidUrlRequested += (sender, args) =>
+                {
+                    var oldColor = Console.BackgroundColor;
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine($"Invalid URL {args}");
+                    Console.BackgroundColor = oldColor;
+                };
+
+                client.DownloadProgressChanged += (sender, args) =>
+                {
+                    Console.WriteLine($"Downloading...{args.ProgressPercentage}% complete ({args.BytesReceived:N0} bytes)");
+                };
+
+                client.DownloadCompleted += (sender, args) =>
+                {
+                    Console.WriteLine($"Downloaded to {destination}");
+                    waiter.Set();
+                };
+
+                Console.WriteLine($"Downloading {url}...");
+                var request = client.DownloadFile(url, destination);
+                if (request == null) 
+                    return;
+
+                using (request)
+                {
+                    if (!waiter.Wait(TimeSpan.FromSeconds(10D)))
+                    {
+                        Console.WriteLine($"Timedout downloading {url}");
+                    }
+                }
+            }
         }
     }
 

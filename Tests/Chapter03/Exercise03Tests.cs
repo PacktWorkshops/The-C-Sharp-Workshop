@@ -1,43 +1,58 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Chapter3;
+﻿using System;
 using System.IO;
+using Chapter03.Exercise03;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Chapter3UnitTest
+namespace Tests.Chapter03
 {
 
     [TestClass]
     public class Exercise03Tests
     {
+        private const string OutputFile = "activity.txt";
+
+        [TestInitialize]
+        public void Setup()
+        {
+            if (File.Exists(OutputFile))
+            {
+                File.Delete(OutputFile);
+            }
+        }
+
         [TestMethod]
-        public void DoWork_LogsToConsoleAndFile()
+        public void LogsToConsoleAndFile()
         {
             // ARRANGE
             using var writer = new StringWriter();
             Console.SetOut(writer);
 
-            // ACT
-            new CashMachineController().DoWork();
+            Action<string> logger = LogToConsole;
+            logger += LogToFile;
+
+            var cashMachine = new CashMachine(logger);
+
+            const string Pin = "1234";
+            cashMachine.VerifyPin(Pin);
+            cashMachine.ShowBalance();
+            
             writer.Flush();// Ensure writer is flushed
 
             // ASSERT
-            const string ExpectedOutput = "[PIN: 1234][Balance: 999]";
+            var expectedOutput = $"VerifyPin called: PIN={Pin}ShowBalance called: Balance=999";
 
             var actualConsole = writer.ToString();
-            Assert.AreEqual(ExpectedOutput, actualConsole);
+            Assert.AreEqual(expectedOutput, actualConsole);
 
-            var fileFile = File.ReadAllText("activity.txt");
-            Assert.AreEqual(ExpectedOutput, fileFile);
-
-            // older C# style
-            //using (var writer = new StringWriter())
-            //{
-            //    Console.SetOut(writer);
-            //    new MulticastController().DoWork();
-            //    writer.Flush();
-            //    var actualConsole = writer.ToString();
-            //}
+            var fileText = File.ReadAllText(OutputFile);
+            Assert.AreEqual(expectedOutput, fileText);
         }
+
+        private static void LogToConsole(string message)
+            => Console.Write(message);
+
+        private static void LogToFile(string message)
+            => System.IO.File.AppendAllText("activity.txt", message);
     }
 }
 

@@ -1,8 +1,8 @@
 ﻿using System;
-using Chapter3;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Chapter3UnitTest
+namespace Tests.Chapter03
 {
     [TestClass]
     public class Exercise04Tests
@@ -15,7 +15,7 @@ namespace Chapter3UnitTest
 
             Action<string> logger = null;
 
-            ActionHelpers.InvokeAll(logger, "Nothing to do");
+            InvokeAll(logger, "Nothing to do");
             Assert.IsNull(consoleOutput);
             Assert.IsNull(debugOutput);
 
@@ -25,7 +25,7 @@ namespace Chapter3UnitTest
             logger += LogToDebug;
 
             const string Message = "this is a test";
-            ActionHelpers.InvokeAll(logger, Message);
+            InvokeAll(logger, Message);
             
             // ASSERT
             Assert.AreEqual(Message, consoleOutput);
@@ -39,6 +39,26 @@ namespace Chapter3UnitTest
 
             void LogToDebug(string message)
                 => debugOutput = $"{message}";
+        }
+
+        private static void InvokeAll(Action<string> logger, string arg)
+        {
+            if (logger == null)
+                return;
+
+            var actions = logger.GetInvocationList().OfType<Action<string>>();
+            foreach (var act in actions)
+            {
+                try
+                {
+                    Console.WriteLine($"Invoking '{act.Method.Name}'");
+                    act(arg);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Error: {e.Message}");
+                }
+            }
         }
     }
 }

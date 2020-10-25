@@ -1,6 +1,7 @@
 ﻿using System;
+using System.IO;
 
-namespace Chapter3
+namespace Chapter03.Exercise03
 {
     public class CashMachine
     {
@@ -16,38 +17,49 @@ namespace Chapter3
             _logger?.Invoke(message);
         }
 
-        public void VerifyPin()
+        public void VerifyPin(string pin)
         {
-            Log("[PIN: 1234]");
+            Log($"VerifyPin called: PIN={pin}");
         }
 
         public void ShowBalance()
         {
-            Log("[Balance: 999]");
+            Log("ShowBalance called: Balance=999");
         }
     }
-    public class CashMachineController
-    {
-        public void DoWork()
-        {
-            // Needs to be null rather than unassigned
-            Action<string> logger = null;
 
-            // use method group syntax to add target methods
-            logger += LogToConsole;
+    public static class Program
+    {
+        private const string OutputFile = "activity.txt";
+
+        public static void Main()
+        {
+            if (File.Exists(OutputFile))
+            {
+                File.Delete(OutputFile);
+            }
+
+            Action<string> logger = LogToConsole;
             logger += LogToFile;
 
             var cashMachine = new CashMachine(logger);
-            cashMachine.VerifyPin();
+
+            Console.Write("Enter your PIN:");
+            var pin = Console.ReadLine();
+
+            cashMachine.VerifyPin(pin);
+            Console.WriteLine();
+
+            Console.Write("Press Enter to show balance");
+            Console.ReadLine();
+
             cashMachine.ShowBalance();
         }
 
         private static void LogToConsole(string message)
-            => System.Console.Write(message);
+            => Console.WriteLine(message);
 
         private static void LogToFile(string message)
-            => System.IO.File.AppendAllText("activity.txt", message);
+            => File.AppendAllText(OutputFile, message);
     }
-
-
 }

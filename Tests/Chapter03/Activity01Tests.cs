@@ -1,84 +1,51 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using Chapter03.Activity01;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Chapter3;
 
-namespace Chapter3UnitTest
+namespace Tests.Chapter03
 {
-
-internal class TestableWebClient : IWebClient
-{
-    public event EventHandler DownloadCompleted;
-    public event EventHandler<DownloadProgressChangedEventArgs> DownloadProgressChanged;
-    public event EventHandler<EventArgsValue<string>> InvalidUrlRequested;
-    public IDisposable DownloadFile(string url, string destination)
-    {
-        return null;
-    }
-
-    internal TestableWebClient InvokeDownloadCompleted()
-    {
-        DownloadCompleted?.Invoke(this, EventArgs.Empty);
-        return this;
-    }
-
-    internal TestableWebClient InvokeDownloadProgressChanged(int progress, long bytes)
-    {
-        DownloadProgressChanged?.Invoke(this, 
-            new DownloadProgressChangedEventArgs(progress, bytes));
-        return this;
-    }
-}
-
-    internal class TestableWebClientFactory : IWebClientFactory
-    {
-        public TestableWebClientFactory()
-        {
-            TestClient = new TestableWebClient();    
-        }
-        public TestableWebClient TestClient { get; }
-
-        public IWebClient GetClient()
-        {
-            return TestClient;
-        }
-    }
 
     [TestClass]
     public class Activity01Tests
     {
         [TestMethod]
-        public void WebDownloader_DownLoad()
+        public void WebClientAdapter_DownLoad()
         {
-            // ARRANGE
-            using var writer = new StringWriter();
-            Console.SetOut(writer);
-            
-            var webClientFactory = new TestableWebClientFactory();
-            // ACT
-            var downloader = new WebDownloader(webClientFactory);
-            downloader.DownLoad("some web file","myfile.csv");
+            var downloadProgressChangedMessages = string.Empty;
+            var downloadCompleteddMessages = string.Empty;
 
-            webClientFactory.TestClient
-                .InvokeDownloadProgressChanged(10, 1024)
-                .InvokeDownloadProgressChanged(100, 1024 * 100)
-                .InvokeDownloadCompleted();
-
-            writer.Flush();// Ensure writer is flushed
-
-            // ASSERT
-            var expectedOutput = new[]
+            var client = new WebClientAdapter();
+            var waiter = new ManualResetEventSlim();
+            using (waiter)
             {
-                "Downloading some web file...",
-                "Downloading...10% complete (1,024 bytes)",
-                "Downloading...100% complete (102,400 bytes)",
-                "Downloaded to myfile.csv ",
-                string.Empty
-            };
+                client.DownloadProgressChanged += (sender, args) =>
+                {
+                    downloadProgressChangedMessages +=  "Downloading...";
+                };
 
-            var actualConsoleLines = writer.ToString().Split(Environment.NewLine);
-            CollectionAssert.AreEqual(expectedOutput, actualConsoleLines);
+                client.DownloadCompleted += (sender, args) =>
+                {
+                    downloadCompleteddMessages += "Downloaded";
+                    waiter.Set();
+                };
+
+                var destination = Path.GetTempFileName();
+                const string Url =
+                    @"https://www1.ncdc.noaa.gov/pub/data/swdi/stormevents/csvfiles/StormEvents_details-ftp_v1.0_d1950_c20170120.csv.gz";
+                var request = client.DownloadFile(Url, destination);
+                if (request == null)
+                    return;
+
+                using (request)
+                {
+                    Assert.IsTrue(waiter.Wait(TimeSpan.FromSeconds(10D)));
+                    Assert.IsFalse(string.IsNullOrEmpty(downloadProgressChangedMessages));
+                    Assert.IsFalse(string.IsNullOrEmpty(downloadCompleteddMessages));
+                    Assert.IsTrue(File.Exists(destination));
+                }
+            }
         }
     }
 }

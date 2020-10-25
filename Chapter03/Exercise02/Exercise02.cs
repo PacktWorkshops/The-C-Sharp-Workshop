@@ -6,7 +6,7 @@ namespace Chapter03.Exercise02
     public class Car
     {
         public double Distance { get; set; }
-        public double FuelUsed { get; set; }
+        public double JourneyTime { get; set; }
     }
 
     public class Comparison
@@ -24,10 +24,10 @@ namespace Chapter03.Exercise02
 
         public double Difference { get; private set; }
 
-        public void Compare(Car yesterday, Car today)
+        public void Compare(Car yesterdayCar, Car todayCar)
         {
-            Yesterday = _valueSelector(yesterday);
-            Today = _valueSelector(today);
+            Yesterday = _valueSelector(yesterdayCar);
+            Today = _valueSelector(todayCar);
             Difference = Yesterday - Today;
         }
     }
@@ -37,34 +37,35 @@ namespace Chapter03.Exercise02
         public JourneyComparer()
         {
             Distance = new Comparison(GetCarDistance);
-            FuelUsed = new Comparison(CarCarFuelUsed);
-            FuelEconomy = new Comparison(CarCarFuelEconomy);
+            JourneyTime = new Comparison(GetCarJourneyTime);
+            AverageSpeed = new Comparison(GetCarAverageSpeed);
         }
+
+        public Comparison Distance { get; }
+        public Comparison JourneyTime { get; }
+        public Comparison AverageSpeed { get; }
 
         private static double GetCarDistance(Car car)
         {
             return car.Distance;
         }
 
-        private static double CarCarFuelUsed(Car car)
+        private static double GetCarJourneyTime(Car car)
         {
-            return car.FuelUsed;
+            return car.JourneyTime;
         }
 
-        private static double CarCarFuelEconomy(Car car)
+        private static double GetCarAverageSpeed(Car car)
         {
-            return car.Distance / car.FuelUsed;
+            return car.Distance / car.JourneyTime;
         }
 
-        public Comparison Distance { get; }
-        public Comparison FuelUsed { get; }
-        public Comparison FuelEconomy { get; }
-
+        
         public void Compare(Car yesterday, Car today)
         {
             Distance.Compare(yesterday, today);
-            FuelUsed.Compare(yesterday, today);
-            FuelEconomy.Compare(yesterday, today);
+            JourneyTime.Compare(yesterday, today);
+            AverageSpeed.Compare(yesterday, today);
         }
     }
 
@@ -76,35 +77,43 @@ namespace Chapter03.Exercise02
             string input;
             do
             {
-                Console.Write("Yesterday's distance");
+                Console.Write("Yesterday's distance: ");
                 input = Console.ReadLine();
                 double.TryParse(input, NumberStyles.Any, CultureInfo.CurrentCulture, out var distanceYesterday);
 
                 var carYesterday = new Car
                 {
                     Distance = distanceYesterday,
-                    FuelUsed = random.NextDouble() * 10D
+                    JourneyTime = random.NextDouble() * 10D
                 };
 
-                Console.Write("Today's distance:");
+                Console.Write("    Today's distance: ");
                 input = Console.ReadLine();
                 double.TryParse(input, NumberStyles.Any, CultureInfo.CurrentCulture, out var distanceToday);
 
                 var carToday = new Car
                 {
                     Distance = distanceToday,
-                    FuelUsed = random.NextDouble() * 10D
+                    JourneyTime = random.NextDouble() * 10D
                 };
 
                 var comparer = new JourneyComparer();
                 comparer.Compare(carYesterday, carToday);
 
-                Console.WriteLine("Journey Details    Distance       Fuel Used");
-                Console.WriteLine($"Yesterday:    {carYesterday.Distance}\t{carYesterday.FuelUsed}");
-                Console.WriteLine($"Today:        {carToday.Distance}    \t{carToday.FuelUsed}");
-                Console.WriteLine("================================================================");
-                Console.WriteLine($"Comparison:   {comparer.Distance}    \t{comparer.FuelUsed}   ");
-                Console.WriteLine($"Fuel Economy={comparer.FuelEconomy}");
+                Console.WriteLine();
+                Console.WriteLine("Journey Details   Distance\tTime\tAvg Speed");
+                Console.WriteLine("-------------------------------------------------");
+
+                Console.Write($"Yesterday         {comparer.Distance.Yesterday:N0}   \t");
+                Console.WriteLine($"{comparer.JourneyTime.Yesterday:N0}\t{comparer.AverageSpeed.Yesterday:N0}");
+
+                Console.Write($"Today             {comparer.Distance.Today:N0}     \t"); 
+                Console.WriteLine($"{comparer.JourneyTime.Today:N0}\t{comparer.AverageSpeed.Today:N0}");
+
+                Console.WriteLine("=================================================");
+                Console.Write($"Difference        {comparer.Distance.Difference:N0}     \t");
+                Console.WriteLine($"{comparer.JourneyTime.Difference:N0}\t{comparer.AverageSpeed.Difference:N0}");
+                Console.WriteLine("=================================================");
             } 
             while (!string.IsNullOrEmpty(input));
 

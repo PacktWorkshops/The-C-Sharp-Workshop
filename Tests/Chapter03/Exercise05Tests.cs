@@ -1,24 +1,45 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Chapter3;
+﻿using System;
+using System.Diagnostics;
+using System.Threading;
+using Chapter03.Exercise05;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Chapter3UnitTest
+namespace Tests.Chapter03
 {
 
     [TestClass]
     public class Exercise05Tests
     {
+        private readonly ManualResetEventSlim _waiter = new ManualResetEventSlim();
+        
         [TestMethod]
-        public void ElevatorEventArgs_ConstructorSetsProperties()
+        public void AlarmClock_WakeTimeSet_FiresWakeTime()
         {
-            const int RequestedFloor = 10;
-            const int CurrentFloor = 2;
+            var hasSignalled = false;
+            var clock = new AlarmClock();
 
-            // ARRANGE & ACT
-            var args = new ElevatorRequestArgs(RequestedFloor, CurrentFloor);
-            
-            // ASSERT
-            Assert.AreEqual(RequestedFloor, args.RequestedFloor);
-            Assert.AreEqual(CurrentFloor, args.CurrentFloor);
+            clock.Ticked += ClockTicked;
+            clock.WakeUp += ClockOnWakeUp;
+
+            clock.ClockTime = DateTime.Now;
+            clock.AlarmTime = DateTime.Now.AddMinutes(2);
+            Debug.WriteLine($"AlarmTime set to {clock.AlarmTime}");
+            clock.Start();
+
+            hasSignalled = _waiter.Wait(TimeSpan.FromMinutes(5));
+
+            Assert.IsTrue(hasSignalled);
+        }
+
+        private void ClockOnWakeUp(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Time to wake up");
+            _waiter.Set();
+        }
+
+        private static void ClockTicked(object sender, DateTime e)
+        {
+            Debug.WriteLine($"ClockTicked : sender={sender} e={e}");
         }
     }
 }

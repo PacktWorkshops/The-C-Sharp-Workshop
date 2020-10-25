@@ -12,13 +12,13 @@ namespace Tests.Chapter03
             var carYesterday = new Car
             {
                 Distance = 120,
-                FuelUsed = 10
+                JourneyTime = 10
             };
 
             var carToday = new Car
             {
                 Distance = 50,
-                FuelUsed = 6
+                JourneyTime = 6
             };
 
             var comparer = new JourneyComparer();
@@ -27,17 +27,17 @@ namespace Tests.Chapter03
             Assert.AreEqual(carYesterday.Distance - carToday.Distance,
                 comparer.Distance.Difference);
 
-            Assert.AreEqual(carYesterday.FuelUsed - carToday.FuelUsed,
-                comparer.FuelUsed.Difference);
+            Assert.AreEqual(carYesterday.JourneyTime - carToday.JourneyTime,
+                comparer.JourneyTime.Difference);
 
-            Assert.AreEqual(carYesterday.FuelUsed - carToday.FuelUsed,
-                comparer.FuelUsed.Difference);
+            Assert.AreEqual(carYesterday.JourneyTime - carToday.JourneyTime,
+                comparer.JourneyTime.Difference);
 
-            var expectedEconomyDiff =
-                (carYesterday.Distance / carYesterday.FuelUsed) -
-                (carToday.Distance / carToday.FuelUsed);
+            var expectedAvgSpeedDiff =
+                (carYesterday.Distance / carYesterday.JourneyTime) -
+                (carToday.Distance / carToday.JourneyTime);
 
-            Assert.AreEqual(expectedEconomyDiff, comparer.FuelEconomy.Difference);
+            Assert.AreEqual(expectedAvgSpeedDiff, comparer.AverageSpeed.Difference);
 
         }
     }

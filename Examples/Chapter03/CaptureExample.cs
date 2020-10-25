@@ -8,19 +8,25 @@ namespace Chapter03Examples
     {
         public static void Main()
         {
-            var word = "hello";
-            Func<int, string> joiner = reps => string.Join(",", Enumerable.Repeat(word, reps));
+            var word = "hello"; 
+
+            Func<int, string> joiner = 
+                input =>
+                {
+                    return string.Join(",", Enumerable.Repeat(word, input));
+                };
             Console.WriteLine($"Outer Variables: {joiner(2)}");
 
             word = "goodbye";
-            Console.WriteLine($"Outer Variables Part2: {joiner(2)}");
+            Console.WriteLine($"Outer Variables Part2: {joiner(3)}");
 
 
-            Func<int, string> joinerLocal = reps =>
-            {
-                var word = "local";
-                return string.Join(",", Enumerable.Repeat(word, reps));
-            };
+            Func<int, string> joinerLocal =
+                input =>
+                {
+                    var word = "local";
+                    return string.Join(",", Enumerable.Repeat(word, input));
+                };
             Console.WriteLine($"JoinerLocal: {joinerLocal(2)}");
             Console.WriteLine($"JoinerLocal: word={word}");
 
