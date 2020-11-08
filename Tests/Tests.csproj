@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Chapter02\Chapter02.csproj" />
     <ProjectReference Include="..\Chapter03\Chapter03.csproj" />
     <ProjectReference Include="..\Chapter04\Chapter04.csproj" />
     <ProjectReference Include="..\Chapter05\Chapter05.csproj" />
@@ -24,6 +25,7 @@
 
   <ItemGroup>
     <Folder Include="Chapter04\" />
+    <Folder Include="Chapter02\" />
   </ItemGroup>
 
 </Project>
