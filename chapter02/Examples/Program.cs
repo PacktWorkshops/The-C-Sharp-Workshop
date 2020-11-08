@@ -6,7 +6,7 @@ namespace Chapter02.Examples
     {
         public static void Main()
         {
-            Console.WriteLine("Hello world");
+            Demo.Run();
         }
     }
 }

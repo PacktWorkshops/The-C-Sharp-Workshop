@@ -11,6 +11,8 @@ namespace Chapter02.Examples
         {
             var sparky = new Dog("Sparky");
             var ricky = new Dog("Ricky");
+            sparky.Bark();
+            ricky.Sit();
         }
     }
 }
