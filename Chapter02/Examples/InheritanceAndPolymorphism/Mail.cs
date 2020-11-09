@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Chapter02.Examples.Professions
+﻿namespace Chapter02.Examples.InheritanceAndPolymorphism
 {
     public class Mail
     {

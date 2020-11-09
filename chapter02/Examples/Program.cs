@@ -1,5 +1,3 @@
-using System;
-
 namespace Chapter02.Examples
 {
     public class Program

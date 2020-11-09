@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chapter02.Examples.Professions
+namespace Chapter02.Examples.Abstraction.Workers
 {
     public class Teacher : Human
     {
@@ -11,11 +11,6 @@ namespace Chapter02.Examples.Professions
         public override void Work()
         {
             Console.WriteLine("Teaching");
-        }
-
-        public override string ToString()
-        {
-            return base.ToString();
         }
     }
 }

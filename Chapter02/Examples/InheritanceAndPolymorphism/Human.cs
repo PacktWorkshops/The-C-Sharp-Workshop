@@ -1,4 +1,4 @@
-﻿namespace Chapter02.Examples.Professions
+﻿namespace Chapter02.Examples.InheritanceAndPolymorphism
 {
     public abstract class Human
     {

@@ -1,6 +1,4 @@
-using System;
-
-namespace Chapter02.Examples
+namespace Chapter02.Examples.Encapsulation
 {
     public class Dog
     {
