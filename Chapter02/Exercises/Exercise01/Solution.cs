@@ -10,14 +10,11 @@ namespace Chapter02.Exercises.Exercise01
 
         public static void Main()
         {
-            var rectangle = new Rectangle(1, 5);
-            var circle = new Circle(1);
-
-            // =
+            // equal
             string compare1 = Solve(new Rectangle[0], new Circle[0]);
 
             // rectangular
-            string compare2 = Solve(new[] { rectangle }, new Circle[0]);
+            string compare2 = Solve(new[] { new Rectangle(1, 5) }, new Circle[0]);
 
             // circular
             string compare3 = Solve(new Rectangle[0], new[] { new Circle(1) });

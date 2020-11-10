@@ -4,6 +4,19 @@ namespace Chapter02.Examples.Encapsulation
     {
         public string Name {get;}
 
+        private string _owner;
+        public string Owner
+        {
+            get
+            {
+                return _owner;
+            }
+            set
+            {
+                _owner = value;
+            }
+        }
+
         public Dog(string name)
         {
             Name = name;

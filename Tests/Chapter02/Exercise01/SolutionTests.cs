@@ -11,7 +11,8 @@ namespace Tests.Chapter02.Exercise01
     {
         [DataTestMethod]
         [DynamicData(nameof(ExpectedBiggerSections), DynamicDataSourceType.Property)]
-        public void Solve_Returns_NameOfBiggerSection(Rectangle[] rectangularSection, Circle[] circularSection, string expectedBigger)
+        public void Solve_Returns_NameOfBiggerSection(Rectangle[] rectangularSection, Circle[] circularSection,
+            string expectedBigger)
         {
             string bigger = Solution.Solve(rectangularSection, circularSection);
 
@@ -20,9 +21,8 @@ namespace Tests.Chapter02.Exercise01
 
         public static IEnumerable<object[]> ExpectedBiggerSections
         {
-            get 
+            get
             {
-                // Both empty
                 yield return new object[]
                 {
                     new Rectangle[] { },
@@ -30,58 +30,52 @@ namespace Tests.Chapter02.Exercise01
                     Solution.Equal
                 };
 
-                // 1 rectangle, no circles
                 yield return new object[]
                 {
-                    new[] { new Rectangle(1,1) },
-                    new Circle[] { }, 
+                    new[] {new Rectangle(1, 1)},
+                    new Circle[] { },
                     Solution.Rectangular
                 };
 
-                // no rectangles, 1 circle
                 yield return new object[]
                 {
                     new Rectangle[] { },
-                    new[] { new Circle(1), },
+                    new[] {new Circle(1),},
                     Solution.Circular
                 };
 
-                // 1 of each, rectangle bigger
                 yield return new object[]
                 {
-                    new [] { new Rectangle(5, 10) }, 
-                    new[] { new Circle(1) },
+                    new[] {new Rectangle(5, 10)},
+                    new[] {new Circle(1)},
                     Solution.Rectangular
                 };
 
-                // 1 of each, circle bigger
                 yield return new object[]
                 {
-                    new [] { new Rectangle(1, 1), }, 
-                    new[] { new Circle(5) }, 
+                    new[] {new Rectangle(1, 1),},
+                    new[] {new Circle(5)},
                     Solution.Circular
                 };
 
-                // 3 small rectangles, circle bigger
                 yield return new object[]
                 {
-                    new []
+                    new[]
                     {
                         new Rectangle(1, 1),
                         new Rectangle(1, 1),
                         new Rectangle(1, 2)
-                    }, 
+                    },
                     new[]
                     {
                         new Circle(10),
-                    }, 
+                    },
                     Solution.Circular
                 };
 
-                // 2 small rectangles, even smaller circle
                 yield return new object[]
                 {
-                    new []
+                    new[]
                     {
                         new Rectangle(1, 1),
                         new Rectangle(1, 1)
@@ -93,10 +87,9 @@ namespace Tests.Chapter02.Exercise01
                     Solution.Rectangular
                 };
 
-                // 2 rectangles, 3 circles slightly bigger
                 yield return new object[]
                 {
-                    new []
+                    new[]
                     {
                         new Rectangle(1, 1),
                         new Rectangle(1, 1)
@@ -110,10 +103,9 @@ namespace Tests.Chapter02.Exercise01
                     Solution.Circular
                 };
 
-                // 1 rectangle, 1 circle equal
                 yield return new object[]
                 {
-                    new []
+                    new[]
                     {
                         new Rectangle(1, Math.PI),
                     },
@@ -124,10 +116,9 @@ namespace Tests.Chapter02.Exercise01
                     Solution.Equal
                 };
 
-                // 2 rectangles, 1 circle equal
                 yield return new object[]
                 {
-                    new []
+                    new[]
                     {
                         new Rectangle(0.25, Math.PI),
                         new Rectangle(0.75, Math.PI),
@@ -139,6 +130,8 @@ namespace Tests.Chapter02.Exercise01
                     Solution.Equal
                 };
             }
+
+
         }
     }
 }

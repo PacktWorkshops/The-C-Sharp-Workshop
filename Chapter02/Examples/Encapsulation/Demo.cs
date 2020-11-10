@@ -6,6 +6,7 @@
         {
             var sparky = new Dog("Sparky");
             var ricky = new Dog("Ricky");
+            ricky.Owner = "Tom";
             sparky.Bark();
             ricky.Sit();
         }
