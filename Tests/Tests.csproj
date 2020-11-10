@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Chapter04\" />
-    <Folder Include="Chapter02\" />
   </ItemGroup>
 
 </Project>
