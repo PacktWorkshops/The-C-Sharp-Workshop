@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chapter02.Examples.CsharpKeywords
+namespace Chapter02.Examples.CsharpKeywords.DefaultInterface
 {
     interface ITile
     {
