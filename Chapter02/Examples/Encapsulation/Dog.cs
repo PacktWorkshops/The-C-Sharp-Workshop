@@ -17,6 +17,13 @@ namespace Chapter02.Examples.Encapsulation
             }
         }
 
+        // Under the hood:
+        //private readonly string _name;
+        //public string get_Name()
+        //{
+        //    return _owner;
+        //}
+
         public Dog(string name)
         {
             Name = name;
@@ -26,7 +33,6 @@ namespace Chapter02.Examples.Encapsulation
         {
             System.Console.WriteLine(Name + " is sitting");
         }
-
         public void Bark()
         {
             System.Console.WriteLine("Woof woof");

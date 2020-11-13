@@ -1,4 +1,4 @@
-﻿namespace Chapter02.Examples.Encapsulation
+﻿namespace Chapter02.Examples.InheritanceAndPolymorphism
 {
     public class Foo
     {

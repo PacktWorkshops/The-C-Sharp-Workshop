@@ -10,13 +10,13 @@ namespace Tests.Chapter02.Exercise01
     public class SolutionTests
     {
         [DataTestMethod]
-        [DynamicData(nameof(ExpectedBiggerSections), DynamicDataSourceType.Property)]
+        [DynamicData(nameof(ExpectedBiggerSections))]
         public void Solve_Returns_NameOfBiggerSection(Rectangle[] rectangularSection, Circle[] circularSection,
             string expectedBigger)
         {
             string bigger = Solution.Solve(rectangularSection, circularSection);
 
-            Assert.AreEqual(bigger, expectedBigger);
+            Assert.AreEqual(expectedBigger, bigger);
         }
 
         public static IEnumerable<object[]> ExpectedBiggerSections
