@@ -3,7 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <StartupObject>Chapter02.Exercises.Exercise01.Solution</StartupObject>
+    <StartupObject>Chapter02.Exercises.Exercise02.Solution</StartupObject>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
 </Project>
