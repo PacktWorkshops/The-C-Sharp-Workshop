@@ -10,6 +10,7 @@ namespace Chapter02.Examples.CsharpKeywords
         {
             Console.WriteLine(PI);
             OperatorsDemo.Run();
+            Generics.Demo.Run();
         } 
     }
 }
