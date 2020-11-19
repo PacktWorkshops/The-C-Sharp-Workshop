@@ -9,8 +9,12 @@ namespace Chapter02.Examples.CsharpKeywords
         public static void Run()
         {
             Console.WriteLine(PI);
-            OperatorsDemo.Run();
+            Operators.Demo.Run();
             Generics.Demo.Run();
+            ExtensionMethods.Demo.Run();
+            Struct.Demo.Run();
+            Record.Demo.Run();
+            Other.Demo.Run();
         } 
     }
 }

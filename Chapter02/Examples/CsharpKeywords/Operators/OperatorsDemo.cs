@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chapter02.Examples.CsharpKeywords.Operators
 {
-    public class OperatorsDemo
+    public class Demo
     {
         public static void Run()
         {

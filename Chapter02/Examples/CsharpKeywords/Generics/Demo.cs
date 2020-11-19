@@ -23,6 +23,10 @@ namespace Chapter02.Examples.CsharpKeywords.Generics
             Console.WriteLine($"max1 = {max1} " +
                               $"max2 = {max2} ");
 
+            var list = new CustomList<int>();
+            list.Add(1);
+            list.Add(2);
+            CollectionsPrinterv1.Print(list.Items);
         }
     }
 }
