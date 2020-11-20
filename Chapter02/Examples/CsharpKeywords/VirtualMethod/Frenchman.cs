@@ -8,5 +8,9 @@ namespace Chapter02.Examples.CsharpKeywords.VirtualMethod
         {
             Console.WriteLine("Bonjour!");
         }
+
+        public Frenchman(string name) : base(name)
+        {
+        }
     }
 }

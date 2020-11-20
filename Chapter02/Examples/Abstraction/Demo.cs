@@ -4,7 +4,7 @@
     {
         public static void Run()
         {
-            Players.Demo.Run();
+            Progress.Demo.Run();
             Workers.Demo.Run();
         }
     }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Chapter02.Examples.CsharpKeywords.StructRecordAndClass;
+using Chapter02.Examples.CsharpKeywords.Struct;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Chapter02.Examples.Struct

@@ -24,6 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Chapter02\Activity01\" />
+    <Folder Include="Chapter02\Exercise04\" />
     <Folder Include="Chapter04\" />
   </ItemGroup>
 
