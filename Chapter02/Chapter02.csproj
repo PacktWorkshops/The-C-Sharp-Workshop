@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <StartupObject>Chapter02.Examples.Program</StartupObject>
+    <StartupObject>Chapter02.Exercises.Exercise03.Solution</StartupObject>
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 

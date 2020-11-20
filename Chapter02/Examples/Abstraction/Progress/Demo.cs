@@ -7,6 +7,7 @@ namespace Chapter02.Examples.Abstraction.Progress
         public static void Run()
         {
             Bad();
+            Good();
         }
 
         private static void Bad()

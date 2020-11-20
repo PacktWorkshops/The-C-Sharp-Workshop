@@ -30,7 +30,7 @@ namespace Tests.Chapter02.Exercise03
         {
             var newCircle = circle1 + circle2;
 
-            Assert.AreEqual(expectedNewCircle, newCircle);
+            Assert.AreEqual(expectedNewCircle.Radius, newCircle.Radius, 0.001);
         }
 
         public static IEnumerable<object[]> AddingTwoCirclesExpectations
@@ -38,8 +38,8 @@ namespace Tests.Chapter02.Exercise03
             get
             {
                 yield return new object[]{new Circle(0), new Circle(0), new Circle(0)};
-                yield return new object[]{new Circle(3), new Circle(4), new Circle(5)};
-                yield return new object[]{new Circle(0), new Circle(0), new Circle(0)};
+                yield return new object[]{new Circle(0.5), new Circle(2), new Circle(2.06155)};
+                yield return new object[]{new Circle(3), new Circle(3), new Circle(4.24264) };
             }
         }
     }
