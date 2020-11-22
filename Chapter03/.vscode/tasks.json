@@ -7,21 +7,12 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Chapter03/Exercise02/Exercise02.csproj",
+                "${workspaceFolder}/Exercise04/Exercise04.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
         },
-      
-        {
-            "label": "Chapter10 tests",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "test",
-                "${workspaceFolder}/Chapter10.Tests/Chapter10.Tests.csproj"
-            ]
-        }
+       
     ]
 }

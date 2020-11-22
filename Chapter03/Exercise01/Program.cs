@@ -20,11 +20,10 @@ namespace Chapter03.Exercise01
         public DateTime OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }
 
-        public bool IsValid()
-        {
-            return _orderDateValidator(OrderDate) &&
-                   _deliveryDateValidator(DeliveryDate);
-        }
+        public bool IsValid() => 
+            _orderDateValidator(OrderDate) &&
+            _deliveryDateValidator(DeliveryDate);
+            
     }
 
     public static class Program
@@ -51,7 +50,7 @@ namespace Chapter03.Exercise01
 
             var order = new Order(orderValidator, deliverValidator)
             {
-                OrderDate = DateTime.Today.AddDays(-10), 
+                OrderDate = DateTime.Today.AddDays(-10),
                 DeliveryDate = new DateTime(2020, 12, 31)
             };
 
@@ -62,4 +61,3 @@ namespace Chapter03.Exercise01
         }
     }
 }
-

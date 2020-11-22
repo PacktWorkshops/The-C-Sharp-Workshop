@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading;
@@ -8,14 +7,14 @@ namespace Chapter03.Activity01
 {
     public class DownloadProgressChangedEventArgs  
     {
-        //Yuo could base this on ProgressChangedEventArgs in System.ComponentModel
+        //You could base this on ProgressChangedEventArgs in System.ComponentModel
         public DownloadProgressChangedEventArgs(int progressPercentage, long bytesReceived)
         {
             ProgressPercentage = progressPercentage;
             BytesReceived = bytesReceived;
         }
-        public long BytesReceived { get; }
-        public int ProgressPercentage { get; }
+        public long BytesReceived { get; init; }
+        public int ProgressPercentage { get; init;}
     }
 
     public class WebClientAdapter
@@ -26,8 +25,7 @@ namespace Chapter03.Activity01
 
         public IDisposable DownloadFile(string url, string destination)
         {
-            Uri uri;
-            if (!Uri.TryCreate(url, UriKind.Absolute, out uri))
+            if (!Uri.TryCreate(url, UriKind.Absolute, out var uri))
             {
                 InvalidUrlRequested?.Invoke(this, url);
                 return null;
@@ -53,7 +51,7 @@ namespace Chapter03.Activity01
     {
         public static void Main()
         {
-            var input = string.Empty;
+            string input;
             do
             {
                 Console.WriteLine("Enter a URL:");

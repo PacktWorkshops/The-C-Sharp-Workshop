@@ -24,6 +24,8 @@ namespace Chapter03.Exercise04
 
             InvokeAll(logger, "Second call");
 
+            Console.ReadLine();
+            
             static void LogToConsole(string message)
                 => Console.WriteLine($"LogToConsole: {message}");
 
@@ -32,39 +34,35 @@ namespace Chapter03.Exercise04
 
             static void LogToFile(string message)
                 => File.AppendAllText(OutputFile, message);
-        }
 
-        private static void InvokeAll(Action<string> logger, string arg)
-        {
-            if (logger == null)
-                return;
-
-            // Can do this with linq but that's for next chapter
-            //var actions = logger.GetInvocationList().OfType<Action<string>>();
-            var delegateList = logger.GetInvocationList();
-            Console.WriteLine($"Found {delegateList.Length} items in {logger}");
-            foreach (var del in delegateList)
+            static void InvokeAll(Action<string> logger, string arg)
             {
-                try
+                if (logger == null)
+                    return;
+
+                var delegateList = logger.GetInvocationList();
+                Console.WriteLine($"Found {delegateList.Length} items in {logger}");
+                foreach (var del in delegateList)
                 {
-                    var action = del as Action<string>;
-                    if (action != null)
+                    try
                     {
-                        Console.WriteLine($"Invoking '{action.Method.Name}' with '{arg}'");
-                        action(arg);
+                        if (del is Action<string> action)
+                        {
+                            Console.WriteLine($"Invoking '{action.Method.Name}' with '{arg}'");
+                            action(arg);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Skipped null");
+                        }
                     }
-                    else
+                    catch (Exception e)
                     {
-                        Console.WriteLine("Skipped null");
+                        Console.WriteLine($"Error: {e.Message}");
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"Error: {e.Message}");
                 }
             }
         }
-        
     }
-   
+
 }

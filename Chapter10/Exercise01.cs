@@ -20,7 +20,7 @@ namespace Chapter10.Exercise01
 
     public record Meal
     {
-        public Package(int distance, bool isHot) => (Distance, IsHot) = (distance, isHot);
+        public Meal(int distance, bool isHot) => (Distance, IsHot) = (distance, isHot);
 
         public int Distance { get; }
 
@@ -33,12 +33,12 @@ namespace Chapter10.Exercise01
             => item switch
             {
                 Envelope e => e.Distance * 1,
-                Package p when p.Distance < 1   => p.Distance * 2,
-                Package p when p.Distance >= 1  => p.Distance * 2.5,
+                Package p when p.Distance < 1 => p.Distance * 2,
+                Package p when p.Distance >= 1 => p.Distance * 2.5,
                 Meal m when !m.IsHot => 4,
                 Meal m when m.IsHot => 6,
-    //            { }             => throw new ArgumentException(message: "Not a known vehicle type", paramName: nameof(vehicle)),
-    //          null            => throw new ArgumentNullException(nameof(vehicle))
+                //            { }             => throw new ArgumentException(),
+                //          null            => throw new ArgumentNullException()
             };
     }
 }

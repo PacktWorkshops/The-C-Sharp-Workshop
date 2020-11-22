@@ -12,20 +12,14 @@ namespace Chapter03.Exercise03
             _logger = logger;
         }
 
-        private void Log(string message)
-        {
-            _logger?.Invoke(message);
-        }
+        private void Log(string message) 
+            => _logger?.Invoke(message);
 
-        public void VerifyPin(string pin)
-        {
-            Log($"VerifyPin called: PIN={pin}");
-        }
+        public void VerifyPin(string pin) 
+            => Log($"VerifyPin called: PIN={pin}");
 
-        public void ShowBalance()
-        {
-            Log("ShowBalance called: Balance=999");
-        }
+        public void ShowBalance() 
+            => Log("ShowBalance called: Balance=999");
     }
 
     public static class Program
@@ -54,12 +48,16 @@ namespace Chapter03.Exercise03
             Console.ReadLine();
 
             cashMachine.ShowBalance();
+
+            Console.Write("Press Enter to quit");
+            Console.ReadLine();
+
+            static void LogToConsole(string message)
+                => Console.WriteLine(message);
+
+            static void LogToFile(string message)
+                => File.AppendAllText(OutputFile, message);
         }
-
-        private static void LogToConsole(string message)
-            => Console.WriteLine(message);
-
-        private static void LogToFile(string message)
-            => File.AppendAllText(OutputFile, message);
+        
     }
 }

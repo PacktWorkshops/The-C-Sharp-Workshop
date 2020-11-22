@@ -3,10 +3,10 @@ using System.Globalization;
 
 namespace Chapter03.Exercise02
 {
-    public class Car
+    public record Car
     {
-        public double Distance { get; set; }
-        public double JourneyTime { get; set; }
+        public double Distance { get; init; }
+        public double JourneyTime { get; init; }
     }
 
     public class Comparison
@@ -39,28 +39,16 @@ namespace Chapter03.Exercise02
             Distance = new Comparison(GetCarDistance);
             JourneyTime = new Comparison(GetCarJourneyTime);
             AverageSpeed = new Comparison(GetCarAverageSpeed);
+
+            static double GetCarDistance(Car car) => car.Distance; 
+            static double GetCarJourneyTime(Car car) => car.JourneyTime;
+            static double GetCarAverageSpeed(Car car) => car.Distance / car.JourneyTime;
         }
 
         public Comparison Distance { get; }
         public Comparison JourneyTime { get; }
         public Comparison AverageSpeed { get; }
 
-        private static double GetCarDistance(Car car)
-        {
-            return car.Distance;
-        }
-
-        private static double GetCarJourneyTime(Car car)
-        {
-            return car.JourneyTime;
-        }
-
-        private static double GetCarAverageSpeed(Car car)
-        {
-            return car.Distance / car.JourneyTime;
-        }
-
-        
         public void Compare(Car yesterday, Car today)
         {
             Distance.Compare(yesterday, today);
@@ -107,14 +95,14 @@ namespace Chapter03.Exercise02
                 Console.Write($"Yesterday         {comparer.Distance.Yesterday:N0}   \t");
                 Console.WriteLine($"{comparer.JourneyTime.Yesterday:N0}\t{comparer.AverageSpeed.Yesterday:N0}");
 
-                Console.Write($"Today             {comparer.Distance.Today:N0}     \t"); 
+                Console.Write($"Today             {comparer.Distance.Today:N0}     \t");
                 Console.WriteLine($"{comparer.JourneyTime.Today:N0}\t{comparer.AverageSpeed.Today:N0}");
 
                 Console.WriteLine("=================================================");
                 Console.Write($"Difference        {comparer.Distance.Difference:N0}     \t");
                 Console.WriteLine($"{comparer.JourneyTime.Difference:N0}\t{comparer.AverageSpeed.Difference:N0}");
                 Console.WriteLine("=================================================");
-            } 
+            }
             while (!string.IsNullOrEmpty(input));
 
         }

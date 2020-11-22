@@ -6,11 +6,11 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Chapter03/Exercise02/bin/Debug/net5.0/Exercise02.exe",
+            "program": "${workspaceFolder}/Exercise04/bin/Debug/net5.0/Exercise04.exe",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
-            "console": "internalConsole"
+            "console": "externalTerminal"
         }
        
     ]
