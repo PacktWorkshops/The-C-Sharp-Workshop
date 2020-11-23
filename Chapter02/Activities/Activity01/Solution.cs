@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Chapter02.Exercises.Exercise03
+namespace Chapter02.Activities.Activity01
 {
     public static class Solution
     {

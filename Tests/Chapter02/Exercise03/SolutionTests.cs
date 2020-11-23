@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Chapter02.Exercises.Exercise03;
+using Chapter02.Activities.Activity01;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Chapter02.Exercise03

@@ -1,4 +1,4 @@
-namespace Chapter02.Activities.Activity01
+namespace Chapter02.Activities.Activity02
 {
     public static class Program
     {
