@@ -7,8 +7,4 @@
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Exercises\Exercise03\" />
-  </ItemGroup>
-
 </Project>
