@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chapter02.Activities.Activity02
+namespace Chapter02.Exercises.Exercise03
 {
     public class InvalidTemperatureConversionException : Exception
     {

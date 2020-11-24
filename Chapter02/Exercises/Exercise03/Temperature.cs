@@ -1,4 +1,4 @@
-﻿namespace Chapter02.Activities.Activity02
+﻿namespace Chapter02.Exercises.Exercise03
 {
-    public record Temperature(double degrees, TemperatureUnit unit);
+    public record Temperature(double Degrees, TemperatureUnit Unit);
 }
