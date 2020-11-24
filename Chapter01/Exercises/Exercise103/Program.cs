@@ -2,6 +2,7 @@
 
 Console.WriteLine("Type a value for a: ");
 var a = int.Parse(Console.ReadLine());
+
 Console.WriteLine("Now type a value for b: ");
 var b = int.Parse(Console.ReadLine());
 
