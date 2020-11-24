@@ -1,5 +1,4 @@
 ﻿using System;
-using Chapter02.Examples.CsharpKeywords.Operators;
 
 namespace Chapter02.Examples.CsharpKeywords
 {

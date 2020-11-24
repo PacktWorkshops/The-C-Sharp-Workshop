@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Chapter02.Examples.Encapsulation;
+﻿using Chapter02.Examples.Encapsulation;
 
 namespace Chapter02.Examples.CsharpKeywords.NullOperators
 {

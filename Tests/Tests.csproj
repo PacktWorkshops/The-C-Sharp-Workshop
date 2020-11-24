@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-
+    <LangVersion>9.0</LangVersion>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -24,8 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Chapter02\Activity01\" />
-    <Folder Include="Chapter02\Exercise04\" />
     <Folder Include="Chapter04\" />
   </ItemGroup>
 

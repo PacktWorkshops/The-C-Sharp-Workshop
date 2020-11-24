@@ -1,6 +1,6 @@
 namespace Chapter02.Activities.Activity02
 {
-    public static class Program
+    public static class Solution
     {
         public static void Main()
         {
