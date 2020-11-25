@@ -1,48 +1,20 @@
 ﻿using System;
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        var aGolden = new GoldenRetriever() { Name = "Aspen", Fam = "Ok" };
-        var anotherGolden = new GoldenRetriever() { Name = "Aspen", Fam="Ok" };
+Console.WriteLine("Are the local and utc dates equal? {0}", DateTime.Now.Date == DateTime.UtcNow.Date);
 
-        Console.WriteLine(aGolden.Equals(anotherGolden) ? "Goldens are all equal anyway, even more with the same name!" : "Well, looks like they're not the same");
+Console.WriteLine("\nIf the dates are equal, does it mean that there's no TimeSpan interval between them? {0}",
+(DateTime.Now.Date - DateTime.UtcNow.Date) == TimeSpan.Zero);
 
-        var aBorder = new BorderCollie() { Name = "Aspen" };
-        var anotherBorder = new BorderCollie() { Name = "Aspen" };
+DateTime localTime = DateTime.Now;
+DateTime utcTime = DateTime.UtcNow;
+TimeSpan interval = (localTime - utcTime);
 
-        Console.WriteLine(aBorder.Equals(anotherBorder) ? "Borders are all equal anyway, even more with the same name!" : "Well, looks like these borders not the same");
+Console.WriteLine("\nDifference between the {0} Time and {1} Time: {2}:{3} hours",
+    localTime.Kind.ToString(),
+    utcTime.Kind.ToString(),
+    interval.Hours,
+    interval.Minutes);
 
-        var aBernaise = new Bearnaise() { Name = "Aspen" };
-        var anotherBernaise = new Bearnaise() { Name = "Aspen" };
-
-        Console.WriteLine(aBernaise.Equals(anotherBernaise) ? "Bearnaises are all equal anyway, even more with the same name!" : "Well, looks like they're not the same");
-    }
-}
-
-struct GoldenRetriever
-{
-    public string Name { get; set; }
-    public string Fam { get; set; }
-}
-
-class BorderCollie
-{
-    public string Name { get; set; }
-}
-
-class Bearnaise
-{
-    public string Name { get; set; }
-
-    public override bool Equals(object? obj)
-    {
-        if (obj is Bearnaise borderCollie && obj != null)
-        {
-            return this.Name == borderCollie.Name;
-        }
-
-        return false;
-    }
-}
+Console.Write("\nIf we jump two days to the future on {0} we'll be on {1} ",
+    new DateTime(2020, 12, 31).ToShortDateString(),
+    new DateTime(2020, 12, 31).AddDays(2).ToShortDateString());

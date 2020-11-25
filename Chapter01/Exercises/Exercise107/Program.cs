@@ -1,37 +1,53 @@
 ﻿using System;
 using System.Linq;
 
-public class Program
+var aGolden = new GoldenRetriever() { Name = "Aspen" };
+var anotherGolden = new GoldenRetriever() { Name = "Aspen" };
+
+var aBorder = new BorderCollie() { Name = "Aspen" };
+var anotherBorder = new BorderCollie() { Name = "Aspen" };
+
+var aBernaise = new Bearnaise() { Name = "Aspen" };
+var anotherBernaise = new Bearnaise() { Name = "Aspen" };
+
+var goldenComparison = aGolden.Equals(anotherGolden) ? "Goldens are all equal anyway, even more with the same name!" : "Well, looks like they're not the same";
+
+var borderComparison = aBorder.Equals(anotherBorder) ? "Borders are all equal anyway, even more with the same name!" : "Well, looks like they're not the same";
+
+var bernaiseComparison = aBernaise.Equals(anotherBernaise) ? "Bernaises are all equal anyway, even more with the same name!" : "Well, looks like they're not the same";
+
+Console.WriteLine(goldenComparison);
+
+Console.WriteLine(borderComparison);
+
+Console.WriteLine(bernaiseComparison);
+
+struct GoldenRetriever
 {
-    public static void Main()
+    public string Name { get; set; }
+}
+
+class BorderCollie
+{
+    public string Name { get; set; }
+}
+
+class Bearnaise
+{
+    public string Name { get; set; }
+
+    public override bool Equals(object obj)
     {
-        Console.WriteLine("Please type a username. It must have at least 6 digits: ");
-
-        var username = Console.ReadLine();
-
-        if (username.Length < 6)
+        if (obj is Bearnaise borderCollie && obj != null)
         {
-            Console.WriteLine($"The username {username} is not valid.");
-        }
-        else
-        {
-            Console.WriteLine("Now type a password. It must have a least 6 digits and a number");
-
-            var password = Console.ReadLine();
-
-            if (password.Length < 6)
-            {
-                Console.WriteLine("The password must have at least 6 digits.");
-            }
-            else if (!password.Any(c => char.IsDigit(c)))
-            {
-                Console.WriteLine("The password must contain a least one number.");
-            }
-            else
-            {
-                Console.WriteLine("User successfully registered.");
-            }
+            return this.Name == borderCollie.Name;
         }
 
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
     }
 }
