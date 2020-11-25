@@ -1,26 +1,30 @@
 ﻿using System;
+using System.Linq;
 
-class Program
+Console.WriteLine("Please type a username. It must have at least 6 digits: ");
+
+var username = Console.ReadLine();
+
+if (username.Length < 6)
 {
-    static void Main()
+    Console.WriteLine($"The username {username} is not valid.");
+}
+else
+{
+    Console.WriteLine("Now type a password. It must have a least 6 digits and a number");
+
+    var password = Console.ReadLine();
+
+    if (password.Length < 6)
     {
-        Console.WriteLine("Are the local and utc dates equal? {0}", DateTime.Now.Date == DateTime.UtcNow.Date);
-
-        Console.WriteLine("\nIf the dates are equal, does it mean that there's no TimeSpan interval between them? {0}",
-        (DateTime.Now.Date - DateTime.UtcNow.Date) == TimeSpan.Zero);
-
-        DateTime localTime = DateTime.Now;
-        DateTime utcTime = DateTime.UtcNow;
-        TimeSpan interval = (localTime - utcTime);
-
-        Console.WriteLine("\nDifference between the {0} Time and {1} Time: {2}:{3} hours",
-            localTime.Kind.ToString(),
-            utcTime.Kind.ToString(),
-            interval.Hours,
-            interval.Minutes);
-
-        Console.Write("\nIf we jump two days to the future on {0} we'll be on {1}",
-            new DateTime(2020, 12, 31).ToShortDateString(),
-            new DateTime(2020, 12, 31).AddDays(2).ToShortDateString());
+        Console.WriteLine("The password must have at least 6 digits.");
+    }
+    else if (!password.Any(c => char.IsDigit(c)))
+    {
+        Console.WriteLine("The password must contain a least one number.");
+    }
+    else
+    {
+        Console.WriteLine("User successfully registered.");
     }
 }
