@@ -1,13 +1,22 @@
 ﻿using System;
 
-Console.WriteLine("Type a value for a: ");
-var a = int.Parse(Console.ReadLine());
+static void FormatString(string stringToFormat)
+{
+    stringToFormat.Replace("World", "Mars");
+}
 
-Console.WriteLine("Now type a value for b: ");
-var b = int.Parse(Console.ReadLine());
+static string FormatReturningString(string stringToFormat)
+{
+    return stringToFormat.Replace("Earth", "Mars");
+}
 
-Console.WriteLine($"The value for a is { a } and for b is { b }");
-Console.WriteLine($"Sum: { a + b}");
-Console.WriteLine($"Multiplication: { a * b}");
-Console.WriteLine($"Subtraction: { a - b}");
-Console.WriteLine($"Division: { a / b}");
+var greetings = "Hello World!";
+
+FormatString(greetings);
+Console.WriteLine(greetings);
+
+var anotherGreetings = "Good morning Earth!";
+Console.WriteLine(FormatReturningString(anotherGreetings));
+
+
+

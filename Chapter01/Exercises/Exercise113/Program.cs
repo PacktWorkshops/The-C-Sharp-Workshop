@@ -1,41 +1,38 @@
 ﻿using System;
 
-class Program
+bool divisionExecuted = false;
+
+while (!divisionExecuted)
 {
-    static double Divide(int a, int b) => a / b;
-    
-    static void Main()
+    try
     {
-        bool divisionExecuted = false;
+        Console.WriteLine("Please input a number");
 
-        while (!divisionExecuted)
-        {
-            try
-            {
-                Console.WriteLine("Please input a number");
+        var a = int.Parse(Console.ReadLine());
 
-                var a = int.Parse(Console.ReadLine());
+        Console.WriteLine("Please input another number");
 
-                Console.WriteLine("Please input another number");
+        var b = int.Parse(Console.ReadLine());
 
-                var b = int.Parse(Console.ReadLine());
+        var result = Divide(a, b);
 
-                var result = Divide(a, b);
+        Console.WriteLine($"Result: {result}");
 
-                Console.WriteLine($"Result: {result}");
-
-                divisionExecuted = true;
-            }
-            catch (System.FormatException)
-            {
-                Console.WriteLine("You did not input a number. Let's start again ... \n");
-                continue;
-            }
-            catch (System.DivideByZeroException)
-            {
-                Console.WriteLine("Tried to divide by zero. Let's start again ... \n");
-                continue;
-            }
-        }
+        divisionExecuted = true;
     }
+    catch (System.FormatException)
+    {
+        Console.WriteLine("You did not input a number. Let's start again ... \n");
+        continue;
+    }
+    catch (System.DivideByZeroException)
+    {
+        Console.WriteLine("Tried to divide by zero. Let's start again ... \n");
+        continue;
+    }
+}
+
+static double Divide(int a, int b)
+{
+    return a / b;
 }

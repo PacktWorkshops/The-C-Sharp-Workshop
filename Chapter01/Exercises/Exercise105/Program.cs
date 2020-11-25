@@ -5,19 +5,25 @@ class Program
     static void Main(string[] args)
     {
         var aGolden = new GoldenRetriever() { Name = "Aspen", Fam = "Ok" };
-        var anotherGolden = new GoldenRetriever() { Name = "Aspen", Fam="Ok" };
-
-        Console.WriteLine(aGolden.Equals(anotherGolden) ? "Goldens are all equal anyway, even more with the same name!" : "Well, looks like they're not the same");
+        var anotherGolden = new GoldenRetriever() { Name = "Aspen", Fam = "Ok" };
 
         var aBorder = new BorderCollie() { Name = "Aspen" };
-        var anotherBorder = new BorderCollie() { Name = "Aspen" };
-
-        Console.WriteLine(aBorder.Equals(anotherBorder) ? "Borders are all equal anyway, even more with the same name!" : "Well, looks like these borders not the same");
+        var anotherBorder = new BorderCollie() { Name = "Aspen" };        
 
         var aBernaise = new Bearnaise() { Name = "Aspen" };
         var anotherBernaise = new Bearnaise() { Name = "Aspen" };
 
-        Console.WriteLine(aBernaise.Equals(anotherBernaise) ? "Bearnaises are all equal anyway, even more with the same name!" : "Well, looks like they're not the same");
+        var goldenComparison = aGolden.Equals(anotherGolden) ? "Goldens are all equal anyway, even more with the same name!" : "Well, looks like they're not the same";
+
+        var borderComparison = aBorder.Equals(anotherBorder) ? "Borders are all equal anyway, even more with the same name!" : "Well, looks like they're not the same";
+
+        var bernaiseComparison = aBernaise.Equals(anotherBernaise) ? "Bernaises are all equal anyway, even more with the same name!" : "Well, looks like they're not the same";
+
+        Console.WriteLine(goldenComparison);
+
+        Console.WriteLine(borderComparison);
+
+        Console.WriteLine(bernaiseComparison);
     }
 }
 
