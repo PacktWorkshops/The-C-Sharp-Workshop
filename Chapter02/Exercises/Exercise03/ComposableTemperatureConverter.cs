@@ -9,60 +9,27 @@ namespace Chapter02.Exercises.Exercise03
 
         public ComposableTemperatureConverter(ITemperatureConverter[] converters)
         {
+            RequireNotEmpty(converters);
             RequireNoDuplicate(converters);
             _converters = converters;
         }
 
         public Temperature Convert(Temperature temperatureFrom, TemperatureUnit unitTo)
         {
-            if (temperatureFrom.Unit == unitTo)
-            {
-                return temperatureFrom;
-            }
-
-            if (temperatureFrom.Unit == TemperatureUnit.C)
-            {
-                return CelsiusToOther(temperatureFrom, unitTo);
-            }
-
             var celsius = ToCelsius(temperatureFrom);
-            if (unitTo == TemperatureUnit.C)
-            {
-                return celsius;
-            }
-
-            // In case temperature is not standard
-            // We need to first make it standard
-            // And only then convert to other.
             return CelsiusToOther(celsius, unitTo);
         }
 
         private Temperature ToCelsius(Temperature temperatureFrom)
         {
             var converterFrom = FindConverter(temperatureFrom.Unit);
-            return converterFrom.ToC(temperatureFrom.Degrees);
+            return converterFrom.ToC(temperatureFrom);
         }
 
         private Temperature CelsiusToOther(Temperature celsius, TemperatureUnit unitTo)
         {
             var converterTo = FindConverter(unitTo);
-            return converterTo.FromC(celsius.Degrees);
-        }
-
-        private static void RequireNoDuplicate(ITemperatureConverter[] converters)
-        {
-            for (var index1 = 0; index1 < converters.Length - 1; index1++)
-            {
-                var first = converters[index1];
-                for (int index2 = index1 + 1; index2 < converters.Length; index2++)
-                {
-                    var second = converters[index2];
-                    if (first.Unit == second.Unit)
-                    {
-                        throw new DuplicateTemperatureConverterException(first.Unit);
-                    }
-                }
-            }
+            return converterTo.FromC(celsius);
         }
 
         private ITemperatureConverter FindConverter(TemperatureUnit unit)
@@ -76,6 +43,30 @@ namespace Chapter02.Exercises.Exercise03
             }
 
             throw new InvalidTemperatureConversionException(unit);
+        }
+
+        private static void RequireNotEmpty(ITemperatureConverter[] converters)
+        {
+            if (converters?.Length > 0 == false)
+            {
+                throw new InvalidTemperatureConverterException("At least one temperature conversion must be supported");
+            }
+        }
+
+        private static void RequireNoDuplicate(ITemperatureConverter[] converters)
+        {
+            for (var index1 = 0; index1 < converters.Length - 1; index1++)
+            {
+                var first = converters[index1];
+                for (int index2 = index1 + 1; index2 < converters.Length; index2++)
+                {
+                    var second = converters[index2];
+                    if (first.Unit == second.Unit)
+                    {
+                        throw new InvalidTemperatureConverterException(first.Unit);
+                    }
+                }
+            }
         }
     }
 }

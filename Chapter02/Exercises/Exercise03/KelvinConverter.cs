@@ -8,14 +8,14 @@ namespace Chapter02.Exercises.Exercise03
 
         public TemperatureUnit Unit => TemperatureUnit.K;
 
-        public Temperature ToC(double kelvin)
+        public Temperature ToC(Temperature temperature)
         {
-            return new Temperature(kelvin - AbsoluteZero, TemperatureUnit.C);
+            return new(temperature.Degrees + AbsoluteZero, TemperatureUnit.C);
         }
 
-        public Temperature FromC(double celsius)
+        public Temperature FromC(Temperature temperature)
         {
-            return new Temperature(celsius + AbsoluteZero, Unit);
+            return new(temperature.Degrees - AbsoluteZero, Unit);
         }
     }
 }

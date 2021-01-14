@@ -6,14 +6,14 @@ namespace Chapter02.Exercises.Exercise03
     {
         public TemperatureUnit Unit => TemperatureUnit.F;
 
-        public Temperature ToC(double fahrenheit)
+        public Temperature ToC(Temperature temperature)
         {
-            return new Temperature(5.0/9 * (fahrenheit - 32), TemperatureUnit.C);
+            return new(5.0/9 * (temperature.Degrees - 32), TemperatureUnit.C);
         }
 
-        public Temperature FromC(double celsius)
+        public Temperature FromC(Temperature temperature)
         {
-            return new Temperature(9.0 / 5 * celsius + 32, Unit);
+            return new(9.0 / 5 * temperature.Degrees + 32, Unit);
         }
     }
 }
