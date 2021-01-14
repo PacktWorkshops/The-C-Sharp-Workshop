@@ -32,18 +32,18 @@ namespace Chapter05UnitTest
         }
 
 
-        [TestMethod]
-        [ExpectedException(typeof(OperationCanceledException))]
-        public async Task FetchLoop_OperationCanceledException()
-        {
-            using var tokenSource = new CancellationTokenSource(CancellationTime);
-            tokenSource.Token.Register(() => Logger.Log("Cancelled token"));
+        //[TestMethod]
+        //[ExpectedException(typeof(OperationCanceledException))]
+        //public async Task FetchLoop_OperationCanceledException()
+        //{
+        //    using var tokenSource = new CancellationTokenSource(CancellationTime);
+        //    tokenSource.Token.Register(() => Logger.Log("Cancelled token"));
 
-            var resultTask = new SlowRunningService()
-                .FetchLoop(DelayTime, tokenSource.Token);
+        //    var resultTask = new SlowRunningService()
+        //        .FetchLoop(DelayTime, tokenSource.Token);
 
-            await resultTask;
-        }
+        //    await resultTask;
+        //}
 
     }
 }

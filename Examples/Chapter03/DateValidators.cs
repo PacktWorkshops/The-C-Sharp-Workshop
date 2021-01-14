@@ -8,10 +8,8 @@ namespace Chapter3
             => dateTime.DayOfWeek == DayOfWeek.Saturday ||
                dateTime.DayOfWeek == DayOfWeek.Sunday;
 
-        public static bool IsFuture(DateTime dateTime)
-        {
-            return dateTime.Date > DateTime.Today;
-        }
+        public static bool IsFuture(DateTime dateTime) 
+            => dateTime.Date > DateTime.Today;
     }
    
 }

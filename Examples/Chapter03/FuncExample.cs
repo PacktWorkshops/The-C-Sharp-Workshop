@@ -19,16 +19,12 @@ namespace Chapter03Examples
             Console.WriteLine($"Second={second}");
 
             Console.ReadLine();
-        }
 
-        private static string RemoveAtSign(string address)
-        {
-            return address.Replace("@", "");
-        }
+            static string RemoveAtSign(string address)
+                => address.Replace("@", "");
 
-        private static string RemoveDots(string address)
-        {
-            return address.Replace(".", "");
+            static string RemoveDots(string address)
+                => address.Replace(".", "");
         }
     }
 

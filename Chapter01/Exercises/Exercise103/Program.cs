@@ -1,19 +1,22 @@
 ﻿using System;
 
-namespace Exercise103
+static void FormatString(string stringToFormat)
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            var a = 10;
-            var b = 20;
-            Console.WriteLine($"The value for a is { a } and for b is { b }");
-            Console.WriteLine($"Sum: { a + b}");
-            Console.WriteLine($"Multiplication: { a * b}");
-            Console.WriteLine($"Subtraction: { a - b}");
-            Console.WriteLine($"Division: { a / b}");
-
-        }
-    }
+    stringToFormat.Replace("World", "Mars");
 }
+
+static string FormatReturningString(string stringToFormat)
+{
+    return stringToFormat.Replace("Earth", "Mars");
+}
+
+var greetings = "Hello World!";
+
+FormatString(greetings);
+Console.WriteLine(greetings);
+
+var anotherGreetings = "Good morning Earth!";
+Console.WriteLine(FormatReturningString(anotherGreetings));
+
+
+
