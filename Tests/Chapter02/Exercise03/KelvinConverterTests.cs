@@ -6,32 +6,32 @@ namespace Tests.Chapter02.Exercise03
     [TestClass]
     public class KelvinConverterTests
     {
-        private const double Tolerance = 0.001;
-            
         [DataTestMethod]
         [DataRow(0, -273.15)]
         [DataRow(10, -263.15)]
         public void ToC_Returns_Expected(double kelvin, double expectedCelsius)
         {
             var converter = new KelvinConverter();
+            var temperature = new Temperature(kelvin, TemperatureUnit.K);
+            var expectedTemperature = new Temperature(expectedCelsius, TemperatureUnit.C);
 
-            var celsiusTemperature = converter.ToC(kelvin);
+            var celsiusTemperature = converter.ToC(temperature);
 
-            Assert.AreEqual(TemperatureUnit.C, celsiusTemperature.Unit);
-            Assert.AreEqual(expectedCelsius, celsiusTemperature.Degrees, Tolerance);
+            Assert.AreEqual(expectedTemperature, celsiusTemperature);
         }
 
         [DataTestMethod]
-        [DataRow(-17.72222, 0.1)]
-        [DataRow(-17.22222, 1)]
+        [DataRow(-273.15, 0)]
+        [DataRow(-263.15, 10)]
         public void FromC_Returns_Expected(double celsius, double expectedKelvin)
         {
             var converter = new KelvinConverter();
+            var temperature = new Temperature(celsius, TemperatureUnit.C);
+            var expectedTemperature = new Temperature(expectedKelvin, TemperatureUnit.K);
 
-            var kelvinTemperature = converter.FromC(celsius);
+            var kelvinTemperature = converter.FromC(temperature);
 
-            Assert.AreEqual(converter.Unit, kelvinTemperature.Unit);
-            Assert.AreEqual(expectedKelvin, kelvinTemperature.Degrees, Tolerance);
+            Assert.AreEqual(expectedTemperature, kelvinTemperature);
         }
     }
 }

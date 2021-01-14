@@ -20,7 +20,7 @@ namespace Tests.Chapter02.Exercise03
             var converter = new FahrenheitConverter();
             var fahrenheitTemperature = new Temperature(fahrenheit, converter.Unit);
             
-            var celsiusTemperature = converter.ToC(fahrenheitTemperature.Degrees);
+            var celsiusTemperature = converter.ToC(fahrenheitTemperature);
 
             Assert.AreEqual(TemperatureUnit.C, celsiusTemperature.Unit);
             Assert.AreEqual(expectedCelsius, celsiusTemperature.Degrees, Tolerance);
@@ -38,7 +38,7 @@ namespace Tests.Chapter02.Exercise03
             var converter = new FahrenheitConverter();
             var celsiusTemperature = new Temperature(celsius, TemperatureUnit.C);
             
-            var fahrenheitTemperature = converter.FromC(celsiusTemperature.Degrees);
+            var fahrenheitTemperature = converter.FromC(celsiusTemperature);
 
             Assert.AreEqual(converter.Unit, fahrenheitTemperature.Unit);
             Assert.AreEqual(expectedFahrenheit, fahrenheitTemperature.Degrees, Tolerance);

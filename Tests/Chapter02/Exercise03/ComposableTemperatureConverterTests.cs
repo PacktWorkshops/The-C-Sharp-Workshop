@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using Chapter02.Exercises.Exercise03;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -8,6 +9,15 @@ namespace Tests.Chapter02.Exercise03
     [TestClass]
     public class ComposableTemperatureConverterTests
     {
+        [DataTestMethod]
+        [DynamicData(nameof(InvalidConverters))]
+        public void New_When_NullOrEmptyConverters_Throws_InvalidTemperatureConversionException(ITemperatureConverter[] converters)
+        {
+            void New() => new ComposableTemperatureConverter(converters);
+
+            Assert.ThrowsException<InvalidTemperatureConverterException>(New);
+        }
+
         [DataTestMethod]
         [DynamicData(nameof(ConvertersWithKelvin))]
         public void New_When_UniqueConverters_DoesNotThrow(ITemperatureConverter[] converters)
@@ -22,39 +32,37 @@ namespace Tests.Chapter02.Exercise03
             
             void New() => new ComposableTemperatureConverter(converters);
 
-            Assert.ThrowsException<DuplicateTemperatureConverterException>(New);
+            Assert.ThrowsException<InvalidTemperatureConverterException>(New);
         }
 
         [TestMethod]
         public void Convert_When_SameUnit_Returns_TheSameTemperature()
         {
-            var converters = new ITemperatureConverter[] {new FahrenheitConverter()};
+            var converters = new ITemperatureConverter[] {new FahrenheitConverter(), new CelsiusConverter()};
             var converter = new ComposableTemperatureConverter(converters);
-            var temparature = new Temperature(1, TemperatureUnit.C);
+            var temperature = new Temperature(1, TemperatureUnit.C);
 
-            var convertedTemperature = converter.Convert(temparature, TemperatureUnit.C);
+            var convertedTemperature = converter.Convert(temperature, TemperatureUnit.C);
 
-            Assert.AreSame(temparature, convertedTemperature);
+            Assert.AreSame(temperature, convertedTemperature);
         }
 
         [TestMethod]
         public void Convert_ToC_WhenK_And_ConverterForKExists_CallsKConverterToC()
         {
-            const TemperatureUnit unit = TemperatureUnit.K;
-
             var kelvinConverter = new Mock<ITemperatureConverter>();
             kelvinConverter
                 .SetupGet(c => c.Unit)
-                .Returns(unit);
+                .Returns(TemperatureUnit.K);
 
-            var converters = new[] {kelvinConverter.Object};
+            var converters = new[] {kelvinConverter.Object, new CelsiusConverter()};
             
             var converter = new ComposableTemperatureConverter(converters);
-            var temperature = new Temperature(1, unit);
+            var temperature = new Temperature(1, TemperatureUnit.K);
 
             converter.Convert(temperature, TemperatureUnit.C);
 
-            kelvinConverter.Verify(c => c.ToC(temperature.Degrees));
+            kelvinConverter.Verify(c => c.ToC(temperature));
         }
 
         [TestMethod]
@@ -67,14 +75,14 @@ namespace Tests.Chapter02.Exercise03
                 .SetupGet(c => c.Unit)
                 .Returns(unit);
 
-            var converters = new[] { kelvinConverter.Object };
+            var converters = new[] { kelvinConverter.Object, new CelsiusConverter() };
 
             var converter = new ComposableTemperatureConverter(converters);
             var temperature = new Temperature(1, TemperatureUnit.C);
 
             converter.Convert(temperature, unit);
 
-            kelvinConverter.Verify(c => c.FromC(temperature.Degrees));
+            kelvinConverter.Verify(c => c.FromC(temperature));
         }
 
         [TestMethod]
@@ -89,7 +97,7 @@ namespace Tests.Chapter02.Exercise03
                 .Returns(TemperatureUnit.F);
 
             fahrenheitConverterConverter
-                .Setup(c => c.ToC(temperatureF.Degrees))
+                .Setup(c => c.ToC(temperatureF))
                 .Returns(temperatureC);
 
             var kelvinConverter = new Mock<ITemperatureConverter>();
@@ -104,8 +112,8 @@ namespace Tests.Chapter02.Exercise03
 
             converter.Convert(temperatureF, TemperatureUnit.K);
 
-            fahrenheitConverterConverter.Verify(c => c.ToC(temperatureF.Degrees));
-            kelvinConverter.Verify(c => c.FromC(temperatureC.Degrees));
+            fahrenheitConverterConverter.Verify(c => c.ToC(temperatureF));
+            kelvinConverter.Verify(c => c.FromC(temperatureC));
         }
 
         public static IEnumerable<object[]> ConvertersWithKelvin
@@ -114,6 +122,15 @@ namespace Tests.Chapter02.Exercise03
             {
                 yield return new object[]{new ITemperatureConverter[]{new KelvinConverter()}};
                 yield return new object[]{new ITemperatureConverter[]{new FahrenheitConverter(), new KelvinConverter()}};
+            }
+        }
+
+        public static IEnumerable<object[]> InvalidConverters
+        {
+            get
+            {
+                yield return new object[] { new ITemperatureConverter[] {} };
+                yield return new object[] { null };
             }
         }
     }
