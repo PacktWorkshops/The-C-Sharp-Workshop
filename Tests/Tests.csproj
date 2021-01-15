@@ -24,6 +24,7 @@
     <ProjectReference Include="..\Chapter02\Chapter02.csproj" />
     <ProjectReference Include="..\Chapter04\Chapter04.csproj" />
     <ProjectReference Include="..\Chapter05\Chapter05.csproj" />
+    <ProjectReference Include="..\Chapter06\Chapter06.csproj" />
     <ProjectReference Include="..\Chapter08.Service\Chapter08.Service.csproj" />
     <ProjectReference Include="..\Chapter08\Chapter08.csproj" />
     <ProjectReference Include="..\Chapter09.Service\Chapter09.Service.csproj" />
