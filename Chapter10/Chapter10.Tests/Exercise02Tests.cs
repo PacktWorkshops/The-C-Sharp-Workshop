@@ -1,70 +1,60 @@
 using NUnit.Framework;
 using Chapter10.Lib;
-using System.Collections.Generic;
 
 namespace Chapter10.Tests
 {
     [TestFixture]
-    public class DeliveryFilterTests
+    public class DeliveryCalculatorTests
     {
-
-        [Test]
-        public void GetSortedMiddleWeightPackages_MultipleItems_ExactOrder()
+        [TestCase(0)]
+        [TestCase(5)]
+        public void GetCost_Envelope_DistanceEqualsCost(int distance)
         {
-            // ARRANGE
-            var nearPackage = new Package(10_000, 10);
-            var midPackage = new Package(20_000, 15);
-            var farPackage = new Package(30_000, 20);
-
-            var packages = new List<Package>()
-            {
-                new Package(100, 20),
-                nearPackage,
-                new Package(200, 30),
-                midPackage,
-                new Package(50_000, 1),// far distance but light weight
-                farPackage
-            };
-
-            var expected = new []
-            {
-                farPackage, midPackage, nearPackage
-            };
-
-            // ACT
-            var actual = DeliveryFilters
-                .GetSortedMiddleWeightPackages(packages, 3);
-            
-            // ASSERT
-            Assert.That(actual, Is.EqualTo(expected));
+            var envelope = new Envelope(distance);
+            var actualCost = DeliveryCalculator.GetCost(envelope);
+            Assert.That(actualCost, Is.EqualTo(distance));
         } 
        
-       [Test]
-        public void GetLastTwoPackages_MultipleItems_ExactOrder()
+        [Test]
+        public void GetCost_LightPackage_ProductOfDistance(
+            [Random(0, 100, 5)]int distance,
+            [Random(0, 9, 5)]int weight)
         {
-            // ARRANGE
-            var package1 = new Package(20_000, 15);
-            var package2 = new Package(30_000, 20);
-
-            var packages = new []
-            {
-                new Package(100, 1),
-                new Package(200, 1),
-                new Package(300, 1),
-                package1,
-                package2
-            };
-
-            var expected = new []
-            {
-                package1, package2
-            };
-
-            // ACT
-            var actual = DeliveryFilters.GetLastTwoPackages(packages);
-            
-            // ASSERT
-            Assert.That(actual, Is.EqualTo(expected));
+            var package = new Package(distance, weight);
+            var actualCost = DeliveryCalculator.GetCost(package);
+            var expectedCost = distance * 2;
+            Assert.That(actualCost, Is.EqualTo(expectedCost));
         } 
-   }
+
+        [Test]
+        public void GetCost_HeavyPackage_ProductOfDistance(
+            [Values(100, 200, 300)]int distance, 
+            [Values(10, 20)]int weight)
+        {
+            var package = new Package(distance, weight);
+            var actualCost = DeliveryCalculator.GetCost(package);
+            var expectedCost = distance * 3;
+            Assert.That(actualCost, Is.EqualTo(expectedCost));
+        }
+
+        [TestCase(false, 4.0)]
+        [TestCase(true, 6.0)]
+        public void GetCost_Meal_FixedCost(
+            bool isHot,
+            double expectedCost)
+        {
+            var meal = new Meal(isHot);
+            var actualCost = DeliveryCalculator.GetCost(meal);
+            Assert.That(actualCost, Is.EqualTo(expectedCost));
+        }
+
+        [Test]
+        public void GetCost_UnknownType_ThrowsException()
+        {
+            Assert.Throws<System.ArgumentException>( () => 
+              { 
+                DeliveryCalculator.GetCost(new object());
+              });
+        }
+    }
 }

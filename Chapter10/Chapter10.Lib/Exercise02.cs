@@ -1,26 +1,57 @@
-using System.Linq;
-using System.Collections.Generic;
+﻿using System;
 
 namespace Chapter10.Lib
 {
-    public static class DeliveryFilters
+    public record Envelope
     {
-        public static IEnumerable<Package> GetSortedMiddleWeightPackages(
-             IEnumerable<Package> items, int top)
-        {
-            return items
-                .Where(IsMiddleWeightPackage)
-                .OrderByDescending(p => p.Distance)
-                .Take(top);
+        public Envelope(int distance) 
+            => (Distance) = (distance);
 
-            static bool IsMiddleWeightPackage(Package package)
-                => package.Weight is (>= 10 and <= 20);
-        }
+        public int Distance { get; }
+    }
 
-        public static Package[] GetLastTwoPackages(Package[] items)
-        {
-            return items[^2..^0];
-        }
+    public record Package
+    {
+        public Package(int distance, int weight) 
+            => (Distance, Weight) = (distance, weight);
 
+        public int Distance { get; }
+        public int Weight { get; }
+    }
+
+    public record Meal
+    {
+        public Meal(bool isHot) 
+            => (IsHot) = (isHot);
+
+        public bool IsHot { get; }
+    }
+
+    public static class DeliveryCalculator
+    {
+        public static double GetCost(object item)
+            => item switch
+            {
+                Envelope e 
+                    => e.Distance * 1,
+
+                Package p when p.Weight < 10 
+                    => p.Distance * 2,
+
+                Package p when p.Weight >= 10 
+                    => p.Distance * 3,
+
+                Meal m when !m.IsHot 
+                    => 4,
+
+                Meal m when m.IsHot 
+                    => 6,
+
+                { }             
+                    => throw new ArgumentException(),
+
+                null
+                    => throw new ArgumentNullException()
+            };
     }
 }
