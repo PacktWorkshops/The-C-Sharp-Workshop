@@ -6,7 +6,7 @@ using System.Linq;
 namespace Chapter10.Tests
 {
     [TestFixture]
-    public class BankTestTests
+    public class BankTellerTests
     {
         [Test]
         public void Transfer_ValidBalance_AddsToTransactions()
