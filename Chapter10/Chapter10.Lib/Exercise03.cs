@@ -1,45 +1,25 @@
-using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Chapter10.Lib
 {
-    public record Order
+    public static class DeliveryFilters
     {
-        public Order (double totalValue, int quantity)
-            => (TotalValue, Quantity) = (totalValue, quantity);
-
-        public double TotalValue {get; init;}
-        public int Quantity { get; init; }
-    }
-
-    public interface IDiscounter 
-    {
-        Order Apply(Order order);
-    }
-
-    public class ShoppingBasket
-    {
-        private readonly IDiscounter _discounter;
-
-        public ShoppingBasket(IDiscounter discounter, Order order)
+        public static IEnumerable<Package> GetSortedMiddleWeightPackages(
+             IEnumerable<Package> items, int top)
         {
-            _discounter = discounter;
-            Order = order;
+            return items
+                .Where(IsMiddleWeightPackage)
+                .OrderByDescending(p => p.Distance)
+                .Take(top);
+
+            static bool IsMiddleWeightPackage(Package package)
+                => package.Weight is (>= 10 and <= 20);
         }
 
-        public Order Order {get; private set;}
-
-        private bool _discountApplied;
-
-        public void ApplyDiscount(char code)
+        public static Package[] GetLastTwoPackages(Package[] items)
         {
-            if (_discountApplied)
-                return;
-
-            if (code is (>= 'a' and  <='c'))
-            {
-                Order = _discounter.Apply(Order);
-                _discountApplied = true;
-            }
+            return items[^2..^0];
         }
 
     }

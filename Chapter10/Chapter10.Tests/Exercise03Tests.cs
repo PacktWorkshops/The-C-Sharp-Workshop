@@ -1,46 +1,70 @@
 using NUnit.Framework;
 using Chapter10.Lib;
+using System.Collections.Generic;
 
 namespace Chapter10.Tests
 {
-    internal class MockDiscounter : IDiscounter
-    {
-        public int ApplyCalls {get; private set;}
-        public Order NewOrder {get; private set;}
-        public Order Apply(Order order)
-        {
-            ApplyCalls ++;
-            NewOrder = order with {};
-            return NewOrder;
-        }
-    }
-
     [TestFixture]
-    public class ShoppingBasketTests
+    public class DeliveryFilterTests
     {
-        [TestCase('a', 1)]
-        [TestCase('b', 1)]
-        [TestCase('c', 1)]
-        [TestCase('d', 0)]
-        public void ApplyDiscount_TestCase_CallsApply(char code, int expectedCalls)
+
+        [Test]
+        public void GetSortedMiddleWeightPackages_MultipleItems_ExactOrder()
         {
             // ARRANGE
-            MockDiscounter discounter = new();
-            var order = new Order(19.99, 2);
-            var basket = new ShoppingBasket(discounter, order);
+            var nearPackage = new Package(10_000, 10);
+            var midPackage = new Package(20_000, 15);
+            var farPackage = new Package(30_000, 20);
 
-            // ACT 
-            basket.ApplyDiscount(code);
-            basket.ApplyDiscount(code);
+            var packages = new List<Package>()
+            {
+                new Package(100, 20),
+                nearPackage,
+                new Package(200, 30),
+                midPackage,
+                new Package(50_000, 1),// far distance but light weight
+                farPackage
+            };
 
-            var expectedOrder = expectedCalls > 0
-                ? discounter.NewOrder
-                : order;
+            var expected = new []
+            {
+                farPackage, midPackage, nearPackage
+            };
 
+            // ACT
+            var actual = DeliveryFilters
+                .GetSortedMiddleWeightPackages(packages, 3);
+            
             // ASSERT
-            Assert.That(discounter.ApplyCalls, Is.EqualTo(expectedCalls));
-            Assert.That(basket.Order, Is.SameAs(expectedOrder));
+            Assert.That(actual, Is.EqualTo(expected));
+        } 
+       
+       [Test]
+        public void GetLastTwoPackages_MultipleItems_ExactOrder()
+        {
+            // ARRANGE
+            var package1 = new Package(20_000, 15);
+            var package2 = new Package(30_000, 20);
+
+            var packages = new []
+            {
+                new Package(100, 1),
+                new Package(200, 1),
+                new Package(300, 1),
+                package1,
+                package2
+            };
+
+            var expected = new []
+            {
+                package1, package2
+            };
+
+            // ACT
+            var actual = DeliveryFilters.GetLastTwoPackages(packages);
+            
+            // ASSERT
+            Assert.That(actual, Is.EqualTo(expected));
         } 
    }
-
 }
