@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Chapter06.Examples._01_Talking_With_Db_The_Old_Way;
+using Chapter06.Examples.TalkingWithDb.Raw;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Chapter06

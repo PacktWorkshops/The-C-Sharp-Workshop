@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <Folder Include="Chapter04\" />
+    <Folder Include="Chapter06\Filtering\" />
   </ItemGroup>
 
 </Project>
