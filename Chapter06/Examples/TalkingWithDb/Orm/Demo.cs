@@ -9,14 +9,17 @@ namespace Chapter06.Examples.TalkingWithDb.Orm
         public static void Run()
         {
             using var context = new FactoryDbContext();
-            var products = context
-                .Products
-                .Include(p => p.Manufacturer)
+            var manufacturers = context
+                .Manufacturers
+                .Include(p => p.Products)
                 .ToList();
 
-            foreach (var product in products)
+            foreach (var manufacturer in manufacturers)
             {
-                Console.WriteLine($"{product.Name} {product.Manufacturer.Name} {product.Id} {product.Price}");
+                foreach (var product in manufacturer.Products)
+                {
+                    Console.WriteLine($"{manufacturer.Name} {product.Name} {product.Id} {product.Price}");
+                }
             }
         }
     }
