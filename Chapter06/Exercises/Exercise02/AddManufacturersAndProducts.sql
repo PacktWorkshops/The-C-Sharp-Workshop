@@ -1,0 +1,5 @@
+﻿INSERT INTO Factory.Manufacturer (Name, Country) VALUES ('Belgium Toys', 'Belgium') 
+INSERT INTO Factory.Manufacturer (Name, Country) VALUES ('Wonderland', 'USA') 
+INSERT INTO Factory.Product (Name, Price, ManufacturerId) VALUES ('Toy Car', 1.50, 1) 
+INSERT INTO Factory.Product (Name, Price, ManufacturerId) VALUES ('Firefighter Truck', 10.49, 1) 
+INSERT INTO Factory.Product (Name, Price, ManufacturerId) VALUES ('Toy Rocket', 7.99, 2) 
