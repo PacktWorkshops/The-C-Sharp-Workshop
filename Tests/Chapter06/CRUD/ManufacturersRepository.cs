@@ -20,8 +20,11 @@ namespace Tests.Chapter06.CRUD
         [TestInitialize]
         public void Setup()
         {
-            _manufacturersRepository = new ManufacturersRepository(new FactoryDbContext());
-            _db = new FactoryDbContext();
+            var builder = new DbContextOptionsBuilder<FactoryDbContext>();
+            builder.UseInMemoryDatabase(Guid.NewGuid().ToString());
+            var options = builder.Options;
+            _db = new FactoryDbContext(options);
+            _manufacturersRepository = new ManufacturersRepository(_db);
         }
 
         [TestCleanup]
