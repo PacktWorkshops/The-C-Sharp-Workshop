@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
@@ -29,7 +30,7 @@ namespace Chapter06.Activities.Activity02
             }
 
             // Not needed for the activity- just to enable logging of SQL
-
+            optionsBuilder.LogTo(Console.WriteLine);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
