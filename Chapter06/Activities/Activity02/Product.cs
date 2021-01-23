@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#nullable disable
 
-#nullable disable
-
-namespace Chapter06.GlobalFactoryScaffolded
+namespace Chapter06.Activities.Activity02
 {
     public partial class Product
     {
@@ -12,6 +9,6 @@ namespace Chapter06.GlobalFactoryScaffolded
         public decimal Price { get; set; }
         public int ManufacturerId { get; set; }
 
-        public virtual Exercises.Exercise03.Manufacturer Manufacturer { get; set; }
+        public virtual Manufacturer Manufacturer { get; set; }
     }
 }
