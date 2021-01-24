@@ -1,34 +1,33 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace Examples.Chapter05
+namespace Chapter05.Examples
 {
     class AsyncExamples
     {
         public static async Task Main()
         {
-            Logger.Log("Starting");
+            global::Chapter05.Examples.Logger.Log("Starting");
             await BuildGreetings();
 
-            Logger.Log("Press Enter");
+            global::Chapter05.Examples.Logger.Log("Press Enter");
             Console.ReadLine();
         }
 
         private static async Task BuildGreetings()
         {
             var message = "Morning";
-            Logger.Log($"{message}");
+            global::Chapter05.Examples.Logger.Log($"{message}");
 
             await Task.Delay(TimeSpan.FromSeconds(10D));
 
             message += "...Afternoon";
-            Logger.Log($"{message}");
+            global::Chapter05.Examples.Logger.Log($"{message}");
 
             await Task.Delay(TimeSpan.FromSeconds(1D));
 
             message += "...Evening";
-            Logger.Log($"{message}");
+            global::Chapter05.Examples.Logger.Log($"{message}");
         }
     }
 }

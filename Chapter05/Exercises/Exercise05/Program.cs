@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Examples.Chapter05;
+using Chapter05.Examples;
 
-namespace Chapter05.Exercise05
+namespace Chapter05.Exercises.Exercise05
 {
     public class Customer
     {

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Examples.Chapter05
+namespace Chapter05.Examples
 {
     class DownloadExamples
     {

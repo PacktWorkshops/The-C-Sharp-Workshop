@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
+using System.Threading.Tasks;
 
-namespace Examples.Chapter05
+namespace Chapter05.Examples
 {
     class ParallelForExamples
     {

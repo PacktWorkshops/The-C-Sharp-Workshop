@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using Chapter05;
-using Chapter05.Exercise03;
+using Chapter05.Exercises.Exercise03;
 
 namespace Chapter05UnitTest
 {

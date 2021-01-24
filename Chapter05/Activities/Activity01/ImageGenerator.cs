@@ -4,7 +4,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace Chapter05.Activity01
+namespace Chapter05.Activities.Activity01
 {
     public static class ImageGenerator
     {

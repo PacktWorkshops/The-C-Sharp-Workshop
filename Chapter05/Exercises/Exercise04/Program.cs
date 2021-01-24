@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Chapter05.Exercise04
+namespace Chapter05.Exercises.Exercise04
 {
     public class SlowRunningService
     {

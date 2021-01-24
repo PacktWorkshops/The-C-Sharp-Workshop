@@ -1,17 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!-- <StartupObject>Chapter05.Exercises.Exercise01.Program</StartupObject> -->
+    <!--<StartupObject>Chapter05.Examples.TaskWaitAnyExample</StartupObject>-->
+    <StartupObject>Chapter05.Exercises.Exercise03.Program</StartupObject>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <StartupObject>Chapter05.Activity01.FibonacciConsole</StartupObject>
+    <TargetFramework>net5.0</TargetFramework>
+     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Examples\Examples.csproj" />
   </ItemGroup>
 
 </Project>

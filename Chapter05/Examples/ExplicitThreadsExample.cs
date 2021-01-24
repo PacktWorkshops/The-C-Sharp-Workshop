@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace Examples.Chapter05
+namespace Chapter05.Examples
 {
     class ExplicitThreadsExample
     {

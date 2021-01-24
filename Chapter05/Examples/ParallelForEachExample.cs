@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Examples.Chapter05
+namespace Chapter05.Examples
 {
     public class Order
     {

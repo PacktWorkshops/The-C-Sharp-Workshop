@@ -2,7 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Examples.Chapter05
+namespace Chapter05.Examples
 {
     class AsyncLambdaExamples
     {
@@ -14,17 +14,17 @@ namespace Examples.Chapter05
 
             client.DownloadDataCompleted += async (sender, args) =>
             {
-                Logger.Log("Inside DownloadDataCompleted..");
+                global::Chapter05.Examples.Logger.Log("Inside DownloadDataCompleted..");
                 await Task.Delay(500);
             };
-            Logger.Log($"DownloadData: {Url}");
+            global::Chapter05.Examples.Logger.Log($"DownloadData: {Url}");
             var data = client.DownloadData(Url);
-            Logger.Log($"DownloadData: Length={data.Length:N0}");
+            global::Chapter05.Examples.Logger.Log($"DownloadData: Length={data.Length:N0}");
 
-            Logger.Log($"DownloadDataTaskAsync: {Url}");
+            global::Chapter05.Examples.Logger.Log($"DownloadDataTaskAsync: {Url}");
             var downloadTask = client.DownloadDataTaskAsync(Url);
             var downloadBytes =  await downloadTask;
-            Logger.Log($"DownloadDataTaskAsync: Length={downloadBytes.Length:N0}");
+            global::Chapter05.Examples.Logger.Log($"DownloadDataTaskAsync: Length={downloadBytes.Length:N0}");
 
             Console.ReadLine();
         }

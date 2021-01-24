@@ -2,9 +2,9 @@
 using System.Globalization;
 using System.Threading.Tasks;
 
-namespace Chapter05.Exercise01
+namespace Chapter05.Exercises.Exercise01
 {
-    class Exercise01
+    class Program
     {
 
         private static long Fibonacci(int n)
@@ -23,11 +23,8 @@ namespace Chapter05.Exercise01
                 Console.WriteLine("Enter number:");
                 input = Console.ReadLine();
 
-                if (string.IsNullOrEmpty(input)) 
-                    continue;
-
-                //if (!int.TryParse(input, NumberStyles.Any, CultureInfo.CurrentCulture, out number))
-                if (int.TryParse(input, NumberStyles.Any, CultureInfo.CurrentCulture, out var number))
+                if (!string.IsNullOrEmpty(input) &&
+                    int.TryParse(input, NumberStyles.Any, CultureInfo.CurrentCulture, out var number))
                 {
                     Task.Run(() =>
                     {

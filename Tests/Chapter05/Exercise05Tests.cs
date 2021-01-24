@@ -1,7 +1,7 @@
-﻿using Chapter05.Exercise05;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Threading.Tasks;
+using Chapter05.Exercises.Exercise05;
 
 namespace Chapter05UnitTest
 {

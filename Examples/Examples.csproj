@@ -70,18 +70,6 @@
     <Compile Include="Chapter03\MulticastWithErrorsExample.cs" />
     <Compile Include="Chapter03\OrderEntryValidator.cs" />
     <Compile Include="Chapter03\SystemEventsExample.cs" />
-    <Compile Include="Chapter05\AsyncUsersExample.cs" />
-    <Compile Include="Chapter05\AsyncExamples.cs" />
-    <Compile Include="Chapter05\ContinuationExamples.cs" />
-    <Compile Include="Chapter05\DownloadExamples.cs" />
-    <Compile Include="Chapter05\AsyncLambdaExamples.cs" />
-    <Compile Include="Chapter05\ParallelForEachExample.cs" />
-    <Compile Include="Chapter05\ParallelForExamples.cs" />
-    <Compile Include="Chapter05\WhenAllErrorExamples.cs" />
-    <Compile Include="Chapter05\ErrorExamples.cs" />
-    <Compile Include="Chapter05\FireAndForgetObserved.cs" />
-    <Compile Include="Chapter05\ExplicitThreadsExample.cs" />
-    <Compile Include="Chapter05\TaskExamples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

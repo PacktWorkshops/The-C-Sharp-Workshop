@@ -5,16 +5,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Chapter05.Exercise03
+namespace Chapter05.Exercises.Exercise03
 {
-    public class CarSale
+    public record CarSale
     {
         public CarSale(string name, double salePrice)
-        {
-            Name = name;
-            SalePrice = salePrice;
-        }
-
+            => (Name, SalePrice) = (name, salePrice);
+        
         public string Name { get; }
         public double SalePrice { get; }
     }
@@ -86,6 +83,7 @@ namespace Chapter05.Exercise03
         public static void Main()
         {
             var random = new Random();
+            const int MaxSalesHubs = 10;
 
             string input;
             do
@@ -98,7 +96,7 @@ namespace Chapter05.Exercise03
 
                 if (int.TryParse(input, NumberStyles.Any, CultureInfo.CurrentCulture, out var maxDelay))
                 {
-                    var loaders = Enumerable.Range(1, random.Next(1, 5))
+                    var loaders = Enumerable.Range(1, random.Next(1, MaxSalesHubs))
                         .Select(n => new SalesLoader(n, random))
                         .ToList();
 

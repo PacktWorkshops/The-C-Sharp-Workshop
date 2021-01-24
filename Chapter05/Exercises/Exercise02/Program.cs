@@ -2,9 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Chapter05.Exercise02
+namespace Chapter05.Exercises.Exercise02
 {
-    class Exercise02
+    class Program
     {
         public static void Main()
         {
@@ -34,7 +34,7 @@ namespace Chapter05.Exercise02
             Logger.Log($"Inside {nameof(TaskBActivity)}");
             Thread.Sleep(TimeSpan.FromSeconds(2));
             Logger.Log($"Leaving {nameof(TaskBActivity)}");
-            return "DoneSomething";
+            return "";
         }
 
         private static void TaskCActivity()

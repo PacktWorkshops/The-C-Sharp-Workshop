@@ -6,8 +6,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Chapter05\Chapter05.csproj" />
-  </ItemGroup>
-
 </Project>

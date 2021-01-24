@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace Examples.Chapter05
+namespace Chapter05.Examples
 {
     class ErrorExamplesProgram
     {

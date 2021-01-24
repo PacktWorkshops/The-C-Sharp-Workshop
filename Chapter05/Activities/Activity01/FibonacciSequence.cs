@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace Chapter05.Activity01
+namespace Chapter05.Activities.Activity01
 {
     public static class FibonacciSequence
     {
