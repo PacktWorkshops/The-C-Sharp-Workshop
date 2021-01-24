@@ -1,7 +1,6 @@
-﻿using Chapter06.GlobalFactoryScaffolded;
+﻿using System;
+using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
-using Manufacturer = Chapter06.Exercises.Exercise03.Manufacturer;
-using Product = Chapter06.Exercises.Exercise03.Product;
 
 #nullable disable
 
@@ -13,20 +12,26 @@ namespace Chapter06.Activities.Activity02
         {
         }
 
-        public GlobalFactory2020Context(DbContextOptions<Exercises.Exercise03.GlobalFactory2020Context> options)
+        public GlobalFactory2020Context(DbContextOptions<GlobalFactory2020Context> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Exercises.Exercise03.Manufacturer> Manufacturers { get; set; }
+        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // Not needed for the activity- just to enable lazy loading.
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(Program.ConnectionString);
+                optionsBuilder
+                    .UseLazyLoadingProxies()
+                    .UseSqlServer(Program.ConnectionString);
             }
+
+            // Not needed for the activity- just to enable logging of SQL
+            optionsBuilder.LogTo((s) => Debug.WriteLine(s));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -45,8 +50,8 @@ namespace Chapter06.Activities.Activity02
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.FoundedAt)
-                    .HasColumnType("date");
+                //entity.Property(e => e.FoundedAt)
+                //    .HasColumnType("date");
             });
 
             modelBuilder.Entity<Product>(entity =>

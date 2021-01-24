@@ -9,7 +9,8 @@ namespace Chapter06
 
         static void Main(string[] args)
         {
-            Demo.Run();
+            //Exercises.Exercise03.Demo.Run();
+            Chapter06.Examples.PerformanceTraps.Demo.Run();
         }
     }
 }
