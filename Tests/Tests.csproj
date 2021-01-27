@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <Folder Include="Chapter04\" />
+    <Folder Include="Chapter06\Activities\Activity01\" />
   </ItemGroup>
 
 </Project>
