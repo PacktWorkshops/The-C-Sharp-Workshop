@@ -29,12 +29,12 @@ namespace Chapter02.Examples.Abstraction.Progress
 
         public float Max { get; }
 
-        public bool IsComplete => Math.Abs(Max - _current) > Tolerance;
+        public bool IsComplete => Math.Abs(Max - _current) < Tolerance;
 
         public ProgressBarGood(float current, float max)
         {
-            Current = current;
             Max = max;
+            Current = current;
         }
     }
 }

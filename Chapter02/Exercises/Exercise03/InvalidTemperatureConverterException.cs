@@ -1,7 +1,6 @@
 ﻿using System;
-using Chapter02.Exercises.Exercise03;
 
-namespace Tests.Chapter02.Exercise03
+namespace Chapter02.Exercises.Exercise03
 {
     public class InvalidTemperatureConverterException : Exception
     {

@@ -10,7 +10,7 @@ namespace Chapter02.Examples.InheritanceAndPolymorphism
 
         public override void Work()
         {
-            Console.WriteLine("Teaching");
+            Console.WriteLine("A teacher is teaching.");
         }
     }
 }

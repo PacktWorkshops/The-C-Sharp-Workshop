@@ -26,7 +26,7 @@ namespace Chapter02.Examples.Abstraction.Progress
             }
 
             const double tolerance = 0.0001;
-            var isComplete = Math.Abs(bar.Max - bar.Current) > tolerance;
+            var isComplete = Math.Abs(bar.Max - bar.Current) < tolerance;
         }
 
         private static void Good()

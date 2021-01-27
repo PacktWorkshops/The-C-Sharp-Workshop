@@ -1,4 +1,5 @@
-﻿using Chapter02.Examples.Encapsulation;
+﻿using System;
+using Chapter02.Examples.Encapsulation;
 
 namespace Chapter02.Examples.ValueAndRef
 {
@@ -7,12 +8,17 @@ namespace Chapter02.Examples.ValueAndRef
         public static void Run()
         {
             int a = 2;
-            // a is still 2
+            // 2
+            Console.WriteLine(a);
             SetTo5(a);
+            // a is still 2
+            Console.WriteLine(a);
             
             Dog dog = new Dog("speedy");
-            // Owner is ""- changes remain
+            Console.WriteLine(dog.Owner);
             ResetOwner(dog);
+            // Owner is "None"- changes remain
+            Console.WriteLine(dog.Owner);
             // dog is unchanged
             Recreate(dog);
             // dog is recreated
@@ -26,7 +32,7 @@ namespace Chapter02.Examples.ValueAndRef
 
         private static void ResetOwner(Dog dog)
         {
-            dog.Owner = "";
+            dog.Owner = "None";
         }
 
         private static void Recreate(Dog dog)
