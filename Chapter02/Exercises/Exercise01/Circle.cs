@@ -4,16 +4,16 @@ namespace Chapter02.Exercises.Exercise01
 {
     public class Circle
     {
-        public double Radius { get; }
+        private readonly double _radius;
 
         public Circle(double radius)
         {
-            Radius = radius;
+            _radius = radius;
         }
 
         public double Space
         {
-            get { return Math.PI * Radius * Radius; }
+            get { return Math.PI * _radius * _radius; }
         }
     }
 }

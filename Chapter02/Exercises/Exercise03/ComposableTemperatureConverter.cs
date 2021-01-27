@@ -1,5 +1,4 @@
 ﻿using System;
-using Tests.Chapter02.Exercise03;
 
 namespace Chapter02.Exercises.Exercise03
 {

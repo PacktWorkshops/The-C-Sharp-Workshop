@@ -15,7 +15,7 @@ namespace Chapter02.Examples.InheritanceAndPolymorphism
 
         public override void Work()
         {
-            Console.WriteLine("Mailman is working...");
+            Console.WriteLine("A mailman is sending mails.");
         }
     }
 }
