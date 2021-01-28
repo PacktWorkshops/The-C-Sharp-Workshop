@@ -4,48 +4,53 @@ namespace Chapter02.Examples.CsharpKeywords.Generics
 {
     public class CustomList<T>
     {
-        public T[] Items { get; set; }
+        private T[] _items;
 
-        public int Count => Items.Length;
+        public int Count => _items.Length;
 
         public CustomList()
         {
-            Items = new T[0];
+            _items = new T[0];
         }
 
         public CustomList(T[] items)
         {
-            Items = new T[items.Length];
-            Array.Copy(items, Items, items.Length);
+            _items = new T[items.Length];
+            Array.Copy(items, _items, items.Length);
         }
 
         public void Add(T item)
         {
-            var expanded = new T[Items.Length+1];
-            Array.Copy(Items, expanded, Items.Length);
+            var expanded = new T[_items.Length+1];
+            Array.Copy(_items, expanded, _items.Length);
             expanded[^1] = item;
-            Items = expanded;
+            _items = expanded;
+        }
+
+        public T GetAtIndex(int index)
+        {
+            return _items[index];
         }
 
         public void RemoveAtIndex(int index)
         {
-            if (index >= Items.Length)
+            if (index >= _items.Length)
             {
-                throw new IndexOutOfRangeException($"{index} is more than last index {Items.Length-1}");
+                throw new IndexOutOfRangeException($"{index} is more than last index {_items.Length-1}");
             }
 
-            var shrunk = new T[Items.Length - 1];
-            for (int i = 0; i < Items.Length; i++)
+            var shrunk = new T[_items.Length - 1];
+            for (int i = 0; i < _items.Length; i++)
             {
                 if (i == index)
                 {
                     continue;
                 }
 
-                shrunk[i] = Items[i];
+                shrunk[i] = _items[i];
             }
 
-            Items = shrunk;
+            _items = shrunk;
         }
     }
 }

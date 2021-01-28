@@ -24,7 +24,8 @@ namespace Tests.Chapter02.Examples.Generics.CustomlistTesting
             T[] array = {First, Second};
             var list = new CustomList<T>(array);
 
-            CollectionAssert.AreEquivalent(array, list.Items);
+            Assert.AreEqual(First, list.GetAtIndex(0));
+            Assert.AreEqual(Second, list.GetAtIndex(1));
         }
 
         [TestMethod]
@@ -34,7 +35,7 @@ namespace Tests.Chapter02.Examples.Generics.CustomlistTesting
 
             list.Add(First);
 
-            Assert.AreEqual(list.Items.Last(), First);
+            Assert.AreEqual(First, list.GetAtIndex(0));
         }
 
         [TestMethod]
