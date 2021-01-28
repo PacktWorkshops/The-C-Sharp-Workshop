@@ -1,26 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Chapter05.Examples
 {
-    public static class AsyncUsersExampleProgram
+    public enum RegionName { North, East, South, West };
+
+    public record User
     {
-        public static async Task Main()
-        {
-            Logger.Log("Starting");
+        public User(string userName, RegionName region)
+            => (UserName, Region) = (userName, region);
 
-            await new AccountGenerator()
-                .CreateAccounts();
+        public string UserName { get; }
+        public RegionName Region { get; }
 
-            Logger.Log("All done");
-            Console.ReadLine();
-        }
+        public string ID { get; set; }
     }
- 
-    internal class AccountGenerator
+
+    public class AccountGenerator
     {
         public async Task CreateAccounts()
         {
@@ -64,29 +62,29 @@ namespace Chapter05.Examples
             return users;
         }
 
-        private Task<string> GenerateId()
+        private static Task<string> GenerateId()
         {
             return Task.FromResult(Guid.NewGuid().ToString());
         }
 
-        private async Task<bool> CreateNorthernAccount(User user)
+        private static async Task<bool> CreateNorthernAccount(User user)
         {
             await Task.Delay(TimeSpan.FromSeconds(2D));
             Logger.Log($"Created northern account for {user.UserName}");
             return true;
         }
 
-        private async Task<bool> CreateOtherAccount(User user)
+        private static async Task<bool> CreateOtherAccount(User user)
         {
             await Task.Delay(TimeSpan.FromSeconds(1D));
             Logger.Log($"Created other account for {user.UserName}");
             return true;
         }
 
-        private async Task<int> UpdatePendingAccounts(IEnumerable<User> users)
+        private static async Task<int> UpdatePendingAccounts(IEnumerable<User> users)
         {
             var updateAccountTasks = users.Select(usr => Task.Run(
-                async () => 
+                async () =>
                 {
                     await Task.Delay(TimeSpan.FromSeconds(2D));
                     return true;
@@ -98,29 +96,20 @@ namespace Chapter05.Examples
             return updateAccountTasks.Count(t => t.Result);
         }
     }
-    public static class Logger
+
+    public static class AsyncUsersExampleProgram
     {
-        public static void Log(string message)
+        public static async Task Main()
         {
-            Console.WriteLine($"{DateTime.Now:T} [{Thread.CurrentThread.ManagedThreadId:00}] {message}");
+            Logger.Log("Starting");
+
+            await new AccountGenerator().CreateAccounts();
+
+            Logger.Log("All done");
+            Console.ReadLine();
         }
     }
-
-    public enum RegionName { North, East, South, West };
-
-    public class User
-    {
-        public User(string userName, RegionName region)
-        {
-            UserName = userName;
-            Region = region;
-        }
-
-        public string UserName { get; }
-        public RegionName Region { get; }
-
-        public string ID { get; set; }
-    }
+   
 }
 
 

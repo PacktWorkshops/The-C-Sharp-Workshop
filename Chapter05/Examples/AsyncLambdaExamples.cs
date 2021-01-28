@@ -14,17 +14,17 @@ namespace Chapter05.Examples
 
             client.DownloadDataCompleted += async (sender, args) =>
             {
-                global::Chapter05.Examples.Logger.Log("Inside DownloadDataCompleted..");
+                Logger.Log("Inside DownloadDataCompleted..");
                 await Task.Delay(500);
             };
-            global::Chapter05.Examples.Logger.Log($"DownloadData: {Url}");
+            Logger.Log($"DownloadData: {Url}");
             var data = client.DownloadData(Url);
-            global::Chapter05.Examples.Logger.Log($"DownloadData: Length={data.Length:N0}");
+            Logger.Log($"DownloadData: Length={data.Length:N0}");
 
-            global::Chapter05.Examples.Logger.Log($"DownloadDataTaskAsync: {Url}");
+            Logger.Log($"DownloadDataTaskAsync: {Url}");
             var downloadTask = client.DownloadDataTaskAsync(Url);
             var downloadBytes =  await downloadTask;
-            global::Chapter05.Examples.Logger.Log($"DownloadDataTaskAsync: Length={downloadBytes.Length:N0}");
+            Logger.Log($"DownloadDataTaskAsync: Length={downloadBytes.Length:N0}");
 
             Console.ReadLine();
         }
