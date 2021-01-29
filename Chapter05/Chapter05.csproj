@@ -4,7 +4,7 @@
     <!-- <StartupObject>Chapter05.Exercises.Exercise01.Program</StartupObject> -->
     <!--<StartupObject>Chapter05.Examples.TaskWaitAnyExample</StartupObject>-->
     <!--<StartupObject>Chapter05.Exercises.Exercise03.Program</StartupObject> -->
-    <StartupObject>Chapter05.Examples.AsyncUsersExampleProgram</StartupObject>
+    <StartupObject>Chapter05.Examples.AsyncEnumerableExamplesProgram</StartupObject>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
      <LangVersion>9.0</LangVersion>

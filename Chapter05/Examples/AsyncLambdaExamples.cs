@@ -14,9 +14,11 @@ namespace Chapter05.Examples
 
             client.DownloadDataCompleted += async (sender, args) =>
             {
-                Logger.Log("Inside DownloadDataCompleted..");
+                Logger.Log("Inside DownloadDataCompleted...looking busy");
                 await Task.Delay(500);
+                Logger.Log("Inside DownloadDataCompleted..all done now");
             };
+
             Logger.Log($"DownloadData: {Url}");
             var data = client.DownloadData(Url);
             Logger.Log($"DownloadData: Length={data.Length:N0}");
