@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Chapter02.Examples.CsharpKeywords.Generics
 {
@@ -22,7 +23,19 @@ namespace Chapter02.Examples.CsharpKeywords.Generics
             var list = new CustomList<int>();
             list.Add(1);
             list.Add(2);
-            CollectionsPrinterv1.Print(list.Items);
+            list.RemoveAtIndex(1);
+            CollectionsPrinterv1.Print(list.GetAtIndex(0));
+
+
+            var numbers = new List<int>();
+            numbers.Add(1);
+            Console.WriteLine(numbers[0]);
+
+            var people = new Dictionary<int, Person>();
+            people.Add(51, new Person(51, "Tom"));
+            people.Add(14, new Person(14, "Gareth"));
+            var person = people[51];
+            Console.WriteLine(person.Name);
         }
     }
 }

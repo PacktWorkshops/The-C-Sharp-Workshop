@@ -7,7 +7,7 @@ namespace Chapter02.Exercises.Exercise03
     {
         public static void Main()
         {
-            ITemperatureConverter[] converters = {new FahrenheitConverter(), new KelvinConverter()};
+            ITemperatureConverter[] converters = {new FahrenheitConverter(), new KelvinConverter(), new CelsiusConverter()};
             var composableConverter = new ComposableTemperatureConverter(converters);
 
             var celsius = new Temperature(20.00001, TemperatureUnit.C);
