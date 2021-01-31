@@ -16,7 +16,7 @@ namespace Chapter05.Examples
                 Thread.Sleep(i * 10);
                 Logger.Log($"Awake iteration {i}");
             });
-
+            
             Console.WriteLine($"Completed: {loopResult.IsCompleted}");
             Console.ReadLine();
 

@@ -1,35 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 
 namespace Chapter05.Activities.Activity01
 {
-    public static class FibonacciSequence
+public class Fibonacci
+{
+    public static Fibonacci CreateSeed()
     {
-        public static IList<Fibonacci> Calculate(int indices, double phi)
-        {
-            var angle = phi.GoldenAngle();
-
-            var items = new List<Fibonacci>(indices)
-            {
-                Fibonacci.CreateSeed()
-            };
-
-            // Purposely added time delay here  - code runs too quickly
-            // otherwise and doesnt make cancelling/threading useful without
-            Thread.Sleep(500);
-
-            for (var i = 1; i < indices; i++)
-            {
-                var previous = items.ElementAt(i - 1);
-                var next = Fibonacci.CreateNext(previous, angle);
-                items.Add(next);
-            }
-
-            return items;
-        }
+        return new Fibonacci(1, 0D, 1D);
     }
+
+    public static Fibonacci CreateNext(Fibonacci previous, double angle)
+    {
+        return new Fibonacci(previous, angle);
+    }
+
+    private Fibonacci(int index, double theta, double x)
+    {
+        Index = index;
+        Distance = Math.Sqrt(Index);
+        Theta = theta;
+        X = x;
+        Y = 0D;
+    }
+
+    private Fibonacci(Fibonacci previous, double angle)
+    {
+        Index = previous.Index + 1;
+        Distance = Math.Sqrt(Index);
+        Theta = previous.Theta + angle;
+
+        var radians = Theta.DegreesToRadians();
+        X = Distance * Math.Cos(radians);
+        Y = Distance * Math.Sin(radians);
+    }
+
+    public int Index { get; }
+    public double Distance { get; }
+    public double Theta { get; }
+    public double X { get; }
+    public double Y { get; }
+}
+
+public static class FibonacciSequence
+{
+    public static IList<Fibonacci> Calculate(int indices, double phi)
+    {
+        var angle = phi.GoldenAngle();
+
+        var items = new List<Fibonacci>(indices)
+        {
+            Fibonacci.CreateSeed()
+        };
+        
+        for (var i = 1; i < indices; i++)
+        {
+            var previous = items.ElementAt(i - 1);
+            var next = Fibonacci.CreateNext(previous, angle);
+            items.Add(next);
+        }
+
+        return items;
+    }
+}
 
     public static class FibonacciExtensions
     {
@@ -47,43 +81,6 @@ namespace Chapter05.Activities.Activity01
         }
     }
 
-    public class Fibonacci
-    {
-        public static Fibonacci CreateSeed()
-        {
-            return new Fibonacci(1, 0D, 1D);
-        }
-
-        public static Fibonacci CreateNext(Fibonacci previous, double angle)
-        {
-            return new Fibonacci(previous, angle);
-        }
-
-        private Fibonacci(int index, double theta, double x)
-        {
-            Index = index;
-            Distance = Math.Sqrt(Index);
-            Theta = theta;
-            X = x;
-            Y = 0D;
-        }
-
-        private Fibonacci(Fibonacci previous, double angle)
-        {
-            Index = previous.Index + 1;
-            Distance = Math.Sqrt(Index);
-            Theta = previous.Theta + angle;
-
-            var radians = Theta.DegreesToRadians();
-            X = Distance * Math.Cos(radians);
-            Y = Distance * Math.Sin(radians);
-        }
-
-        public int Index { get; }
-        public double Distance { get; }
-        public double Theta { get; }
-        public double X { get; }
-        public double Y { get; }
-    }
+   
     
 }

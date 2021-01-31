@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -10,7 +11,6 @@ namespace Chapter05.Activities.Activity01
     {
         public static void Main()
         {
-
             var tempImagePath = Path.GetTempPath() + "Fibonacci\\";
             if (!Directory.Exists(tempImagePath))
             {
@@ -25,7 +25,7 @@ namespace Chapter05.Activities.Activity01
             CancellationTokenSource tokenSource = null;
             do
             {
-                Console.Write("Phi (eg 1.0 to 6.0):");
+                Console.Write("Phi (eg 1.0 to 6.0) (x=quit, enter=cancel):");
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input))
                 {
@@ -34,26 +34,31 @@ namespace Chapter05.Activities.Activity01
                     continue;
                 }
 
+                if (input == "x")
+                {
+                    break;
+                }
+
                 if (!double.TryParse(input, NumberStyles.Any, CultureInfo.CurrentCulture, out double phi))
                 {
                     continue;
                 }
 
-                Console.Write("Image Count (eg 10):");
+                Console.Write("Image Count (eg 1000):");
                 input = Console.ReadLine();
                 if (!int.TryParse(input, NumberStyles.Any, CultureInfo.CurrentCulture, out int imageCount))
                 {
                     continue;
                 }
 
-                Console.WriteLine($"Creating {imageCount} images...(press ENTER to cancel)");
+                Console.WriteLine($"Creating {imageCount} images...");
 
                 tokenSource = new CancellationTokenSource();
-                tokenSource.Token.Register(
-                    () => Console.WriteLine("Cancelled!"));
+                tokenSource.Token.Register(() => Console.WriteLine("Cancelled!"));
 
                 var token = tokenSource.Token;
-                Task.Run(() => GenerateAllSequences(tempImagePath, phi, imageCount, token), token);
+                Task.Run(() => GenerateImageSequences(tempImagePath, phi, imageCount, token), 
+                          token);
 
             }
             while (true);
@@ -61,31 +66,31 @@ namespace Chapter05.Activities.Activity01
         }
 
 
-        private static async void GenerateAllSequences(string tempImagePath, double phi, int imageCount, CancellationToken token)
+        private static async Task GenerateImageSequences(string tempImagePath, double phi, int imageCount, CancellationToken token)
         {
             const double PhiIncrement = 0.015D;
-            const int Points = 500;
-            const int ImageSize = 300;
-            const int PointSize = 3;
+            const int Points = 3000;
+            const int ImageSize = 800;
+            const int PointSize = 5;;
+            const string FileExtension = ".png";
+            var fileFormat = ImageFormat.Png;
 
             for (var i = 0; i < imageCount; i++)
             {
-                var sequence = await Task.Run(
-                    () => FibonacciSequence.Calculate(Points, phi),
-                    token);
-
+                phi += PhiIncrement;
+                var sequence = await Task.Run(() => FibonacciSequence.Calculate(Points, phi), token);
                 if (token.IsCancellationRequested)
                 {
                     break;
                 }
 
-                var imagePath = $"{tempImagePath}Fibonacci_{Points}_{phi:N3}.jpg";
-                await Task.Run(
-                    () => ImageGenerator.ExportToJpeg(sequence, imagePath, ImageSize, ImageSize, PointSize),
-                    token);
+                var imagePath = $"{tempImagePath}Fibonacci_{Points}_{phi:N3}{FileExtension}";
 
-                phi += PhiIncrement;
+                await Task.Run(() => ImageGenerator.ExportSequence(sequence, imagePath, fileFormat, ImageSize, ImageSize, PointSize),
+                               token);
             }
+
         }
+        
     }
 }

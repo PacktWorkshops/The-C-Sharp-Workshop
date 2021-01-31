@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 
 namespace Chapter05.Examples
 {
-
     class AsyncEnumerableExamplesProgram
     {
         public static async Task Main()
@@ -34,7 +33,7 @@ namespace Chapter05.Examples
 
             for (var i = 0; i < 5; i++)
             {
-                await Task.Delay(1500);
+                await Task.Delay(1000);
                 quotes.Add($"Provider{i}'s quote is {rand.Next(5, 10)}");
             }
 
@@ -47,13 +46,9 @@ namespace Chapter05.Examples
 
             for (var i = 0; i < 5; i++)
             {
-                await Task.Delay(1500);
+                await Task.Delay(1000);
                 yield return $"Provider{i}'s quote is {rand.Next(5, 10)}";
             }
-
         }
-
     }
-
-
 }
