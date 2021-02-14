@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="HMT_-_2011_Air_Data.csv" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="StopWords.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
