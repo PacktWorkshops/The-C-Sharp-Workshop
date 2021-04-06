@@ -1,2 +1,0 @@
-﻿This example was based using https://docs.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver15&tabs=ssms
-AdventureWorks2019 dabtase tables imported within Azure SQL Server.

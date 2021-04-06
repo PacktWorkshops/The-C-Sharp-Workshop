@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using Npgsql;
 
 namespace Chapter06.Examples.TalkingWithDb.Raw
 {
@@ -7,19 +8,19 @@ namespace Chapter06.Examples.TalkingWithDb.Raw
     {
         public IEnumerable<Product> GetAllProducts()
         {
-            using var connection = new SqlConnection(Program.ConnectionString);
-            connection.Open();
-            SqlCommand command = new SqlCommand("SELECT * FROM Factory.Product", connection);
+            using var connection = new NpgsqlConnection(Program.GlobalFactoryConnectionString);
+            connection.Open(); 
+            NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM factory.product", connection);
             var reader = command.ExecuteReader();
             var products = new List<Product>();
             while (reader.Read())
             {
                 products.Add(new Product()
                 {
-                    Id = (int)reader["Id"],
+                    Id = (int)reader["id"],
                     //ManufacturerId = (int)reader["ManufacturerId"],
-                    Name = (string)reader["Name"],
-                    Price = (decimal)reader["Price"]
+                    Name = (string)reader["name"],
+                    Price = (decimal)reader["price"]
                 });
             }
 

@@ -24,7 +24,7 @@ namespace Chapter06.Exercises.Exercise03
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(Program.ConnectionString);
+                optionsBuilder.UseNpgsql(Program.GlobalFactoryConnectionString);
             }
         }
 
