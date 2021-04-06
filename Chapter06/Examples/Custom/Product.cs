@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Chapter06.Examples
+namespace Chapter06.Examples.Custom
 {
     [Table("product", Schema = "factory")]
     public class Product

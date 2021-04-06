@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Chapter06.Activities.Activity02;
+using Chapter06.Examples.GlobalFactory2020;
 
 
 namespace Chapter06.Examples.PerformanceTraps
@@ -14,9 +14,9 @@ namespace Chapter06.Examples.PerformanceTraps
             /// </summary>
             public static void Slow()
             {
-                var db = new GlobalFactory2020Context();
+                var db = new globalfactory2020Context();
 
-                IEnumerable<Activities.Activity02.Product> products = db.Products;
+                IEnumerable<Product> products = db.Products;
                 var filtered = products
                     .Where(p => p.Name == DataSeeding.TestProduct1Name)
                     .ToList();
@@ -29,12 +29,12 @@ namespace Chapter06.Examples.PerformanceTraps
             /// </summary>
             public static void Fast()
             {
-                var db = new GlobalFactory2020Context();
+                var db = new globalfactory2020Context();
 
                 // IQueryable is a data structure still able to translate a C# expression to a SQL query.
                 // SQL is much faster for lookups than C#.
                 // 10 times faster.
-                IQueryable<Activities.Activity02.Product> products = db.Products;
+                IQueryable<Product> products = db.Products;
                 var filtered = products
                     .Where(p => p.Name == DataSeeding.TestProduct1Name)
                     .ToList();
@@ -50,7 +50,7 @@ namespace Chapter06.Examples.PerformanceTraps
             /// </summary>
             public static void Slow()
             {
-                var db = new GlobalFactory2020Context();
+                var db = new globalfactory2020Context();
 
                 var filtered = db.Products
                     .Where(p => p.Name.Equals(DataSeeding.TestProduct1Name))
@@ -64,7 +64,7 @@ namespace Chapter06.Examples.PerformanceTraps
             /// </summary>
             public static void Fast()
             {
-                var db = new GlobalFactory2020Context();
+                var db = new globalfactory2020Context();
 
                 // Some expressions were meant for direct C#-To-SQL translation.
                 // Others, like .equals, were not.

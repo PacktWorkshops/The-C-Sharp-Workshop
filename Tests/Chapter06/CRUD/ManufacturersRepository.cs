@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Chapter06.Examples;
 using Chapter06.Examples.CRUD;
+using Chapter06.Examples.Custom;
 using Chapter06.Examples.TalkingWithDb.Orm;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
-using Chapter06.Activities.Activity02;
+using Chapter06.Examples.Custom;
+using Chapter06.Examples.GlobalFactory2020;
 
 namespace Chapter06.Examples.PerformanceTraps
 {
@@ -10,7 +11,7 @@ namespace Chapter06.Examples.PerformanceTraps
         /// </summary>
         public static void Slow()
         {
-            var db = new GlobalFactory2020Context();
+            var db = new globalfactory2020Context();
 
             var filtered = db.Products
                 .Where(p => p.Name.Trim() == DataSeeding.TestProduct2NameNotPadded)
@@ -24,7 +25,7 @@ namespace Chapter06.Examples.PerformanceTraps
         /// </summary>
         public static void Fast()
         {
-            var db = new GlobalFactory2020Context();
+            var db = new globalfactory2020Context();
 
             // When using char or nchar- you will have a padded field
             // In order to find it, you will need to to make both sides:

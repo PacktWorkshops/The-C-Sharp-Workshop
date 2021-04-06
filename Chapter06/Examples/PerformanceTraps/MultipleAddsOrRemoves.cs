@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Chapter06.Activities.Activity02;
+using Chapter06.Examples.GlobalFactory2020;
 
 namespace Chapter06.Examples.PerformanceTraps
 {
@@ -10,16 +10,16 @@ namespace Chapter06.Examples.PerformanceTraps
     {
         public static void Slow()
         {
-            var db = new GlobalFactory2020Context();
+            var db = new globalfactory2020Context();
 
             var productName = "DummyP";
             for (int i = 0; i < 1000; i++)
             {
-                var product = new Activities.Activity02.Product
+                var product = new Product
                 {
                     Name = productName,
                     Price = 11,
-                    ManufacturerId = 2
+                    Manufacturerid = 2
                 };
                 db.Products.Add(product);
             }
@@ -35,17 +35,17 @@ namespace Chapter06.Examples.PerformanceTraps
 
         public static void Fast()
         {
-            var db = new GlobalFactory2020Context();
+            var db = new globalfactory2020Context();
 
             var productName = "DummyP";
-            var toAdd = new List<Activities.Activity02.Product>();
+            var toAdd = new List<Product>();
             for (int i = 0; i < 1000; i++)
             {
-                var product = new Activities.Activity02.Product
+                var product = new Product
                 {
                     Name = productName,
                     Price = 11,
-                    ManufacturerId = 2
+                    Manufacturerid = 2
                 };
                 toAdd.Add(product);
             }

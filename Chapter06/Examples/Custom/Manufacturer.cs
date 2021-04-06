@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Chapter06.Examples
+namespace Chapter06.Examples.Custom
 {
     [Table("manufacturer", Schema = "factory")]
     public class Manufacturer

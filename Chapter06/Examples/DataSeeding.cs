@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Chapter06.Activities.Activity02;
-using Microsoft.EntityFrameworkCore;
+using Chapter06.Examples.GlobalFactory2020;
 
 namespace Chapter06.Examples
 {
@@ -19,26 +17,26 @@ namespace Chapter06.Examples
 
         public static void SeedDataIfWasntSeededBefore()
         {
-            var db = new GlobalFactory2020Context();
+            var db = new globalfactory2020Context();
             bool isDataAlreadySeeded = db.Manufacturers.Any(m => m.Name == ManufacturerName);
             if (isDataAlreadySeeded) return;
 
             SeedData(db);
         }
 
-        private static void SeedData(GlobalFactory2020Context db)
+        private static void SeedData(globalfactory2020Context db)
         {
-            var manufacturer = new Activities.Activity02.Manufacturer
+            var manufacturer = new Manufacturer
             {
                 Country = "Test country",
                 Name = ManufacturerName
             };
 
-            var products = new List<Activities.Activity02.Product>();
+            var products = new List<Product>();
             var random = new Random();
             for (var i = 0; i < 10000; i++)
             {
-                var product = new Activities.Activity02.Product
+                var product = new Product
                 {
                     Name = (i % 2 == 0) ? TestProduct1Name : TestProduct2NameNotPadded.PadRight(13),
                     Manufacturer = manufacturer,
