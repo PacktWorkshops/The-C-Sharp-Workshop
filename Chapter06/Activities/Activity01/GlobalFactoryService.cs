@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Chapter06.Examples;
-using Chapter06.Examples.Custom;
 using Chapter06.Examples.TalkingWithDb.Orm;
 using Microsoft.EntityFrameworkCore;
 

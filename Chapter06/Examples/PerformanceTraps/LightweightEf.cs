@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Chapter06.Examples.GlobalFactory2020;
+using Chapter06.Examples.GlobalFactory2021;
 using Microsoft.EntityFrameworkCore;
 
 namespace Chapter06.Examples.PerformanceTraps
@@ -11,7 +11,7 @@ namespace Chapter06.Examples.PerformanceTraps
     {
         public static void Default()
         {
-            var db = new globalfactory2020Context();
+            var db = new globalfactory2021Context();
 
             var product = db.Products
                 .ToList();
@@ -21,7 +21,7 @@ namespace Chapter06.Examples.PerformanceTraps
 
         public static void AsNoTracking()
         {
-            var db = new globalfactory2020Context();
+            var db = new globalfactory2021Context();
 
             var product = db.Products
                 .AsNoTracking()

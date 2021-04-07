@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Chapter06.Exercises.Exercise03.Migrations
 {
-    [DbContext(typeof(GlobalFactory2020Contextv2))]
+    [DbContext(typeof(globalfactory2021Contextv2))]
     [Migration("20210122063004_AddProductPriceHistory")]
     partial class AddProductPriceHistory
     {

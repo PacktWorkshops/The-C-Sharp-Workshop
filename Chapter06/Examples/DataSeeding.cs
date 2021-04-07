@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Chapter06.Examples.GlobalFactory2020;
+using Chapter06.Examples.GlobalFactory2021;
 
 namespace Chapter06.Examples
 {
@@ -17,14 +17,14 @@ namespace Chapter06.Examples
 
         public static void SeedDataIfWasntSeededBefore()
         {
-            var db = new globalfactory2020Context();
+            var db = new globalfactory2021Context();
             bool isDataAlreadySeeded = db.Manufacturers.Any(m => m.Name == ManufacturerName);
             if (isDataAlreadySeeded) return;
 
             SeedData(db);
         }
 
-        private static void SeedData(globalfactory2020Context db)
+        private static void SeedData(globalfactory2021Context db)
         {
             var manufacturer = new Manufacturer
             {

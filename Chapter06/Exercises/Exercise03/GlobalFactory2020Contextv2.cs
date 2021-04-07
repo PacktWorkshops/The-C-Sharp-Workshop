@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Chapter06.Exercises.Exercise03
 {
-    public partial class GlobalFactory2020Contextv2 : DbContext
+    public partial class globalfactory2021Contextv2 : DbContext
     {
-        public GlobalFactory2020Contextv2()
+        public globalfactory2021Contextv2()
         {
         }
 
-        public GlobalFactory2020Contextv2(DbContextOptions<GlobalFactory2020Contextv2> options)
+        public globalfactory2021Contextv2(DbContextOptions<globalfactory2021Contextv2> options)
             : base(options)
         {
         }

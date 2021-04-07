@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace Chapter06.Examples.GlobalFactory2020
+namespace Chapter06.Examples.GlobalFactory2021
 {
-    public partial class globalfactory2020Context : DbContext
+    public partial class globalfactory2021Context : DbContext
     {
-        public globalfactory2020Context()
+        public globalfactory2021Context()
         {
         }
 
-        public globalfactory2020Context(DbContextOptions<globalfactory2020Context> options)
+        public globalfactory2021Context(DbContextOptions<globalfactory2021Context> options)
             : base(options)
         {
         }
@@ -50,6 +50,9 @@ namespace Chapter06.Examples.GlobalFactory2020
                     .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("name");
+
+                //entity.Property(e => e.FoundedAt)
+                //    .HasColumnType("date");
             });
 
             modelBuilder.Entity<Product>(entity =>

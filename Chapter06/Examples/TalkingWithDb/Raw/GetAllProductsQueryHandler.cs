@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using Chapter06.Examples.Custom;
+using Chapter06.Examples.TalkingWithDb.Orm;
 using Npgsql;
 
 namespace Chapter06.Examples.TalkingWithDb.Raw

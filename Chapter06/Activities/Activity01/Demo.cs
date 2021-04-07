@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Chapter06.Examples;
-using Chapter06.Examples.Custom;
 using Chapter06.Examples.TalkingWithDb.Orm;
 
 namespace Chapter06.Activities.Activity01

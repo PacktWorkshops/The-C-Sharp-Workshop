@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using Chapter06.Examples.Custom;
 using Chapter06.Examples.TalkingWithDb.Orm;
 
 namespace Chapter06.Examples.CRUD

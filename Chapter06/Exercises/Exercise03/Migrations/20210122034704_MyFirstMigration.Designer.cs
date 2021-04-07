@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Chapter06.Exercises.Exercise03.Migrations
 {
-    [DbContext(typeof(GlobalFactory2020Contextv2))]
+    [DbContext(typeof(globalfactory2021Contextv2))]
     [Migration("20210122034704_MyFirstMigration")]
     partial class MyFirstMigration
     {

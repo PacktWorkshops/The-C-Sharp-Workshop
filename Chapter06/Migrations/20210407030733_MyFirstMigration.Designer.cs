@@ -2,15 +2,17 @@
 using Chapter06.Examples.GlobalFactory2021;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Chapter06.Migrations
 {
     [DbContext(typeof(globalfactory2021Context))]
-    partial class globalfactory2021ContextModelSnapshot : ModelSnapshot
+    [Migration("20210407030733_MyFirstMigration")]
+    partial class MyFirstMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

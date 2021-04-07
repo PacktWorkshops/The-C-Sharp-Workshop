@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using Chapter06.Examples.Custom;
 
 namespace Chapter06.Examples.PerformanceTraps
 {

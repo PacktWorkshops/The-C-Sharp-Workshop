@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Chapter06.Examples.Custom;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Chapter06.Examples.TalkingWithDb.Orm
 {
