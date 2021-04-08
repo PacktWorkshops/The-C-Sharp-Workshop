@@ -7,8 +7,10 @@
 
   <ItemGroup>
     <Folder Include="Examples\AdventureWorksProduction\" />
+    <Folder Include="Examples\CQRS\" />
     <Folder Include="Exercises\Exercise05\" />
     <Folder Include="Exercises\Exercise04\" />
+    <Folder Include="AdventureWorks\" />
   </ItemGroup>
 
   <ItemGroup>
