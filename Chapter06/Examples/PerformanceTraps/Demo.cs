@@ -14,7 +14,6 @@ namespace Chapter06.Examples.PerformanceTraps
             // Slow-Faster example pairs
             // The title does not illustrate which you should pick
             // It rather illustrates when it becomes a problem.
-
             CompareExecTimes(InMemory.ChoosingAClass.Slow, InMemory.ChoosingAClass.Fast, "IEnumerable over IQueryable");
             CompareExecTimes(InMemory.MethodChoice.Slow, InMemory.MethodChoice.Fast, "equals over ==");
             CompareExecTimes(RecklessCompute.Slow, RecklessCompute.Fast, "Reckless compute");
@@ -36,7 +35,7 @@ namespace Chapter06.Examples.PerformanceTraps
             sw.Stop();
             var fastTime = sw.ElapsedMilliseconds;
 
-            Console.WriteLine("{0,-40} Slow:{1,-7} Fast: {2}", 
+            Console.WriteLine("{0,-40} Scenario1:{1,-7} Scenario2: {2}", 
                 scenarioLabel.ToUpper(),
                 slowTime+"ms,", fastTime+"ms");
         }

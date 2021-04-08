@@ -5,20 +5,20 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Chapter06.Exercises.Exercise03
 {
-    public partial class globalfactory2021Contextv2 : DbContext
+    public partial class globalfactory2021Contextv3 : DbContext
     {
-        public globalfactory2021Contextv2()
+        public globalfactory2021Contextv3()
         {
         }
 
-        public globalfactory2021Contextv2(DbContextOptions<globalfactory2021Contextv2> options)
+        public globalfactory2021Contextv3(DbContextOptions<globalfactory2021Contextv3> options)
             : base(options)
         {
         }
 
         public virtual DbSet<Manufacturer> Manufacturers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductPriceHistory> ProductPriceHistory { get; set; }
+        //public virtual DbSet<ProductPriceHistory> ProductPriceHistory { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,7 +30,7 @@ namespace Chapter06.Exercises.Exercise03
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+            modelBuilder.HasAnnotation("Relational:Collation", "Lithuanian_Lithuania.1252");
 
             modelBuilder.Entity<Manufacturer>(entity =>
             {

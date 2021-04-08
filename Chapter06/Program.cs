@@ -10,7 +10,8 @@ namespace Chapter06
 
         static void Main(string[] args)
         {
-            Demo.Run();
+            //Chapter06.Exercises.Exercise03.Demo.Run();
+            Chapter06.Examples.PerformanceTraps.Demo.Run();
             //var repo = new ProductRepository(new FactoryDbContext());
             //var products = repo.GetByManufacturer(1);
             //foreach (var product in products)

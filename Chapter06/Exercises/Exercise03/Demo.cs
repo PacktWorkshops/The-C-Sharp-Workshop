@@ -10,7 +10,7 @@ namespace Chapter06.Exercises.Exercise03
     {
         public static void Run()
         {
-            var db = new globalfactory2021Contextv2();
+            var db = new globalfactory2021Contextv3();
             var manufacturer = new Manufacturer
             {
                 Country = "Canada",
@@ -48,7 +48,7 @@ namespace Chapter06.Exercises.Exercise03
 
             db.Dispose();
 
-            var db1 = new globalfactory2021Contextv2();
+            var db1 = new globalfactory2021Contextv3();
             var manufacturerAfterAddition = db1.Manufacturers
                 .Include(m => m.Products)
                 .ThenInclude(p => p.PriceHistory)

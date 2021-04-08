@@ -16,7 +16,7 @@ namespace Chapter06.Exercises.Exercise03
             .OrderByDescending(p => p.DateOfPrice)
             .First().Price;
 
-        public virtual Manufacturer Manufacturer { get; set; }
-        public virtual ICollection<ProductPriceHistory> PriceHistory { get; set; }
+        public Manufacturer Manufacturer { get; set; }
+        public ICollection<ProductPriceHistory> PriceHistory { get; set; }
     }
 }

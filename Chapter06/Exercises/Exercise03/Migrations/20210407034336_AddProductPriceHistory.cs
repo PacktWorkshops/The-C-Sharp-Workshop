@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Chapter06.Exercises.Exercise03.Migrations
 {
@@ -12,24 +13,16 @@ namespace Chapter06.Exercises.Exercise03.Migrations
                 schema: "Factory",
                 table: "Product");
 
-            migrationBuilder.AddColumn<DateTime>(
-                name: "FoundedAt",
-                schema: "Factory",
-                table: "Manufacturer",
-                type: "date",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
-
             migrationBuilder.CreateTable(
                 name: "ProductPriceHistory",
                 schema: "Factory",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Price = table.Column<decimal>(type: "money", nullable: false),
                     DateOfPrice = table.Column<DateTime>(type: "date", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    ProductId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,16 +49,11 @@ namespace Chapter06.Exercises.Exercise03.Migrations
                 name: "ProductPriceHistory",
                 schema: "Factory");
 
-            migrationBuilder.DropColumn(
-                name: "FoundedAt",
-                schema: "Factory",
-                table: "Manufacturer");
-
             migrationBuilder.AddColumn<decimal>(
                 name: "Price",
                 schema: "Factory",
                 table: "Product",
-                type: "money",
+                type: "numeric",
                 nullable: false,
                 defaultValue: 0m);
         }

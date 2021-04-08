@@ -50,9 +50,6 @@ namespace Chapter06.Examples.GlobalFactory2021
                     .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("name");
-
-                //entity.Property(e => e.FoundedAt)
-                //    .HasColumnType("date");
             });
 
             modelBuilder.Entity<Product>(entity =>

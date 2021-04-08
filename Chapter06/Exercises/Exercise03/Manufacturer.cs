@@ -17,6 +17,6 @@ namespace Chapter06.Exercises.Exercise03
         public string Country { get; set; }
         public DateTime FoundedAt { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

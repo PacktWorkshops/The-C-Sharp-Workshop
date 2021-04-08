@@ -15,7 +15,6 @@ namespace Chapter06.Examples.GlobalFactory2021
         public int Id { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
-        //public DateTime FoundedAt { get; set; }
 
         public virtual ICollection<Product> Products { get; set; } = new List<Product>();
     }
