@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Chapter06.Examples.Repository;
 
 namespace Chapter06.Examples.TalkingWithDb.Orm
 {
     [Table("manufacturer", Schema = "factory")]
-    public class Manufacturer
+    public class Manufacturer: IAggregate
     {
         [Column("id")]
         public int Id { get; set; }

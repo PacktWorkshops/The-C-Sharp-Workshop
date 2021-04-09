@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Folder Include="Examples\AdventureWorksProduction\" />
-    <Folder Include="Examples\CQRS\" />
     <Folder Include="Exercises\Exercise05\" />
     <Folder Include="Exercises\Exercise04\" />
     <Folder Include="AdventureWorks\" />
@@ -19,6 +18,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2">
       <PrivateAssets>all</PrivateAssets>
