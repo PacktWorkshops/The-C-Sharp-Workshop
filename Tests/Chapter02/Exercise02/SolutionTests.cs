@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Chapter02.Exercises.Exercise02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Solution = Chapter02.Exercises.Exercise01.Solution;
+using Solution = Chapter02.Exercises.Exercise02.Solution;
 
 namespace Tests.Chapter02.Exercise02
 {
