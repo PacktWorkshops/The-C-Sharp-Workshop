@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Chapter02.Exercises.Exercise02;
+using Chapter02.Exercises.Exercise03;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Chapter02.Exercise02

@@ -10,7 +10,7 @@ namespace Chapter06
 
         static void Main(string[] args)
         {
-            Chapter06.Examples.Repository.PeopleRepositoryTest.Test();
+            Chapter06.Examples.CQRS.Demo.Test();
             //Chapter06.Exercises.Exercise03.Demo.Run();
             //Chapter06.Examples.PerformanceTraps.Demo.Run();
             //var repo = new ProductRepository(new FactoryDbContext());

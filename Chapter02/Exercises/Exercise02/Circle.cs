@@ -2,7 +2,7 @@
 
 namespace Chapter02.Exercises.Exercise02
 {
-    public class Circle : IShape
+    public class Circle
     {
         private readonly double _radius;
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using Chapter02.Activities.Activity01;
 
 namespace Chapter02.Exercises.Exercise03
 {
@@ -7,19 +6,30 @@ namespace Chapter02.Exercises.Exercise03
     {
         public static void Main()
         {
-            ITemperatureConverter[] converters = {new FahrenheitConverter(), new KelvinConverter(), new CelsiusConverter()};
-            var composableConverter = new ComposableTemperatureConverter(converters);
+            var isEnough1 = IsEnough(0, new IShape[0]);
+            var isEnough2 = IsEnough(1, new[] { new Rectangle(1, 1) });
+            var isEnough3 = IsEnough(100, new IShape[] { new Circle(5) });
+            var isEnough4 = IsEnough(5, new IShape[]
+            {
+                new Rectangle(1, 1), new Circle(1), new Rectangle(1.4,1)
+            });
 
-            var celsius = new Temperature(20.00001, TemperatureUnit.C);
+            Console.WriteLine($"IsEnough1 = {isEnough1}, " +
+                              $"IsEnough2 = {isEnough2}, " +
+                              $"IsEnough3 = {isEnough3}, " +
+                              $"IsEnough4 = {isEnough4}.");
+        }
 
-            var celsius1 = composableConverter.Convert(celsius, TemperatureUnit.C);
-            var fahrenheit = composableConverter.Convert(celsius1, TemperatureUnit.F);
-            var kelvin = composableConverter.Convert(fahrenheit, TemperatureUnit.K);
-            var celsiusBack = composableConverter.Convert(kelvin, TemperatureUnit.C);
+        public static bool IsEnough(double mosaicSpace, IShape[] tiles)
+        {
+            double totalSpace = 0;
+            foreach (var tile in tiles)
+            {
+                totalSpace += tile.Space;
+            }
 
-            Console.WriteLine($"{celsius} = {fahrenheit}");
-            Console.WriteLine($"{fahrenheit} = {kelvin}");
-            Console.WriteLine($"{kelvin} = {celsiusBack}");
+            const double tolerance = 0.0001;
+            return totalSpace - mosaicSpace >= -tolerance;
         }
     }
 }

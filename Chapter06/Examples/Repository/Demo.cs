@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Chapter06.Examples.Repository
 {
-    public static class PeopleRepositoryTest
+    public static class Demo
     {
         public static void Test()
         {

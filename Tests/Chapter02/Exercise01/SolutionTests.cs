@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Chapter02.Exercises.Exercise01;
+using Chapter02.Exercises.Exercise02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Solution = Chapter02.Exercises.Exercise01.Solution;
 
 namespace Tests.Chapter02.Exercise01
 {

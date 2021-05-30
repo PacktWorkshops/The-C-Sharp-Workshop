@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Chapter02.Exercises.Exercise01
+namespace Chapter02.Exercises.Exercise03
 {
-    public class Circle
+    public class Circle : IShape
     {
         private readonly double _radius;
 

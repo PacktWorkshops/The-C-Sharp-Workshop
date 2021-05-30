@@ -1,6 +1,6 @@
-﻿namespace Chapter02.Exercises.Exercise01
+﻿namespace Chapter02.Exercises.Exercise03
 {
-    public class Rectangle
+    public class Rectangle : IShape
     {
         private readonly double _width;
         private readonly double _height;

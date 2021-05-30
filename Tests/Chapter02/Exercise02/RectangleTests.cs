@@ -1,4 +1,5 @@
 ﻿using Chapter02.Exercises.Exercise01;
+using Chapter02.Exercises.Exercise02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Chapter02.Exercise02

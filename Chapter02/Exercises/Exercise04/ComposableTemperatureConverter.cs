@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Chapter02.Exercises.Exercise03
+﻿namespace Chapter02.Exercises.Exercise04
 {
     public class ComposableTemperatureConverter
     {
