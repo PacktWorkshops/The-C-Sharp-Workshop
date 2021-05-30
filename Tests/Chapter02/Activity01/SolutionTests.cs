@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Chapter02.Activities.Activity01;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.Chapter02.Exercise03
+namespace Tests.Chapter02.Activity01
 {
     [TestClass]
     public class SolutionTests

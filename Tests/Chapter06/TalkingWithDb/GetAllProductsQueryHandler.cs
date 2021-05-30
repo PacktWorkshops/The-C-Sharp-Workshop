@@ -2,7 +2,7 @@
 using Chapter06.Examples.TalkingWithDb.Raw;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.Chapter06
+namespace Tests.Chapter06.TalkingWithDb
 {
     [TestClass]
     public class GetAllProductsQueryHandlerTests

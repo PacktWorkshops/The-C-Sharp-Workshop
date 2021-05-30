@@ -1,13 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using Chapter05;
 using Chapter05.Exercises.Exercise03;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Chapter05UnitTest
+namespace Tests.Chapter05
 {
 
     class TestSalesLoader : ISalesLoader

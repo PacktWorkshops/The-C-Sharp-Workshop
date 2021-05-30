@@ -1,9 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Chapter05.Exercises.Exercise05;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Chapter05UnitTest
+namespace Tests.Chapter05
 {
 
     [TestClass]

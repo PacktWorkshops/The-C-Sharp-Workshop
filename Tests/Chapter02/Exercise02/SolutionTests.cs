@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Chapter02.Exercises.Exercise03;
+using Chapter02.Exercises.Exercise02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Solution = Chapter02.Exercises.Exercise01.Solution;
 
 namespace Tests.Chapter02.Exercise02
 {
@@ -10,11 +11,12 @@ namespace Tests.Chapter02.Exercise02
     {
         [DataTestMethod]
         [DynamicData(nameof(ExpectedBiggerSections))]
-        public void Solve_Returns_NameOfBiggerSection(double mosaicSpace, IShape[] tiles, bool expectedIsCovered)
+        public void Solve_Returns_NameOfBiggerSection(Rectangle[] rectangularSection, Circle[] circularSection,
+            string expectedBigger)
         {
-            var isCovered = Solution.IsEnough(mosaicSpace, tiles);
+            string bigger = Solution.Solve(rectangularSection, circularSection);
 
-            Assert.AreEqual(expectedIsCovered, isCovered);
+            Assert.AreEqual(expectedBigger, bigger);
         }
 
         public static IEnumerable<object[]> ExpectedBiggerSections
@@ -23,61 +25,113 @@ namespace Tests.Chapter02.Exercise02
             {
                 yield return new object[]
                 {
-                    0,
-                    new IShape[0],
-                    true
+                    new Rectangle[] { },
+                    new Circle[] { },
+                    Solution.Equal
                 };
 
                 yield return new object[]
                 {
-                    0,
-                    new []{new Circle(1)},
-                    true
+                    new[] {new Rectangle(1, 1)},
+                    new Circle[] { },
+                    Solution.Rectangular
                 };
 
                 yield return new object[]
                 {
-                    1,
-                    new []{new Circle(1)},
-                    true
+                    new Rectangle[] { },
+                    new[] {new Circle(1),},
+                    Solution.Circular
                 };
 
                 yield return new object[]
                 {
-                    6,
-                    new []{new Circle(1)},
-                    false
+                    new[] {new Rectangle(5, 10)},
+                    new[] {new Circle(1)},
+                    Solution.Rectangular
                 };
 
                 yield return new object[]
                 {
-                    2,
-                    new []{new Rectangle(1,2)},
-                    true
+                    new[] {new Rectangle(1, 1),},
+                    new[] {new Circle(5)},
+                    Solution.Circular
                 };
 
                 yield return new object[]
                 {
-                    20,
-                    new IShape[]
+                    new[]
                     {
-                        new Rectangle(1,2),
-                        new Circle(2)
+                        new Rectangle(1, 1),
+                        new Rectangle(1, 1),
+                        new Rectangle(1, 2)
                     },
-                    false
+                    new[]
+                    {
+                        new Circle(10),
+                    },
+                    Solution.Circular
                 };
 
                 yield return new object[]
                 {
-                    8,
-                    new IShape[]
+                    new[]
                     {
-                        new Rectangle(1,2),
-                        new Circle(2)
+                        new Rectangle(1, 1),
+                        new Rectangle(1, 1)
                     },
-                    true
+                    new[]
+                    {
+                        new Circle(0.1),
+                    },
+                    Solution.Rectangular
+                };
+
+                yield return new object[]
+                {
+                    new[]
+                    {
+                        new Rectangle(1, 1),
+                        new Rectangle(1, 1)
+                    },
+                    new[]
+                    {
+                        new Circle(1.5),
+                        new Circle(1.1),
+                        new Circle(1),
+                    },
+                    Solution.Circular
+                };
+
+                yield return new object[]
+                {
+                    new[]
+                    {
+                        new Rectangle(1, Math.PI),
+                    },
+                    new[]
+                    {
+                        new Circle(1)
+                    },
+                    Solution.Equal
+                };
+
+                yield return new object[]
+                {
+                    new[]
+                    {
+                        new Rectangle(0.25, Math.PI),
+                        new Rectangle(0.75, Math.PI),
+                    },
+                    new[]
+                    {
+                        new Circle(1)
+                    },
+                    Solution.Equal
                 };
             }
+
+
         }
     }
 }

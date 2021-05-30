@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using Chapter02.Exercises.Exercise04;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Tests.Chapter02.Exercise03
+namespace Tests.Chapter02.Exercise04
 {
     [TestClass]
     public class ComposableTemperatureConverterTests

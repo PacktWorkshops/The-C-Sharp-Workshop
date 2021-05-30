@@ -1,5 +1,4 @@
 ﻿using System;
-using Chapter02.Exercises.Exercise01;
 using Chapter02.Exercises.Exercise02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

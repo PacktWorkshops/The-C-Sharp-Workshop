@@ -1,7 +1,7 @@
 ﻿using Chapter02.Exercises.Exercise04;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.Chapter02.Exercise03
+namespace Tests.Chapter02.Exercise04
 {
     [TestClass]
     public class FahrenheitConverterTests
