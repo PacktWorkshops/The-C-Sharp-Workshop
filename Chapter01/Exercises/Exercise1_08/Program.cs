@@ -19,29 +19,29 @@ var option = Console.ReadKey();
 
 switch (option.KeyChar.ToString())
 {
-    case "1":
-        {
-            Console.WriteLine("\nAlright, some burgers on the go! Please pay on the following cashier!");
-            break;
-        }
-    case "2":
-        {
-            Console.WriteLine("\nI got you, I also like some cheese. Cheeseburgers on the go! Please pay on the following cashier!");
-            break;
-        }
-    case "3":
-        {
-            Console.WriteLine("\nWow, seems you're hungry! Some double cheeseburgers on the go! Please pay on the following cashier!");
-            break;
-        }
-    case "4":
-        {
-            Console.WriteLine("\nA freezing Coke for you! Please pay on the following cashier!");
-            break;
-        }
-    default:
-        {
-            Console.WriteLine("\nSorry, you chosen an inexistent option.");
-            break;
-        }
+	case "1":
+		{
+			Console.WriteLine("\nAlright, some burgers on the go. Please pay the cashier.");
+			break;
+		}
+	case "2":
+		{
+			Console.WriteLine("\nThank you for ordering cheeseburgers. Please pay the cashier.");
+			break;
+		}
+	case "3":
+		{
+			Console.WriteLine("\nThank you for ordering double cheeseburgers, hope you enjoy them. Please pay the cashier!");
+			break;
+		}
+	case "4":
+		{
+			Console.WriteLine("\nThank you for ordering Coke. Please pay the cashier.");
+			break;
+		}
+	default:
+		{
+			Console.WriteLine("\nSorry, you chose an invalid option.");
+			break;
+		}
 }
