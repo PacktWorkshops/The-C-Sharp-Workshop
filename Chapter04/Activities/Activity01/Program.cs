@@ -62,9 +62,9 @@ namespace Chapter04.Activities.Activity01
                         var flights = flightQuery.RunQuery();
                         if (flights.Any())
                         {
-                            var average = flights.Average(fl => fl.PaidFair);
-                            var min = flights.Min(fl => fl.PaidFair);
-                            var max = flights.Max(fl => fl.PaidFair);
+                            var average = flights.Average(fl => fl.PaidFare);
+                            var min = flights.Min(fl => fl.PaidFare);
+                            var max = flights.Max(fl => fl.PaidFare);
                             Console.WriteLine($"Results: Count={flights.Count}, Avg={average:N2}, Min={min:N2}, Max={max:N2}");
                         }
                         else
