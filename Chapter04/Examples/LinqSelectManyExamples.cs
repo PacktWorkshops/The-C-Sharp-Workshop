@@ -24,8 +24,7 @@ namespace Chapter04.Examples
             }
 
             Console.Write("All Station Codes: ");
-            var stations = cities
-                .SelectMany(city => city.Stations.Select(s => s[^3..^0]));
+            var stations  = cities.SelectMany(city => city.Stations.Select(s => s[^3..]));
             foreach (var station in stations)
             {
                 Console.Write($"{station} ");

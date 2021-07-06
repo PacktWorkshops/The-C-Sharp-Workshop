@@ -18,7 +18,7 @@ namespace Chapter04.Activities.Activity01
         private static class ImportFieldIndex
         {
             public const int Agency = 0;
-            public const int PaidFair = 1;
+            public const int PaidFare = 1;
             public const int TripType = 2;
             public const int RoutingType = 3;
             public const int TicketClass = 4; 
@@ -44,11 +44,11 @@ namespace Chapter04.Activities.Activity01
                     string.IsNullOrEmpty(fields[ImportFieldIndex.Agency]))
                     continue;
 
-                double.TryParse(fields[ImportFieldIndex.PaidFair], out double paidFair);
+                double.TryParse(fields[ImportFieldIndex.PaidFare], out double paidFare);
 
                 var flight = new Flight(
                     fields[ImportFieldIndex.Agency],
-                    paidFair,
+                    paidFare,
                     fields[ImportFieldIndex.TripType],
                     fields[ImportFieldIndex.RoutingType],
                     fields[ImportFieldIndex.TicketClass],

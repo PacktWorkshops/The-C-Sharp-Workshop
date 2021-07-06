@@ -18,19 +18,9 @@ namespace Chapter10.Tests
         }
 
         [Test]
-        public void AssertThat_StringExamples()
+        public void AssertThat_StringExample()
         {
             Assert.That("C# Workshop", Is.EqualTo("C# WORKSHOP").IgnoreCase);
-            Assert.That(".Net Core", Does.StartWith(".Net"));
-            Assert.That(".Net Core", Does.EndWith("Core"));
-            Assert.That("this is vs code", Does.Contain("VS").IgnoreCase);
-
-            Assert.That("red blue green", Does.StartWith("red").Or.EndWith("green"));
-
-            var names = new[] { "paul", "craig", "richard", "geoff", "dan" };
-            Assert.That(names, Contains.Item("paul"));
-            Assert.That(names, Does.Contain("geoff"));
-            Assert.That(names, Has.No.Member("jason"));
         }
 
         [Test]
@@ -70,20 +60,9 @@ namespace Chapter10.Tests
             var days = new[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday };
             Assert.That(days, Is.Not.AnyOf(DayOfWeek.Saturday, DayOfWeek.Sunday));
 
-            }
-
-        [Test]
-        public void AssertThat_DoesCommonlyUsed()
-        {
-            var valuesByCountry = new Dictionary<string, int>
-            {
-                {"UK", 1000},
-                {"Spain", 2000},
-                {"France", 3000}
-            };
-            Assert.That(valuesByCountry, Does.ContainKey("UK"));
-            Assert.That(valuesByCountry, Does.ContainValue(3000));
         }
+
+       
 
         [Test]
         public void AssertThat_ContainsCommonlyUsed()
@@ -102,14 +81,41 @@ namespace Chapter10.Tests
         }
 
         [Test]
-        public void AssertThat_HasCommonlyUsed()
+        public void AssertThat_HasSomeGreaterThan()
         {
             var angles = new [] {45,90, 135, 180};
-            Assert.That(angles, Has.No.Member(360));
             Assert.That(angles, Has.Some.GreaterThan(90));
-
-            var date = DateTime.Now;
-            Assert.That(date, Has.Property(nameof(DateTime.Year)));
         }
+
+        [Test]
+        public void AssertThat_DoesDictionary()
+        {
+            var valuesByCountry = new Dictionary<string, int>
+            {
+                {"UK", 1000},
+                {"Spain", 2000},
+                {"France", 3000}
+            };
+            Assert.That(valuesByCountry, Does.ContainKey("UK"));
+            Assert.That(valuesByCountry, Does.ContainValue(3000));
+        }
+[Test]
+public void AssertThat_DoesStringExamples()
+{
+    Assert.That(".Net Core", Does.StartWith(".Net"));
+    Assert.That(".Net Core", Does.EndWith("Core"));
+    Assert.That("this is vs code", Does.Contain("VS").IgnoreCase);
+
+    Assert.That("red blue green", Does.StartWith("red").Or.EndWith("green"));
+}
+
+[Test]
+public void AssertThat_StringListExamples()
+{
+    var names = new[] { "paul", "craig", "richard", "geoff", "dan" };
+    Assert.That(names, Contains.Item("paul"));
+    Assert.That(names, Does.Contain("geoff"));
+    Assert.That(names, Has.No.Member("jason"));
+}
     }
 }

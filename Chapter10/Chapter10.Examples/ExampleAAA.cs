@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Chapter10.Examples
 {
@@ -16,13 +13,13 @@ namespace Chapter10.Examples
     public class OrderTests
     {
         [Test]
-        public void ApplyDiscount_FityPercent_UpdatesTotal()
+        public void ApplyDiscount_FiftyPercent_UpdatesTotal()
         {
             // Arrange
             var order = new Order {Total = 20};
             
             // Act
-            order.ApplyDiscount(0.5D);
+            order.ApplyDiscount(0.5);
 
             // Assert
             Assert.That(order.Total, Is.EqualTo(10));
