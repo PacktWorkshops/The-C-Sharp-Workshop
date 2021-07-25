@@ -1,63 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
+using Chapter06.Examples;
+using Chapter06.Examples.TalkingWithDb.Orm;
 
-namespace Chapter06.Exercises.Exercise04
+namespace Chapter06.Activities.Exercise04
 {
     public static class Demo
     {
         public static void Run()
         {
-            var db = new globalfactory2021Contextv3();
-            var manufacturer = new Manufacturer
+            var service = new GlobalFactoryService(new FactoryDbContext());
+            service.CreateManufacturersInUsa(new []{"Best Buy", "Iron Retail"});
+            service.CreateUsaProducts(new []
             {
-                Country = "Canada",
-                FoundedAt = DateTime.Now,
-                Name = "Fake Toys"
-            };
-
-            var product = new Product
-            {
-                Name = "Rubber Sweater",
-                Manufacturer = manufacturer
-            };
-
-            var priceHistory = new List<ProductPriceHistory>
-            {
-                new ProductPriceHistory
+                new Product
                 {
-                    DateOfPrice = DateTime.Now.AddDays(-10),
-                    Price = 15.11m,
-                    Product = product
+                    Name = "Toy computer",
+                    Price = 20.99m
                 },
-                new ProductPriceHistory
+                new Product
                 {
-                    DateOfPrice = DateTime.Now,
-                    Price = 15.5m,
-                    Product = product
+                    Name = "Loli microphone",
+                    Price = 7.51m
                 }
-            };
+            });
+            service.SetAnyUsaProductOnDiscount(5);
+            service.RemoveAnyFirstProductInUsa();
+            var manufacturers = service.GetManufacturersInUsa();
 
-            product.PriceHistory = priceHistory;
-            manufacturer.Products = new List<Product> { product };
+            foreach (var manufacturer in manufacturers)
+            {
+                Console.WriteLine($"{manufacturer.Name}:");
+                foreach (var product in manufacturer.Products)
+                {
+                    Console.WriteLine($"{product.Name} {product.Price}");
+                }
+            }
 
-            db.Manufacturers.Add(manufacturer);
-            db.SaveChanges();
-
-            db.Dispose();
-
-            var db1 = new globalfactory2021Contextv3();
-            var manufacturerAfterAddition = db1.Manufacturers
-                .Include(m => m.Products)
-                .ThenInclude(p => p.PriceHistory)
-                .First(m => m.Name == "Fake Toys");
-
-            var productAfterAddition = manufacturerAfterAddition.Products.First();
-
-            Console.WriteLine($"{manufacturerAfterAddition.Name} {productAfterAddition.Name} {productAfterAddition.GetPrice()}");
-            db1.Dispose();
-        } 
+        }
     }
 }

@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Chapter06.Exercises.Exercise04.Migrations
+namespace Chapter06.Exercises.Exercise05.Migrations
 {
     [DbContext(typeof(globalfactory2021Contextv3))]
-    [Migration("20210407034336_AddProductPriceHistory")]
-    partial class AddProductPriceHistory
+    [Migration("20210407034203_MyFirstMigration")]
+    partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,34 +62,14 @@ namespace Chapter06.Exercises.Exercise04.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ManufacturerId");
 
                     b.ToTable("Product", "Factory");
-                });
-
-            modelBuilder.Entity("Chapter06.Exercises.Exercise03.ProductPriceHistory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
-
-                    b.Property<DateTime>("DateOfPrice")
-                        .HasColumnType("date");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("money");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductPriceHistory", "Factory");
                 });
 
             modelBuilder.Entity("Chapter06.Exercises.Exercise03.Product", b =>
@@ -104,26 +84,9 @@ namespace Chapter06.Exercises.Exercise04.Migrations
                     b.Navigation("Manufacturer");
                 });
 
-            modelBuilder.Entity("Chapter06.Exercises.Exercise03.ProductPriceHistory", b =>
-                {
-                    b.HasOne("Chapter06.Exercises.Exercise03.Product", "Product")
-                        .WithMany("PriceHistory")
-                        .HasForeignKey("ProductId")
-                        .HasConstraintName("FK_ProductPriceHistory_Product")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Chapter06.Exercises.Exercise03.Manufacturer", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Chapter06.Exercises.Exercise03.Product", b =>
-                {
-                    b.Navigation("PriceHistory");
                 });
 #pragma warning restore 612, 618
         }

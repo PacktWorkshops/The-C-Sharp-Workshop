@@ -3,7 +3,7 @@ using System.Linq;
 
 #nullable disable
 
-namespace Chapter06.Exercises.Exercise04
+namespace Chapter06.Exercises.Exercise05
 {
     public partial class Product
     {

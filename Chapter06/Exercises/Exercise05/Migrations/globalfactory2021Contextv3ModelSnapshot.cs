@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Chapter06.Exercises.Exercise04.Migrations
+namespace Chapter06.Exercises.Exercise05.Migrations
 {
     [DbContext(typeof(globalfactory2021Contextv3))]
     partial class globalfactory2021Contextv3ModelSnapshot : ModelSnapshot
