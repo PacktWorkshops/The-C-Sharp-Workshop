@@ -15,7 +15,7 @@ namespace Chapter06.Examples
         public const string TestProduct2NameNotPadded = "Product2";
         public const decimal MaxPrice = 1000;
 
-        public static void SeedDataIfWasntSeededBefore()
+        public static void SeedDataNotSeededBefore()
         {
             var db = new globalfactory2021Context();
             bool isDataAlreadySeeded = db.Manufacturers.Any(m => m.Name == ManufacturerName);

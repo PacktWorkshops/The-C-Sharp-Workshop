@@ -10,7 +10,7 @@ namespace Chapter06.Examples.PerformanceTraps
             // For benchmarks to be more accurate, make sure you run the seeding before anything
             // And then restart the application
             // Lazy loading is a prime example of being impacted by this inverting the intended results.
-            DataSeeding.SeedDataIfWasntSeededBefore();
+            DataSeeding.SeedDataNotSeededBefore();
             // Slow-Faster example pairs
             // The title does not illustrate which you should pick
             // It rather illustrates when it becomes a problem.
