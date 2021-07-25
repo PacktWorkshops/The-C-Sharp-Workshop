@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Chapter06.Exercises.Exercise03;
+using Chapter06.Exercises.Exercise05;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Chapter06.Exercises.Exercise03
