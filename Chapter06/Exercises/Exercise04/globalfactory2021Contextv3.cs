@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 #nullable disable
 
-namespace Chapter06.Exercises.Exercise03
+namespace Chapter06.Exercises.Exercise04
 {
     public partial class globalfactory2021Contextv3 : DbContext
     {

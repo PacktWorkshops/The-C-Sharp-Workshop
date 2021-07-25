@@ -3,17 +3,15 @@ using System;
 using Chapter06.Exercises.Exercise03;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Chapter06.Exercises.Exercise03.Migrations
+namespace Chapter06.Exercises.Exercise04.Migrations
 {
     [DbContext(typeof(globalfactory2021Contextv3))]
-    [Migration("20210407034336_AddProductPriceHistory")]
-    partial class AddProductPriceHistory
+    partial class globalfactory2021Contextv3ModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

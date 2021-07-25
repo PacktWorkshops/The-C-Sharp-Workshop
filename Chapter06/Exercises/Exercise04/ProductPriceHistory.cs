@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Chapter06.Exercises.Exercise03
+namespace Chapter06.Exercises.Exercise04
 {
     public class ProductPriceHistory
     {
