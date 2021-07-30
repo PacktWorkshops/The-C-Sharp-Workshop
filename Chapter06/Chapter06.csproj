@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Activities\" />
     <Folder Include="Examples\AdventureWorksProduction\" />
     <Folder Include="AdventureWorks\" />
   </ItemGroup>

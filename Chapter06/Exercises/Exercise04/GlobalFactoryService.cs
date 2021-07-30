@@ -6,7 +6,7 @@ using Chapter06.Examples;
 using Chapter06.Examples.TalkingWithDb.Orm;
 using Microsoft.EntityFrameworkCore;
 
-namespace Chapter06.Activities.Exercise04
+namespace Chapter06.Exercises.Exercise04
 {
     public class GlobalFactoryService : IDisposable
     {

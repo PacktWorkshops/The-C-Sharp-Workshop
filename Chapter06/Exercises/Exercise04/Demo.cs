@@ -4,7 +4,7 @@ using System.Text;
 using Chapter06.Examples;
 using Chapter06.Examples.TalkingWithDb.Orm;
 
-namespace Chapter06.Activities.Exercise04
+namespace Chapter06.Exercises.Exercise04
 {
     public static class Demo
     {
