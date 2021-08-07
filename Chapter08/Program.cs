@@ -19,15 +19,6 @@ namespace Chapter08
             client.UseSystemTextJson();
             var request = new RestRequest("starships/");
             var response = await client.GetAsync<ApiResult<List<Starship>>>(request);*/
-
-            var client = new StarWarsApiClient(HostOptions.Online);
-            var person = await client.GetPersonAsync(10);
-            Console.WriteLine(person.Name);
-            foreach (var f in person.Films)
-            {
-                var film = await client.GetAsync<Film>(f);
-                Console.WriteLine($"- {film.Title}");
-            }
         }
     }
 }
