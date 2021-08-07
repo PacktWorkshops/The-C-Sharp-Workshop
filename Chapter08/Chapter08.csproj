@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.AI.TextAnalytics" Version="5.1.0" />
+    <PackageReference Include="Google.Cloud.Translation.V2" Version="2.1.0" />
     <PackageReference Include="Octokit" Version="0.50.0" />
     <PackageReference Include="Refit" Version="5.2.1" />
     <PackageReference Include="RestSharp" Version="106.11.7" />
@@ -15,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Examples\GitOctokit\" />
+    <Folder Include="Examples\Azure\" />
   </ItemGroup>
 
 </Project>
