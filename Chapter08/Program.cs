@@ -5,7 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Exercise01 = Chapter08.Exercises.Exercise01;
-using Github = Chapter08.Examples.GitOctokit;
+using GithubHttp = Chapter08.Examples.GitHttp;
+using GithubOcto = Chapter08.Examples.GitOctokit;
 
 namespace Chapter08
 {
@@ -16,8 +17,10 @@ namespace Chapter08
 
         static async Task Main(string[] args)
         {
-            // await Github.Demo.Run();
-            Exercise01.Demo.Run();
+            // await GithubOcto.Demo.Run();
+            await GithubHttp.Demo.Run();
+            // Exercise01.Demo.Run();
+
         }
     }
 }
