@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Chapter04.Examples
 {
-    enum PlayingCardSuite
+    enum PlayingCardSuit
     {
         Hearts,
         Clubs,
@@ -12,11 +12,11 @@ namespace Chapter04.Examples
         Diamonds
     }
 
-    record PlayingCard (int Number, PlayingCardSuite Suite)
+    record PlayingCard (int Number, PlayingCardSuit Suit)
     {
         public override string ToString()
         {
-            return $"{Number} of {Suite}";
+            return $"{Number} of {Suit}";
         }
     }
 
@@ -29,10 +29,10 @@ namespace Chapter04.Examples
         {
             for (var i = 1; i <= 10; i++)
             {
-                _cards.Add(new PlayingCard(i, PlayingCardSuite.Hearts));
-                _cards.Add(new PlayingCard(i, PlayingCardSuite.Clubs));
-                _cards.Add(new PlayingCard(i, PlayingCardSuite.Spades));
-                _cards.Add(new PlayingCard(i, PlayingCardSuite.Diamonds));
+                _cards.Add(new PlayingCard(i, PlayingCardSuit.Hearts));
+                _cards.Add(new PlayingCard(i, PlayingCardSuit.Clubs));
+                _cards.Add(new PlayingCard(i, PlayingCardSuit.Spades));
+                _cards.Add(new PlayingCard(i, PlayingCardSuit.Diamonds));
             }
         }
 
@@ -64,9 +64,9 @@ namespace Chapter04.Examples
                     .Select(c => c.ToString()));
             Console.WriteLine($"Hand: {summary}");
 
-            Console.WriteLine($"Any Clubs: {hand.Any(card => card.Suite == PlayingCardSuite.Clubs)}");
-            Console.WriteLine($"Any Red: {hand.Any(card => card.Suite == PlayingCardSuite.Hearts || card.Suite == PlayingCardSuite.Diamonds)}");
-            Console.WriteLine($"All Diamonds: {hand.All(card => card.Suite == PlayingCardSuite.Diamonds)}");
+            Console.WriteLine($"Any Clubs: {hand.Any(card => card.Suit == PlayingCardSuit.Clubs)}");
+            Console.WriteLine($"Any Red: {hand.Any(card => card.Suit == PlayingCardSuit.Hearts || card.Suit == PlayingCardSuit.Diamonds)}");
+            Console.WriteLine($"All Diamonds: {hand.All(card => card.Suit == PlayingCardSuit.Diamonds)}");
             Console.WriteLine($"All Even: {hand.All(card => card.Number % 2 == 0)}");
             Console.WriteLine($"Score :{hand.Sum(card => card.Number)}");
         }
