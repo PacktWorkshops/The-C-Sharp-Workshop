@@ -13,7 +13,7 @@
             }
         } 
 
-        public Rectangle(in double width, in double height)
+        public Rectangle(double width, double height)
         {
             _width = width;
             _height = height;
