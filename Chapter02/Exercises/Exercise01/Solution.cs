@@ -23,7 +23,6 @@ namespace Chapter02.Exercises.Exercise01
 
         private static void Print(Book book)
         {
-            int test = 1;
             Console.WriteLine($"Author: {book.Author}, " +
                               $"Title: {book.Title}, " +
                               $"Publisher: {book.Publisher}, " +
