@@ -17,6 +17,7 @@ namespace Chapter02.Examples.CsharpKeywords.NullOperators
                 _componentA = componentA;
             }
 
+            // the same as above
             _componentA = componentA ?? throw new ArgumentNullException(nameof(componentA));
         }
     }
