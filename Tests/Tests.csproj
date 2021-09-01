@@ -34,6 +34,7 @@
   <ItemGroup>
     <Folder Include="Chapter04\" />
     <Folder Include="Chapter06\Activities\Activity01\" />
+    <Folder Include="Chapter08\" />
   </ItemGroup>
 
 </Project>

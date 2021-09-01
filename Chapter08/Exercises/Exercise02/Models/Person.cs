@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
+using Newtonsoft.Json;
 
-namespace Chapter08.Models
+namespace Chapter08.Exercises.Exercise02.Models
 {
     /// <summary>
     /// using Newtonsoft JsonProperty attributes here in case we use this is Refit

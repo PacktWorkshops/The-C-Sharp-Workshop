@@ -1,5 +1,4 @@
-﻿using Chapter08.Models;
-using RestSharp;
+﻿using RestSharp;
 using RestSharp.Serializers.SystemTextJson;
 using System;
 using System.Collections.Generic;
@@ -21,8 +20,9 @@ namespace Chapter08
         static async Task Main(string[] args)
         {
             // await GithubOcto.Demo.Run();
-            await GithubHttp.Demo.Run();
+            //await GithubHttp.Demo.Run();
             // Exercise01.Demo.Run();
+            Exercises.Exercise02.Demo.Run();
 
         }
     }
