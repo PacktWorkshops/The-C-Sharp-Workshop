@@ -22,8 +22,10 @@ namespace Chapter08
             // await GithubOcto.Demo.Run();
             //await GithubHttp.Demo.Run();
             // Exercise01.Demo.Run();
-            Exercises.Exercise02.Demo.Run();
-
+            //Exercises.Exercise02.Demo.Run();
+            //Examples.BaseHttp.Demo.Run();
+            //Examples.RESTSharp.Demo.Run();
+            Examples.REfit.Demo.Run();
         }
     }
 }

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Chapter08.Exercises.Exercise02
+namespace Chapter08.Examples.BaseHttp
 {
     public static class Demo
     {

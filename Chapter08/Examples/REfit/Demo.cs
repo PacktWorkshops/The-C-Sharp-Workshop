@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using Refit;
 
-namespace Chapter08.Exercises.Exercise02
+namespace Chapter08.Examples.REfit
 {
     public static class Demo
     {
         public static void Run()
         {
-            var client = new StarWarsClient();
+            var client = RestService.For<IStarWarsClient>("https://swapi.dev/api/");
             var filmsResponse = client.GetFilms().Result;
             var films = filmsResponse.Data;
             foreach (var film in films)
