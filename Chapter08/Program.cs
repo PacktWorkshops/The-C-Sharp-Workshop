@@ -25,7 +25,8 @@ namespace Chapter08
             //Exercises.Exercise02.Demo.Run();
             //Examples.BaseHttp.Demo.Run();
             //Examples.RESTSharp.Demo.Run();
-            Examples.REfit.Demo.Run();
+            //Examples.REfit.Demo.Run();
+            Exercises.Exercise03.Demo.Run();
         }
     }
 }
