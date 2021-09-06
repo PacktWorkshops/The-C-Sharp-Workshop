@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chapter08.Examples.BaseHttp
+namespace Chapter08.Activities.Activity01
 {
     public static class Demo
     {

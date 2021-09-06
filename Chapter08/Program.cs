@@ -21,12 +21,13 @@ namespace Chapter08
         {
             // await GithubOcto.Demo.Run();
             //await GithubHttp.Demo.Run();
-            // Exercise01.Demo.Run();
+            //Exercise01.Demo.Run();
             //Exercises.Exercise02.Demo.Run();
-            //Examples.BaseHttp.Demo.Run();
+            //Activity.Activity01.Demo.Run();
             //Examples.RESTSharp.Demo.Run();
             //Examples.REfit.Demo.Run();
-            Exercises.Exercise03.Demo.Run();
+            //Exercises.Exercise03.Demo.Run();
+            Examples.AzureAD.Demo.Run();
         }
     }
 }

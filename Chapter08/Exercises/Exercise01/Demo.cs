@@ -11,10 +11,18 @@ namespace Chapter08.Exercises.Exercise01
     {
         public static void Run()
         {
-            var client = BuildClient();
-            string text = "Today is a great day. " +
-                               "I had a wonderful dinner with my family!";
-            SentimentAnalysisExample(client, text);
+            do
+            {
+                Console.Clear();
+                var client = BuildClient();
+                Console.Write("Please enter what you think:");
+                var text = Console.ReadLine();
+                //string text = "Today is a great day. " +
+                //                   "I had a wonderful dinner with my family!";
+                SentimentAnalysisExample(client, text);
+                Console.WriteLine("Press any key to type another sentence. Press escape to exit.");
+            } while (Console.ReadKey().Key != ConsoleKey.Escape);
+
         }
 
         static TextAnalyticsClient BuildClient()
