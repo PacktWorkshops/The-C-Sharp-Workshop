@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -16,16 +15,16 @@ namespace Chapter08.Exercises.Exercise03
     {
         public static string PayPalClientId { get; } = Environment.GetEnvironmentVariable("PayPalClientId", EnvironmentVariableTarget.User);
         public static string PayPalSecret { get; } = Environment.GetEnvironmentVariable("PayPalSecret", EnvironmentVariableTarget.User);
+        private const string BaseAddress = "https://api.sandbox.paypal.com/";
         
-        private const string baseAddress = "https://api.sandbox.paypal.com/";
-        private static readonly RestClient RestClient = new RestClient(baseAddress);
+        private static readonly RestClient RestClient = new RestClient(BaseAddress);
 
-        public static void Run()
+        public static async Task Run()
         {
             var authHandler = new AuthHeaderHandler {InnerHandler = new HttpClientHandler() };
             var payPalClient = RestService.For<IPayPalClient>(new HttpClient(authHandler)
                 {
-                    BaseAddress = new Uri(baseAddress)
+                    BaseAddress = new Uri(BaseAddress)
                 });
 
             var order = new Order
@@ -42,8 +41,8 @@ namespace Chapter08.Exercises.Exercise03
                     }
                 }
             };
-            var createOrderResponse = payPalClient.CreateOrder(order).Result;
-            var payment = payPalClient.GetOrder(createOrderResponse.id).Result;
+            var createOrderResponse = await payPalClient.CreateOrder(order);
+            var payment = await payPalClient.GetOrder(createOrderResponse.id);
             var pay = payment.purchase_units.First();
             Console.WriteLine($"{pay.payee.email_address} - " +
                               $"{pay.amount.value}" +

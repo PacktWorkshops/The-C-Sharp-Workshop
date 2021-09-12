@@ -7,10 +7,10 @@ namespace Chapter08.Exercises.Exercise02
 {
     public static class Demo
     {
-        public static void Run()
+        public static async Task Run()
         {
             var client = new StarWarsClient();
-            var filmsResponse = client.GetFilms().Result;
+            var filmsResponse = await client.GetFilms();
             var films = filmsResponse.Data;
             foreach (var film in films)
             {

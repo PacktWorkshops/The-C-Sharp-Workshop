@@ -9,6 +9,9 @@ namespace Chapter08.Exercises.Exercise01
 {
     class Demo
     {
+        private static string TextAnalysisApiKey { get; } = Environment.GetEnvironmentVariable("TextAnalysisApiKey", EnvironmentVariableTarget.User);
+        private static string TextAnalysisEndpoint { get; } = Environment.GetEnvironmentVariable("TextAnalysisEndpoint", EnvironmentVariableTarget.User);
+
         public static void Run()
         {
             do
@@ -27,8 +30,8 @@ namespace Chapter08.Exercises.Exercise01
 
         static TextAnalyticsClient BuildClient()
         {
-            var credentials = new AzureKeyCredential(Program.TextAnalysisApiKey);
-            var endpoint = new Uri(Program.TextAnalysisEndpoint);
+            var credentials = new AzureKeyCredential(TextAnalysisApiKey);
+            var endpoint = new Uri(TextAnalysisEndpoint);
             var client = new TextAnalyticsClient(endpoint, credentials);
 
             return client;

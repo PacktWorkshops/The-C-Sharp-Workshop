@@ -2,6 +2,7 @@
 using Azure.Storage.Blobs;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Chapter08.Exercises.Exercise04
 {
@@ -18,50 +19,50 @@ namespace Chapter08.Exercises.Exercise04
             var storageEndpoint = new Uri(endpoint);
             var storageCredentials = new StorageSharedKeyCredential(account, key);
             _blobServiceClient = new BlobServiceClient(storageEndpoint, storageCredentials);
-            _defaultContainerClient = CreateContainerIfNotExists(defaultContainer);
+            _defaultContainerClient = CreateContainerIfNotExists(defaultContainer).Result;
         }
 
-        public void UploadFile(string file, string container)
+        public async Task UploadFile(string file, string container)
         {
-            var containerClient = CreateContainerIfNotExists(container);
-            UploadFileInternal(file, containerClient);
+            var containerClient = await CreateContainerIfNotExists(container);
+            await UploadFileInternal(file, containerClient);
         }
 
-        private BlobContainerClient CreateContainerIfNotExists(string container)
+        private async Task<BlobContainerClient> CreateContainerIfNotExists(string container)
         {
             var lowerCaseContainer = container.ToLower();
             var containerClient = _blobServiceClient.GetBlobContainerClient(lowerCaseContainer);
-            if (!containerClient.Exists())
+            if (! await containerClient.ExistsAsync())
             {
-                containerClient = _blobServiceClient.CreateBlobContainer(lowerCaseContainer);
+                containerClient = await _blobServiceClient.CreateBlobContainerAsync(lowerCaseContainer);
             }
 
             return containerClient;
         }
 
-        public void UploadFile(string file)
+        public Task UploadFile(string file)
         {
-            UploadFileInternal(file, _defaultContainerClient);
+            return UploadFileInternal(file, _defaultContainerClient);
         }
 
-        private void UploadFileInternal(string file, BlobContainerClient client)
+        private Task UploadFileInternal(string file, BlobContainerClient client)
         {
             var data = new BinaryData(File.ReadAllBytes(file));
-            client.UploadBlob(Path.GetFileName(file), data);
+            return client.UploadBlobAsync(Path.GetFileName(file), data);
         }
 
-        public void DownloadFile(string filename, string container, string downloadDirectory)
+        public async Task DownloadFile(string filename, string container, string downloadDirectory)
         {
-            var containerClient = CreateContainerIfNotExists(container);
-            DownloadFileInternal(filename, downloadDirectory, containerClient);
+            var containerClient = await CreateContainerIfNotExists(container);
+            await DownloadFileInternal(filename, downloadDirectory, containerClient);
         }
 
-        public void DownloadFile(string filename, string downloadDirectory)
+        public Task DownloadFile(string filename, string downloadDirectory)
         {
-            DownloadFileInternal(filename, downloadDirectory, _defaultContainerClient);
+            return DownloadFileInternal(filename, downloadDirectory, _defaultContainerClient);
         }
 
-        private void DownloadFileInternal(string filename, string downloadDirectory, BlobContainerClient client)
+        private Task DownloadFileInternal(string filename, string downloadDirectory, BlobContainerClient client)
         {
             var blobClient = client.GetBlobClient(filename);
             var downloadedFile = Path.Combine(downloadDirectory, filename);
@@ -76,7 +77,7 @@ namespace Chapter08.Exercises.Exercise04
                 var stream = File.Create(downloadedFile);
                 stream.Dispose();
             }
-            blobClient.DownloadTo(downloadedFile);
+            return blobClient.DownloadToAsync(downloadedFile);
         }
     }
 }

@@ -11,6 +11,10 @@ namespace Chapter08.Examples.GitHttp
 {
     public static class Demo
     {
+        private static string GitHubClientId { get; } = Environment.GetEnvironmentVariable("GithubClientId", EnvironmentVariableTarget.User);
+        private static string GitHubSecret { get; } = Environment.GetEnvironmentVariable("GithubSecret", EnvironmentVariableTarget.User);
+
+
         private static HttpClient client;
 
         static Demo()
@@ -22,7 +26,6 @@ namespace Chapter08.Examples.GitHttp
         public static async Task Run()
         {
             //await GetUser();
-
 
             //var oathAccessToken = await GetToken();
             //await UpdateEmploymentStatus(true, oathAccessToken);
@@ -92,12 +95,10 @@ namespace Chapter08.Examples.GitHttp
 
         private static HttpRequestMessage CreateGetAccessTokenRequest()
         {
-            var clientId = Program.GitHubClientId;
-            var secret = Program.GitHubSecret;
             const string tokenUrl = "https://github.com/login/oauth/access_token";
             const string code = "2ecab6ecf412f28f7d4d";
             const string redirectUri = "https://www.google.com/";
-            var uri = new Uri($"{tokenUrl}?client_id={clientId}&redirect_uri={redirectUri}&client_secret={secret}&code={code}");
+            var uri = new Uri($"{tokenUrl}?client_id={GitHubClientId}&redirect_uri={redirectUri}&client_secret={GitHubSecret}&code={code}");
             var request = new HttpRequestMessage(HttpMethod.Post, uri);
             return request;
         }
@@ -137,8 +138,8 @@ namespace Chapter08.Examples.GitHttp
 
         private static string GetBasicToken()
         {
-            var id = Program.GitHubClientId;
-            var secret = Program.GitHubSecret;
+            var id = GitHubClientId;
+            var secret = GitHubSecret;
             var tokenRaw = $"{id}:{secret}";
             var tokenBytes = Encoding.UTF8.GetBytes(tokenRaw);
             var token = Convert.ToBase64String(tokenBytes);
