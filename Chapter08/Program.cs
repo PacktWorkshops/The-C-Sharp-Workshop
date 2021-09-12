@@ -9,9 +9,6 @@ namespace Chapter08
 {
     class Program
     {
-        public static string GitHubPersonAccessToken { get; } = Environment.GetEnvironmentVariable("GitHubPersonalAccess", EnvironmentVariableTarget.User);
-        public static string BlobStorageKey { get; } = Environment.GetEnvironmentVariable("BlobStorageKey", EnvironmentVariableTarget.User);
-
         static async Task Main(string[] args)
         {
             //await Examples.GitOctokit.Demo.Run();

@@ -13,7 +13,7 @@ namespace Chapter08.Examples.GitHttp
     {
         private static string GitHubClientId { get; } = Environment.GetEnvironmentVariable("GithubClientId", EnvironmentVariableTarget.User);
         private static string GitHubSecret { get; } = Environment.GetEnvironmentVariable("GithubSecret", EnvironmentVariableTarget.User);
-
+        private  static string GitHubPersonAccessToken { get; } = Environment.GetEnvironmentVariable("GitHubPersonalAccess", EnvironmentVariableTarget.User);
 
         private static HttpClient client;
 
@@ -30,11 +30,12 @@ namespace Chapter08.Examples.GitHttp
             //var oathAccessToken = await GetToken();
             //await UpdateEmploymentStatus(true, oathAccessToken);
 
-            //var personalAccessToken = Program.GitHubPersonAccessToken;
-            //await UpdateEmploymentStatus(false, personalAccessToken);
+            //await UpdateEmploymentStatus(false, GitHubPersonAccessToken);
 
             var basicToken = GetBasicToken();
             await GetUser61Times(basicToken);
+
+            client.Dispose();
         }
 
         private static async Task GetUser()

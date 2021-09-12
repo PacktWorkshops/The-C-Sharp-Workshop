@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Chapter08.Activities.Activity01
 {
-    public class BaseHttpClient
+    public class BaseHttpClient : IDisposable
     {
         private readonly HttpClient _client;
 
@@ -37,6 +37,11 @@ namespace Chapter08.Activities.Activity01
             var apiResult = JsonConvert.DeserializeObject<T>(content);
 
             return apiResult;
+        }
+
+        public void Dispose()
+        {
+            _client.Dispose();
         }
     }
 }
