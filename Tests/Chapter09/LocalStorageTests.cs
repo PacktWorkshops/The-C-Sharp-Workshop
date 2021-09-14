@@ -1,7 +1,7 @@
-﻿using Chapter09.Service.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
+using Chapter09.Service.Examples.TemplateApi.Services;
 
 namespace Tests.Chapter09
 {

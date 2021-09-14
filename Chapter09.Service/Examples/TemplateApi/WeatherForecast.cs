@@ -1,6 +1,6 @@
 using System;
 
-namespace Chapter09.Service
+namespace Chapter09.Service.Examples.TemplateApi
 {
     public class WeatherForecast
     {

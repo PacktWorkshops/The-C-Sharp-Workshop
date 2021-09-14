@@ -1,13 +1,13 @@
-﻿using Chapter09.Service.Interfaces;
-using StringIdLibrary;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Chapter09.Service.Examples.TemplateApi.Interfaces;
+using StringIdLibrary;
 
-namespace Chapter09.Service.Services
+namespace Chapter09.Service.Examples.TemplateApi.Services
 {
     public class LocalStorage : IStorage<string>
     {        
