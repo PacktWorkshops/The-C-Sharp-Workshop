@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Examples\TemplateApi\Services\" />
     <Folder Include="Exercises\" />
     <Folder Include="Activities\" />
   </ItemGroup>
