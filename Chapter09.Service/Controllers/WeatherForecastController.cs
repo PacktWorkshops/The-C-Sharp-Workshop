@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using Chapter09.Service.Exceptions;
+using Chapter09.Service.Models;
+using Chapter09.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Chapter09.Service.Examples.TemplateApi.Controllers
+namespace Chapter09.Service.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+        private readonly IWeatherForecastService _weatherForecastService;
         private readonly ILogger _logger;
 
-        public WeatherForecastController(ILoggerFactory logger)
+        public WeatherForecastController(ILoggerFactory logger, IWeatherForecastService weatherForecastService)
         {
+            _weatherForecastService = weatherForecastService;
             _logger = logger.CreateLogger(typeof(WeatherForecastController).FullName);
         }
 
@@ -32,12 +37,15 @@ namespace Chapter09.Service.Examples.TemplateApi.Controllers
         [HttpGet("weekday/{day}")]
         public IActionResult GetWeekday(int day)
         {
-            if (day < 1 || day > 7)
+            try
             {
-                return NotFound($"'{day}' is not a valid day of a week.");
+                var result = _weatherForecastService.GetWeekday(day);
+                return Ok(result);
             }
-
-            return Ok(new WeatherForecast());
+            catch(NoSuchWeekdayException exception)
+            {
+                return NotFound(exception.Message);
+            }
         }
     }
 }

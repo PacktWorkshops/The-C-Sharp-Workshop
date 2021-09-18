@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Chapter08.Exercises.Exercise02;
 using Chapter08.Exercises.Exercise02.Models;
 
 namespace Chapter08.Activities.Activity01

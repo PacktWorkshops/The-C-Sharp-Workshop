@@ -15,7 +15,7 @@ namespace Chapter09.Service
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     // To run a different example, use a different startup.
-                    webBuilder.UseStartup<Examples.TemplateApi.Startup>();
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 }

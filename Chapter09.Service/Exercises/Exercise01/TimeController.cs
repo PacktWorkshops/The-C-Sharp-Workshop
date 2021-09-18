@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Chapter09.Service.Examples.TemplateApi;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
