@@ -1,8 +1,12 @@
 using System;
+using System.IO;
+using System.Reflection;
 using Chapter09.Service.Exercises.Exercise02;
 using Chapter09.Service.Services;
+using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,24 +34,39 @@ namespace Chapter09.Service
                 builder.AddDebug();
             });
             
-            services.AddSingleton<IWeatherForecastService, WeatherForecastService>(BuildWeatherForecastService);
+            services.AddScoped<IWeatherForecastService, WeatherForecastService>(BuildWeatherForecastService);
             services.AddSingleton<ICurrentTimeProvider, CurrentTimeUtcProvider>();
-            //Debug.WriteLine("Services count: " + services.Count);
-            //services.AddSingleton<IWeatherForecastService, WeatherForecastService>();
-            //Debug.WriteLine("Services count: " + services.Count);
+            services.AddSingleton<IMemoryCache, MemoryCache>();
 
-            //services.TryAddSingleton<IWeatherForecastService, WeatherForecastService>();
-            //Debug.WriteLine("Services count: " + services.Count);
-            //services.TryAddSingleton<IWeatherForecastService, WeatherForecastService>();
-            //Debug.WriteLine("Services count: " + services.Count);
+            services.AddSwaggerGen(cfg =>
+            {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                cfg.IncludeXmlComments(xmlPath);
+            });
+
+
         }
+
+        //public static void AddExceptionToStatusCodeMappings(this IServiceCollection services)
+        //{
+        //    services
+        //        .Map<NotSupportedException>(400);
+        //}
+
+        //private static IServiceCollection Map<TException>(this IServiceCollection services, int statusCode) where TException : Exception
+        //{
+        //    services.AddProblemDetails(opt => opt.MapToStatusCode<TException>(statusCode));
+
+        //    return services;
+        //}
 
         private WeatherForecastService BuildWeatherForecastService(IServiceProvider provider)
         {
             var logger = provider
                 .GetService<ILoggerFactory>()
                 .CreateLogger<WeatherForecastService>();
-            return new WeatherForecastService(logger, "New York", 5);
+            return new WeatherForecastService(logger, "New York", 5, provider.GetService<IMemoryCache>());
         }
 
 
@@ -66,6 +85,13 @@ namespace Chapter09.Service
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
             });
         }
     }
