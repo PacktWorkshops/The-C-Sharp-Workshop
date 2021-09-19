@@ -27,7 +27,7 @@ namespace Chapter09.Service.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            return new List<WeatherForecast>(){new WeatherForecast()};
+            return new List<WeatherForecast>() { new WeatherForecast() };
         }
 
         [HttpGet("error")]
@@ -40,16 +40,9 @@ namespace Chapter09.Service.Controllers
         [HttpGet("weekday/{day}")]
         public IActionResult GetWeekday(int day)
         {
-            try
-            {
-                var result = _weatherForecastService1.GetWeekday(day);
-                result = _weatherForecastService2.GetWeekday(day);
-                return Ok(result);
-            }
-            catch(NoSuchWeekdayException exception)
-            {
-                return NotFound(exception.Message);
-            }
+            var result = _weatherForecastService1.GetWeekday(day);
+            result = _weatherForecastService2.GetWeekday(day);
+            return Ok(result);
         }
 
         /// <summary>
@@ -80,7 +73,7 @@ namespace Chapter09.Service.Controllers
         public IActionResult SaveWeatherForecast(WeatherForecast weatherForecast)
         {
             _weatherForecastService1.SaveWeatherForecast(weatherForecast);
-            return CreatedAtAction("GetWeatherForecast", new { date = weatherForecast.Date.ToShortDateString()}, weatherForecast);
+            return CreatedAtAction("GetWeatherForecast", new { date = weatherForecast.Date.ToShortDateString() }, weatherForecast);
         }
     }
 }

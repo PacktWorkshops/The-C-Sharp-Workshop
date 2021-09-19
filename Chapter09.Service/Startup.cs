@@ -1,8 +1,16 @@
 using System;
+using System.Data;
 using System.IO;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
+using Chapter09.Service.Exceptions;
 using Chapter09.Service.Exercises.Exercise02;
+using Chapter09.Service.Models;
 using Chapter09.Service.Services;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using FluentValidation.Results;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,7 +34,9 @@ namespace Chapter09.Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddFluentValidation();
             services.AddLogging(builder =>
             {
                 builder.ClearProviders();
@@ -45,7 +55,8 @@ namespace Chapter09.Service
                 cfg.IncludeXmlComments(xmlPath);
             });
 
-
+            services.AddProblemDetails(opt => opt.MapToStatusCode<NoSuchWeekdayException>(404));
+            services.AddTransient<IValidator<WeatherForecast>, WeatherForecastValidator>();
         }
 
         //public static void AddExceptionToStatusCodeMappings(this IServiceCollection services)
@@ -93,6 +104,20 @@ namespace Chapter09.Service
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
                 c.RoutePrefix = string.Empty;
             });
+        }
+    }
+
+    public class WeatherForecastValidator : AbstractValidator<WeatherForecast>
+    {
+        public WeatherForecastValidator()
+        {
+            RuleFor(p => p.Date)
+                .LessThan(DateTime.Now.AddMonths(1))
+                .WithMessage("Weather forecasts in more than 1 month of future are not supported");
+
+            RuleFor(p => p.TemperatureC)
+                .InclusiveBetween(-100, 100)
+                .WithMessage("A temperature must be between -100 and +100 C.");
         }
     }
 }
