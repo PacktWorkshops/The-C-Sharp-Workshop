@@ -59,19 +59,6 @@ namespace Chapter09.Service
             services.AddTransient<IValidator<WeatherForecast>, WeatherForecastValidator>();
         }
 
-        //public static void AddExceptionToStatusCodeMappings(this IServiceCollection services)
-        //{
-        //    services
-        //        .Map<NotSupportedException>(400);
-        //}
-
-        //private static IServiceCollection Map<TException>(this IServiceCollection services, int statusCode) where TException : Exception
-        //{
-        //    services.AddProblemDetails(opt => opt.MapToStatusCode<TException>(statusCode));
-
-        //    return services;
-        //}
-
         private WeatherForecastService BuildWeatherForecastService(IServiceProvider provider)
         {
             var logger = provider
