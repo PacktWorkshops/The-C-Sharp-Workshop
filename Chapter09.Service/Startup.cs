@@ -1,16 +1,8 @@
 using System;
-using System.Data;
-using System.IO;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-using Chapter09.Service.Exceptions;
-using Chapter09.Service.Exercises.Exercise02;
+using Chapter09.Service.Bootstrap;
 using Chapter09.Service.Models;
 using Chapter09.Service.Services;
 using FluentValidation;
-using FluentValidation.AspNetCore;
-using FluentValidation.Results;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Chapter09.Service
 {
@@ -35,28 +28,12 @@ namespace Chapter09.Service
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddControllers()
-                .AddFluentValidation();
-            services.AddLogging(builder =>
-            {
-                builder.ClearProviders();
-                builder.AddConsole();
-                builder.AddDebug();
-            });
-            
-            services.AddScoped<IWeatherForecastService, WeatherForecastService>(BuildWeatherForecastService);
-            services.AddSingleton<ICurrentTimeProvider, CurrentTimeUtcProvider>();
-            services.AddSingleton<IMemoryCache, MemoryCache>();
-
-            services.AddSwaggerGen(cfg =>
-            {
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                cfg.IncludeXmlComments(xmlPath);
-            });
-
-            services.AddProblemDetails(opt => opt.MapToStatusCode<NoSuchWeekdayException>(404));
-            services.AddTransient<IValidator<WeatherForecast>, WeatherForecastValidator>();
+                .AddControllersConfiguration()
+                .AddLoggingConfiguration()
+                .AddRequestValidators()
+                .AddSwagger()
+                .AddWeatherService(Configuration)
+                .AddExceptionMappings();
         }
 
         private WeatherForecastService BuildWeatherForecastService(IServiceProvider provider)
@@ -64,17 +41,15 @@ namespace Chapter09.Service
             var logger = provider
                 .GetService<ILoggerFactory>()
                 .CreateLogger<WeatherForecastService>();
-            return new WeatherForecastService(logger, "New York", 5, provider.GetService<IMemoryCache>());
+            var options = provider.GetService<IOptions<WeatherForecastConfig>>();
+            return new WeatherForecastService(logger, options, provider.GetService<IMemoryCache>());
         }
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseProblemDetails();
 
             app.UseHttpsRedirection();
             app.UseAuthorization();

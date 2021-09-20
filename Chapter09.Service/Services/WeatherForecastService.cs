@@ -3,6 +3,7 @@ using Chapter09.Service.Exceptions;
 using Chapter09.Service.Models;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Chapter09.Service.Services
 {
@@ -21,11 +22,11 @@ namespace Chapter09.Service.Services
         private readonly Guid _serviceIdentifier;
         private readonly IMemoryCache _cache;
 
-        public WeatherForecastService(ILogger<WeatherForecastService> logger, string city, int refreshInterval, IMemoryCache cache)
+        public WeatherForecastService(ILogger<WeatherForecastService> logger, IOptions<WeatherForecastConfig> config, IMemoryCache cache)
         {
             _logger = logger;
-            _city = city;
-            _refreshInterval = refreshInterval;
+            _city = config.Value.City;
+            _refreshInterval = config.Value.RefreshInterval;
             _serviceIdentifier = Guid.NewGuid();
             _cache = cache;
         }

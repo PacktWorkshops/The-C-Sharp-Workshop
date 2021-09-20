@@ -21,7 +21,6 @@
     <Folder Include="Exercises\Exercise03\" />
     <Folder Include="Exercises\Exercise05\" />
     <Folder Include="Exercises\Exercise04\" />
-    <Folder Include="Examples\" />
   </ItemGroup>
 
 
