@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
+using AutoMapper;
 using Chapter09.Service.Exceptions;
 using Chapter09.Service.Models;
+using Chapter09.Service.Providers;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -11,7 +14,7 @@ namespace Chapter09.Service.Services
     {
         WeatherForecast GetWeekday(int day);
         void SaveWeatherForecast(WeatherForecast forecast);
-        WeatherForecast GetWeatherForecast(DateTime date);
+        Task<WeatherForecast> GetWeatherForecast(DateTime date);
     }
 
     public class WeatherForecastService : IWeatherForecastService
@@ -21,26 +24,39 @@ namespace Chapter09.Service.Services
         private readonly int _refreshInterval;
         private readonly Guid _serviceIdentifier;
         private readonly IMemoryCache _cache;
+        private readonly IWeatherForecastProvider _provider;
+        private readonly IMapper _mapper;
 
-        public WeatherForecastService(ILogger<WeatherForecastService> logger, IOptions<WeatherForecastConfig> config, IMemoryCache cache)
+        private const string DateFormat = "yyyy-MM-ddthh";
+
+        public WeatherForecastService(ILogger<WeatherForecastService> logger, IOptions<WeatherForecastConfig> config, IMemoryCache cache, IWeatherForecastProvider provider, IMapper mapper)
         {
             _logger = logger;
             _city = config.Value.City;
             _refreshInterval = config.Value.RefreshInterval;
             _serviceIdentifier = Guid.NewGuid();
             _cache = cache;
+            _provider = provider;
+            _mapper = mapper;
         }
 
         public void SaveWeatherForecast(WeatherForecast forecast)
         {
-            _cache.Set(forecast.Date.ToShortDateString(), forecast);
+            _cache.Set(forecast.Date.ToString(DateFormat), forecast);
         }
 
-        public WeatherForecast GetWeatherForecast(DateTime date)
+        public async Task<WeatherForecast> GetWeatherForecast(DateTime date)
         {
-            var shortDateString = date.ToShortDateString();
-            var contains = _cache.TryGetValue(shortDateString, out var entry);
-            return !contains ? null : (WeatherForecast) entry;
+            var contains = _cache.TryGetValue(date.ToString(DateFormat), out var entry);
+            if(contains){return (WeatherForecast)entry;}
+            
+            var forecastDto = await _provider.GetCurrent(_city);
+            var forecast = _mapper.Map<WeatherForecast>(forecastDto);
+            forecast.Date = DateTime.UtcNow;
+
+            _cache.Set(DateTime.UtcNow.ToString(DateFormat), forecast);
+
+            return forecast;
         }
 
         public WeatherForecast GetWeekday(int day)

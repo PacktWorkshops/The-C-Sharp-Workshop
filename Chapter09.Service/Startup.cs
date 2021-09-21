@@ -33,18 +33,10 @@ namespace Chapter09.Service
                 .AddRequestValidators()
                 .AddSwagger()
                 .AddWeatherService(Configuration)
-                .AddExceptionMappings();
+                .AddExceptionMappings()
+                .AddHttpClients(Configuration)
+                .AddModelMappings();
         }
-
-        private WeatherForecastService BuildWeatherForecastService(IServiceProvider provider)
-        {
-            var logger = provider
-                .GetService<ILoggerFactory>()
-                .CreateLogger<WeatherForecastService>();
-            var options = provider.GetService<IOptions<WeatherForecastConfig>>();
-            return new WeatherForecastService(logger, options, provider.GetService<IMemoryCache>());
-        }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

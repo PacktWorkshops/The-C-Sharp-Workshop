@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Chapter09.Service.Exceptions;
 using Chapter09.Service.Models;
 using Chapter09.Service.Services;
@@ -56,9 +57,9 @@ namespace Chapter09.Service.Controllers
         [HttpGet("{date}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetWeatherForecast(DateTime date)
+        public async Task<IActionResult> GetWeatherForecast(DateTime date)
         {
-            var weatherForecast = _weatherForecastService1.GetWeatherForecast(date);
+            var weatherForecast = await _weatherForecastService1.GetWeatherForecast(date);
             if (weatherForecast == null) return NotFound();
             return Ok(weatherForecast);
         }

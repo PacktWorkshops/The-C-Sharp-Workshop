@@ -1,6 +1,8 @@
 ﻿using System;
+using AutoMapper;
 using Chapter09.Service.Exercises.Exercise02;
 using Chapter09.Service.Models;
+using Chapter09.Service.Providers;
 using Chapter09.Service.Services;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
@@ -27,7 +29,12 @@ namespace Chapter09.Service.Bootstrap
                 .GetService<ILoggerFactory>()
                 .CreateLogger<WeatherForecastService>();
             var options = provider.GetService<IOptions<WeatherForecastConfig>>();
-            return new WeatherForecastService(logger, options, provider.GetService<IMemoryCache>());
+            return new WeatherForecastService(
+                logger,
+                options,
+                provider.GetService<IMemoryCache>(),
+                provider.GetService<IWeatherForecastProvider>(),
+                provider.GetService<IMapper>());
         }
     }
 }
