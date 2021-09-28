@@ -1,17 +1,12 @@
 using System;
 using Chapter09.Service.Bootstrap;
 using Chapter09.Service.Models;
-using Chapter09.Service.Services;
 using FluentValidation;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Chapter09.Service
 {
@@ -35,7 +30,8 @@ namespace Chapter09.Service
                 .AddWeatherService(Configuration)
                 .AddExceptionMappings()
                 .AddHttpClients(Configuration)
-                .AddModelMappings();
+                .AddModelMappings()
+                .AddFileUploadService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

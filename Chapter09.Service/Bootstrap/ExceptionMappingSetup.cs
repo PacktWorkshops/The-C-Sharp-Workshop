@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Chapter09.Service.Exceptions;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ namespace Chapter09.Service.Bootstrap
             services.AddProblemDetails(opt =>
             {
                 opt.MapToStatusCode<NoSuchWeekdayException>(404);
+                opt.MapToStatusCode<FileNotFoundException>(404);
             });
 
             return services;
