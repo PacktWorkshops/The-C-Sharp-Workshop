@@ -48,6 +48,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter10.Examples", "Chapt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter05", "Chapter05\Chapter05.csproj", "{2F48D431-3126-4220-9F49-0A13C867C148}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter09.TokenGenerator", "Chapter09.TokenGenerator\Chapter09.TokenGenerator.csproj", "{CE69FF0C-8E41-49C3-AA7B-51A6BA6F2548}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,6 +128,10 @@ Global
 		{2F48D431-3126-4220-9F49-0A13C867C148}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F48D431-3126-4220-9F49-0A13C867C148}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F48D431-3126-4220-9F49-0A13C867C148}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE69FF0C-8E41-49C3-AA7B-51A6BA6F2548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE69FF0C-8E41-49C3-AA7B-51A6BA6F2548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE69FF0C-8E41-49C3-AA7B-51A6BA6F2548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE69FF0C-8E41-49C3-AA7B-51A6BA6F2548}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

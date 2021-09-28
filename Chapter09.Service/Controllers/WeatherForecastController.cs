@@ -4,12 +4,14 @@ using System.Threading.Tasks;
 using Chapter09.Service.Exceptions;
 using Chapter09.Service.Models;
 using Chapter09.Service.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Chapter09.Service.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase

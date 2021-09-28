@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Chapter09.Service.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Identity.Web.Resource;
 
 namespace Chapter09.Service.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FileController : ControllerBase

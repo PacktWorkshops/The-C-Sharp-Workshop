@@ -19,30 +19,32 @@ namespace Chapter09.Service
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services
                 .AddControllersConfiguration()
-                .AddLoggingConfiguration()
+                //.AddLoggingConfiguration()
                 .AddRequestValidators()
                 .AddSwagger()
                 .AddWeatherService(Configuration)
                 .AddExceptionMappings()
                 .AddHttpClients(Configuration)
                 .AddModelMappings()
-                .AddFileUploadService();
+                .AddFileUploadService()
+                .AddSecurity(Configuration);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseProblemDetails();
 
             app.UseHttpsRedirection();
-            app.UseAuthorization();
 
             app.UseRouting();
+
+            app.UseAuthorization();
+            app.UseAuthentication();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
