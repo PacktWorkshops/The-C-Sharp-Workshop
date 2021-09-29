@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Chapter09.Service.Exceptions;
 using Chapter09.Service.Models;
 using Chapter09.Service.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web.Resource;
 
 namespace Chapter09.Service.Controllers
 {
     [Authorize]
     [ApiController]
+    [RequiredScope("access_as_user")]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
@@ -25,12 +26,6 @@ namespace Chapter09.Service.Controllers
             _weatherForecastService1 = weatherForecastService1;
             _weatherForecastService2 = weatherForecastService2;
             _logger = logger.CreateLogger(typeof(WeatherForecastController).FullName);
-        }
-
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
-        {
-            return new List<WeatherForecast>() { new WeatherForecast() };
         }
 
         [HttpGet("error")]
@@ -49,19 +44,14 @@ namespace Chapter09.Service.Controllers
         }
 
         /// <summary>
-        /// Gets weather forecast at a specified date.
+        /// Gets weather forecast for now.
         /// </summary>
-        /// <param name="date">Date of a forecast.</param>
-        /// <returns>
-        /// A forecast at a specified date.
-        /// If not found - 404.
-        /// </returns>
-        [HttpGet("{date}")]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetWeatherForecast(DateTime date)
+        public async Task<IActionResult> GetWeatherForecast()
         {
-            var weatherForecast = await _weatherForecastService1.GetWeatherForecast(date);
+            var weatherForecast = await _weatherForecastService1.GetWeatherForecast(DateTime.UtcNow);
             if (weatherForecast == null) return NotFound();
             return Ok(weatherForecast);
         }

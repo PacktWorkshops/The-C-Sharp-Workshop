@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Threading.Channels;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.Identity.Client;
 
 namespace Chapter09.TokenGenerator
 {
@@ -9,26 +9,41 @@ namespace Chapter09.TokenGenerator
     {
         static async Task Main(string[] args)
         {
-            while (true)
-            {
-                Console.WriteLine("Press enter to regenerate a token");
-                Console.WriteLine();
-                Console.ReadLine();
-                var token = await GetAuthorizationToken();
-                Console.WriteLine(token);
-            }
+            var token = await GetAuthorizationToken();
+            Console.WriteLine($"Bearer {token}");
         }
 
-        public static async Task<string> GetAuthorizationToken()
+        private static async Task<string> GetAuthorizationToken()
         {
-            ClientCredential cc = new ClientCredential("56dd489b-07e6-4469-9318-1bba3f5d644a", "zd_7Q~jrD8rvAWG5Q_EgFPZGcfTVhg.fC5~63");
-            var context = new AuthenticationContext("https://login.microsoftonline.com/" + "ddd0fd18-f056-4b33-88cc-088c47b81f3e");
-            var result = await context.AcquireTokenAsync("56dd489b-07e6-4469-9318-1bba3f5d644a", cc);
-            if (result == null)
+            // Replace this with your own variables from AAD:
+            const string tenantId = "ddd0fd18-f056-4b33-88cc-088c47b81f3e";
+            const string clientId = "2d8834d3-6a27-47c9-84f1-0c9db3eeb4bb";
+            const string scope = "access_as_user";
+            const string redirectUri = "http://localhost:5002/token";
+            string authority = string.Concat("https://login.microsoftonline.com/", tenantId);
+
+            var application = PublicClientApplicationBuilder.Create(clientId)
+                .WithAuthority(authority)
+                .WithRedirectUri(redirectUri)
+                .Build();
+
+            // Replace this with your own application id uri if you are not using a default value.
+            var scopes = new[] { $"api://{clientId}/{scope}" };
+
+            AuthenticationResult result;
+            try
             {
-                throw new InvalidOperationException("Failed to obtain the Access token");
+                var accounts = await application.GetAccountsAsync();
+                result = await application.AcquireTokenSilent(scopes, accounts.FirstOrDefault()).ExecuteAsync();
             }
-            return $"Bearer {result.AccessToken}";
+            catch (MsalUiRequiredException ex)
+            {
+                result = await application.AcquireTokenInteractive(scopes)
+                    .WithClaims(ex.Claims)
+                    .ExecuteAsync();
+            }
+
+            return result.AccessToken;
         }
     }
 }

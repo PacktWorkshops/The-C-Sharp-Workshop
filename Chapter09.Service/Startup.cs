@@ -12,6 +12,8 @@ namespace Chapter09.Service
 {
     public class Startup
     {
+        public static string Message = "";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,7 +25,6 @@ namespace Chapter09.Service
         {
             services
                 .AddControllersConfiguration()
-                //.AddLoggingConfiguration()
                 .AddRequestValidators()
                 .AddSwagger()
                 .AddWeatherService(Configuration)
@@ -36,14 +37,16 @@ namespace Chapter09.Service
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
+
             app.UseProblemDetails();
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
