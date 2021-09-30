@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading.Tasks;
 using Azure.Storage;
 using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
 using Azure.Storage.Sas;
 
 namespace Chapter09.Service.Services

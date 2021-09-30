@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Chapter09.Service.Bootstrap
 {
-    public static class FileUploadServiceSetup
+    public static class FileServiceSetup
     {
         public static IServiceCollection AddFileUploadService(this IServiceCollection services)
         {

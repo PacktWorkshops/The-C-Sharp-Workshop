@@ -20,12 +20,5 @@
     <PackageReference Include="Azure.Storage.Blobs" Version="12.9.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Activities\Activity01\" />
-    <Folder Include="Exercises\Exercise03\" />
-    <Folder Include="Exercises\Exercise05\" />
-    <Folder Include="Exercises\Exercise04\" />
-  </ItemGroup>
-
 
 </Project>
