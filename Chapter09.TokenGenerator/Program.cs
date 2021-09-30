@@ -17,7 +17,7 @@ namespace Chapter09.TokenGenerator
         {
             // Replace this with your own variables from AAD:
             const string tenantId = "ddd0fd18-f056-4b33-88cc-088c47b81f3e";
-            const string clientId = "2d8834d3-6a27-47c9-84f1-0c9db3eeb4bb";
+            const string clientId = "0aabad2a-a997-4cc7-b750-56d905e28d8d";
             const string scope = "access_as_user";
             const string redirectUri = "http://localhost:5002/token";
             string authority = string.Concat("https://login.microsoftonline.com/", tenantId);
