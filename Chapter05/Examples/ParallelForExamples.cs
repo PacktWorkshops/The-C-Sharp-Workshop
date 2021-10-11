@@ -32,24 +32,6 @@ namespace Chapter05.Examples
             Console.WriteLine($"Completed: {loopResult1.IsCompleted}, LowestBreakIteration={loopResult1.LowestBreakIteration}");
             Console.ReadLine();
 
-            var loopResult2 = Parallel.For(100, 150, (i, loopState) =>
-            {
-                Logger.Log($"Inside iteration {i}. Stopped={loopState.IsStopped}");
-                if (i == 105)
-                {
-                    Logger.Log($"At {i}..STOP!");
-                    loopState.Stop();
-                }
-
-                if (!loopState.IsStopped)
-                {
-                    Thread.Sleep(1000);
-                    Logger.Log($"Awake iteration {i}");
-                }
-            });
-            Console.WriteLine($"Completed: {loopResult2.IsCompleted}, LowestBreakIteration={loopResult2.LowestBreakIteration}");
-            Console.ReadLine();
-
             double series;
             do
             {
