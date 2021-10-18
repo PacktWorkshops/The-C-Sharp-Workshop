@@ -26,7 +26,7 @@ namespace Chapter06.Exercises.Exercise04
                 }
             });
             service.SetAnyUsaProductOnDiscount(5);
-            service.RemoveAnyFirstProductInUsa();
+            service.RemoveAnyProductInUsa();
             var manufacturers = service.GetManufacturersInUsa();
 
             foreach (var manufacturer in manufacturers)
