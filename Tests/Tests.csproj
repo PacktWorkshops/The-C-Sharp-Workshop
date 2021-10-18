@@ -35,8 +35,17 @@
   <ItemGroup>
     <Folder Include="Chapter04\" />
     <Folder Include="Chapter06\Activities\Activity01\" />
-    <Folder Include="Chapter08\" />
-    <Folder Include="Chapter09\" />
+    <Folder Include="Chapter08\Activities\Activity01\" />
+    <Folder Include="Chapter08\Activities\Activity02\" />
+    <Folder Include="Chapter08\Activities\Activity03\" />
+    <Folder Include="Chapter08\Examples\GitHttp\" />
+    <Folder Include="Chapter08\Examples\GitOctokit\" />
+    <Folder Include="Chapter08\Examples\REfit\" />
+    <Folder Include="Chapter08\Examples\RESTSharp\" />
+    <Folder Include="Chapter08\Exercises\Exercise01\" />
+    <Folder Include="Chapter08\Exercises\Exercise02\" />
+    <Folder Include="Chapter08\Exercises\Exercise03\" />
+    <Folder Include="Chapter08\Exercises\Exercise04\" />
   </ItemGroup>
 
 </Project>

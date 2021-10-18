@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Chapter02.Examples.CsharpKeywords.Generics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
