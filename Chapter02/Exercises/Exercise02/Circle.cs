@@ -11,7 +11,7 @@ namespace Chapter02.Exercises.Exercise02
             _radius = radius;
         }
 
-        public double Space
+        public double Area
         {
             get { return Math.PI * _radius * _radius; }
         }

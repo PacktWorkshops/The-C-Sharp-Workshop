@@ -11,13 +11,13 @@ namespace Tests.Chapter02.Exercise02
         [DataRow(1, Math.PI )]
         [DataRow(2, Math.PI * 4)]
         [DataRow(0.5, Math.PI * 0.25)]
-        public void Space_ReturnsExpected(double radius, double expectedSpace)
+        public void Area_ReturnsExpected(double radius, double expectedArea)
         {
             var circle = new Circle(radius);
 
-            var space = circle.Space;
+            var area = circle.Area;
 
-            Assert.AreEqual(expectedSpace, space);
+            Assert.AreEqual(expectedArea, area);
         }
     }
 }

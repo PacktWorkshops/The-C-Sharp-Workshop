@@ -11,12 +11,12 @@ namespace Chapter02.Activities.Activity01
             Radius = radius;
         }
 
-        public double Space => Math.PI * Radius * Radius;
+        public double Area => Math.PI * Radius * Radius;
 
         public static Circle operator +(Circle circle1, Circle circle2)
         {
-            var newSpace = circle1.Space + circle2.Space;
-            var newRadius = Math.Sqrt((newSpace / Math.PI));
+            var newArea = circle1.Area + circle2.Area;
+            var newRadius = Math.Sqrt((newArea / Math.PI));
 
             return new Circle(newRadius);
         }

@@ -38,43 +38,43 @@ namespace Chapter02.Exercises.Exercise02
 
         public static string Solve(Rectangle[] rectangularSection, Circle[] circularSection)
         {
-            var totalSpaceOfRectangles = CalculateTotalSpaceOfRectangles(rectangularSection);
-            var totalSpaceOfCircles = CalculateTotalSpaceOfCircles(circularSection);
+            var totalAreaOfRectangles = CalculateTotalAreaOfRectangles(rectangularSection);
+            var totalAreaOfCircles = CalculateTotalAreaOfCircles(circularSection);
 
-            return PickResult(totalSpaceOfRectangles, totalSpaceOfCircles);
+            return PickResult(totalAreaOfRectangles, totalAreaOfCircles);
         }
 
-        private static double CalculateTotalSpaceOfRectangles(Rectangle[] rectangularSection)
+        private static double CalculateTotalAreaOfRectangles(Rectangle[] rectangularSection)
         {
-            double totalSpaceOfRectangles = 0;
+            double totalAreaOfRectangles = 0;
             foreach (var rectangle in rectangularSection)
             {
-                totalSpaceOfRectangles += rectangle.Space;
+                totalAreaOfRectangles += rectangle.Area;
             }
 
-            return totalSpaceOfRectangles;
+            return totalAreaOfRectangles;
         }
 
-        private static double CalculateTotalSpaceOfCircles(Circle[] circularSection)
+        private static double CalculateTotalAreaOfCircles(Circle[] circularSection)
         {
-            double totalSpaceOfCircles = 0;
+            double totalAreaOfCircles = 0;
             foreach (var circle in circularSection)
             {
-                totalSpaceOfCircles += circle.Space;
+                totalAreaOfCircles += circle.Area;
             }
 
-            return totalSpaceOfCircles;
+            return totalAreaOfCircles;
         }
 
-        private static string PickResult(double totalSpaceOfRectangles, double totalSpaceOfCircles)
+        private static string PickResult(double totalAreaOfRectangles, double totalAreaOfCircles)
         {
             const double margin = 0.01;
-            bool areAlmostEqual = Math.Abs(totalSpaceOfRectangles - totalSpaceOfCircles) <= margin;
+            bool areAlmostEqual = Math.Abs(totalAreaOfRectangles - totalAreaOfCircles) <= margin;
             if (areAlmostEqual)
             {
                 return Equal;
             }
-            else if (totalSpaceOfRectangles > totalSpaceOfCircles)
+            else if (totalAreaOfRectangles > totalAreaOfCircles)
             {
                 return Rectangular;
             }

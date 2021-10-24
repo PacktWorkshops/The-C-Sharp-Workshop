@@ -20,16 +20,16 @@ namespace Chapter02.Exercises.Exercise03
                               $"IsEnough4 = {isEnough4}.");
         }
 
-        public static bool IsEnough(double mosaicSpace, IShape[] tiles)
+        public static bool IsEnough(double mosaicArea, IShape[] tiles)
         {
-            double totalSpace = 0;
+            double totalArea = 0;
             foreach (var tile in tiles)
             {
-                totalSpace += tile.Space;
+                totalArea += tile.Area;
             }
 
             const double tolerance = 0.0001;
-            return totalSpace - mosaicSpace >= -tolerance;
+            return totalArea - mosaicArea >= -tolerance;
         }
     }
 }

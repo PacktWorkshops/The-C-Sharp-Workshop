@@ -9,7 +9,7 @@ namespace Tests.Chapter02.Activity01
     {
         [DataTestMethod]
         [DynamicData(nameof(AddingTwoCirclesExpectations))]
-        public void Add_TwoCircles_Returns_CircleWithSpaceOfBoth(Circle circle1, Circle circle2, double expectedNewRadius)
+        public void Add_TwoCircles_Returns_CircleWithAreaOfBoth(Circle circle1, Circle circle2, double expectedNewRadius)
         {
             var newRadius = Solution.Solve(circle1, circle2);
 

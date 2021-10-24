@@ -10,13 +10,13 @@ namespace Tests.Chapter02.Exercise03
         [DataRow(1, 1, 1)]
         [DataRow(2, 0.1, 0.2)]
         [DataRow(3, 2, 6)]
-        public void Space_ReturnsExpected(double width, double height, double expectedSpace)
+        public void Area_ReturnsExpected(double width, double height, double expectedArea)
         {
             var rectangle = new Rectangle(width, height);
 
-            var space = rectangle.Space;
+            var area = rectangle.Area;
 
-            Assert.AreEqual(expectedSpace, space);
+            Assert.AreEqual(expectedArea, area);
         }
     }
 }

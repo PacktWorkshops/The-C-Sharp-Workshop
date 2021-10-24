@@ -5,7 +5,7 @@
         private readonly double _width;
         private readonly double _height;
 
-        public double Space
+        public double Area
         {
             get
             {

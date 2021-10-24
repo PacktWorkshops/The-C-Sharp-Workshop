@@ -12,18 +12,18 @@ namespace Tests.Chapter02.Activity01
         [DataRow(1, Math.PI)]
         [DataRow(2.5, 6.25 * Math.PI)]
         [DataRow(0, 0)]
-        public void Space_Returns_Expected(double radius, double expectedSpace)
+        public void Area_Returns_Expected(double radius, double expectedArea)
         {
             var circle = new Circle(radius);
 
-            var space = circle.Space;
+            var area = circle.Area;
 
-            Assert.AreEqual(expectedSpace, space);
+            Assert.AreEqual(expectedArea, area);
         }
 
         [DataTestMethod]
         [DynamicData(nameof(AddingTwoCirclesExpectations))]
-        public void Add_TwoCircles_Returns_CircleWithSpaceOfBoth(Circle circle1, Circle circle2, Circle expectedNewCircle)
+        public void Add_TwoCircles_Returns_CircleWithAreaOfBoth(Circle circle1, Circle circle2, Circle expectedNewCircle)
         {
             var newCircle = circle1 + circle2;
 

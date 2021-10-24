@@ -15,7 +15,7 @@ namespace Chapter02.Examples.InheritanceAndPolymorphism
         {
             var mailman = new Mailman("Thomas", 29, 78.5f, 190.11f);
             var mail = new Mail("Hello", "Somewhere far far way");
-            mailman.SendMail(mail);
+            mailman.DeliverMail(mail);
         }
 
         private static void DemoNoPolymorphism()

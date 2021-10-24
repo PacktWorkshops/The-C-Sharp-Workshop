@@ -9,9 +9,9 @@ namespace Chapter02.Examples.Abstraction.Workers
         {
         }
 
-        public void SendMail(Mail mail)
+        public void DeliverMail(Mail mail)
         {
-            // Sending Mail...
+            // Delivering Mail...
         }
 
         public override void Work()

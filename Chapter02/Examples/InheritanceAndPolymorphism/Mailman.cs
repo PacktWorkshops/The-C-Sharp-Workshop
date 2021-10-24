@@ -8,14 +8,14 @@ namespace Chapter02.Examples.InheritanceAndPolymorphism
         {
         }
 
-        public void SendMail(Mail mail)
+        public void DeliverMail(Mail mail)
         {
-            // Sending Mail...
+            // Delivering Mail...
         }
 
         public override void Work()
         {
-            Console.WriteLine("A mailman is sending mails.");
+            Console.WriteLine("A mailman is delivering mails.");
         }
     }
 }

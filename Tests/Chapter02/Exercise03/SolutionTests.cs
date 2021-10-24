@@ -9,9 +9,9 @@ namespace Tests.Chapter02.Exercise03
     {
         [DataTestMethod]
         [DynamicData(nameof(ExpectedBiggerSections))]
-        public void Solve_Returns_NameOfBiggerSection(double mosaicSpace, IShape[] tiles, bool expectedIsCovered)
+        public void Solve_Returns_NameOfBiggerSection(double mosaicArea, IShape[] tiles, bool expectedIsCovered)
         {
-            var isCovered = Solution.IsEnough(mosaicSpace, tiles);
+            var isCovered = Solution.IsEnough(mosaicArea, tiles);
 
             Assert.AreEqual(expectedIsCovered, isCovered);
         }

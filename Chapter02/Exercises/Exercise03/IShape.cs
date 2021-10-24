@@ -2,6 +2,6 @@
 {
     public interface IShape
     {
-        double Space { get; }
+        double Area { get; }
     }
 }
