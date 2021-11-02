@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,16 +14,66 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using static Chapter09.Service.Startup;
 
 namespace Chapter09.Service.Bootstrap
 {
     public static class SecuritySetup
     {
-        public static IServiceCollection AddSecurity(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddSecurity(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment env)
         {
-            services.AddMicrosoftIdentityWebApiAuthentication(configuration);
+            var isTesting = string.Equals(
+                env.EnvironmentName,
+                "Testing",
+                StringComparison.InvariantCultureIgnoreCase);
+            if (isTesting)
+            {
+                IgnoreTokenValidation(services);
+            }
+            else
+            {
+                services.AddMicrosoftIdentityWebApiAuthentication(configuration);
+            }
+
             return services;
+        }
+
+        private static void IgnoreTokenValidation(IServiceCollection services)
+        {
+            services
+                    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.TokenValidationParameters = CreateTokenValidationParameters();
+                    });
+        }
+
+        private static TokenValidationParameters CreateTokenValidationParameters()
+        {
+            var result = new TokenValidationParameters
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateIssuerSigningKey = false,
+
+                //IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey)),
+                //comment this and add this line to fool the validation logic
+                SignatureValidator = delegate (string token, TokenValidationParameters parameters)
+                {
+                    var jwt = new JwtSecurityToken(token);
+                    return jwt;
+                },
+
+                RequireExpirationTime = false,
+                ValidateLifetime = false,
+
+                ClockSkew = TimeSpan.Zero,
+            };
+
+            result.RequireSignedTokens = false;
+
+            return result;
         }
     }
 }

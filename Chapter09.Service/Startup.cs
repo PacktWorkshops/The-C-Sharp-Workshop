@@ -14,12 +14,14 @@ namespace Chapter09.Service
     {
         public static string Message = "";
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            Environment = env;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Environment { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -28,11 +30,11 @@ namespace Chapter09.Service
                 .AddRequestValidators()
                 .AddSwagger()
                 .AddWeatherService(Configuration)
-                .AddExceptionMappings()
+                .AddExceptionMappings(Environment)
                 .AddHttpClients(Configuration)
                 .AddModelMappings()
                 .AddFileUploadService()
-                .AddSecurity(Configuration);
+                .AddSecurity(Configuration, Environment);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

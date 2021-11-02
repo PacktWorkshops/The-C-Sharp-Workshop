@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="Moq" Version="4.15.1" />
@@ -36,7 +37,6 @@
   <ItemGroup>
     <Folder Include="Chapter04\" />
     <Folder Include="Chapter06\Activities\Activity01\" />
-    <Folder Include="Chapter09\Controllers\" />
   </ItemGroup>
 
 </Project>

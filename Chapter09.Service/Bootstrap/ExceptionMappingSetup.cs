@@ -13,12 +13,15 @@ namespace Chapter09.Service.Bootstrap
 {
     public static class ExceptionMappingSetup
     {
-        public static IServiceCollection AddExceptionMappings(this IServiceCollection services)
+        public static IServiceCollection AddExceptionMappings(this IServiceCollection services,
+            IWebHostEnvironment env)
         {
             services.AddProblemDetails(opt =>
             {
                 opt.MapToStatusCode<NoSuchWeekdayException>(404);
                 opt.MapToStatusCode<FileNotFoundException>(404);
+                opt.IncludeExceptionDetails = (_, __) => env.IsDevelopment() || 
+                                                         string.Equals(env.EnvironmentName, "testing", StringComparison.InvariantCultureIgnoreCase);
             });
 
             return services;
