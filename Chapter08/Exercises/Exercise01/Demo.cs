@@ -7,7 +7,7 @@ using Azure.AI.TextAnalytics;
 
 namespace Chapter08.Exercises.Exercise01
 {
-    class Demo
+    public class Demo
     {
         private static string TextAnalysisApiKey { get; } = Environment.GetEnvironmentVariable("TextAnalysisApiKey", EnvironmentVariableTarget.User);
         private static string TextAnalysisEndpoint { get; } = Environment.GetEnvironmentVariable("TextAnalysisEndpoint", EnvironmentVariableTarget.User);

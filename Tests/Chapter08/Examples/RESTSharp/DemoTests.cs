@@ -1,20 +1,27 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Chapter08.Examples.RESTSharp;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests.Common;
 
 namespace Tests.Chapter08.Examples.RESTSharp
 {
-    public static class DemoTests
+    [TestClass]
+    public class DemoTests : ConsoleTests
     {
-        public static async Task Run()
+        [TestMethod]
+        public async Task Run_PrintsStarWarsMovies_With_ReleaseDatesAndTitle()
         {
-            var client = new StarWarsClient();
-            var filmsResponse = await client.GetFilms();
-            var films = filmsResponse.Data;
-            foreach (var film in films)
-            {
-                Console.WriteLine($"{film.ReleaseDate} {film.Title}");
-            }
+            const string expectedMovies = @"1977-05-25 A New Hope
+1980-05-17 The Empire Strikes Back
+1983-05-25 Return of the Jedi
+1999-05-19 The Phantom Menace
+2002-05-16 Attack of the Clones
+2005-05-19 Revenge of the Sith";
+
+            await Demo.Run();
+
+            Assert.AreEqual(expectedMovies, ConsoleOutput);
         }
     }
 }

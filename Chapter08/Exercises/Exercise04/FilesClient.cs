@@ -77,7 +77,29 @@ namespace Chapter08.Exercises.Exercise04
                 var stream = File.Create(downloadedFile);
                 stream.Dispose();
             }
+
             return blobClient.DownloadToAsync(downloadedFile);
+        }
+
+        public async Task DeleteFile(string filename, string container)
+        {
+            var containerClient = await CreateContainerIfNotExists(container);
+            await DeleteFileInternal(filename, containerClient);
+        }
+
+        public Task DeleteFile(string filename)
+        {
+            return DeleteFileInternal(filename, _defaultContainerClient);
+        }
+
+        private async Task DeleteFileInternal(string filename, BlobContainerClient blobContainer)
+        {
+            var file = blobContainer.GetBlobClient(filename);
+            var fileExists = await file.ExistsAsync();
+            if (fileExists)
+            {
+                await blobContainer.DeleteBlobAsync(filename);
+            }
         }
     }
 }

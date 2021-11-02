@@ -1,31 +1,29 @@
-﻿namespace Tests.Chapter08.Activities.Activity02
+﻿using System.Threading.Tasks;
+using Chapter08.Activities.Activity02;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests.Common;
+
+namespace Tests.Chapter08.Activities.Activity02
 {
-    public static class DemoTests
+    [TestClass]
+    public class DemoTests : ConsoleTests
     {
-        //public static async Task Run()
-        //{
-        //    var client = new CountriesClient();
-        //    IEnumerable<Country> countries;
+        [TestMethod]
+        public async Task Run_Prints_2Countries_With_NameAndCapital_ThenLithuaniaNameAndCapital_ThenVilniusNameAndCapital()
+        {
+            const string expectedCities = @"All:
+Argentina Americas Buenos Aires
+Falkland Islands Americas Stanley
 
-        //    Console.WriteLine("All:");
-        //    countries = await client.Get();
-        //    Print(countries);
+Lithuanian:
+Lithuania Europe Vilnius
 
-        //    Console.WriteLine($"{Environment.NewLine}Lithuanian:");
-        //    countries = await client.GetByLanguage("Lithuanian");
-        //    Print(countries);
+Vilnius:
+Lithuania Europe Vilnius";
 
-        //    Console.WriteLine($"{Environment.NewLine}Vilnius:");
-        //    countries = await client.GetByCapital("Vilnius");
-        //    Print(countries);
-        //}
+            await Demo.Run();
 
-        //private static void Print(IEnumerable<Country> countries)
-        //{
-        //    foreach (var country in countries.Take(2))
-        //    {
-        //        Console.WriteLine($"{country.name.common} {country.region} {string.Join(" ", country.capital ?? new List<string>())}");
-        //    }
-        //}
+            Assert.AreEqual(expectedCities, ConsoleOutput);
+        }
     }
 }

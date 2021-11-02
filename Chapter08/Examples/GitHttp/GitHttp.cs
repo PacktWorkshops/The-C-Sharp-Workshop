@@ -81,7 +81,9 @@ namespace Chapter08.Examples.GitHttp
         private static HttpRequestMessage CreateGetAccessTokenRequest()
         {
             const string tokenUrl = "https://github.com/login/oauth/access_token";
-            const string code = "2ecab6ecf412f28f7d4d";
+            // code can be retrieved using the following url:
+            // https://github.com/login/oauth/authorize?scope=user&client_id={GitHubClientId}&redirect_uri=https://www.google.com/
+            const string code = "04b88fb05ffc99274344";
             const string redirectUri = "https://www.google.com/";
             var uri = new Uri($"{tokenUrl}?client_id={GitHubClientId}&redirect_uri={redirectUri}&client_secret={GitHubSecret}&code={code}");
             var request = new HttpRequestMessage(HttpMethod.Post, uri);

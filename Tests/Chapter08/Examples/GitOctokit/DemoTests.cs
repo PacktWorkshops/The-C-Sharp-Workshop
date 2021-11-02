@@ -1,13 +1,21 @@
-﻿namespace Tests.Chapter08.Examples.GitOctokit
+﻿using System.Threading.Tasks;
+using Chapter08.Examples.GitOctokit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests.Common;
+
+namespace Tests.Chapter08.Examples.GitOctokit
 {
-    public static class DemoTests
+    [TestClass]
+    public class DemoTests : ConsoleTests
     {
-        //public static async Task Run()
-        //{
-        //    var github = new GitHubClient(new ProductHeaderValue("Packt"));
-        //    const string username = "Almantask";
-        //    var user = await github.User.Get(username);
-        //    Console.WriteLine($"{username} created profile at {user.CreatedAt}");
-        //}
+        [TestMethod]
+        public async Task Run_Returns_AlmatasKWithCreatedAtProfileDate()
+        {
+            const string expectedUser = "Almantask created profile at 2018-06-22 07:51:56 +00:00";
+
+            await Demo.Run();
+
+            Assert.AreEqual(expectedUser, ConsoleOutput);
+        }
     }
 }

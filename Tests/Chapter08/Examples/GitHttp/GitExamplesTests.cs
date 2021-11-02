@@ -1,99 +1,54 @@
-﻿namespace Tests.Chapter08.Examples.GitHttp
+﻿using System;
+using System.Threading.Tasks;
+using Chapter08.Examples.GitHttp;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests.Common;
+
+namespace Tests.Chapter08.Examples.GitHttp
 {
-    public static class GitExamplesTests
+    [TestClass]
+    public class DemoTests : ConsoleTests
     {
-        //private static string GitHubClientId { get; } = Environment.GetEnvironmentVariable("GithubClientId", EnvironmentVariableTarget.User);
-        //private static string GitHubSecret { get; } = Environment.GetEnvironmentVariable("GithubSecret", EnvironmentVariableTarget.User);
+        [TestMethod]
+        public async Task GetUser_Returns_AlmatasKWithCreatedAtProfileDate()
+        {
+            const string expectedUser = "Kaisinel created profile at 2018-06-22 07:51:56";
 
-        //private static HttpClient client;
+            await GitExamples.GetUser();
 
-        //static GitExamples()
-        //{
-        //    client = new HttpClient { BaseAddress = new Uri("https://api.github.com") };
-        //    client.DefaultRequestHeaders.Add("User-Agent", "Packt");
-        //}
+            Assert.AreEqual(expectedUser, ConsoleOutput);
+        }
 
-        //public static async Task GetUser()
-        //{
-        //    const string username = "almantask";
-        //    var request = new HttpRequestMessage(HttpMethod.Get, new Uri($"users/{username}", UriKind.Relative));
+        [TestMethod]
+        public async Task GetUser61Times_DoesNotThrow()
+        {
+            var token = GitExamples.GetBasicToken();
 
-        //    var response = await client.SendAsync(request);
-        //    var content = await response.Content.ReadAsStringAsync();
-        //    var user = JsonConvert.DeserializeObject<User>(content);
+            Func<Task> getUser61Times = async () => await GitExamples.GetUser61Times(token);
 
-        //    Console.WriteLine($"{user.Name} created profile at {user.CreatedAt}");
-        //}
+            await getUser61Times.DoesNotThrow();
+        }
 
-        //// GitHub limits rate of requests:
-        //// - unauthenticated requests to 60/h per IP.
-        //// - 5000 authenticated requests
-        //// If header wasn't working, we should be rate limited
-        //// This method proves that the basic auth works and we follow authenticated rate limit.
-        //public static async Task GetUser61Times(string authHeader)
-        //{
-        //    const int rateLimit = 60;
-        //    for (int i = 0; i < rateLimit + 1; i++)
-        //    {
-        //        const string username = "almantask";
-        //        var request = new HttpRequestMessage(HttpMethod.Get, new Uri($"users/{username}", UriKind.Relative));
-        //        request.Headers.CacheControl = new CacheControlHeaderValue() { NoCache = true };
-        //        request.Headers.Add("Authorization", authHeader);
+        [TestMethod]
+        public void GetToken_ReturnsBase64EncodedString()
+        {
+            var basicToken = GitExamples.GetBasicToken();
 
-        //        var response = await client.SendAsync(request);
-        //        if (!response.IsSuccessStatusCode)
-        //        {
-        //            throw new Exception(response.ReasonPhrase);
-        //        }
+            var token = basicToken.Replace("Basic ", "", StringComparison.InvariantCultureIgnoreCase);
+            Action tokenFromBase64String = () => Convert.FromBase64String(token);
+            tokenFromBase64String.DoesNotThrow();
+        }
 
-        //        var content = await response.Content.ReadAsStringAsync();
+        [TestMethod]
+        [Ignore("To be run only if you change GitHttpExamples line 86")]
+        public async Task UpdateEmploymentStatus_SetsIsHireableToTrue()
+        {
+            const string expectedProfileInfo = "";
+            var token = await GitExamples.GetToken();
 
-        //        var user = JsonConvert.DeserializeObject<User>(content);
+            await GitExamples.UpdateEmploymentStatus(true, token);
 
-        //        Console.WriteLine($"{i + 1}) {user.Name} created profile at {user.CreatedAt}");
-        //    }
-        //}
-
-        //public static async Task<string> GetToken()
-        //{
-        //    HttpRequestMessage request = CreateGetAccessTokenRequest();
-
-        //    var response = await client.SendAsync(request);
-        //    var content = await response.Content.ReadAsStringAsync();
-
-        //    Dictionary<string, string> tokenResponse = ConvertToDictionary(content);
-
-        //    ValidateNoError(tokenResponse);
-
-        //    var token = $"{tokenResponse["token_type"]} {tokenResponse["access_token"]}";
-        //    return token;
-        //}
-
-        //public static async Task UpdateEmploymentStatus(bool isHireable, string authToken)
-        //{
-        //    var user = new UserFromWeb
-        //    {
-        //        hireable = isHireable
-        //    };
-        //    var request = new HttpRequestMessage(HttpMethod.Patch, new Uri("/user", UriKind.Relative));
-        //    request.Headers.Add("Authorization", authToken);
-        //    var content = JsonConvert.SerializeObject(user, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-        //    request.Content = new StringContent(content, Encoding.UTF8, "application/json");
-        //    var response = await client.SendAsync(request);
-        //    Console.WriteLine(response.Content.ReadAsStringAsync().Result);
-        //}
-
-        //public static string GetBasicToken()
-        //{
-        //    var id = GitHubClientId;
-        //    var secret = GitHubSecret;
-        //    var tokenRaw = $"{id}:{secret}";
-        //    var tokenBytes = Encoding.UTF8.GetBytes(tokenRaw);
-        //    var token = Convert.ToBase64String(tokenBytes);
-
-        //    return "Basic " + token;
-        //}
-
-        //public static void Dispose() => client.Dispose();
+            Assert.IsTrue(ConsoleOutput.Contains("\"hireable\":true"), "Expected hireable to be set to true");
+        }
     }
 }
