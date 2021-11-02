@@ -19,6 +19,7 @@
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.0" />
     <PackageReference Include="MSTest.TestFramework" Version="2.1.0" />
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
+    <PackageReference Include="RichardSzalay.MockHttp" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +36,7 @@
   <ItemGroup>
     <Folder Include="Chapter04\" />
     <Folder Include="Chapter06\Activities\Activity01\" />
+    <Folder Include="Chapter09\Controllers\" />
   </ItemGroup>
 
 </Project>

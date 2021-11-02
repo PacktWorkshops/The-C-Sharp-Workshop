@@ -1,42 +1,91 @@
-﻿namespace Tests.Chapter09.Exercises.Exercise03
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
+using Chapter09.Service.Controllers;
+using Chapter09.Service.Exercises.Exercise03;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+
+namespace Tests.Chapter09.Exercises.Exercise03
 {
+    [TestClass]
     public class FileControllerTests
     {
-    //    private readonly IFilesService _filesService;
+        private FileController _controller;
 
-    //    public FileControllerTests(IFilesService filesService)
-    //    {
-    //        _filesService = filesService;
-    //    }
+        private Mock<IFilesService> _fileService;
 
-    //    [HttpDelete("{file}")]
-    //    public async Task<IActionResult> Delete(string file)
-    //    {
-    //        await _filesService.Delete(file);
+        [TestInitialize]
+        public void SetUp()
+        {
+            _fileService = new Mock<IFilesService>();
+            _controller = new FileController(_fileService.Object);
+        }
 
-    //        return Ok();
-    //    }
+        [TestMethod]
+        public async Task Delete_CallsFileService_And_ReturnsOk()
+        {
+            const string anyFile = "anyFile";
 
-    //    [HttpGet("Download/{file}")]
-    //    public async Task<IActionResult> Download(string file)
-    //    {
-    //        var content = await _filesService.Download(file);
-    //        return new FileContentResult(content, "application/octet-stream ");
-    //    }
+            var response = await _controller.Delete(anyFile);
 
-    //    [HttpGet("Link")]
-    //    public IActionResult GetDownloadLink(string file)
-    //    {
-    //        var link = _filesService.GetDownloadLink(file);
-    //        return Ok(link);
-    //    }
+            _fileService.Verify(fs => fs.Delete(anyFile), Times.Once);
+            Assert.IsInstanceOfType(response, typeof(OkResult));
+        }
 
-    //    [HttpPost("upload")]
-    //    public async Task<IActionResult> Upload(IFormFile file)
-    //    {
-    //        await _filesService.UploadFile(file.FileName, file.OpenReadStream());
+        [TestMethod]
+        public async Task Download_CallsFileService_And_ReturnsDownloaddedContented_OfOctetStream()
+        {
+            const string anyFile = "anyFile";
+            byte[] expectedContent = new byte[0];
+            _fileService
+                .Setup(fs => fs.Download(anyFile))
+                .ReturnsAsync(expectedContent);
 
-    //        return Ok();
-    //    }
+            var response = await _controller.Download(anyFile);
+
+            _fileService.Verify(fs => fs.Download(anyFile), Times.Once);
+            Assert.IsInstanceOfType(response, typeof(FileContentResult));
+            var fileContentResponse = (FileContentResult)response;
+            Assert.AreEqual("application/octet-stream", fileContentResponse.ContentType);
+            Assert.AreEqual(expectedContent, fileContentResponse.FileContents);
+        }
+
+        [TestMethod]
+        public void GetDownloadLink_CallsFileService_And_ReturnsFileContentResult_OfOctetStream()
+        {
+            const string anyFile = "anyFile";
+            var expectedLink = new Uri("https://test.com");
+            _fileService
+                .Setup(fs => fs.GetDownloadLink(anyFile))
+                .Returns(expectedLink);
+            var response = _controller.GetDownloadLink(anyFile);
+
+            _fileService.Verify(fs => fs.GetDownloadLink(anyFile), Times.Once);
+            Assert.IsInstanceOfType(response, typeof(OkObjectResult));
+            var fileContentResponse = (OkObjectResult)response;
+            Assert.AreEqual(expectedLink, fileContentResponse.Value);
+        }
+
+        [TestMethod]
+        public async Task Upload_CallsFileService_And_ReturnsOk()
+        {
+            var file = new Mock<IFormFile>();
+            const string expectedFilename = "anyFile";
+            var expectedStream = new MemoryStream(new byte[0]);
+            file
+                .SetupGet(f => f.FileName)
+                .Returns(expectedFilename);
+            file
+                .Setup(f => f.OpenReadStream())
+                .Returns(expectedStream);
+
+            var response = await _controller.Upload(file.Object);
+
+            _fileService.Verify(fs => fs.UploadFile(expectedFilename, expectedStream), Times.Once);
+            Assert.IsInstanceOfType(response, typeof(OkResult));
+        }
     }
 }

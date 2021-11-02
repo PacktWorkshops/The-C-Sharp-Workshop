@@ -1,35 +1,38 @@
-﻿namespace Tests.Chapter09.Exercises.Exercise02
+﻿using System;
+using Chapter09.Service.Exercises.Exercise02;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+
+namespace Tests.Chapter09.Exercises.Exercise02
 {
+    [TestClass]
     public class CurrentTimeControllerTests
     {
-    //    private readonly ICurrentTimeProvider _currentTimeProvider;
+        private CurrentTimeController _controller;
 
-    //    public CurrentTimeController(ICurrentTimeProvider currentTimeProvider)
-    //    {
-    //        _currentTimeProvider = currentTimeProvider;
-    //    }
+        private Mock<ICurrentTimeProvider> _currentTimeProvider;
 
-    //    [HttpGet]
-    //    public IActionResult Get(string timezoneId)
-    //    {
-    //        var time = _currentTimeProvider.GetTime(timezoneId);
-    //        return Ok(time);
-    //    }
-    //}
+        [TestInitialize]
+        public void SetUp()
+        {
+            _currentTimeProvider = new Mock<ICurrentTimeProvider>();
+            _controller = new CurrentTimeController(_currentTimeProvider.Object);
+        }
 
-    //public interface ICurrentTimeProvider
-    //{
-    //    DateTime GetTime(string timezoneId);
-    //}
+        public void Get_ReturnsTimeFromProvider()
+        {
+            const string zoneId = "testZone";
+            var expectedDate = new DateTime();
+            _currentTimeProvider
+                .Setup(ctp => ctp.GetTime(zoneId))
+                .Returns(expectedDate);
 
-    //public class CurrentTimeUtcProvider : ICurrentTimeProvider
-    //{
-    //    public DateTime GetTime(string timezoneId)
-    //    {
-    //        var timezoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timezoneId);
-    //        var time = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timezoneInfo);
+            var time = _controller.Get(zoneId);
 
-    //        return time;
-    //    }
+            Assert.IsInstanceOfType(time, typeof(OkObjectResult));
+            var timeResult = (OkObjectResult)time;
+            Assert.AreEqual(expectedDate, timeResult.Value);
+        }
     }
 }

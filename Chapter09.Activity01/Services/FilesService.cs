@@ -46,10 +46,7 @@ namespace Chapter09.Activity01.Services
         public Task Delete(string name)
         {
             var blobClient = _defaultContainerClient.GetBlobClient(name);
-            if (!blobClient.Exists())
-            {
-                throw new FileNotFoundException($"File {name} in default blob storage not found.");
-            }
+            ValidateFileExists(blobClient);
 
             return blobClient.DeleteAsync();
         }
@@ -72,6 +69,7 @@ namespace Chapter09.Activity01.Services
         public Uri GetDownloadLink(string filename)
         {
             var blobClient = _defaultContainerClient.GetBlobClient(filename);
+            ValidateFileExists(blobClient);
             var url = GetUri(blobClient);
 
             return url;
@@ -90,6 +88,14 @@ namespace Chapter09.Activity01.Services
 
             var sasUri = blobClient.GenerateSasUri(sasBuilder);
             return sasUri;
+        }
+
+        private static void ValidateFileExists(BlobClient blobClient)
+        {
+            if (!blobClient.Exists())
+            {
+                throw new FileNotFoundException($"File {blobClient.Name} in default blob storage not found.");
+            }
         }
     }
 }

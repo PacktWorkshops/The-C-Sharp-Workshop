@@ -1,80 +1,107 @@
-﻿namespace Tests.Chapter09.Activities.Activity01.Services
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
+using Azure;
+using Chapter09.Activity01.Services;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests.Common;
+
+namespace Tests.Chapter09.Activities.Activity01.Services
 {
+    [TestClass]
     public class FilesServiceTests
     {
-        //private readonly BlobServiceClient _blobServiceClient;
-        //private readonly BlobContainerClient _defaultContainerClient;
+        private const string ExistingFile = "existingFile.txt";
+        private const string NotExistingFile = "this-does-not-exist.tmp";
+        
+        private byte[] existingFileContent = new byte[] { 1 };
 
-        //public FilesService()
-        //{
-        //    var endpoint = "https://packtstorage2.blob.core.windows.net/";
-        //    var account = "packtstorage2";
-        //    var key = Environment.GetEnvironmentVariable("BlobStorageKey", EnvironmentVariableTarget.User);
-        //    var storageEndpoint = new Uri(endpoint);
-        //    var storageCredentials = new StorageSharedKeyCredential(account, key);
-        //    _blobServiceClient = new BlobServiceClient(storageEndpoint, storageCredentials);
-        //    _defaultContainerClient = CreateContainerIfNotExists("Exercise04").Result;
-        //}
+        private FilesService _filesService;
 
-        //private async Task<BlobContainerClient> CreateContainerIfNotExists(string container)
-        //{
-        //    var lowerCaseContainer = container.ToLower();
-        //    var containerClient = _blobServiceClient.GetBlobContainerClient(lowerCaseContainer);
-        //    if (!await containerClient.ExistsAsync())
-        //    {
-        //        containerClient = await _blobServiceClient.CreateBlobContainerAsync(lowerCaseContainer);
-        //    }
+        [TestInitialize]
+        public void SetUp()
+        {
+            _filesService = new FilesService();
+            _filesService
+                .UploadFile(ExistingFile, new MemoryStream(existingFileContent))
+                .GetAwaiter().GetResult();
+        }
 
-        //    return containerClient;
-        //}
+        [TestCleanup]
+        public void Cleanup()
+        {
+            _filesService.Delete(ExistingFile);
+        }
 
-        //public Task Delete(string name)
-        //{
-        //    var blobClient = _defaultContainerClient.GetBlobClient(name);
-        //    if (!blobClient.Exists())
-        //    {
-        //        throw new FileNotFoundException($"File {name} in default blob storage not found.");
-        //    }
+        [TestMethod]
+        public async Task Delete_GivenFileExists_GettingLinkAfterDelete_ThrowsFileNotFoundException()
+        {
+            await _filesService.Delete(ExistingFile);
 
-        //    return blobClient.DeleteAsync();
-        //}
+            Action getDownloadLinkDeletedFile = () => _filesService.GetDownloadLink(ExistingFile);
+            Assert.ThrowsException<FileNotFoundException>(getDownloadLinkDeletedFile);
 
-        //public Task UploadFile(string name, Stream content)
-        //{
-        //    var blobClient = _defaultContainerClient.GetBlobClient(name);
-        //    return blobClient.UploadAsync(content);
-        //}
+            // Needed for the cleanup to work.
+            await _filesService.UploadFile(ExistingFile, Stream.Null);
+        }
 
-        //public async Task<byte[]> Download(string filename)
-        //{
-        //    var blobClient = _defaultContainerClient.GetBlobClient(filename);
-        //    var stream = new MemoryStream();
-        //    await blobClient.DownloadToAsync(stream);
+        [TestMethod]
+        public void Delete_GivenFileDoesNotExist_ThrowsFileNotFoundException()
+        {
+            async Task DeleteNotExistingFile() => await _filesService.Delete(NotExistingFile);
 
-        //    return stream.ToArray();
-        //}
+            Assert.ThrowsExceptionAsync<FileNotFoundException>(DeleteNotExistingFile);
+        }
 
-        //public Uri GetDownloadLink(string filename)
-        //{
-        //    var blobClient = _defaultContainerClient.GetBlobClient(filename);
-        //    var url = GetUri(blobClient);
+        [TestMethod]
+        public async Task UploadFile_GivenFileDoesNotExist_UploadsIt()
+        {
+            Func<Task> getDownloadLinkOfUploadedFile = () => _filesService.UploadFile(NotExistingFile, Stream.Null);
+            
+            await getDownloadLinkOfUploadedFile.DoesNotThrow();
 
-        //    return url;
-        //}
+            await _filesService.Delete(NotExistingFile);
+        }
 
-        //private Uri GetUri(BlobClient blobClient)
-        //{
-        //    var sasBuilder = new BlobSasBuilder
-        //    {
-        //        BlobContainerName = _defaultContainerClient.Name,
-        //        BlobName = blobClient.Name,
-        //        Resource = "b",
-        //        ExpiresOn = DateTimeOffset.UtcNow.AddHours(1)
-        //    };
-        //    sasBuilder.SetPermissions(BlobSasPermissions.Read);
+        [TestMethod]
+        public async Task UploadFile_GivenFileExists_ThrowsRequestFailedException()
+        {
+            Func<Task> uploadExistingFile = async () => await _filesService.UploadFile(ExistingFile, Stream.Null);
 
-        //    var sasUri = blobClient.GenerateSasUri(sasBuilder);
-        //    return sasUri;
-        //}
+            await Assert.ThrowsExceptionAsync<RequestFailedException>(uploadExistingFile);
+        }
+
+        [TestMethod]
+        public async Task Download_GivenFileExists_ReturnsContentAsByteArray()
+        {
+            var downloaded = await _filesService.Download(ExistingFile);
+            
+            Assert.AreEqual(existingFileContent.Length, downloaded.Length);
+            Assert.AreEqual(existingFileContent[0], downloaded[0]);
+        }
+
+        [TestMethod]
+        public void Download_GivenFileDoesNotExist_ThrowsFileNotFoundException()
+        {
+            Func<Task> downloadedNotExistingFile = async () => await _filesService.Download(ExistingFile);
+
+            Assert.ThrowsExceptionAsync<FileNotFoundException>(downloadedNotExistingFile);
+        }
+
+        [TestMethod]
+        public void GetDownloadLink_GivenFileDoesNotExist_ThrowsFileNotFoundException()
+        {
+            Action getDownloadLinkToNotExistingFile = () => _filesService.GetDownloadLink(NotExistingFile);
+
+            Assert.ThrowsException<FileNotFoundException>(getDownloadLinkToNotExistingFile);
+        }
+
+        [TestMethod]
+        public void GetDownloadLink_GivenFileExists_ReturnsLinkToThatFile()
+        {
+             var linkToFile = _filesService.GetDownloadLink(ExistingFile);
+
+            Assert.IsNotNull(linkToFile);
+        }
     }
 }

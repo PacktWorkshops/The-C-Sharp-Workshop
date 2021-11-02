@@ -1,26 +1,40 @@
-﻿namespace Tests.Chapter09.Providers
+﻿using System;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Chapter09.Service.Providers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RichardSzalay.MockHttp;
+
+namespace Tests.Chapter09.Providers
 {
+    [TestClass]
     public class WeatherForecastProviderTests
     {
-        //private readonly HttpClient _client;
+        private HttpClient _client;
 
-        //public WeatherForecastProviderTests(HttpClient client)
-        //{
-        //    _client = client;
-        //}
+        [TestInitialize]
+        public void SetUp()
+        {
+            _client = new HttpClient {BaseAddress = new Uri("https://community-open-weather-map.p.rapidapi.com/") };
+            var apiKey = Environment.GetEnvironmentVariable("x-rapidapi-key", EnvironmentVariableTarget.User);
+            _client.DefaultRequestHeaders.Add("x-rapidapi-key", apiKey);
+        }
 
-        //public async Task<WeatherForecast> GetCurrent(string location)
-        //{
-        //    var request = new HttpRequestMessage
-        //    {
-        //        Method = HttpMethod.Get,
-        //        RequestUri = new Uri($"/weather?units=metric&q={location}", UriKind.Relative),
-        //    };
+        [TestCleanup]
+        public void TearDown()
+        {
+            _client.Dispose();
+        }
 
-        //    using var response = await _client.SendAsync(request);
-        //    response.EnsureSuccessStatusCode();
-        //    var body = await response.Content.ReadAsStringAsync();
-        //    return JsonConvert.DeserializeObject<WeatherForecast>(body);
-        //}
+        [TestMethod]
+        public async Task GetCurrent_WhenVilnius_ReturnsSomeForecast()
+        {
+            var forecastProvider = new WeatherForecastProvider(_client);
+
+            var forecast = await forecastProvider.GetCurrent("Vilnius");
+
+            Assert.IsTrue(forecast.weather.Any(), "Expected one or more weather forecasts");
+        }
     }
 }

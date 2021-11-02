@@ -5,7 +5,7 @@ using Azure.Storage;
 using Azure.Storage.Blobs;
 using Azure.Storage.Sas;
 
-namespace Chapter09.Service.Services
+namespace Chapter09.Service.Exercises.Exercise03
 {
     public interface IFilesService
     {
@@ -46,10 +46,7 @@ namespace Chapter09.Service.Services
         public Task Delete(string name)
         {
             var blobClient = _defaultContainerClient.GetBlobClient(name);
-            if (!blobClient.Exists())
-            {
-                throw new FileNotFoundException($"File {name} in default blob storage not found.");
-            }
+            ValidateFileExists(blobClient);
 
             return blobClient.DeleteAsync();
         }
@@ -72,6 +69,7 @@ namespace Chapter09.Service.Services
         public Uri GetDownloadLink(string filename)
         {
             var blobClient = _defaultContainerClient.GetBlobClient(filename);
+            ValidateFileExists(blobClient);
             var url = GetUri(blobClient);
 
             return url;
@@ -90,6 +88,14 @@ namespace Chapter09.Service.Services
 
             var sasUri = blobClient.GenerateSasUri(sasBuilder);
             return sasUri;
+        }
+
+        private static void ValidateFileExists(BlobClient blobClient)
+        {
+            if (!blobClient.Exists())
+            {
+                throw new FileNotFoundException($"File {blobClient.Name} in default blob storage not found.");
+            }
         }
     }
 }
