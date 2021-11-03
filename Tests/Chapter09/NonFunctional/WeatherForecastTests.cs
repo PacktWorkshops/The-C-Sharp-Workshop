@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Chapter09.Service.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -56,38 +58,29 @@ namespace Tests.Chapter09.NonFunctional
             Assert.AreEqual($"'{day}' is not a valid day of a week.", problem.Detail);
         }
 
-        //[HttpGet("weekday/{day}")]
-        //public IActionResult GetWeekday(int day)
-        //{
-        //    var result = _weatherForecastService1.GetWeekday(day);
-        //    result = _weatherForecastService2.GetWeekday(day);
-        //    return Ok(result);
-        //}
+        [TestMethod]
+        public async Task GetWeatherForecast_ReturnsVilniusForecast()
+        {
+            var response = await _client.GetAsync(new Uri("", UriKind.Relative));
 
-        ///// <summary>
-        ///// Gets weather forecast for now.
-        ///// </summary>
-        //[HttpGet]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //public async Task<IActionResult> GetWeatherForecast()
-        //{
-        //    var weatherForecast = await _weatherForecastService1.GetWeatherForecast(DateTime.UtcNow);
-        //    if (weatherForecast == null) return NotFound();
-        //    return Ok(weatherForecast);
-        //}
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            var content = await response.Content.ReadAsStringAsync();
+            var forecast = JsonConvert.DeserializeObject<WeatherForecast>(content);
+            Assert.IsNotNull(forecast);
+        }
 
-        ///// <summary>
-        ///// Saves a forecast at forecast date.
-        ///// </summary>
-        ///// <param name="weatherForecast">Date which identifies a forecast. Using short date time string for identity.</param>
-        ///// <returns>201 with a link to an action to fetch a created forecast.</returns>
-        //[HttpPost]
-        //[ProducesResponseType(StatusCodes.Status201Created)]
-        //public IActionResult SaveWeatherForecast(WeatherForecast weatherForecast)
-        //{
-        //    _weatherForecastService1.SaveWeatherForecast(weatherForecast);
-        //    return CreatedAtAction("GetWeatherForecast", new { date = weatherForecast.Date.ToShortDateString() }, weatherForecast);
-        //}
+        [TestMethod]
+        public async Task SaveWeatherForecast_ReturnsVilniusForecast()
+        {
+            var uri = new Uri("", UriKind.Relative);
+            var forecast = new WeatherForecast {Summary = "Test" };
+            var body = JsonContent.Create(forecast);
+            var response = await _client.PostAsync(uri,body);
+
+            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
+            var content = await response.Content.ReadAsStringAsync();
+            var retrievedForecast = JsonConvert.DeserializeObject<WeatherForecast>(content);
+            Assert.IsNotNull(forecast.Summary, retrievedForecast.Summary);
+        }
     }
 }
