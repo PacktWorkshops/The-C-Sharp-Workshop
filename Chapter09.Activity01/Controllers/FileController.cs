@@ -33,7 +33,7 @@ namespace Chapter09.Activity01.Controllers
             return new FileContentResult(content, "application/octet-stream ");
         }
 
-        [HttpGet("Link")]
+        [HttpGet("Link/{file}")]
         public IActionResult GetDownloadLink(string file)
         {
             var link = _filesService.GetDownloadLink(file);

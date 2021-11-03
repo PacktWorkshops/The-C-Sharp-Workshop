@@ -22,7 +22,7 @@ namespace Tests.Chapter09.NonFunctional.Common
             
             var factoryActivity = new WebApplicationFactoryTesting<Activity.Startup>();
             ClientActivity = factoryActivity.CreateClient();
-            ClientActivity.BaseAddress = new Uri($"{ClientActivity.BaseAddress.AbsoluteUri}File/");
+            ClientActivity.BaseAddress = new Uri($"{ClientActivity.BaseAddress.AbsoluteUri}api/File/");
             ClientActivity.DefaultRequestHeaders.Add("Authorization", FakeTokenWithAccessAsUserClaim);
         }
 

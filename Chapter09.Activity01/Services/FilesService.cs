@@ -60,6 +60,7 @@ namespace Chapter09.Activity01.Services
         public async Task<byte[]> Download(string filename)
         {
             var blobClient = _defaultContainerClient.GetBlobClient(filename);
+            ValidateFileExists(blobClient);
             var stream = new MemoryStream();
             await blobClient.DownloadToAsync(stream);
 

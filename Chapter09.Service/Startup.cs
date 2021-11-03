@@ -12,8 +12,6 @@ namespace Chapter09.Service
 {
     public class Startup
     {
-        public static string Message = "";
-
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
