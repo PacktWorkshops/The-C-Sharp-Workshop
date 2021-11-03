@@ -11,11 +11,11 @@ namespace Tests.Chapter08.Exercises.Exercise03
         [TestMethod]
         public async Task Run_Prints_ExpectedBill()
         {
-            const string expectedBill = "- 100.00EUR";
+            const string expectedBill = "100.00EUR";
 
             await Demo.Run();
 
-            Assert.IsTrue(expectedBill.Contains("- 100.00EUR"), "Expected bill to be 100.00EUR");
+            Assert.IsTrue(expectedBill.Contains(expectedBill), $"Expected bill to be {expectedBill}");
         }
     }
 }
