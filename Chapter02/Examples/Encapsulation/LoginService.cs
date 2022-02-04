@@ -1,4 +1,6 @@
-﻿namespace Chapter02.Examples.Encapsulation
+﻿// Used in pseudo-code example.
+#pragma warning disable CS0169
+namespace Chapter02.Examples.Encapsulation
 {
     public class LoginService
     {

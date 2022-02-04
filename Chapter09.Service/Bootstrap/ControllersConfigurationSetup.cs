@@ -1,7 +1,5 @@
 ﻿using FluentValidation.AspNetCore;
-using Hellang.Middleware.ProblemDetails.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 
 namespace Chapter09.Service.Bootstrap
 {

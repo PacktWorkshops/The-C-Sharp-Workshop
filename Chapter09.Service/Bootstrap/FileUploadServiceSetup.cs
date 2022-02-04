@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Chapter09.Service.Exercises.Exercise03;
-using Chapter09.Service.Services;
+﻿using Chapter09.Service.Exercises.Exercise03;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Chapter09.Service.Bootstrap

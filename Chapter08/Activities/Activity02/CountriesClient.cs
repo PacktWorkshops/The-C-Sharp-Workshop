@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Chapter08.Exercises.Exercise02.Models;
 using RestSharp;
+// Auto - generated
+#pragma warning disable CS0108, CS0114
 
 namespace Chapter08.Activities.Activity02
 {

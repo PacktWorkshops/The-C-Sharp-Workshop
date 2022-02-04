@@ -1,11 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using Chapter09.Service.Exceptions;
-using Chapter09.Service.Exercises.Exercise02;
-using Chapter09.Service.Services;
-using Hellang.Middleware.ProblemDetails;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 

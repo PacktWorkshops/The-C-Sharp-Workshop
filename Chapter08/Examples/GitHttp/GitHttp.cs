@@ -117,10 +117,11 @@ namespace Chapter08.Examples.GitHttp
             };
             var request = new HttpRequestMessage(HttpMethod.Patch, new Uri("/user", UriKind.Relative));
             request.Headers.Add("Authorization", authToken);
-            var content = JsonConvert.SerializeObject(user, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            request.Content = new StringContent(content, Encoding.UTF8, "application/json");
+            var requestContent = JsonConvert.SerializeObject(user, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            request.Content = new StringContent(requestContent, Encoding.UTF8, "application/json");
             var response = await client.SendAsync(request);
-            Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+            var responseContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(responseContent);
         }
 
         public static string GetBasicToken()

@@ -1,4 +1,6 @@
-﻿namespace Chapter02.Examples.CsharpKeywords.Operators
+﻿// It was already mentioned in the book that the missing operators are recommended to be implemented.
+#pragma warning disable CS0660, CS0661
+namespace Chapter02.Examples.CsharpKeywords.Operators
 {
     public class BankAccount
     {
