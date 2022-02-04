@@ -9,7 +9,7 @@ namespace Chapter08.Examples.GitHttp
 
         public static async Task Run()
         {
-            await GitExamples.GetUser();
+            //await GitExamples.GetUser();
 
             var oathAccessToken = await GitExamples.GetToken();
             await GitExamples.UpdateEmploymentStatus(true, oathAccessToken);

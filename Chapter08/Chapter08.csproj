@@ -20,10 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Exercises\Exercise04\Data\Uploads\Morning.jpg">
+    <None Update="Activities\Activity04\Data\Uploads\Morning.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Exercises\Exercise04\Data\Uploads\Test1.txt">
+    <None Update="Activities\Activity04\Data\Uploads\Test1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

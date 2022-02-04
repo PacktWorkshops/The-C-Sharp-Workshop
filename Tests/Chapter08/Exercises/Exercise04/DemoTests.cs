@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using Chapter08.Exercises.Exercise04;
+using Chapter08.Activities.Activity04;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.Common;
 

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace Chapter08.Exercises.Exercise04
+namespace Chapter08.Activities.Activity04
 {
     public static class Demo
     {

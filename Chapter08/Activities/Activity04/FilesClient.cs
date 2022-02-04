@@ -1,10 +1,10 @@
-﻿using Azure.Storage;
-using Azure.Storage.Blobs;
-using System;
+﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using Azure.Storage;
+using Azure.Storage.Blobs;
 
-namespace Chapter08.Exercises.Exercise04
+namespace Chapter08.Activities.Activity04
 {
     public class FilesClient
     {
@@ -32,7 +32,7 @@ namespace Chapter08.Exercises.Exercise04
         {
             var lowerCaseContainer = container.ToLower();
             var containerClient = _blobServiceClient.GetBlobContainerClient(lowerCaseContainer);
-            if (! await containerClient.ExistsAsync())
+            if (!await containerClient.ExistsAsync())
             {
                 containerClient = await _blobServiceClient.CreateBlobContainerAsync(lowerCaseContainer);
             }
@@ -66,12 +66,12 @@ namespace Chapter08.Exercises.Exercise04
         {
             var blobClient = client.GetBlobClient(filename);
             var downloadedFile = Path.Combine(downloadDirectory, filename);
-            
+
             if (!Directory.Exists(downloadDirectory))
             {
                 Directory.CreateDirectory(downloadDirectory);
             }
-            
+
             if (!File.Exists(downloadedFile))
             {
                 var stream = File.Create(downloadedFile);
