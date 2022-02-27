@@ -29,9 +29,10 @@
     <ProjectReference Include="..\Chapter05\Chapter05.csproj" />
     <ProjectReference Include="..\Chapter06\Chapter06.csproj" />
     <ProjectReference Include="..\Chapter08\Chapter08.csproj" />
-    <ProjectReference Include="..\Chapter09.Activity01\Chapter09.Activity01.csproj" />
-    <ProjectReference Include="..\Chapter09.Service\Chapter09.Service.csproj" />
-    <ProjectReference Include="..\Chapter09.TokenGenerator\Chapter09.TokenGenerator.csproj" />
+    <ProjectReference Include="..\Chapter09\Chapter09.Activity01\Chapter09.Activity01.csproj" />
+    <ProjectReference Include="..\Chapter09\Chapter09.AzureFunctions\Chapter09.AzureFunctions.csproj" />
+    <ProjectReference Include="..\Chapter09\Chapter09.Service\Chapter09.Service.csproj" />
+    <ProjectReference Include="..\Chapter09\Chapter09.TokenGenerator\Chapter09.TokenGenerator.csproj" />
   </ItemGroup>
 
   <ItemGroup>
