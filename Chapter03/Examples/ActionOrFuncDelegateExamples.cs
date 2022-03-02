@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Examples.Chapter03
+namespace Chapter03Examples
 {
     public class ActionOrFuncDelegateExamples
     {

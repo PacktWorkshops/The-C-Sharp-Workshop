@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Examples.Chapter03
+namespace Chapter03Examples
 {
     public class User
     {
