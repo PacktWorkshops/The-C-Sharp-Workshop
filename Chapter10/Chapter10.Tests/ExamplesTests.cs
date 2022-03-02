@@ -99,7 +99,17 @@ namespace Chapter10.Tests
             Assert.That(valuesByCountry, Does.ContainKey("UK"));
             Assert.That(valuesByCountry, Does.ContainValue(3000));
         }
-[Test]
+
+        [Test]
+        public void AssertThat_IsEqualToExamples()
+        {
+            var newColors = new[] { "red", "orange", "blue" };
+            var oldColors = new List<string> { "red", "orange", "blue" };
+
+            Assert.That(newColors, Is.EqualTo(oldColors));
+        }
+
+        [Test]
 public void AssertThat_DoesStringExamples()
 {
     Assert.That(".Net Core", Does.StartWith(".Net"));
