@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-Console.WriteLine("Please type a username. It must have at least 6 digits: ");
+Console.WriteLine("Please type a username. It must have at least 6 characters: ");
 
 var username = Console.ReadLine();
 
@@ -21,7 +21,7 @@ else
 	}
 	else if (!password.Any(c => char.IsDigit(c)))
 	{
-		Console.WriteLine("The password must contain at least one digit.");
+		Console.WriteLine("The password must contain at least one character.");
 	}
 	else
 	{
