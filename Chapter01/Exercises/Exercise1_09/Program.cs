@@ -5,10 +5,12 @@ Console.Write("Enter a number to check whether it is Prime: ");
 
 var input = int.Parse(Console.ReadLine());
 
-Console.WriteLine($"{input} is prime? {IsPrimeWithGoTo(input)}.");
+Console.WriteLine($"{input} is prime? {IsPrime(input)}.");
 
 static bool IsPrime(int number)
 {
+    if (number == 0) return false;
+
     bool isPrime = true;
 
     int counter = 2;
@@ -25,63 +27,4 @@ static bool IsPrime(int number)
     }
 
     return isPrime;
-}
-
-static bool IsPrimeWithContinue(int number)
-{
-    bool isPrime = true;
-
-    int counter = 2;
-
-    while (counter <= number / 2)
-    {
-        if (number % counter != 0)
-        {
-            counter++;
-            continue;
-        }
-
-        isPrime = false;
-        break;
-    }
-
-    return isPrime;
-}
-
-static bool IsPrimeWithGoTo(int number)
-{
-    bool isPrime = true;
-
-    int counter = 2;
-
-    while (counter <= number / 2)
-    {
-        if (number % counter == 0)
-        {
-            isPrime = false;
-            goto isNotAPrime;
-        }
-
-        counter++;
-    }
-
-isNotAPrime:
-    return isPrime;
-}
-
-static bool IsPrimeWithReturn(int number)
-{
-    int counter = 2;
-
-    while (counter <= number / 2)
-    {
-        if (number % counter == 0)
-        {
-            return false;
-        }
-
-        counter++;
-    }
-
-    return true;
 }
