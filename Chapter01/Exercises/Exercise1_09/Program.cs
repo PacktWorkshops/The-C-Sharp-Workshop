@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-Console.Write("Enter the Number to check whether it is Prime: ");
+Console.Write("Enter a number to check whether it is Prime: ");
 
 var input = int.Parse(Console.ReadLine());
 
