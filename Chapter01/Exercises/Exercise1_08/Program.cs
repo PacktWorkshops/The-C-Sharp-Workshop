@@ -13,7 +13,7 @@ menuBuilder.AppendLine("Note that every burger option comes with fries and ketch
 
 Console.WriteLine(menuBuilder.ToString());
 
-Console.WriteLine("Please type one of the follow options to order:");
+Console.WriteLine("Please type one of the following options to order:");
 
 var option = Console.ReadKey();
 
