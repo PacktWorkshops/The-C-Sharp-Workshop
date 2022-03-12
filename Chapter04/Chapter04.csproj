@@ -2,9 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-    <LangVersion>9.0</LangVersion>
-    <StartupObject>Chapter04.Exercises.Exercise04.Program</StartupObject>
+    <TargetFramework>net6.0</TargetFramework>
+	  <StartupObject>Chapter04.Exercises.Exercise04.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
