@@ -6,7 +6,7 @@ using Refit;
 using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
 
-namespace Chapter08.Examples.REfit
+namespace Chapter08.Examples.Refit
 {
     public interface IStarWarsClient
     {

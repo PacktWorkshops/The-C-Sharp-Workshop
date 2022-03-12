@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Chapter06.Examples.CQRS
+namespace Chapter06.Examples.Cqrs
 {
     public class CreateProductCommand
     {

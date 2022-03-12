@@ -4,7 +4,7 @@ using System.Linq;
 using Chapter06.Examples.TalkingWithDb.Orm;
 using Microsoft.EntityFrameworkCore;
 
-namespace Chapter06.Examples.CRUD
+namespace Chapter06.Examples.Crud
 {
     public class ManufacturersRepository : IDisposable
     {
@@ -28,7 +28,7 @@ namespace Chapter06.Examples.CRUD
                 (from p in db.Products
                  join m in db.Manufacturers
                     on p.ManufacturerId equals m.Id
-                 select new {Product = p.Name, Manufacturer = m.Name}
+                 select new { Product = p.Name, Manufacturer = m.Name }
                 ).ToList();
 
             return productAndManufactuerPairs.Select(p => (p.Product, p.Manufacturer));
@@ -36,14 +36,14 @@ namespace Chapter06.Examples.CRUD
 
         public IEnumerable<(string, string)> GetManufacturerAndProductNamePairs_LINQ()
         {
-            var productAndManufactuerPairs = 
+            var productAndManufactuerPairs =
                 db.Products
                 .Join(db.Manufacturers,
                     p => p.ManufacturerId, m => m.Id,
-                    (p, m) => new {Product = p.Name, Manufacturer = m.Name})
+                    (p, m) => new { Product = p.Name, Manufacturer = m.Name })
                 .ToList();
 
-             return productAndManufactuerPairs.Select(p => (p.Product, p.Manufacturer));
+            return productAndManufactuerPairs.Select(p => (p.Product, p.Manufacturer));
         }
 
         public void Create(Manufacturer manufacturer)

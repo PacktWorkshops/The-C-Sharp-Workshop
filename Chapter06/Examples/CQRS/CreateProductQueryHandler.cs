@@ -1,6 +1,6 @@
 ﻿using Chapter06.Examples.TalkingWithDb.Orm;
 
-namespace Chapter06.Examples.CQRS
+namespace Chapter06.Examples.Cqrs
 {
     public class CreateProductCommandHandler
     {

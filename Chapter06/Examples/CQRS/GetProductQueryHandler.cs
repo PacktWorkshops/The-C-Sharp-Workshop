@@ -2,7 +2,7 @@
 using Chapter06.Examples.TalkingWithDb.Orm;
 using Product = Chapter06.Examples.TalkingWithDb.Orm.Product;
 
-namespace Chapter06.Examples.CQRS
+namespace Chapter06.Examples.Cqrs
 {
     public class GetProductQueryHandler
     {

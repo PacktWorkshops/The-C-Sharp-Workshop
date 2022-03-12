@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Chapter06.Examples.TalkingWithDb.Orm;
 
-namespace Chapter06.Examples.CRUD
+namespace Chapter06.Examples.Crud
 {
     public class ProductRepository : IDisposable
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Chapter08.Examples.RESTSharp;
+using Chapter08.Examples.RestSharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.Common;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Chapter06.Examples.CRUD;
+using Chapter06.Examples.Crud;
 using Chapter06.Examples.TalkingWithDb.Orm;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

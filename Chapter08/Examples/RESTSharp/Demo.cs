@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Chapter08.Examples.RESTSharp
+namespace Chapter08.Examples.RestSharp
 {
     public static class Demo
     {

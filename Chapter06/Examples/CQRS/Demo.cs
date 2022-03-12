@@ -4,7 +4,7 @@ using Chapter06.Examples.Repository;
 using Chapter06.Examples.TalkingWithDb.Orm;
 using Microsoft.EntityFrameworkCore;
 
-namespace Chapter06.Examples.CQRS
+namespace Chapter06.Examples.Cqrs
 {
     public static class Demo
     {

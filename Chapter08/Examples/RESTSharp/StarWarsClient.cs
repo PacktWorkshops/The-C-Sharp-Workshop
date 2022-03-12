@@ -6,7 +6,7 @@ using Chapter08.Exercises.Exercise02.Models;
 using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
 
-namespace Chapter08.Examples.RESTSharp
+namespace Chapter08.Examples.RestSharp
 {
     public class StarWarsClient
     {

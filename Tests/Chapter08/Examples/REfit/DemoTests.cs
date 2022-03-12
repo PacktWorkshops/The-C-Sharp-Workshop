@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Chapter08.Examples.REfit;
+using Chapter08.Examples.Refit;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.Common;
 

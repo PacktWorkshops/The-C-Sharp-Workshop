@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Refit;
 
-namespace Chapter08.Examples.REfit
+namespace Chapter08.Examples.Refit
 {
     public static class Demo
     {
