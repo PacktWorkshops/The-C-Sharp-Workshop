@@ -1,4 +1,4 @@
-﻿namespace Chapter02.Examples.SOLID.BreakingD
+﻿namespace Chapter02.Examples.Solid.Breaking.Dip
 {
     public class Writer
     {

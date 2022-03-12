@@ -1,4 +1,4 @@
-﻿namespace Chapter02.Examples.SOLID.BreakingOLID
+﻿namespace Chapter02.Examples.Solid.Breaking.OcpAndLspAndIspAndDip
 {
     public class File
     {

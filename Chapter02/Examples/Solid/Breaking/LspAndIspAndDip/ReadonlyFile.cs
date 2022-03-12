@@ -1,4 +1,4 @@
-﻿namespace Chapter02.Examples.SOLID.BreakingLID
+﻿namespace Chapter02.Examples.Solid.Breaking.LspAndIspAndDip
 {
     public class ReadonlyFile : File
     {

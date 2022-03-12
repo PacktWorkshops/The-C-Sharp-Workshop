@@ -1,4 +1,4 @@
-﻿namespace Chapter02.Examples.SOLID.FixingS
+﻿namespace Chapter02.Examples.Solid.FixingSingleResponsibilityPrinciple
 {
     public class Merchandise
     {

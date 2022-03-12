@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Chapter02.Examples.SOLID
+﻿namespace Chapter02.Examples.Solid.DependencyInjectionPrinciple
 {
     public static class DependencyInjection
     {

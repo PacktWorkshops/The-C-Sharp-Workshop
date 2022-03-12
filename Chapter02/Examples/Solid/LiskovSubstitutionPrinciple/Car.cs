@@ -1,5 +1,6 @@
 ﻿using System;
-namespace Chapter02.Examples.SOLID.L
+
+namespace Chapter02.Examples.Solid.LiskovSubstitutionPrinciple
 {
     class Car
     {

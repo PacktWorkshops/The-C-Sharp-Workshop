@@ -1,4 +1,4 @@
-﻿namespace Chapter02.Examples.SOLID.BreakingID
+﻿namespace Chapter02.Examples.Solid.Breaking.IspAndDip
 {
     // what interface should ReadonlyFile implement?
     public class ReadonlyFile

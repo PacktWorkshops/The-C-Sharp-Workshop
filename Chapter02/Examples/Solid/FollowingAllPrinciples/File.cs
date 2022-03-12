@@ -1,4 +1,4 @@
-﻿namespace Chapter02.Examples.SOLID.Good
+﻿namespace Chapter02.Examples.Solid.FollowingAllPrinciples
 {
     public class File : IReader, IWriter
     {

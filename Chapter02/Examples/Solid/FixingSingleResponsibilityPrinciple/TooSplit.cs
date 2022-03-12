@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Chapter02.Examples.SOLID.FixingS
+﻿namespace Chapter02.Examples.Solid.FixingSingleResponsibilityPrinciple
 {
     public static class TooSplit
     {
