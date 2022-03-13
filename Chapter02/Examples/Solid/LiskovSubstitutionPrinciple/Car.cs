@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Chapter02.Examples.Solid.LiskovSubstitutionPrinciple
+﻿namespace Chapter02.Examples.Solid.LiskovSubstitutionPrinciple
 {
     class Car
     {
@@ -9,14 +7,6 @@ namespace Chapter02.Examples.Solid.LiskovSubstitutionPrinciple
         public virtual void Move()
         {
             // Moving
-        }
-    }
-
-    class CarWreck : Car
-    {
-        public override void Move()
-        {
-            throw new NotSupportedException("A broken car cannot start.");
         }
     }
 }

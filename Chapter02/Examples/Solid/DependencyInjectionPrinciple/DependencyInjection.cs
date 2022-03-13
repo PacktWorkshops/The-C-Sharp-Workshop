@@ -4,13 +4,13 @@
     {
         public static class Constructor
         {
-            class Foo
+            class Bar
             {
-                private readonly IBar _bar;
+                private readonly IBartender _bartender;
 
-                public Foo(IBar bar)
+                public Bar(IBartender bartender)
                 {
-                    _bar = bar;
+                    _bartender = bartender;
                 }
 
                 // use bar in other methods.
@@ -18,15 +18,15 @@
 
             public static void Demo()
             {
-                var foo = new Foo(new Bar());
+                var foo = new Bar(new DependencyInjectionPrinciple.Bartender());
             }
         }
 
         public static class Method
         {
-            class Foo
+            class Bar
             {
-                public void Foobar(IBar bar)
+                public void Foobar(IBartender bartender)
                 {
                     // do something with Bar
                 }
@@ -34,28 +34,25 @@
 
             public static void Demo()
             {
-                var foo = new Foo();
-                foo.Foobar(new Bar());
+                var foo = new Bar();
+                foo.Foobar(new Bartender());
             }
         }
 
         public static class Property
         {
-            class Foo
+            class Bar
             {
-                public IBar Bar { get; set; }
+                public IBartender Bartender { get; set; }
                 // use bar in other methods.
             }
 
             public static void Demo()
             {
-                var foo = new Foo();
-                foo.Bar = new Bar();
+                var foo = new Bar();
+                foo.Bartender = new Bartender();
             }
 
         }
     }
-
-    interface IBar { }
-    class Bar : IBar { }
 }

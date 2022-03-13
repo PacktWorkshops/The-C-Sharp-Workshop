@@ -1,6 +1,6 @@
 ﻿namespace Chapter02.Examples.Abstraction.Workers
 {
-    public interface IIDentifiable
+    public interface IIdentifiable
     {
         long Id { get; }
     }

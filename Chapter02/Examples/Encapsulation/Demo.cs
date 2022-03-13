@@ -2,8 +2,6 @@
 
 namespace Chapter02.Examples.Encapsulation
 {
-    [SuppressMessage("ReSharper", "UseObjectOrCollectionInitializer")]
-    [SuppressMessage("ReSharper", "ArgumentsStyleStringLiteral")]
     public static class Demo
     {
         public static void Run()

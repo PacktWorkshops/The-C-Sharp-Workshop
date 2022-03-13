@@ -41,7 +41,7 @@ namespace Chapter02.Exercises.Exercise02
             var totalAreaOfRectangles = CalculateTotalAreaOfRectangles(rectangularSection);
             var totalAreaOfCircles = CalculateTotalAreaOfCircles(circularSection);
 
-            return PickResult(totalAreaOfRectangles, totalAreaOfCircles);
+            return GetBigger(totalAreaOfRectangles, totalAreaOfCircles);
         }
 
         private static double CalculateTotalAreaOfRectangles(Rectangle[] rectangularSection)
@@ -66,7 +66,7 @@ namespace Chapter02.Exercises.Exercise02
             return totalAreaOfCircles;
         }
 
-        private static string PickResult(double totalAreaOfRectangles, double totalAreaOfCircles)
+        private static string GetBigger(double totalAreaOfRectangles, double totalAreaOfCircles)
         {
             const double margin = 0.01;
             bool areAlmostEqual = Math.Abs(totalAreaOfRectangles - totalAreaOfCircles) <= margin;
