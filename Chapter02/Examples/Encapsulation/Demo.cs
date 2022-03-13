@@ -8,6 +8,7 @@ namespace Chapter02.Examples.Encapsulation
     {
         public static void Run()
         {
+            var dog = new Dog();
             var sparky = new Dog("Sparky");
             var ricky = new Dog("Ricky");
             ricky.Owner = "Tom";
