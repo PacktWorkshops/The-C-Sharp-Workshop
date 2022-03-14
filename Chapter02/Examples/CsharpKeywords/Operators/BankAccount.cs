@@ -22,10 +22,5 @@ namespace Chapter02.Examples.CsharpKeywords.Operators
 
         public static bool operator !=(BankAccount account1, BankAccount account2)
             => !(account1 == account2);
-
-        public static bool operator *(BankAccount account1, BankAccount account2)
-        {
-            return false;
-        }
     }
 }
