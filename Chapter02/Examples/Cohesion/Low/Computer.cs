@@ -2,7 +2,7 @@
 #pragma warning disable CS0169
 namespace Chapter02.Examples.Cohesion.Low
 {
-    internal class Computer
+    class Computer
     {
         private readonly Key[] Keys;
     }
