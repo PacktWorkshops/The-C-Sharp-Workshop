@@ -12,8 +12,6 @@
                 {
                     _bartender = bartender;
                 }
-
-                // use bar in other methods.
             }
 
             public static void Demo()
@@ -26,16 +24,16 @@
         {
             class Bar
             {
-                public void Foobar(IBartender bartender)
+                public void ServeDrinks(IBartender bartender)
                 {
-                    // do something with Bar
+                    // serve drinks using bartender
                 }
             }
 
             public static void Demo()
             {
-                var foo = new Bar();
-                foo.Foobar(new Bartender());
+                var bar = new Bar();
+                bar.ServeDrinks(new Bartender());
             }
         }
 
@@ -44,13 +42,12 @@
             class Bar
             {
                 public IBartender Bartender { get; set; }
-                // use bar in other methods.
             }
 
             public static void Demo()
             {
-                var foo = new Bar();
-                foo.Bartender = new Bartender();
+                var bar = new Bar();
+                bar.Bartender = new Bartender();
             }
 
         }

@@ -27,14 +27,9 @@ namespace Chapter02.Examples.CsharpKeywords.Generics
             Console.WriteLine(element);
         }
 
-        public static void Print(object element)
+        public static void Print<T>(T element)
         {
             Console.WriteLine(element);
-        }
-
-        public static void PrintG<T>(T element)
-        {
-            Print(element);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Chapter02.Examples.CsharpKeywords.Other.ValueTuple
     {
         public static void Run()
         {
-            var dog = new Dog("?");
+            var dog = new Dog("Sparky");
             var human = new Human("Thomas");
             bool isDogKnown = false;
 
