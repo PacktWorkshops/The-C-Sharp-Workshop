@@ -5,7 +5,6 @@
         public static void Run()
         {
             NullablePrimitives.Demo.Run();
-
         }
     }
 }

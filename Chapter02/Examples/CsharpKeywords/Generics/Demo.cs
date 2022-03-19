@@ -19,16 +19,6 @@ namespace Chapter02.Examples.CsharpKeywords.Generics
 
             Console.WriteLine($"max1 = {max1} " +
                               $"max2 = {max2} ");
-
-            var numbers = new List<int>();
-            numbers.Add(1);
-            Console.WriteLine(numbers[0]);
-
-            var people = new Dictionary<int, Person>();
-            people.Add(51, new Person(51, "Tom"));
-            people.Add(14, new Person(14, "Gareth"));
-            var person = people[51];
-            Console.WriteLine(person.Name);
         }
     }
 }

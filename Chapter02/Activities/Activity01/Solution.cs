@@ -13,10 +13,5 @@ namespace Chapter02.Activities.Activity01
             Console.WriteLine($"Adding circles of radius of {circle1.Radius} and {circle2.Radius} " +
                               $"results in a new circle with a radius {circle3.Radius}");
         }
-
-        public static double Solve(Circle circle1, Circle circle2)
-        {
-            return (circle1 + circle2).Radius;
-        }
     }
 }

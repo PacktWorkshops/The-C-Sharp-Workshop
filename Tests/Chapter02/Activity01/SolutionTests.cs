@@ -11,7 +11,7 @@ namespace Tests.Chapter02.Activity01
         [DynamicData(nameof(AddingTwoCirclesExpectations))]
         public void Add_TwoCircles_Returns_CircleWithAreaOfBoth(Circle circle1, Circle circle2, double expectedNewRadius)
         {
-            var newRadius = Solution.Solve(circle1, circle2);
+            var newRadius = (circle1 + circle2).Radius;
 
             Assert.AreEqual(expectedNewRadius, newRadius, 0.001);
         }
