@@ -21,7 +21,7 @@ else
 	}
 	else if (!password.Any(c => char.IsDigit(c)))
 	{
-		Console.WriteLine("The password must contain at least one character.");
+		Console.WriteLine("The password must contain at least one number.");
 	}
 	else
 	{
