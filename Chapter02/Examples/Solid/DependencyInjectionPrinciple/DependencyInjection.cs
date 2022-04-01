@@ -16,7 +16,7 @@
 
             public static void Demo()
             {
-                var foo = new Bar(new DependencyInjectionPrinciple.Bartender());
+                var foo = new Bar(new Bartender());
             }
         }
 

@@ -7,10 +7,10 @@ namespace Chapter02.Examples.CsharpKeywords.Generics
     {
         public static void Run()
         {
-            CollectionsPrinterv1.PrintG(1);
-            CollectionsPrinterv1.PrintG(1f);
-            CollectionsPrinterv1.PrintG(new object());
-            CollectionsPrinterv1.PrintG("Hey");
+            CollectionsPrinterv1.Print(1);
+            CollectionsPrinterv1.Print(1f);
+            CollectionsPrinterv1.Print(new object());
+            CollectionsPrinterv1.Print("Hey");
 
             CollectionsPrinterv1.Print(new[] { 1, 23, 4, -1 });
 
