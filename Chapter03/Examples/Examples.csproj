@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-    <StartupObject>Chapter03Examples.FuncExample</StartupObject>
+    <StartupObject>Chapter03Examples.MulticastDelegatesExample</StartupObject>
   </PropertyGroup>
 
 </Project>

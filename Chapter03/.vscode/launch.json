@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Exercise04/bin/Debug/net5.0/Exercise04.exe",
+            "program": "${workspaceFolder}/Exercise05/bin/Debug/net6.0/Exercise05.exe",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,

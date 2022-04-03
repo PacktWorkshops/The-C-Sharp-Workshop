@@ -40,6 +40,11 @@ namespace Chapter03.Exercise03
 
             Console.Write("Enter your PIN:");
             var pin = Console.ReadLine();
+            if (string.IsNullOrEmpty(pin))
+            {
+                Console.WriteLine("No PIN entered");
+                return;
+            }
 
             cashMachine.VerifyPin(pin);
             Console.WriteLine();
