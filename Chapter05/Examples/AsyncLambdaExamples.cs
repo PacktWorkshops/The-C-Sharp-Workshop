@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Chapter05.Examples
 {
-    class AsyncLambdaExamples
+    public class AsyncLambdaExamples
     {
         public static async Task Main()
         {
