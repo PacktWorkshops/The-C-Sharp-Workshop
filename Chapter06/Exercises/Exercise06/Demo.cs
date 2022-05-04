@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Chapter06.Examples.TalkingWithDb.Orm;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-namespace Chapter06.Examples.Repository
+namespace Chapter06.Exercises.Exercise06
 {
     public static class Demo
     {

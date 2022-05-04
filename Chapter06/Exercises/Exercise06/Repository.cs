@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Chapter06.Examples.Repository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Chapter06.Examples.Repository
+namespace Chapter06.Exercises.Exercise06
 {
     public class Repository<TAggregate> : IRepository<TAggregate> where TAggregate : class, IAggregate
     {
