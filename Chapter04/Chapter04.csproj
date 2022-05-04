@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-	  <StartupObject>Chapter04.Exercises.Exercise04.Program</StartupObject>
+	  <StartupObject>Chapter04.Examples.LinqLetExamples</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

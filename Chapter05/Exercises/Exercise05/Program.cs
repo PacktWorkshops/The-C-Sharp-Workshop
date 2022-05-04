@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Chapter05.Examples;
 
 namespace Chapter05.Exercises.Exercise05
 {
+    public enum RegionName { North, East, South, West };
+
     public class Customer
     {
         private readonly RegionName _protectedRegion;

@@ -64,7 +64,7 @@ namespace Chapter05.Exercises.Exercise04
 
         private static TimeSpan? ReadConsoleMaxTime(string message)
         {
-            Console.WriteLine($"{message} Max Waiting Time (seconds):");
+            Console.Write($"{message} Max Waiting Time (seconds):");
 
             var input = Console.ReadLine();
 

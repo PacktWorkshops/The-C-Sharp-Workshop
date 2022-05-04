@@ -4,7 +4,11 @@
     <!-- <StartupObject>Chapter05.Exercises.Exercise01.Program</StartupObject> -->
     <!--<StartupObject>Chapter05.Examples.TaskWaitAnyExample</StartupObject>-->
     <!--<StartupObject>Chapter05.Exercises.Exercise03.Program</StartupObject> -->
-    <StartupObject>Chapter05.Activities.Activity01.FibonacciConsole</StartupObject>
+    <!-- <StartupObject>Chapter05.Examples.AsyncLambdaExamples</StartupObject> -->
+    <!-- <StartupObject>Chapter05.Exercises.Exercise05.Program</StartupObject>  -->
+    <!-- <StartupObject>Chapter05.Examples.ParallelForExamples</StartupObject>     -->
+    <StartupObject>Chapter05.Activities.Activity01.FibonacciConsole</StartupObject>    
+    
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
@@ -12,9 +16,5 @@
   <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
   </ItemGroup>
-
-  <!--<ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
-  </ItemGroup>-->
 
 </Project>

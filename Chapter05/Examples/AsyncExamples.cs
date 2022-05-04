@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Chapter05.Examples
 {
-    class AsyncExamples
+    public class AsyncExamples
     {
         public static async Task Main()
         {
