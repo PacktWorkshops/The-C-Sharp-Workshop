@@ -1,0 +1,38 @@
+﻿@page
+@using ToDoListApp.Models
+
+@model IndexModel
+@{
+    ViewData["Title"] = "MyToDos";
+}
+
+<div class="text-center">
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div class="row">
+        <kanban-list name="To Do" size="4">
+            @foreach (var task in Model.Tasks.Where(t => t.Status == ETaskStatus.ToDo))
+            {
+                <partial name="_TaskItem" model="@task" />
+            }
+        </kanban-list>
+        <kanban-list name="Doing" size="4">
+            @foreach (var task in Model.Tasks.Where(t => t.Status == ETaskStatus.Doing))
+            {
+                <partial name="_TaskItem" model="@task" />
+            }
+        </kanban-list>
+        <kanban-list name="Done" size="4">
+            @foreach (var task in Model.Tasks.Where(t => t.Status == ETaskStatus.Done))
+            {
+                <partial name="_TaskItem" model="@task" />
+            }
+        </kanban-list>
+    </div>
+</div>
