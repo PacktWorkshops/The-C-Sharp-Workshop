@@ -1,26 +1,44 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Chapter09.Activity01.Bootstrap;
+using Hellang.Middleware.ProblemDetails;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-namespace Chapter09.Activity01
+// Add services
+var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
+services
+    .AddControllersConfiguration()
+    .AddSwagger()
+    .AddExceptionMappings(builder.Environment)
+    .AddFileUploadService()
+    .AddSecurity(builder.Configuration, builder.Environment);
+
+var app = builder.Build();
+
+
+// Add middleware
+Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
+
+app.UseProblemDetails();
+
+app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+    endpoints.MapControllers();
+});
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+//app.UseSwagger();
+//app.UseSwaggerUI(c =>
+//{
+//    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+//    c.RoutePrefix = string.Empty;
+//});
