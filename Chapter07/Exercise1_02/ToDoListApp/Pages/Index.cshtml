@@ -1,0 +1,74 @@
+﻿@page
+@using ToDoListApp.Models
+@model IndexModel
+@{
+    ViewData["Title"] = "My To Do List";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <div class="row">
+        <div class="col-4">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h6 class="card-title text-uppercase text-truncate py-2">To Do</h6>
+                    <div class="border border-light">
+                        @foreach (var task in Model.Tasks.Where(t => t.Status == ETaskStatus.ToDo))
+                        {
+                            <div class="card ">
+                                <div class="card-body p-2">
+                                    <div class="card-title">
+                                        @task.Description
+                                    </div>
+                                    <button class="btn btn-warning btn-sm">Start</button>
+                                    <button class="btn btn-primary btn-sm">View</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h6 class="card-title text-uppercase text-truncate py-2">In-progess</h6>
+                    <div class="border border-light">
+                        @foreach (var task in Model.Tasks.Where(t => t.Status == ETaskStatus.Doing))
+                        {
+                            <div class="card ">
+                                <div class="card-body p-2">
+                                    <div class="card-title">
+                                        @task.Description
+                                    </div>
+                                    <button class="btn btn-success btn-sm">Finish</button>
+                                    <button class="btn btn-primary btn-sm">View</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h6 class="card-title text-uppercase text-truncate py-2">Done</h6>
+                    <div class="border border-light">
+                        @foreach (var task in Model.Tasks.Where(t => t.Status == ETaskStatus.Done))
+                        {
+                            <div class="card ">
+                                <div class="card-body p-2">
+                                    <div class="card-title">
+                                        @task.Description
+                                    </div>
+                                    <button class="btn btn-primary btn-sm">View</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
