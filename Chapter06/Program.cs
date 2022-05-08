@@ -12,15 +12,13 @@ namespace Chapter06
         static void Main(string[] args)
         {
             //Chapter06.Examples.Repository.Demo.TestSqlite();
-            //Chapter06.Examples.CQRS.Demo.Test();
+            //Chapter06.Examples.Cqrs.Demo.Test();
             //Chapter06.Exercises.Exercise03.Demo.Run();
             //Chapter06.Exercises.Exercise04.Demo.Run();
             //Chapter06.Examples.PerformanceTraps.Demo.Run();
             //Chapter06.Examples.TalkingWithDb.Orm.Demo.Run();
-            //Chapter06.Examples.PerformanceTraps.Demo.Run();
+            Chapter06.Examples.PerformanceTraps.Demo.Run();
             //Chapter06.Activities.Activity01.Demo.Run();
-            //Chapter06.Examples.Repository.Demo.TestManufacturerPgsql();
-            Chapter06.Activities.Activity01.Demo.Run();
         }
     }
 }
