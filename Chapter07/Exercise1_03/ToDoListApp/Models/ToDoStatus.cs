@@ -2,7 +2,7 @@ namespace ToDoListApp.Models;
 
 public class ToDoTask
 {
-    private ToDoTask()
+    public ToDoTask()
     {
         CreatedAt = DateTime.UtcNow;
         Id = Guid.NewGuid();
