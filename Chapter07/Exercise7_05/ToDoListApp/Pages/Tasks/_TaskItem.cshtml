@@ -1,0 +1,26 @@
+@model ToDoListApp.Models.ToDoTask
+
+<form method="post">
+    <div class="card">
+        <div class="card-body p-2">
+            <div class="card-title">
+                @Model.Title
+            </div>
+            <a class="btn btn-primary btn-sm" href="/tasks/@Model.Id">View</a>
+            @if (Model.Status == Models.ETaskStatus.ToDo)
+            {
+                <button type="submit" class="btn btn-warning btn-sm" href="@Model.Id" asp-page-handler="StartTask"
+                asp-route-id="@Model.Id">
+                    Start
+                </button>
+            }
+            @if (Model.Status == Models.ETaskStatus.Doing)
+            {
+                <button type="submit" class="btn btn-success btn-sm" href="@Model.Id" asp-page-handler="EndTask"
+                asp-route-id="@Model.Id">
+                    Finish
+                </button>
+            }
+        </div>
+    </div>
+</form>

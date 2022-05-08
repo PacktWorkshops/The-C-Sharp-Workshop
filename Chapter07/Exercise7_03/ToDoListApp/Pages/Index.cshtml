@@ -1,0 +1,33 @@
+﻿@page
+@using ToDoListApp.Models
+@model IndexModel
+@{
+    ViewData["Title"] = "My To Do List";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <div class="row">
+        <kanban-list name="To Do" size="4">
+            @foreach (var task in Model.Tasks.Where(t => t.Status == ETaskStatus.ToDo))
+            {
+                <kanban-card task="@task.Description">
+                </kanban-card>
+            }
+        </kanban-list>
+        <kanban-list name="Doing" size="4">
+            @foreach (var task in Model.Tasks.Where(t => t.Status == ETaskStatus.Doing))
+            {
+                <kanban-card task="@task.Description">
+                </kanban-card>
+            }
+        </kanban-list>
+        <kanban-list name="Done" size="4">
+            @foreach (var task in Model.Tasks.Where(t => t.Status == ETaskStatus.Done))
+            {
+                <kanban-card task="@task.Description">
+                </kanban-card>
+            }
+        </kanban-list>
+    </div>
+</div>
