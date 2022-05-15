@@ -1,12 +1,10 @@
-using System.Collections.Generic;
+using System;
 using System.Net;
+using System.Web;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Web;
 
-namespace Pact.Function
+namespace Chapter09.AzureFunctions
 {
     public static class GetCurrentTime
     {
