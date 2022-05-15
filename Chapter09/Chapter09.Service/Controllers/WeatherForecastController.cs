@@ -18,13 +18,11 @@ namespace Chapter09.Service.Controllers
     public class WeatherForecastController : ControllerBase
     {
         private readonly IWeatherForecastService _weatherForecastService1;
-        private readonly IWeatherForecastService _weatherForecastService2;
         private readonly ILogger _logger;
 
         public WeatherForecastController(ILoggerFactory logger, IWeatherForecastService weatherForecastService1, IWeatherForecastService weatherForecastService2)
         {
             _weatherForecastService1 = weatherForecastService1;
-            _weatherForecastService2 = weatherForecastService2;
             _logger = logger.CreateLogger(typeof(WeatherForecastController).FullName);
         }
 
@@ -39,7 +37,6 @@ namespace Chapter09.Service.Controllers
         public IActionResult GetWeekday(int day)
         {
             var result = _weatherForecastService1.GetWeekday(day);
-            result = _weatherForecastService2.GetWeekday(day);
             return Ok(result);
         }
 

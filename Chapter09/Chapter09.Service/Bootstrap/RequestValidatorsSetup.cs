@@ -1,4 +1,5 @@
 ﻿using Chapter09.Service.Models;
+using Chapter09.Service.Validators;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 

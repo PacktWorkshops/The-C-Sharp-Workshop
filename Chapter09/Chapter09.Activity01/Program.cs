@@ -24,7 +24,6 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = string.Empty;
 });
 
-app.UseDeveloperExceptionPage();
 app.UseProblemDetails();
 
 app.UseHttpsRedirection();
