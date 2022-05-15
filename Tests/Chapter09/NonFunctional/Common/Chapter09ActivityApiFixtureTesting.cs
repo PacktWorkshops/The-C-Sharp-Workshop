@@ -19,8 +19,8 @@ namespace Tests.Chapter09.NonFunctional.Common
             ClientApi = factoryApi.CreateClient();
             ClientApi.DefaultRequestHeaders.Add("Authorization", FakeTokenWithAccessAsUserClaim);
             ClientApi.BaseAddress = new Uri($"{ClientApi.BaseAddress.AbsoluteUri}WeatherForecast/");
-            
-            var factoryActivity = new WebApplicationFactoryTesting<Activity.Startup>();
+
+            var factoryActivity = new WebApplicationFactoryTesting<Activity.Controllers.FileController>();
             ClientActivity = factoryActivity.CreateClient();
             ClientActivity.BaseAddress = new Uri($"{ClientActivity.BaseAddress.AbsoluteUri}api/File/");
             ClientActivity.DefaultRequestHeaders.Add("Authorization", FakeTokenWithAccessAsUserClaim);
