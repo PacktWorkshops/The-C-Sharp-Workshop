@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Identity.Client;
 
 var application = BuildAadClientApplication();
-var token = await GetTokenUsingPersonalAuth(application);
+var token = await GetTokenUsingAzurePortalAuth(application);
 Console.WriteLine($"Bearer {token}");
 
 static IPublicClientApplication BuildAadClientApplication()
@@ -24,9 +24,7 @@ static IPublicClientApplication BuildAadClientApplication()
     return application;
 }
 
-// Requires the same login as Azure portal.
-// Upon successful login - return auth token.
-static async Task<string> GetTokenUsingPersonalAuth(IPublicClientApplication application)
+static async Task<string> GetTokenUsingAzurePortalAuth(IPublicClientApplication application)
 {
     // Replace this with your own application id uri if you are not using a default value.
     const string scope = "access_as_user";
