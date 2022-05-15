@@ -15,7 +15,7 @@ namespace Tests.Chapter09.NonFunctional.Common
         [AssemblyInitialize]
         public static void SetupOnce(TestContext context)
         {
-            var factoryApi = new WebApplicationFactoryTesting<Api.Startup>();
+            var factoryApi = new WebApplicationFactoryTesting<Api.Controllers.FileController>();
             ClientApi = factoryApi.CreateClient();
             ClientApi.DefaultRequestHeaders.Add("Authorization", FakeTokenWithAccessAsUserClaim);
             ClientApi.BaseAddress = new Uri($"{ClientApi.BaseAddress.AbsoluteUri}WeatherForecast/");
