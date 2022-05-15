@@ -1,0 +1,16 @@
+@model ToDoListApp.ViewComponents.StatsViewModel
+
+<form class="form-inline my-2 my-lg-0">
+    @{
+        var delayedEmoji = Model.Delayed > 0 ? "🤯" : "😀";
+        var delayedClass = Model.Delayed > 0 ? "btn-warning" : "btn-success";
+        var dueClass = Model.DueToday > 0 ? "btn-warning" : "btn-success";
+    }
+    <button type="button" class="btn @delayedClass my-2 my-sm-0">
+        <span class="badge badge-light">@Model.Delayed</span> Delayed Tasks @delayedEmoji
+    </button>
+    &nbsp;
+    <button type="button" class="btn @dueClass my-2 my-sm-0">
+        <span class="badge badge-light">@Model.DueToday</span> Tasks Due Today ⏰
+    </button>
+</form>
