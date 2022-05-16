@@ -14,15 +14,17 @@ namespace Chapter06
             //Examples.Cqrs.Demo.Test();
             //Exercises.Exercise03.Demo.Run();
             //Exercises.Exercise04.Demo.Run();
+            Examples.Crud.Demo.Run();
             //Examples.PerformanceTraps.Demo.Run();
             //Examples.TalkingWithDb.Orm.Demo.Run();
-            Examples.PerformanceTraps.Demo.Run();
+            //Examples.PerformanceTraps.Demo.Run();
             //Activities.Activity01.Demo.Run();
+
         }
 
         private static string GetEnvironmentVariableOrThrow(string environmentVariable)
         {
-            var variable = Environment.GetEnvironmentVariable("TruckLogistics", EnvironmentVariableTarget.User);
+            var variable = Environment.GetEnvironmentVariable(environmentVariable, EnvironmentVariableTarget.User);
             if (string.IsNullOrWhiteSpace(variable))
             {
                 throw new ArgumentException($"Environment variable {environmentVariable} not found.");
