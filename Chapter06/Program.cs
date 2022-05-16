@@ -1,24 +1,34 @@
 ﻿using System;
-using Chapter06.Exercises.Exercise04;
 
 namespace Chapter06
 {
     class Program
     {
-        public static string GlobalFactoryConnectionString { get; } = Environment.GetEnvironmentVariable("GlobalFactory", EnvironmentVariableTarget.User);
-        public static string AdventureWorksConnectionString { get; } = Environment.GetEnvironmentVariable("AdventureWorks", EnvironmentVariableTarget.User);
-        public static string TruckLogisticsConnectionString { get; } = Environment.GetEnvironmentVariable("TruckLogistics", EnvironmentVariableTarget.User);
+        public static string GlobalFactoryConnectionString { get; } = GetEnvironmentVariableOrThrow("GlobalFactory");
+        public static string AdventureWorksConnectionString { get; } = GetEnvironmentVariableOrThrow("AdventureWorks");
+        public static string TruckLogisticsConnectionString { get; } = GetEnvironmentVariableOrThrow("TruckLogistics");
 
         static void Main(string[] args)
         {
-            //Chapter06.Examples.Repository.Demo.TestSqlite();
-            //Chapter06.Examples.Cqrs.Demo.Test();
-            //Chapter06.Exercises.Exercise03.Demo.Run();
-            //Chapter06.Exercises.Exercise04.Demo.Run();
-            //Chapter06.Examples.PerformanceTraps.Demo.Run();
-            //Chapter06.Examples.TalkingWithDb.Orm.Demo.Run();
-            Chapter06.Examples.PerformanceTraps.Demo.Run();
-            //Chapter06.Activities.Activity01.Demo.Run();
+            //Examples.Repository.Demo.TestSqlite();
+            //Examples.Cqrs.Demo.Test();
+            //Exercises.Exercise03.Demo.Run();
+            //Exercises.Exercise04.Demo.Run();
+            //Examples.PerformanceTraps.Demo.Run();
+            //Examples.TalkingWithDb.Orm.Demo.Run();
+            Examples.PerformanceTraps.Demo.Run();
+            //Activities.Activity01.Demo.Run();
+        }
+
+        private static string GetEnvironmentVariableOrThrow(string environmentVariable)
+        {
+            var variable = Environment.GetEnvironmentVariable("TruckLogistics", EnvironmentVariableTarget.User);
+            if (string.IsNullOrWhiteSpace(variable))
+            {
+                throw new ArgumentException($"Environment variable {environmentVariable} not found.");
+            }
+
+            return variable;
         }
     }
 }
