@@ -16,7 +16,6 @@ namespace Chapter06.Examples.PerformanceTraps
             // It rather illustrates when it becomes a problem.
             CompareExecTimes(EnumerableVsQueryable.Slow, EnumerableVsQueryable.Fast, "IEnumerable over IQueryable");
             CompareExecTimes(MethodChoice.Slow, MethodChoice.Fast, "equals over ==");
-            CompareExecTimes(RecklessCompute.Slow, RecklessCompute.Fast, "Reckless compute");
             CompareExecTimes(Loading.Lazy, Loading.Eager, "Lazy over Eager loading");
             CompareExecTimes(LightweightEf.Default, LightweightEf.AsNoTracking, "AsNoTracking for many readonly entities");
             CompareExecTimes(MultipleAddsOrRemoves.Slow, MultipleAddsOrRemoves.Fast, "Add over AddRange");
