@@ -14,11 +14,13 @@ namespace Chapter06
             //Examples.Cqrs.Demo.Test();
             //Exercises.Exercise03.Demo.Run();
             //Exercises.Exercise04.Demo.Run();
-            Exercises.Exercise05.Demo.Run();
-            Examples.Crud.Demo.Run();
+            //Exercises.Exercise05.Demo.Run();
+            //Exercises.Exercise06.Demo.Run();
+            //Examples.Crud.Demo.Run();
             //Examples.PerformanceTraps.Demo.Run();
             //Examples.TalkingWithDb.Orm.Demo.Run();
             //Examples.PerformanceTraps.Demo.Run();
+            //Examples.TestingDb.Demo.Run();
             //Activities.Activity01.Demo.Run();
 
         }

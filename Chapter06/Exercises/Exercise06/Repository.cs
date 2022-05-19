@@ -41,7 +41,7 @@ namespace Chapter06.Exercises.Exercise06
             _context.SaveChanges();
         }
 
-        public TAggregate Get(int id)
+        public TAggregate Get(long id)
         {
             return _dbSet.Find(id);
         }
