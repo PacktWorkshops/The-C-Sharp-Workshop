@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Chapter06.Examples.Repository;
 using Chapter06.Examples.TalkingWithDb.Orm;
 using Microsoft.EntityFrameworkCore;
 

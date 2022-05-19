@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Chapter06.Examples.TalkingWithDb.Orm;
+using Chapter06.Exercises.Exercise06;
 
 namespace Chapter06.Examples.TestingDb
 {

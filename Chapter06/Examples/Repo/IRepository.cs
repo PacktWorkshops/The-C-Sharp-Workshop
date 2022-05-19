@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Chapter06.Examples.Repository
+namespace Chapter06.Examples.Repo
 {
     public interface IRepository<TEntity> where TEntity : class
     {

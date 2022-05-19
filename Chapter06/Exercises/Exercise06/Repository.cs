@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Chapter06.Examples.Repository;
+using Chapter06.Examples.Repo;
 using Microsoft.EntityFrameworkCore;
 
 namespace Chapter06.Exercises.Exercise06
@@ -24,7 +24,7 @@ namespace Chapter06.Exercises.Exercise06
             return added.Entity.Id;
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             var entity = _dbSet.Find(id);
             if (entity != null)

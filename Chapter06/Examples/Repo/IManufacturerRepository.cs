@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Chapter06.Examples.GlobalFactory2021;
 
-namespace Chapter06.Examples.Repository
+namespace Chapter06.Examples.Repo
 {
     public interface IManufacturerRepository
     {

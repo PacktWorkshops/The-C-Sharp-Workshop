@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using Chapter06.Examples.Repository;
+using Chapter06.Examples.Repo;
 
 namespace Chapter06.Examples.TalkingWithDb.Orm
 {
