@@ -14,8 +14,8 @@ namespace Chapter06.Examples.PerformanceTraps
             // Slow-Faster example pairs
             // The title does not illustrate which you should pick
             // It rather illustrates when it becomes a problem.
-            CompareExecTimes(InMemory.ChoosingAClass.Slow, InMemory.ChoosingAClass.Fast, "IEnumerable over IQueryable");
-            CompareExecTimes(InMemory.MethodChoice.Slow, InMemory.MethodChoice.Fast, "equals over ==");
+            CompareExecTimes(EnumerableVsQueryable.Slow, EnumerableVsQueryable.Fast, "IEnumerable over IQueryable");
+            CompareExecTimes(MethodChoice.Slow, MethodChoice.Fast, "equals over ==");
             CompareExecTimes(RecklessCompute.Slow, RecklessCompute.Fast, "Reckless compute");
             CompareExecTimes(Loading.Lazy, Loading.Eager, "Lazy over Eager loading");
             CompareExecTimes(LightweightEf.Default, LightweightEf.AsNoTracking, "AsNoTracking for many readonly entities");
