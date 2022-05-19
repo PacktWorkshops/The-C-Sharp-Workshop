@@ -6,9 +6,9 @@ namespace Chapter06.Examples.Repository
     public interface IProductRepository
     {
         int Create(Product product);
-        void Delete(int id);
+        void Delete(long id);
         void Update(Product product);
-        Product Get(int id);
+        Product Get(long id);
         IEnumerable<Product> Get();
     }
 }
