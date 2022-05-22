@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Chapter06.Examples.TalkingWithDb.Orm;
-using Chapter06.Exercises.Exercise06;
+using Chapter06.Exercises.Exercise04;
 
 namespace Chapter06.Examples.TestingDb
 {

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Chapter06.Examples;
+using System.Linq;
 using Chapter06.Examples.TalkingWithDb.Orm;
 
 namespace Chapter06.Exercises.Exercise04
@@ -10,34 +8,24 @@ namespace Chapter06.Exercises.Exercise04
     {
         public static void Run()
         {
-            var service = new GlobalFactoryService(new FactoryDbContext());
-            service.CreateManufacturersInUsa(new []{"Best Buy", "Iron Retail"});
-            service.CreateUsaProducts(new []
-            {
-                new Product
-                {
-                    Name = "Toy computer",
-                    Price = 20.99m
-                },
-                new Product
-                {
-                    Name = "Loli microphone",
-                    Price = 7.51m
-                }
-            });
-            service.SetAnyUsaProductOnDiscount(5);
-            service.RemoveAnyProductInUsa();
-            var manufacturers = service.GetManufacturersInUsa();
+            var db = new FactoryDbContext();
 
-            foreach (var manufacturer in manufacturers)
-            {
-                Console.WriteLine($"{manufacturer.Name}:");
-                foreach (var product in manufacturer.Products)
-                {
-                    Console.WriteLine($"{product.Name} {product.Price}");
-                }
-            }
+            var manufacturersRepository = new Repository<Manufacturer>(db);
 
+            var manufacturer = new Manufacturer { Country = "Lithuania", Name = "Tomo Baldai" };
+            var id = manufacturersRepository.Create(manufacturer);
+
+            manufacturer.Name = "New Name";
+            manufacturersRepository.Update(manufacturer);
+
+            var manufacturerAfterChanges = manufacturersRepository.Get(id);
+            Console.WriteLine($"Id: {manufacturerAfterChanges.Id}, " +
+                              $"Name: {manufacturerAfterChanges.Name}");
+
+            var countBeforeDelete = manufacturersRepository.Get().Count();
+            manufacturersRepository.Delete(id);
+            var countAfter = manufacturersRepository.Get().Count();
+            Console.WriteLine($"Before: {countBeforeDelete}, after: {countAfter}");
         }
     }
 }

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Chapter06.Examples;
 using Chapter06.Examples.TalkingWithDb.Orm;
 using Microsoft.EntityFrameworkCore;
 
-namespace Chapter06.Exercises.Exercise04
+namespace Chapter06.Exercises.Exercise02
 {
     public class GlobalFactoryService : IDisposable
     {

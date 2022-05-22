@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Chapter06.Exercises.Exercise05;
+using Chapter06.Exercises.Exercise03;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.Chapter06.Exercises.Exercise03
+namespace Tests.Chapter06.Exercises.Exercise01
 {
     [TestClass]
     public class ProductTets

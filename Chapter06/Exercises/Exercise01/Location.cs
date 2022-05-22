@@ -1,8 +1,7 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Chapter06.Exercises.Exercise03
+namespace Chapter06.Exercises.Exercise01
 {
     [Table("location", Schema = "production")]
     public class Location

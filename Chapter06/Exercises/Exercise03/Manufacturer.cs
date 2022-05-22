@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Chapter06.Exercises.Exercise05
+namespace Chapter06.Exercises.Exercise03
 {
     public partial class Manufacturer
     {

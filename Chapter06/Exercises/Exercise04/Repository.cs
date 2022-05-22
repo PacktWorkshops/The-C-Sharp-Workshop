@@ -3,7 +3,7 @@ using System.Linq;
 using Chapter06.Examples.Repo;
 using Microsoft.EntityFrameworkCore;
 
-namespace Chapter06.Exercises.Exercise06
+namespace Chapter06.Exercises.Exercise04
 {
     public class Repository<TAggregate> : IRepository<TAggregate> where TAggregate : class, IAggregate
     {

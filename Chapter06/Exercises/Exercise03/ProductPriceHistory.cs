@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Chapter06.Exercises.Exercise05
+namespace Chapter06.Exercises.Exercise03
 {
     public class ProductPriceHistory
     {
