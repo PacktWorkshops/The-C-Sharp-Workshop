@@ -20,7 +20,7 @@ namespace Chapter08
             //await Activities.Activity02.Demo.Run();
             //await Activities.Activity03.Demo.Run();
 
-            //Exercise01.Demo.Run();
+            //await Exercises.Exercise01.Demo.Run();
             //await Exercises.Exercise02.Demo.Run();
             //await Exercises.Exercise03.Demo.Run();
         }

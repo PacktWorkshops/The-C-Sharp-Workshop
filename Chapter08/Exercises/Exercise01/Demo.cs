@@ -4,20 +4,21 @@ using System.Text;
 using System.Threading.Tasks;
 using Azure;
 using Azure.AI.TextAnalytics;
+using Chapter08.Common;
 
 namespace Chapter08.Exercises.Exercise01
 {
     public class Demo
     {
-        private static string TextAnalysisApiKey { get; } = Environment.GetEnvironmentVariable("TextAnalysisApiKey", EnvironmentVariableTarget.User);
-        private static string TextAnalysisEndpoint { get; } = Environment.GetEnvironmentVariable("TextAnalysisEndpoint", EnvironmentVariableTarget.User);
+        private static string TextAnalysisApiKey { get; } = EnvironmentVariable.GetOrThrow("TextAnalysisApiKey");
+        private static string TextAnalysisEndpoint { get; } = EnvironmentVariable.GetOrThrow("TextAnalysisEndpoint");
 
-        public static void Run()
+        public static async Task Run()
         {
             var client = BuildClient();
             string text = "Today is a great day. " +
                           "I had a wonderful dinner with my family!";
-            SentimentAnalysisExample(client, text);
+            await SentimentAnalysisExample(client, text);
         }
 
         static TextAnalyticsClient BuildClient()
@@ -29,9 +30,9 @@ namespace Chapter08.Exercises.Exercise01
             return client;
         }
 
-        static void SentimentAnalysisExample(TextAnalyticsClient client, string text)
+        static async Task SentimentAnalysisExample(TextAnalyticsClient client, string text)
         {
-            DocumentSentiment documentSentiment = PerformSentimentalAnalysis(client, text);
+            DocumentSentiment documentSentiment = await PerformSentimentalAnalysis(client, text);
             Console.WriteLine($"Document sentiment: {documentSentiment.Sentiment}\n");
 
             foreach (var sentence in documentSentiment.Sentences)
@@ -41,10 +42,10 @@ namespace Chapter08.Exercises.Exercise01
             }
         }
 
-        private static DocumentSentiment PerformSentimentalAnalysis(TextAnalyticsClient client, string text)
+        private static async Task<DocumentSentiment> PerformSentimentalAnalysis(TextAnalyticsClient client, string text)
         {
-            var options = new AnalyzeSentimentOptions() { IncludeOpinionMining = true };
-            DocumentSentiment documentSentiment = client.AnalyzeSentiment(text, options: options);
+            var options = new AnalyzeSentimentOptions { IncludeOpinionMining = true };
+            DocumentSentiment documentSentiment = await client.AnalyzeSentimentAsync(text, options: options);
 
             return documentSentiment;
         }
