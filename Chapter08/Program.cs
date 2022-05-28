@@ -23,7 +23,6 @@ namespace Chapter08
             //Exercise01.Demo.Run();
             //await Exercises.Exercise02.Demo.Run();
             //await Exercises.Exercise03.Demo.Run();
-            //await Exercises.Exercise04.Demo.Run();
         }
     }
 }
