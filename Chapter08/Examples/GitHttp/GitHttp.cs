@@ -63,6 +63,30 @@ namespace Chapter08.Examples.GitHttp
             }
         }
 
+        public static async Task GetUser61Times()
+        {
+            const int rateLimit = 60;
+            for (int i = 0; i < rateLimit + 1; i++)
+            {
+                const string username = "github-user";
+                var request = new HttpRequestMessage(HttpMethod.Get, new Uri($"users/{username}", UriKind.Relative));
+                request.Headers.CacheControl = new CacheControlHeaderValue() { NoCache = true };
+
+
+                var response = await client.SendAsync(request);
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+
+                var content = await response.Content.ReadAsStringAsync();
+
+                var user = JsonConvert.DeserializeObject<User>(content);
+
+                Console.WriteLine($"{i + 1}) {user.Name} created profile at {user.CreatedAt}");
+            }
+        }
+
         public static async Task<string> GetToken()
         {
             HttpRequestMessage request = CreateGetAccessTokenRequest();

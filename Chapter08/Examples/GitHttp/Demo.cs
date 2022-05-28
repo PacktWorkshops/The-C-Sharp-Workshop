@@ -5,7 +5,7 @@ namespace Chapter08.Examples.GitHttp
 {
     public static class Demo
     {
-        private  static string GitHubPersonAccessToken { get; } = Environment.GetEnvironmentVariable("GitHubPersonalAccess", EnvironmentVariableTarget.User);
+        private static string GitHubPersonAccessToken { get; } = Environment.GetEnvironmentVariable("GitHubPersonalAccess", EnvironmentVariableTarget.User);
 
         public static async Task Run()
         {
@@ -18,6 +18,7 @@ namespace Chapter08.Examples.GitHttp
 
             var basicToken = GitExamples.GetBasicToken();
             await GitExamples.GetUser61Times(basicToken);
+            //await GitExamples.GetUser61Times(); 
 
             GitExamples.Dispose();
         }
