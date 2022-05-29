@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Chapter08.Common;
 using RestSharp;
 using ParameterType = RestSharp.ParameterType;
 
@@ -11,8 +12,8 @@ namespace Chapter08.Exercises.Exercise03
 {
     public class AuthHeaderHandler : DelegatingHandler
     {
-        public static string PayPalClientId { get; } = Environment.GetEnvironmentVariable("PayPalClientId", EnvironmentVariableTarget.User);
-        public static string PayPalSecret { get; } = Environment.GetEnvironmentVariable("PayPalSecret", EnvironmentVariableTarget.User);
+        public static string PayPalClientId { get; } = EnvironmentVariable.GetOrThrow("PayPalClientId");
+        public static string PayPalSecret { get; } = EnvironmentVariable.GetOrThrow("PayPalSecret");
 
         private static readonly RestClient RestClient = new RestClient(Demo.BaseAddress);
 

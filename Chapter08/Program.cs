@@ -13,16 +13,17 @@ namespace Chapter08
         {
             //await Examples.GitOctokit.Demo.Run();
             //await Examples.GitHttp.Demo.Run();
-            //await Examples.RESTSharp.Demo.Run();
-            //await Examples.REfit.Demo.Run();
+            //await Examples.RestSharp.Demo.Run();
+            //await Examples.Refit.Demo.Run();
 
             //await Activities.Activity01.Demo.Run();
             //await Activities.Activity02.Demo.Run();
             //await Activities.Activity03.Demo.Run();
+            //await Activities.Activity04.Demo.Run();
 
             //await Exercises.Exercise01.Demo.Run();
-            await Exercises.Exercise02.Demo.Run();
-            //await Exercises.Exercise03.Demo.Run();
+            //await Exercises.Exercise02.Demo.Run();
+            await Exercises.Exercise03.Demo.Run();
         }
     }
 }
