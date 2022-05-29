@@ -12,7 +12,7 @@ namespace Chapter08
         static async Task Main(string[] args)
         {
             //await Examples.GitOctokit.Demo.Run();
-            await Examples.GitHttp.Demo.Run();
+            //await Examples.GitHttp.Demo.Run();
             //await Examples.RESTSharp.Demo.Run();
             //await Examples.REfit.Demo.Run();
 
@@ -21,7 +21,7 @@ namespace Chapter08
             //await Activities.Activity03.Demo.Run();
 
             //await Exercises.Exercise01.Demo.Run();
-            //await Exercises.Exercise02.Demo.Run();
+            await Exercises.Exercise02.Demo.Run();
             //await Exercises.Exercise03.Demo.Run();
         }
     }

@@ -15,38 +15,38 @@ namespace Chapter08.Exercises.Exercise03
         public Task<Order> GetOrder(string id);
     }
 
-    public class Order
+    public record Order
     {
         public string intent { get; set; }
         public Purchase_Units[] purchase_units { get; set; }
         public Payer payer { get; set; }
     }
 
-    public class Payer
+    public record Payer
     {
         public string email_address { get; set; }
         public Name name { get; set; }
     }
 
-    public class Name
+    public record Name
     {
         public string name { get; set; }
     }
 
-    public class Purchase_Units
+    public record Purchase_Units
     {
         public string reference_id { get; set; }
         public Amount amount { get; set; }
         public Payee payee { get; set; }
     }
 
-    public class Amount
+    public record Amount
     {
         public string currency_code { get; set; }
         public string value { get; set; }
     }
 
-    public class CreatedOrderResponse
+    public record CreatedOrderResponse
     {
         public string id { get; set; }
         public string intent { get; set; }
@@ -57,13 +57,13 @@ namespace Chapter08.Exercises.Exercise03
         public Link[] links { get; set; }
     }
 
-    public class Payee
+    public record Payee
     {
         public string email_address { get; set; }
         public string merchant_id { get; set; }
     }
 
-    public class Link
+    public record Link
     {
         public string href { get; set; }
         public string rel { get; set; }

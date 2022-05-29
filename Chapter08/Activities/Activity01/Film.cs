@@ -1,7 +1,6 @@
 ﻿using System;
-using Newtonsoft.Json;
 
-namespace Chapter08.Exercises.Exercise02
+namespace Chapter08.Activities.Activity01
 {
     public record Film
     {
@@ -15,7 +14,6 @@ namespace Chapter08.Exercises.Exercise02
 
         public string Producer { get; set; }
 
-        [JsonProperty("release_date")]
         public string ReleaseDate { get; set; }
 
         public string[] Characters { get; set; }
@@ -26,7 +24,6 @@ namespace Chapter08.Exercises.Exercise02
 
         public string[] Vehicles { get; set; }
 
-        [JsonProperty("species")]
         public string[] Species { get; set; }
 
         public DateTime Created { get; set; }

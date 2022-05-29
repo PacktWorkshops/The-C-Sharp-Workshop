@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Chapter08.Activities.Activity02;
-using Chapter08.Exercises.Exercise02.Models;
 using Refit;
 
 namespace Chapter08.Activities.Activity03

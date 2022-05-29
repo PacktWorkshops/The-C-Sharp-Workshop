@@ -1,8 +1,6 @@
 ﻿
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Chapter08.Exercises.Exercise02;
-using Chapter08.Exercises.Exercise02.Models;
 using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
 

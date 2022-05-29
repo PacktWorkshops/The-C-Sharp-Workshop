@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Chapter08.Exercises.Exercise02.Models;
 using Newtonsoft.Json;
 
 namespace Chapter08.Activities.Activity01

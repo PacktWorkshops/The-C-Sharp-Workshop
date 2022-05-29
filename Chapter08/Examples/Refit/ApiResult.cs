@@ -1,9 +1,8 @@
-﻿using System.Text.Json.Serialization;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Chapter08.Exercises.Exercise02.Models
+namespace Chapter08.Examples.Refit
 {
-    public class ApiResult<T>
+    public record ApiResult<T>
     {
         [JsonProperty("count")]
         public int Count { get; set; }
@@ -14,7 +13,6 @@ namespace Chapter08.Exercises.Exercise02.Models
         [JsonProperty("previous")]
         public string Previous { get; set; }
 
-        [JsonPropertyName("results")]
         [JsonProperty("results")]
         public T Data { get; set; }
     }
