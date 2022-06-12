@@ -16,8 +16,6 @@ namespace Chapter06
             //Exercises.Exercise02.Demo.Run();
             //Exercises.Exercise03.Demo.Run();
             //Exercises.Exercise04.Demo.Run();
-            //Exercises.Exercise05.Demo.Run();
-            //Exercises.Exercise06.Demo.Run();
             //Examples.Crud.Demo.Run();
             //Examples.PerformanceTraps.Demo.Run();
             //Examples.TalkingWithDb.Orm.Demo.Run();
