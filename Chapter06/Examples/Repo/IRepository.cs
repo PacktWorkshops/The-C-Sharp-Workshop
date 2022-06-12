@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Chapter06.Examples.Repo
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity>: IDisposable where TEntity : class
     {
         int Create(TEntity entity);
         void Delete(long id);

@@ -50,5 +50,10 @@ namespace Chapter06.Exercises.Exercise04
         {
             return _dbSet.ToList();
         }
+
+        public void Dispose()
+        {
+            _context?.Dispose();
+        }
     }
 }
