@@ -64,18 +64,18 @@ namespace Chapter06.Examples.Crud
 
         public void Delete(int productId)
         {
-            var product = db.Products.Find(productId);
-            if (product != null)
+            var productToDelete = db.Products.Find(productId);
+            if (productToDelete != null)
             {
-                db.Products.Remove(product);
+                db.Products.Remove(productToDelete);
                 db.SaveChanges();
             }
         }
 
         public void Delete(string productName)
         {
-            var products = db.Products.Where(p => p.Name == productName);
-            db.Products.RemoveRange(products);
+            var productToDelete = db.Products.Where(p => p.Name == productName);
+            db.Products.RemoveRange(productToDelete);
             db.SaveChanges();
         }
 

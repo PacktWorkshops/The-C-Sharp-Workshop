@@ -26,10 +26,12 @@ namespace Chapter06.Examples.TalkingWithDb.Orm
                 .Options;
         }
 
-        // Prevents from using different providers- avoid.
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseNpgsql(Program.GlobalFactoryConnectionString);
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseNpgsql(Program.GlobalFactoryConnectionString);
+            }
+        }
     }
 }
