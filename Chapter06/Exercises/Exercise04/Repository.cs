@@ -16,9 +16,9 @@ namespace Chapter06.Exercises.Exercise04
             _context = context;
         }
 
-        public int Create(TAggregate entity)
+        public int Create(TAggregate aggregate)
         {
-            var added = _dbSet.Add(entity);
+            var added = _dbSet.Add(aggregate);
             _context.SaveChanges();
 
             return added.Entity.Id;
@@ -26,18 +26,18 @@ namespace Chapter06.Exercises.Exercise04
 
         public void Delete(long id)
         {
-            var entity = _dbSet.Find(id);
-            if (entity != null)
+            var toRemove = _dbSet.Find(id);
+            if (toRemove != null)
             {
-                _dbSet.Remove(entity);
+                _dbSet.Remove(toRemove);
             }
 
             _context.SaveChanges();
         }
 
-        public void Update(TAggregate entity)
+        public void Update(TAggregate aggregate)
         {
-            _dbSet.Update(entity);
+            _dbSet.Update(aggregate);
             _context.SaveChanges();
         }
 
