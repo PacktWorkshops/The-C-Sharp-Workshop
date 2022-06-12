@@ -10,7 +10,7 @@ namespace Chapter06.Examples
         public const string ManufacturerName = "Test Factory";
         public const string TestProduct1Name = "Product1     ";
         /// <summary>
-        /// Padding should be 13 right.
+        /// Padding should be 13 spaces to the right as per our test data, db and filtering requirements
         /// </summary>
         public const string TestProduct2NameNotPadded = "Product2";
         public const decimal MaxPrice = 1000;
@@ -18,7 +18,7 @@ namespace Chapter06.Examples
         public static void SeedDataNotSeededBefore()
         {
             var db = new globalfactory2021Context();
-            bool isDataAlreadySeeded = db.Manufacturers.Any(m => m.Name == ManufacturerName);
+            var isDataAlreadySeeded = db.Manufacturers.Any(m => m.Name == ManufacturerName);
             if (isDataAlreadySeeded) return;
 
             SeedData(db);
