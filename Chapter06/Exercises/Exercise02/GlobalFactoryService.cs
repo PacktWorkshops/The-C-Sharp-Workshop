@@ -38,7 +38,7 @@ namespace Chapter06.Exercises.Exercise02
             foreach (var product in products)
             {
                 manufacturersInUsa.ForEach(m => m.Products.Add(
-                    new Product {Name = product.Name, Price = product.Price}
+                    new Product { Name = product.Name, Price = product.Price }
                     ));
             }
 
@@ -47,22 +47,22 @@ namespace Chapter06.Exercises.Exercise02
 
         public void SetAnyUsaProductOnDiscount(decimal discountedPrice)
         {
-            var anyroductInUsa = _context
+            var anyProductInUsa = _context
                 .Products
                 .FirstOrDefault(p => p.Manufacturer.Country == "USA");
 
-            anyroductInUsa.Price = discountedPrice;
+            anyProductInUsa.Price = discountedPrice;
 
             _context.SaveChanges();
         }
 
         public void RemoveAnyProductInUsa()
         {
-            var firstProductInUsa = _context
+            var anyProductInUsa = _context
                 .Products
                 .FirstOrDefault(p => p.Manufacturer.Country == "USA");
 
-            _context.Remove(firstProductInUsa);
+            _context.Remove(anyProductInUsa);
             _context.SaveChanges();
         }
 
