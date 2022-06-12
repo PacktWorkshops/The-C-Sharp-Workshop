@@ -47,8 +47,8 @@ namespace Chapter06.Exercises.Exercise03
 
             db.Dispose();
 
-            var db1 = new globalfactory2021Contextv3();
-            var manufacturerAfterAddition = db1.Manufacturers
+            db = new globalfactory2021Contextv3();
+            var manufacturerAfterAddition = db.Manufacturers
                 .Include(m => m.Products)
                 .ThenInclude(p => p.PriceHistory)
                 .First(m => m.Name == "Fake Toys");
@@ -56,7 +56,7 @@ namespace Chapter06.Exercises.Exercise03
             var productAfterAddition = manufacturerAfterAddition.Products.First();
 
             Console.WriteLine($"{manufacturerAfterAddition.Name} {productAfterAddition.Name} {productAfterAddition.GetPrice()}");
-            db1.Dispose();
-        } 
+            db.Dispose();
+        }
     }
 }
