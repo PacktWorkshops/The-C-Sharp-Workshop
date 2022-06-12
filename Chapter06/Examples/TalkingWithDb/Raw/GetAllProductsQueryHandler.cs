@@ -16,7 +16,7 @@ namespace Chapter06.Examples.TalkingWithDb.Raw
             var products = new List<Product>();
             while (reader.Read())
             {
-                products.Add(new Product()
+                products.Add(new Product
                 {
                     Id = (int)reader["id"],
                     //ManufacturerId = (int)reader["ManufacturerId"],
