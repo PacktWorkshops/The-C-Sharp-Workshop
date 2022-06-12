@@ -12,6 +12,8 @@ namespace Chapter06
         {
             //Examples.Repository.Demo.TestSqlite();
             //Examples.Cqrs.Demo.Test();
+            //Exercises.Exercise01.Demo.Run();
+            //Exercises.Exercise02.Demo.Run();
             //Exercises.Exercise03.Demo.Run();
             //Exercises.Exercise04.Demo.Run();
             //Exercises.Exercise05.Demo.Run();
@@ -19,7 +21,6 @@ namespace Chapter06
             //Examples.Crud.Demo.Run();
             //Examples.PerformanceTraps.Demo.Run();
             //Examples.TalkingWithDb.Orm.Demo.Run();
-            //Examples.PerformanceTraps.Demo.Run();
             //Examples.TestingDb.Demo.Run();
             //Activities.Activity01.Demo.Run();
 
