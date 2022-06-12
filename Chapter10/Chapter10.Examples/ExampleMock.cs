@@ -25,6 +25,7 @@ public class MarketingService
     public void SendMailShot(string to, string body)
     {
         _sender.SendMessage(new EmailMessage{To=to, Body = body});
+        _sender.SendMessage(new EmailMessage{To=to, Body = "test message"});
     }
 }
 

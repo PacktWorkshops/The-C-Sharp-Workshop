@@ -1,8 +1,8 @@
 using System;
 using NUnit.Framework;
 
-namespace Chapter10.Tests
-{
+namespace Chapter10.Tests;
+
     [TestFixture]
     public class Exercise01Tests
     {
@@ -13,4 +13,3 @@ namespace Chapter10.Tests
         }
        
     }
-}
