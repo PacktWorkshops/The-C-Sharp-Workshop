@@ -1,4 +1,7 @@
-﻿using Chapter06.Examples.TalkingWithDb.Orm;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Chapter06.Examples.TalkingWithDb.Orm;
 
 namespace Chapter06.Examples.Crud
 {
@@ -14,6 +17,7 @@ namespace Chapter06.Examples.Crud
             productsRepo.Create(new Product { Name = "Test3", ManufacturerId = 3 });
             var productByName = productsRepo.GetByName("Test1");
             var productById = productsRepo.GetById(productByName.Id);
+            Console.WriteLine($"{productById.Id} {productById.Name}");
             productsRepo.Delete("Test2");
             productsRepo.Delete(productById.Id);
             productById = productsRepo.GetByName("Test3");
@@ -21,10 +25,19 @@ namespace Chapter06.Examples.Crud
 
             var manufacturersRepo = new ManufacturersRepository(dbContext);
             manufacturersRepo.Create(new Manufacturer { Name = "TestManufacturer", Country = "Country" });
-            manufacturersRepo.GetManufacturerAndProductNamePairs_LINQ();
-            manufacturersRepo.GetManufacturerAndProductNamePairs_Query();
-
+            var manufacturers = manufacturersRepo.GetManufacturerAndProductNamePairs_LINQ();
+            PrintManufacturersAndProducts(manufacturers);
+            manufacturers = manufacturersRepo.GetManufacturerAndProductNamePairs_Query();
+            PrintManufacturersAndProducts(manufacturers);
             dbContext.Dispose();
+        }
+
+        private static void PrintManufacturersAndProducts(IEnumerable<(string, string)> kvp)
+        {
+            foreach (var kvp1 in kvp)
+            {
+                Console.WriteLine(kvp1);
+            }
         }
     }
 }
