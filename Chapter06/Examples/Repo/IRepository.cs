@@ -6,9 +6,9 @@ namespace Chapter06.Examples.Repo
     public interface IRepository<TEntity>: IDisposable where TEntity : class
     {
         int Create(TEntity entity);
-        void Delete(long id);
+        void Delete(int id);
         void Update(TEntity entity);
-        TEntity Get(long id);
+        TEntity Get(int id);
         IEnumerable<TEntity> Get();
     }
 }

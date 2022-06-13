@@ -24,7 +24,7 @@ namespace Chapter06.Exercises.Exercise04
             return added.Entity.Id;
         }
 
-        public void Delete(long id)
+        public void Delete(int id)
         {
             var toRemove = _dbSet.Find(id);
             if (toRemove != null)
@@ -41,7 +41,7 @@ namespace Chapter06.Exercises.Exercise04
             _context.SaveChanges();
         }
 
-        public TAggregate Get(long id)
+        public TAggregate Get(int id)
         {
             return _dbSet.Find(id);
         }

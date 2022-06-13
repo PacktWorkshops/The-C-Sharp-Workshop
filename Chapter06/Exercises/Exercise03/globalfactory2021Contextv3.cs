@@ -18,7 +18,7 @@ namespace Chapter06.Exercises.Exercise03
 
         public virtual DbSet<Manufacturer> Manufacturers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        //public virtual DbSet<ProductPriceHistory> ProductPriceHistory { get; set; }
+        public virtual DbSet<ProductPriceHistory> ProductPriceHistory { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

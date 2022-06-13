@@ -6,9 +6,9 @@ namespace Chapter06.Examples.Repo
     public interface IManufacturerRepository
     {
         int Create(Manufacturer product);
-        void Delete(long id);
+        void Delete(int id);
         void Update(Manufacturer product);
-        Manufacturer Get(long id);
+        Manufacturer Get(int id);
         IEnumerable<Manufacturer> Get();
     }
 }
