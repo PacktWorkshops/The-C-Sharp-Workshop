@@ -20,9 +20,9 @@ namespace Chapter06.Activities.Activity01
         private static void SeedData(TruckDispatchDbContext db)
         {
             var wasSeeded = db.Trucks.Any();
-            if(!wasSeeded)
+            if (!wasSeeded)
             {
-                var person = new Person { DoB = DateTime.Now, Id = 1, Name = "Stephen King" };
+                var person = new Person { DoB = DateTime.UtcNow, Id = 1, Name = "Stephen King" };
                 db.People.Add(person);
 
                 var truck = new Truck() { Id = 1, Brand = "Scania", Model = "R 500 LA6x2HHA", YearOfMaking = 2009 };
@@ -31,7 +31,7 @@ namespace Chapter06.Activities.Activity01
                 var dispatch = new TruckDispatch()
                 {
                     CurrentLocation = "1,1,1",
-                    Deadline = DateTime.Now.AddDays(100),
+                    Deadline = DateTime.UtcNow.AddDays(100),
                     Driver = person,
                     Truck = truck
                 };
@@ -54,7 +54,7 @@ namespace Chapter06.Activities.Activity01
 
         private static void Print(IEnumerable<TruckDispatch> truckDispatches)
         {
-            foreach(var dispatch in truckDispatches)
+            foreach (var dispatch in truckDispatches)
             {
                 Console.WriteLine($"Dispatch: {dispatch.Id} {dispatch.CurrentLocation} {dispatch.Deadline}");
                 Console.WriteLine($"Driver: {dispatch.Driver.Name} {dispatch.Driver.DoB}");

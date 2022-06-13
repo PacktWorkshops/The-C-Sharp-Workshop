@@ -13,7 +13,7 @@ namespace Chapter06.Exercises.Exercise03
             var manufacturer = new Manufacturer
             {
                 Country = "Canada",
-                FoundedAt = DateTime.Now,
+                FoundedAt = DateTime.UtcNow,
                 Name = "Fake Toys"
             };
 
@@ -27,13 +27,13 @@ namespace Chapter06.Exercises.Exercise03
             {
                 new ProductPriceHistory
                 {
-                    DateOfPrice = DateTime.Now.AddDays(-10),
+                    DateOfPrice = DateTime.UtcNow.AddDays(-10),
                     Price = 15.11m,
                     Product = product
                 },
                 new ProductPriceHistory
                 {
-                    DateOfPrice = DateTime.Now,
+                    DateOfPrice = DateTime.UtcNow,
                     Price = 15.5m,
                     Product = product
                 }
