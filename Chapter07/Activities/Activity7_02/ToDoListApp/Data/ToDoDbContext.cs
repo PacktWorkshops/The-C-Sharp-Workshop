@@ -59,7 +59,7 @@ public class ToDoDbContext : DbContext
             return entity.Metadata.FindPrimaryKey()
                 .Properties
                 .Select(p => entity.Property(p.Name).CurrentValue)
-                .FirstOrDefault()
+                .Single()
                 .ToString();
         }
     }
