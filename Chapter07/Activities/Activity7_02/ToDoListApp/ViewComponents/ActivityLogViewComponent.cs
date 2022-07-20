@@ -25,7 +25,7 @@ namespace ToDoList.App.ViewComponents
                 .Where(a => EF.Functions.Like(a.EntityId, taskId))
                 .ToListAsync();
 
-            _logger.LogWarning($"{activities.Count} actitivites found");
+            _logger.LogInformation($"{activities.Count} actitivites found");
 
             return View(activities);
         }
