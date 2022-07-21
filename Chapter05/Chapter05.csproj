@@ -7,7 +7,7 @@
     <!-- <StartupObject>Chapter05.Examples.AsyncLambdaExamples</StartupObject> -->
     <!-- <StartupObject>Chapter05.Exercises.Exercise05.Program</StartupObject>  -->
     <!-- <StartupObject>Chapter05.Examples.ParallelForExamples</StartupObject>     -->
-    <StartupObject>Chapter05.Activities.Activity01.FibonacciConsole</StartupObject>    
+    <!-- <StartupObject>Chapter05.Activities.Activity01.FibonacciConsole</StartupObject>    -->
     
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
