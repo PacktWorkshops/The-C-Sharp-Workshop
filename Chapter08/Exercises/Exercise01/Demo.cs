@@ -13,12 +13,12 @@ namespace Chapter08.Exercises.Exercise01
         private static string TextAnalysisApiKey { get; } = EnvironmentVariable.GetOrThrow("TextAnalysisApiKey");
         private static string TextAnalysisEndpoint { get; } = EnvironmentVariable.GetOrThrow("TextAnalysisEndpoint");
 
-        public static async Task Run()
+        public static Task Run()
         {
             var client = BuildClient();
             string text = "Today is a great day. " +
                           "I had a wonderful dinner with my family!";
-            await SentimentAnalysisExample(client, text);
+            return SentimentAnalysisExample(client, text);
         }
 
         static TextAnalyticsClient BuildClient()
