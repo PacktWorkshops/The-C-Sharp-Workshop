@@ -11,7 +11,7 @@ namespace Chapter08.Examples.GitOctokit
         public static async Task Run()
         {
             var github = new GitHubClient(new ProductHeaderValue("Packt"));
-            const string username = "Almantask";
+            const string username = "Almantask"; // replace with your own
             var user = await github.User.Get(username);
             Console.WriteLine($"{username} created profile at {user.CreatedAt}");
         }

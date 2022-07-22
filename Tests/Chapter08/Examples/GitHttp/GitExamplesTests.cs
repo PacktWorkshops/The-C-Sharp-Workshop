@@ -22,7 +22,7 @@ namespace Tests.Chapter08.Examples.GitHttp
         [TestMethod]
         public async Task GetUser61Times_DoesNotThrow()
         {
-            var token = GitExamples.GetBasicToken();
+            var token = GitExamples.CreateBasicToken();
 
             Func<Task> getUser61Times = async () => await GitExamples.GetUser61Times(token);
 
@@ -32,7 +32,7 @@ namespace Tests.Chapter08.Examples.GitHttp
         [TestMethod]
         public void GetToken_ReturnsBase64EncodedString()
         {
-            var basicToken = GitExamples.GetBasicToken();
+            var basicToken = GitExamples.CreateBasicToken();
 
             var token = basicToken.Replace("Basic ", "", StringComparison.InvariantCultureIgnoreCase);
             Action tokenFromBase64String = () => Convert.FromBase64String(token);
