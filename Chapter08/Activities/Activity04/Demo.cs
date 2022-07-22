@@ -6,7 +6,7 @@ namespace Chapter08.Activities.Activity04
     public static class Demo
     {
         public const string Downloads = "Activites/Activity04/Data/Downloads";
-        private const string Uploads = "Activites/Activity04/Data/Uploads";
+        public const string Uploads = "Activites/Activity04/Data/Uploads";
 
         public static async Task Run()
         {
