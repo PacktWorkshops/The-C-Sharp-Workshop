@@ -26,7 +26,6 @@ namespace Chapter08.Exercises.Exercise02
 
         public string[] Vehicles { get; set; }
 
-        [JsonProperty("species")]
         public string[] Species { get; set; }
 
         public DateTime Created { get; set; }

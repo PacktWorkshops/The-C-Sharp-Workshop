@@ -24,7 +24,7 @@ namespace Chapter08.Examples.GitHttp
 
         public static async Task GetUser()
         {
-            const string username = "almantask";
+            const string username = "github-user"; // replace with your own
             var request = new HttpRequestMessage(HttpMethod.Get, new Uri($"users/{username}", UriKind.Relative));
 
             var response = await client.SendAsync(request);
@@ -44,7 +44,7 @@ namespace Chapter08.Examples.GitHttp
             const int rateLimit = 60;
             for (int i = 0; i < rateLimit + 1; i++)
             {
-                const string username = "almantask";
+                const string username = "github-user"; // replace with your own
                 var request = new HttpRequestMessage(HttpMethod.Get, new Uri($"users/{username}", UriKind.Relative));
                 request.Headers.CacheControl = new CacheControlHeaderValue() { NoCache = true };
                 request.Headers.Add("Authorization", authHeader);
