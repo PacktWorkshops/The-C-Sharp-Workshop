@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chapter09.Service.Exceptions
+namespace Chapter09.ExploringDi.Exceptions
 {
     public class NoSuchWeekdayException : Exception
     {

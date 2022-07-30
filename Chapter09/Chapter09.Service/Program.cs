@@ -1,6 +1,8 @@
 using Chapter09.Service.Bootstrap;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 // DI
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,10 @@ services
     .AddModelMappings()
     .AddFileUploadService()
     .AddSecurity(configuration, environment);
+//.AddLogging(builder =>
+//{
+//    builder.ClearProviders();
+//});
 
 var app = builder.Build();
 

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Chapter09.Service.Exceptions;
-using Chapter09.Service.Models;
-using Chapter09.Service.Services;
+using Chapter09.ExploringDi.Exceptions;
+using Chapter09.ExploringDi.Models;
+using Chapter09.ExploringDi.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Chapter09.Service.Controllers
+namespace Chapter09.ExploringDi.Controllers
 {
     [ApiController]
     [Route("[controller]")]

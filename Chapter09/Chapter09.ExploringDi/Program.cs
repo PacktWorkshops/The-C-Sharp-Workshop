@@ -1,5 +1,5 @@
 using System;
-using Chapter09.Service.Services;
+using Chapter09.ExploringDi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

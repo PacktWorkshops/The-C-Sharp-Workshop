@@ -1,6 +1,6 @@
 using System;
 
-namespace Chapter09.Service.Models
+namespace Chapter09.ExploringDi.Models
 {
     public class WeatherForecast
     {

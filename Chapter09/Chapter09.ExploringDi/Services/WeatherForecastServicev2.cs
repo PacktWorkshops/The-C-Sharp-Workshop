@@ -1,9 +1,7 @@
-﻿using System;
-using Chapter09.Service.Exceptions;
-using Chapter09.Service.Models;
-using Microsoft.Extensions.Logging;
+﻿using Chapter09.ExploringDi.Exceptions;
+using Chapter09.ExploringDi.Models;
 
-namespace Chapter09.Service.Services
+namespace Chapter09.ExploringDi.Services
 {
     public class WeatherForecastServiceV2 : IWeatherForecastService
     {
