@@ -21,10 +21,6 @@ services
     .AddModelMappings()
     .AddFileUploadService()
     .AddSecurity(configuration, environment);
-//.AddLogging(builder =>
-//{
-//    builder.ClearProviders();
-//});
 
 var app = builder.Build();
 

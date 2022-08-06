@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AutoMapper;
+using Chapter09.Service.Dtos;
 
 namespace Chapter09.Service.Profiles
 {
@@ -9,13 +11,12 @@ namespace Chapter09.Service.Profiles
         {
             CreateMap<Dtos.WeatherForecast, Models.WeatherForecast>()
                 .ForMember(to => to.Summary, opt => opt.MapFrom(from => BuildDescription(from)))
-                .ForMember(to => to.TemperatureC, opt => opt.MapFrom(from => from.main.temp));
+                .ForMember(to => to.TemperatureC, opt => opt.MapFrom(from => (int)double.Parse(from.Temperature)));
         }
 
-        private static string BuildDescription(Dtos.WeatherForecast forecast)
+        private string BuildDescription(WeatherForecast @from)
         {
-            return string.Join(",",
-                forecast.weather.Select(w => w.description));
+            return $"{@from.Conditions} | {@from.CloudCover} | {@from.Name}";
         }
     }
 }

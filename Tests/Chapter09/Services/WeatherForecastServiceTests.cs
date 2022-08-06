@@ -53,29 +53,17 @@ namespace Tests.Chapter09.Services
             _mapper = new Mock<IMapper>();
 
             _weatherForecastService = new WeatherForecastService(_logger.Object,
-                Options.Create(new WeatherForecastConfig(){City = City, RefreshInterval = RefreshInterval}),
+                Options.Create(new WeatherForecastConfig() { City = City, RefreshInterval = RefreshInterval }),
                 _cache.Object,
                 _provider.Object,
                 _mapper.Object);
         }
 
         [TestMethod]
-        public void SaveWeatherForecast_SetsForecastInCache()
-        {
-            var weatherForecast = new Model.WeatherForecast();
-            var weatherForecastObject = (object)weatherForecast;
-            var expectedCacheKey = weatherForecast.Date.ToString(DateFormat);
-
-            _weatherForecastService.SaveWeatherForecast(weatherForecast);
-
-            _cache.Verify(c => c.CreateEntry(expectedCacheKey), Times.Once);
-        }
-
-        [TestMethod]
         public async Task GetWeatherForecast_GivenForecastAtDateExists_ReturnsForecast()
         {
-            var expectedForecast = new Model.WeatherForecast() {Date = DateTime.Now, Summary = "Ok", TemperatureC = 1};
-            var expectedForecastObject = (object) expectedForecast;
+            var expectedForecast = new Model.WeatherForecast() { Date = DateTime.Now, Summary = "Ok", TemperatureC = 1 };
+            var expectedForecastObject = (object)expectedForecast;
             var key = expectedForecast.Date.ToString(DateFormat);
             _cache
                 .Setup(c => c.TryGetValue(key, out expectedForecastObject))
@@ -92,7 +80,7 @@ namespace Tests.Chapter09.Services
         {
             var expectedForecast = new Model.WeatherForecast() { Date = DateTime.Now, Summary = "Ok", TemperatureC = 1 };
             var key = DateTime.UtcNow.ToString(DateFormat);
-            
+
             object other = null;
             _cache
                 .Setup(c => c.TryGetValue(key, out other))
