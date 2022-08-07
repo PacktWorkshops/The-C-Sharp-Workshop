@@ -69,7 +69,7 @@ namespace Tests.Chapter09.Services
                 .Setup(c => c.TryGetValue(key, out expectedForecastObject))
                 .Returns(true);
 
-            var forecast = await _weatherForecastService.GetWeatherForecast(DateTime.Now);
+            var forecast = await _weatherForecastService.GetWeatherForecast();
 
             Assert.AreEqual(forecast, expectedForecast);
             _cache.Verify(c => c.CreateEntry(key), Times.Never());
@@ -95,7 +95,7 @@ namespace Tests.Chapter09.Services
                 .Setup(m => m.Map<Model.WeatherForecast>(forecastDto))
                 .Returns(expectedForecast);
 
-            var forecast = await _weatherForecastService.GetWeatherForecast(expectedForecast.Date);
+            var forecast = await _weatherForecastService.GetWeatherForecast();
 
             Assert.AreEqual(forecast, expectedForecast);
             _cache.Verify(c => c.CreateEntry(key), Times.Once);

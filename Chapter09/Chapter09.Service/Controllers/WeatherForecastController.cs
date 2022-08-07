@@ -45,12 +45,10 @@ namespace Chapter09.Service.Controllers
         /// Gets weather forecast for now.
         /// </summary>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetWeatherForecast()
         {
-            var weatherForecast = await _weatherForecastService.GetWeatherForecast(DateTime.UtcNow);
-            if (weatherForecast == null) return NotFound();
+            var weatherForecast = await _weatherForecastService.GetWeatherForecast();
             return Ok(weatherForecast);
         }
     }

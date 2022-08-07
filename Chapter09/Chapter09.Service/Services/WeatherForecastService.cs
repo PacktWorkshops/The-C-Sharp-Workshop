@@ -13,7 +13,7 @@ namespace Chapter09.Service.Services
     public interface IWeatherForecastService
     {
         WeatherForecast GetWeekday(int day);
-        Task<WeatherForecast> GetWeatherForecast(DateTime date);
+        Task<WeatherForecast> GetWeatherForecast();
     }
 
     public class WeatherForecastService : IWeatherForecastService
@@ -37,10 +37,10 @@ namespace Chapter09.Service.Services
             _mapper = mapper;
         }
 
-        public async Task<WeatherForecast> GetWeatherForecast(DateTime date)
+        public async Task<WeatherForecast> GetWeatherForecast()
         {
             const string DateFormat = "yyyy-MM-ddthh";
-            var contains = _cache.TryGetValue(date.ToString(DateFormat), out var entry);
+            var contains = _cache.TryGetValue(DateTime.UtcNow.ToString(DateFormat), out var entry);
             if (contains) { return (WeatherForecast)entry; }
 
             var forecastDto = await _provider.GetCurrent(_city);

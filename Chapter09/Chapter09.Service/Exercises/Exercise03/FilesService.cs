@@ -10,7 +10,7 @@ namespace Chapter09.Service.Exercises.Exercise03
     public interface IFilesService
     {
         Task Delete(string name);
-        Task UploadFile(string name, Stream content);
+        Task Upload(string name, Stream content);
         Task<byte[]> Download(string filename);
         Uri GetDownloadLink(string filename);
     }
@@ -28,7 +28,7 @@ namespace Chapter09.Service.Exercises.Exercise03
             var storageEndpoint = new Uri(endpoint);
             var storageCredentials = new StorageSharedKeyCredential(account, key);
             _blobServiceClient = new BlobServiceClient(storageEndpoint, storageCredentials);
-            _defaultContainerClient = CreateContainerIfNotExists("Exercise04").Result;
+            _defaultContainerClient = CreateContainerIfNotExists("Exercise03").Result;
         }
 
         private async Task<BlobContainerClient> CreateContainerIfNotExists(string container)
@@ -51,7 +51,7 @@ namespace Chapter09.Service.Exercises.Exercise03
             return blobClient.DeleteAsync();
         }
 
-        public Task UploadFile(string name, Stream content)
+        public Task Upload(string name, Stream content)
         {
             var blobClient = _defaultContainerClient.GetBlobClient(name);
             return blobClient.UploadAsync(content);
