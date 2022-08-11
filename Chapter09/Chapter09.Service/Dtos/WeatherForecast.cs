@@ -1,24 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CsvHelper.Configuration;
 
-namespace Chapter09.Service.Dtos
+namespace Chapter09.Service.Dtos;
+
+public class WeatherForecast
 {
-    public class WeatherForecast
-    {
-        public List<Weather> weather { get; set; }
-        public Main main { get; set; }
-    }
-
-    public class Weather
-    {
-        public string description { get; set; }
-    }
-
-    public class Main
-    {
-        public double temp { get; set; }
-    }
-
+    public DateTime Datetime { get; set; }
+    public string Temperature { get; set; }
+    public string Conditions { get; set; }
 }

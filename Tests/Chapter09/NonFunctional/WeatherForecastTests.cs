@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Tests.Chapter09.NonFunctional.Common;
+using WeatherForecast = Chapter09.Service.Dtos.WeatherForecast;
 
 namespace Tests.Chapter09.NonFunctional
 {
@@ -67,20 +68,6 @@ namespace Tests.Chapter09.NonFunctional
             var content = await response.Content.ReadAsStringAsync();
             var forecast = JsonConvert.DeserializeObject<WeatherForecast>(content);
             Assert.IsNotNull(forecast);
-        }
-
-        [TestMethod]
-        public async Task SaveWeatherForecast_ReturnsVilniusForecast()
-        {
-            var uri = new Uri("", UriKind.Relative);
-            var forecast = new WeatherForecast {Summary = "Test" };
-            var body = JsonContent.Create(forecast);
-            var response = await _client.PostAsync(uri,body);
-
-            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
-            var content = await response.Content.ReadAsStringAsync();
-            var retrievedForecast = JsonConvert.DeserializeObject<WeatherForecast>(content);
-            Assert.IsNotNull(forecast.Summary, retrievedForecast.Summary);
         }
     }
 }

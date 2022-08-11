@@ -84,7 +84,7 @@ namespace Tests.Chapter09.Exercises.Exercise03
 
             var response = await _controller.Upload(file.Object);
 
-            _fileService.Verify(fs => fs.UploadFile(expectedFilename, expectedStream), Times.Once);
+            _fileService.Verify(fs => fs.Upload(expectedFilename, expectedStream), Times.Once);
             Assert.IsInstanceOfType(response, typeof(OkResult));
         }
     }

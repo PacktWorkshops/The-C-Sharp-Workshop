@@ -24,7 +24,7 @@ namespace Tests.Chapter09.Exercises.Exercise03
         {
             _filesService = new FilesService();
             _filesService
-                .UploadFile(ExistingFile, new MemoryStream(existingFileContent))
+                .Upload(ExistingFile, new MemoryStream(existingFileContent))
                 .GetAwaiter().GetResult();
         }
 
@@ -43,7 +43,7 @@ namespace Tests.Chapter09.Exercises.Exercise03
             Assert.ThrowsException<FileNotFoundException>(getDownloadLinkDeletedFile);
 
             // Needed for the cleanup to work.
-            await _filesService.UploadFile(ExistingFile, Stream.Null);
+            await _filesService.Upload(ExistingFile, Stream.Null);
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace Tests.Chapter09.Exercises.Exercise03
         [TestMethod]
         public async Task UploadFile_GivenFileDoesNotExist_UploadsIt()
         {
-            Func<Task> getDownloadLinkOfUploadedFile = () => _filesService.UploadFile(NotExistingFile, Stream.Null);
+            Func<Task> getDownloadLinkOfUploadedFile = () => _filesService.Upload(NotExistingFile, Stream.Null);
 
             await getDownloadLinkOfUploadedFile.DoesNotThrow();
 
@@ -67,7 +67,7 @@ namespace Tests.Chapter09.Exercises.Exercise03
         [TestMethod]
         public async Task UploadFile_GivenFileExists_ThrowsRequestFailedException()
         {
-            Func<Task> uploadExistingFile = async () => await _filesService.UploadFile(ExistingFile, Stream.Null);
+            Func<Task> uploadExistingFile = async () => await _filesService.Upload(ExistingFile, Stream.Null);
 
             await Assert.ThrowsExceptionAsync<RequestFailedException>(uploadExistingFile);
         }

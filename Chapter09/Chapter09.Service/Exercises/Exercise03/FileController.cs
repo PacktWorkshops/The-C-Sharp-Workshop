@@ -45,7 +45,7 @@ namespace Chapter09.Service.Controllers
         [HttpPost("upload")]
         public async Task<IActionResult> Upload(IFormFile file)
         {
-            await _filesService.UploadFile(file.FileName, file.OpenReadStream());
+            await _filesService.Upload(file.FileName, file.OpenReadStream());
 
             return Ok();
         }
