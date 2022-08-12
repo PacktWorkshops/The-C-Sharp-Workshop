@@ -9,7 +9,8 @@
                 "build",
                 "${workspaceFolder}/Chapter05.csproj",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary",
+                "-p:StartupObject=Chapter05.Exercises.Exercise02.Program"
             ],
             "problemMatcher": "$msCompile"
         },
