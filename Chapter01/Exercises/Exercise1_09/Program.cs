@@ -9,13 +9,13 @@ Console.WriteLine($"{input} is prime? {IsPrime(input)}.");
 
 static bool IsPrime(int number)
 {
-    if (number == 0) return false;
+    if (number == 0 || number == 1) return false;
 
     bool isPrime = true;
 
     int counter = 2;
 
-    while (counter <= number / 2)
+    while (counter <= Math.Sqrt(number))
     {
         if (number % counter == 0)
         {
