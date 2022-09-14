@@ -16,7 +16,7 @@ namespace Tests.Chapter09.Providers
         [TestInitialize]
         public void SetUp()
         {
-            _client = new HttpClient {BaseAddress = new Uri("https://community-open-weather-map.p.rapidapi.com/") };
+            _client = new HttpClient { BaseAddress = new Uri("https://visual-crossing-weather.p.rapidapi.com/") };
             var apiKey = Environment.GetEnvironmentVariable("x-rapidapi-key", EnvironmentVariableTarget.User);
             _client.DefaultRequestHeaders.Add("x-rapidapi-key", apiKey);
         }
