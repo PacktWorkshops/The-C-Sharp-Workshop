@@ -42,7 +42,8 @@ namespace Tests.Chapter06.CRUD
         [TestMethod]
         public void GetByName_WhenExisting_ReturnsExpected()
         {
-            _db.Products.Add(new Product() { Name = "Toy Car", Manufacturer = new Manufacturer() {Name = "Test", Country = "Test"}});
+            // Should be done once or should db should be cleaned up prior to this.
+            _db.Products.Add(new Product() { Name = "Toy Car", Manufacturer = new Manufacturer() { Name = "Test", Country = "Test" } });
             _db.SaveChanges();
 
             const string existingProductName = "Toy Car";
