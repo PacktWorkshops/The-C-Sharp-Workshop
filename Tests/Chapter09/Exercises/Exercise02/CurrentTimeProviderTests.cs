@@ -14,7 +14,7 @@ namespace Tests.Chapter09.Exercises.Exercise02
         [TestMethod]
         public void GetTime_ReturnsTimeInUtcFormat()
         {
-            var expectedHour = DateTime.UtcNow.Hour + 1;
+            var expectedHour = DateTime.UtcNow.Hour;
             var timeProvider = new CurrentTimeUtcProvider();
 
             var time = timeProvider.GetTime("Central European Standard Time");
