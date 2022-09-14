@@ -22,11 +22,12 @@ namespace Tests.Chapter02.Examples.Generics.ComparatorTests
             Max1_Returns_BiggerOfTwoOrSecond(first, second, expectedMax);
         }
 
-        [DataTestMethod]
-        [DynamicData(nameof(IsFirstBiggerExpectationsDummy))]
-        public void Max1_Returns_BiggerOfTwoOrSecondDummy(Dummy first, Dummy second, Dummy expectedMax)
+        [TestMethod]
+        public void Max1_Returns_BiggerOfTwoOrSecondDummy()
         {
-            Max1_Returns_BiggerOfTwoOrSecond(first, second, expectedMax);
+            Dummy d1 = new Dummy();
+            Dummy d2 = new Dummy();
+            Max1_Returns_BiggerOfTwoOrSecond(d1, d2, d2);
         }
 
         [DataTestMethod]
@@ -43,11 +44,12 @@ namespace Tests.Chapter02.Examples.Generics.ComparatorTests
             Max2_Returns_BiggerOfTwoOrSecond(first, second, expectedMax);
         }
 
-        [DataTestMethod]
-        [DynamicData(nameof(IsFirstBiggerExpectationsDummy))]
-        public void Max2_Returns_BiggerOfTwoOrSecondDummy(Dummy first, Dummy second, Dummy expectedMax)
+        [TestMethod]
+        public void Max2_Returns_BiggerOfTwoOrSecondDummy()
         {
-            Max2_Returns_BiggerOfTwoOrSecond(first, second, expectedMax);
+            Dummy d1 = new Dummy();
+            Dummy d2 = new Dummy();
+            Max2_Returns_BiggerOfTwoOrSecond(d1, d2, d2);
         }
 
         private static void Max1_Returns_BiggerOfTwoOrSecond(IComparable first, IComparable second, IComparable expectedMax)
@@ -58,7 +60,7 @@ namespace Tests.Chapter02.Examples.Generics.ComparatorTests
         }
 
         private static void Max2_Returns_BiggerOfTwoOrSecond<T>(T first, T second, T expectedMax)
-            where T: IComparable
+            where T : IComparable
         {
             var max = Max2(first, second);
 
@@ -69,10 +71,10 @@ namespace Tests.Chapter02.Examples.Generics.ComparatorTests
         {
             get
             {
-                yield return new object[] {1, 2, 2};
-                yield return new object[] {2, 1, 2};
-                yield return new object[] {-2, 1, 1};
-                yield return new object[] {1, 1, 1};
+                yield return new object[] { 1, 2, 2 };
+                yield return new object[] { 2, 1, 2 };
+                yield return new object[] { -2, 1, 1 };
+                yield return new object[] { 1, 1, 1 };
             }
         }
 
@@ -80,20 +82,10 @@ namespace Tests.Chapter02.Examples.Generics.ComparatorTests
         {
             get
             {
-                yield return new object[] {1.1m, 2.1m, 2.1m};
-                yield return new object[] {2.1m, 1.1m, 2.1m,};
-                yield return new object[] {-1.3m, 1.2m, 1.2m};
-                yield return new object[] {1.1m, 1.1m, 1.1m};
-            }
-        }
-
-        public static IEnumerable<object[]> IsFirstBiggerExpectationsDummy
-        {
-            get
-            {
-                Dummy d1 = new Dummy();
-                Dummy d2 = new Dummy();
-                yield return new object[] { d1, d2, d2 };
+                yield return new object[] { 1.1m, 2.1m, 2.1m };
+                yield return new object[] { 2.1m, 1.1m, 2.1m, };
+                yield return new object[] { -1.3m, 1.2m, 1.2m };
+                yield return new object[] { 1.1m, 1.1m, 1.1m };
             }
         }
     }
