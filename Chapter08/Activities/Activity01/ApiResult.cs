@@ -8,6 +8,6 @@
 
         public string Previous { get; set; }
 
-        public T Data { get; set; }
+        public T Results { get; set; }
     }
 }

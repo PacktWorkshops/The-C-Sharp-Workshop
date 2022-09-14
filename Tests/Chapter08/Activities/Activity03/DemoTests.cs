@@ -12,8 +12,8 @@ namespace Tests.Chapter08.Activities.Activity03
         public async Task Run_Prints_2Countries_With_NameAndCapital_ThenLithuaniaNameAndCapital_ThenVilniusNameAndCapital()
         {
             const string expectedCities = @"All:
-Argentina Americas Buenos Aires
-Falkland Islands Americas Stanley
+Fiji Oceania Suva
+Papua New Guinea Oceania Port Moresby
 
 Lithuanian:
 Lithuania Europe Vilnius
