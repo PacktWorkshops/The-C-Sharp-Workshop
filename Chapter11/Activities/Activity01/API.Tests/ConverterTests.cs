@@ -52,7 +52,7 @@ namespace API.Tests
         }
 
         [Theory]
-        [InlineData(1, 256)]
+        [InlineData(1, 255)]
         [InlineData(50, 283)]
         [InlineData(95, 308)]
         [InlineData(73, 295)]
