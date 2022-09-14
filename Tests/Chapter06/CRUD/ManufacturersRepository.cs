@@ -33,6 +33,8 @@ namespace Tests.Chapter06.CRUD
         [TestMethod]
         public void Get_ReturnsAllManufacturers()
         {
+            AddManufacturerWith2Products();
+
             var manufacturers = _manufacturersRepository.Get();
 
             Assert.AreEqual(1, manufacturers.Count());
@@ -42,8 +44,9 @@ namespace Tests.Chapter06.CRUD
         [TestMethod]
         public void GetManufacturerAndProductNamePairs_LINQ_Returns_Many_Product_Manufacturer()
         {
+            AddManufacturerWith2Products();
             var productAndManufacturerPairs = _manufacturersRepository.GetManufacturerAndProductNamePairs_LINQ();
-            
+
             Assert.AreEqual(2, productAndManufacturerPairs.Count());
             foreach (var productAndManufacturerPair in productAndManufacturerPairs)
             {
@@ -55,6 +58,7 @@ namespace Tests.Chapter06.CRUD
         [TestMethod]
         public void GetManufacturerAndProductNamePairs_Query_Returns_Many_Product_Manufacturer()
         {
+            AddManufacturerWith2Products();
             var productAndManufacturerPairs = _manufacturersRepository.GetManufacturerAndProductNamePairs_Query();
 
             Assert.AreEqual(2, productAndManufacturerPairs.Count());
@@ -96,6 +100,31 @@ namespace Tests.Chapter06.CRUD
             Assert.AreEqual(2, toyLasersManufacturer.First().Products.Count);
 
             _db.Manufacturers.RemoveRange(toyLasersManufacturer);
+            _db.SaveChanges();
+        }
+
+        private void AddManufacturerWith2Products()
+        {
+            var manufacturer = new Manufacturer
+            {
+                Country = "Lithuania",
+                Name = "Toy Lasers",
+                Products = new List<Product>
+                {
+                    new()
+                    {
+                        Name = "Laser S",
+                        Price = 4.01m
+                    },
+                    new()
+                    {
+                        Name = "Laser M",
+                        Price = 7.99m
+                    }
+                }
+            };
+
+            _db.Manufacturers.Add(manufacturer);
             _db.SaveChanges();
         }
     }

@@ -34,7 +34,7 @@ namespace Tests.Chapter09.Providers
 
             var forecast = await forecastProvider.GetCurrent("Vilnius");
 
-            Assert.IsTrue(forecast.weather.Any(), "Expected one or more weather forecasts");
+            Assert.IsNotNull(forecast);
         }
     }
 }
