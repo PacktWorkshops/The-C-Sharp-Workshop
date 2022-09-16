@@ -30,21 +30,6 @@ namespace Tests.Chapter05
             Assert.AreEqual(resultTask.Status, TaskStatus.RanToCompletion);
             Assert.IsNull(resultTask.Exception);
         }
-
-
-        //[TestMethod]
-        //[ExpectedException(typeof(OperationCanceledException))]
-        //public async Task FetchLoop_OperationCanceledException()
-        //{
-        //    using var tokenSource = new CancellationTokenSource(CancellationTime);
-        //    tokenSource.Token.Register(() => Logger.Log("Cancelled token"));
-
-        //    var resultTask = new SlowRunningService()
-        //        .FetchLoop(DelayTime, tokenSource.Token);
-
-        //    await resultTask;
-        //}
-
     }
 }
 

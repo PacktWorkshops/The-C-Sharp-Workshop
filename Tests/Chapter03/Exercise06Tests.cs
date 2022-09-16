@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Chapter03
 {
-
     [TestClass]
     public class Exercise06Tests
     {

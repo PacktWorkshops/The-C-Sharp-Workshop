@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Chapter05
 {
-
     [TestClass]
     public class Exercise05Tests
     {

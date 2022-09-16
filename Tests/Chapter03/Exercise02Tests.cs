@@ -1,6 +1,6 @@
 using Chapter03.Exercise02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+    
 namespace Tests.Chapter03
 {
     [TestClass]

@@ -6,7 +6,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Chapter03
 {
-
     [TestClass]
     public class Activity01Tests
     {
@@ -33,7 +32,7 @@ namespace Tests.Chapter03
 
                 var destination = Path.GetTempFileName();
                 const string Url =
-                    @"https://www1.ncdc.noaa.gov/pub/data/swdi/stormevents/csvfiles/StormEvents_details-ftp_v1.0_d1950_c20170120.csv.gz";
+                    @"https://www1.ncdc.noaa.gov/pub/data/swdi/stormevents/csvfiles/StormEvents_details-ftp_v1.0_d1950_c20210803.csv.gz";
                 var request = client.DownloadFile(Url, destination);
                 if (request == null)
                     return;

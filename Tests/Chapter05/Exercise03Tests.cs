@@ -8,7 +8,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Chapter05
 {
-
     class TestSalesLoader : ISalesLoader
     {
         private readonly IEnumerable<CarSale> _carSales;
