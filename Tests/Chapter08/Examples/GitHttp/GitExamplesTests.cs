@@ -12,7 +12,7 @@ namespace Tests.Chapter08.Examples.GitHttp
         [TestMethod]
         public async Task GetUser_Returns_AlmatasKWithCreatedAtProfileDate()
         {
-            const string expectedUser = "Kaisinel created profile at 2018-06-22 07:51:56";
+            const string expectedUser = "created profile at 2009-02-18 12:51:13";
 
             await GitExamples.GetUser();
 

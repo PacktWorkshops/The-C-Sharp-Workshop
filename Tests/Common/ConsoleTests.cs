@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Common
 {
-    public class ConsoleTests : IDisposable
+    public class ConsoleTests
     {
         /// <summary>
         /// Disposes console output file and returns its' contents.
@@ -42,7 +43,8 @@ namespace Tests.Common
         private string _testKey;
         private StreamWriter _consoleOutput;
 
-        public ConsoleTests()
+        [TestInitialize]
+        public void Setup()
         {
             RedirectConsoleToFile();
         }
@@ -58,7 +60,8 @@ namespace Tests.Common
             Console.SetOut(_consoleOutput);
         }
 
-        public void Dispose()
+        [TestCleanup]
+        public void Cleanup()
         {
             if (_testKey != null)
             {

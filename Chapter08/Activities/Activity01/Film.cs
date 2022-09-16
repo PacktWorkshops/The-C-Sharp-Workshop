@@ -14,7 +14,7 @@ namespace Chapter08.Activities.Activity01
 
         public string Producer { get; set; }
 
-        public string ReleaseDate { get; set; }
+        public string Release_Date { get; set; }
 
         public string[] Characters { get; set; }
 

@@ -12,10 +12,13 @@ namespace Tests.Chapter06.CRUD
         // Needed to escape error, such as entity already being tracked and similar, to escape invalid state of the context under test.
         private ProductRepository _isolatedRepo;
 
+        private FactoryDbContext _db;
+
         [TestInitialize]
         public void Setup()
         {
-            _productRepository = new ProductRepository(new FactoryDbContext());
+            _db = new FactoryDbContext();
+            _productRepository = new ProductRepository(_db);
             _isolatedRepo = new ProductRepository(new FactoryDbContext());
         }
 
@@ -39,6 +42,10 @@ namespace Tests.Chapter06.CRUD
         [TestMethod]
         public void GetByName_WhenExisting_ReturnsExpected()
         {
+            // Should be done once or should db should be cleaned up prior to this.
+            _db.Products.Add(new Product() { Name = "Toy Car", Manufacturer = new Manufacturer() { Name = "Test", Country = "Test" } });
+            _db.SaveChanges();
+
             const string existingProductName = "Toy Car";
 
             var product = _productRepository.GetByName(existingProductName);
@@ -50,16 +57,16 @@ namespace Tests.Chapter06.CRUD
         public void GetByManufacturer_WhenExisting_ReturnsExpected()
         {
             const int existingManufacturerId = 1;
-            
+
             var products = _productRepository.GetByManufacturer(existingManufacturerId);
 
-            Assert.AreEqual(2, products.Count());
+            Assert.IsTrue(products.Any(), "The manufacturer should have at least 1 product");
         }
 
         [TestMethod]
         public void GetById_WhenNotExisting_ReturnsNull()
         {
-            const int notExistingProductId = 9999;
+            const int notExistingProductId = int.MaxValue;
 
             var product = _productRepository.GetById(notExistingProductId);
 
@@ -79,7 +86,7 @@ namespace Tests.Chapter06.CRUD
         [TestMethod]
         public void GetByManufacturer_WhenNotExisting_ReturnsNull()
         {
-            const int notExistingManufacturerId = 99999;
+            const int notExistingManufacturerId = int.MaxValue;
 
             var products = _productRepository.GetByManufacturer(notExistingManufacturerId);
 

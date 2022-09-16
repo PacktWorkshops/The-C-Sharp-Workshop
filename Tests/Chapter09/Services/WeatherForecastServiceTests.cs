@@ -62,16 +62,16 @@ namespace Tests.Chapter09.Services
         [TestMethod]
         public async Task GetWeatherForecast_GivenForecastAtDateExists_ReturnsForecast()
         {
-            var expectedForecast = new Model.WeatherForecast() { Date = DateTime.Now, Summary = "Ok", TemperatureC = 1 };
-            var expectedForecastObject = (object)expectedForecast;
+            var expectedForecast = new Model.WeatherForecast() { Date = DateTime.UtcNow, Summary = "Ok", TemperatureC = 1 };
+            var cachedForecast = (object)expectedForecast;
             var key = expectedForecast.Date.ToString(DateFormat);
             _cache
-                .Setup(c => c.TryGetValue(key, out expectedForecastObject))
+                .Setup(c => c.TryGetValue(key, out cachedForecast))
                 .Returns(true);
 
             var forecast = await _weatherForecastService.GetWeatherForecast();
 
-            Assert.AreEqual(forecast, expectedForecast);
+            Assert.AreEqual(cachedForecast, forecast);
             _cache.Verify(c => c.CreateEntry(key), Times.Never());
         }
 
